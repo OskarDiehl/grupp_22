@@ -1,5 +1,9 @@
 <<<<<<< HEAD
 Här testar jag om det fungerar/Oskar
+<<<<<<< HEAD
+Jag testar att skriva i Notepad /Malin
+
+=======
 
 Här lägger jag till fler grejer höhöhöhö./Oskar
 
@@ -9,3 +13,4 @@ KUKRÖV!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 >>>>>>> a5716622165c54461f6663f066e275751401b1d3
 
 Argagaga /Sabina
+>>>>>>> 2d3f53067bbb8c6f87a3d5200d35b30c0e82ba6f
