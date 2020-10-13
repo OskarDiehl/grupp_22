@@ -5,6 +5,7 @@ public class gitTestBror {
         System.out.println("Testa  bajs för faaaan");
 
         System.out.println("Testar Rebase och grejs");
+        System.out.println("Mer bajs tack");
     }
 
 
