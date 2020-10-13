@@ -1,1 +1,9 @@
+<<<<<<< HEAD
+Här testar jag om det fungerar/Oskar
+
+Här lägger jag till fler grejer höhöhöhö./Oskar
+
+Nu lägger jag till saker /Sabina
+=======
 KUKRÖV!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+>>>>>>> a5716622165c54461f6663f066e275751401b1d3
