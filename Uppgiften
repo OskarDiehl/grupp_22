@@ -1,0 +1,181 @@
+INTE grupp_22
+KORT INTRO OM VAD SOM SKA GÖRAS
+Det här projektet är ett grupparbete som går ut på att konstruera ett klassbibliotek och tillämpa i princip allt som har tagits upp på kursen.
+
+
+OMFATTNING
+Varje gruppmedlem ska...
+... lägga ungefär 90 timmar på projektet.
+... ha skrivit totalt mellan 400 och 1000 rader kod. Majoriteten av denna kod ska vara testkod.
+
+
+EXAMINATION
+I slutet av projektet kommer gruppen att examineras genom en muntlig redovisning.
+Utöver det kommer dedt att ske statusredovisningar under projektets gång.
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+GRUNDLIG INFORMATION OM UPPGIFTEN
+* Utveckla ett klassbibliotek
+    - Ett "rougelike" spel
+* Ickefunktionella krav
+   Grupparbete
+    - Projektet ska vara ett
+      grupparbete. Om någon i
+      gruppen inte deltar, eller
+      för den skull gör en
+      alltför stor del av arbetet
+      själv, så är det inte ett
+      grupparbete.
+
+   Individuellt ansvar
+    - Varje person ansvarar
+      själv för de delar man
+      tagit på sig att göra och
+      för att dessa är
+      tillräckliga för att
+      uppfylla kraven
+
+   Testdriven utveckling
+    - Ni ska tillämpa testdriven
+      utveckling under
+      projektet, och detta ska
+      gå att följa i
+      versionshistoriken.
+    - Ni behöver inte tillämpa
+      TDD genomgående om ni
+      inte vill, det räcker med
+      att ni gör det tillräckligt
+      mycket för att kunna
+      visa att ni förstår
+      tekniken
+
+   Granskning
+    - Ni ska genomföra minst
+      en formell granskning av
+      koden.
+    - Testa gärna mer
+      informella typer av
+      granskningar också så
+      att ni har något att
+      jämföra med.
+    - Ett tips är att prata med
+      någon annan grupp och
+      granska varandras kod.
+
+   Tillämpa testdesignverktyg
+    - Gruppen ska gemensamt välja ut några lämpliga
+      delar av projektet och tillämpa minst två av de
+      tre testdesigntekniker som tagits upp under
+      kursen: ekvivalensklassuppdelning,
+      beslutstabeller och tillståndsmaskiner på dessa
+      delar.
+
+    - De testfall som tas fram på dessa sätt kan
+      utgöra grunden för utveckling av dessa delar
+      med TDD eller tas fram i efterhand för att
+      komplettera de testfall som ni redan har tagit
+      fram genom att tillämpa testdriven utveckling.
+    - Oavsett vilket så ska testfallen dokumenteras,
+      och även implementeras i JUnit.
+
+   Använda verktyg
+    – Versionshantering
+        ● Allt arbete ska versionshanteras.
+        Detta gäller kod, test,
+        byggscript, dokumentation och
+        rapporterna. Från
+        versionshanteringshistoriken ska
+        det tydligt framgå att alla
+        deltagit i arbetet.
+        ● Vid redovisningen måste
+        versionhanteringssystemet vara
+        tillgängligt, så någon i gruppen
+        måste kunna visa upp det.
+        (Lämpligen samma person som
+        visar presentationen.)
+    – Enhetstestramverk
+        ● Ett enhetstestramverk i
+        stil med JUnit ska
+        användas.
+        ● Ni får gärna använda
+        andra typer av
+        testverktyg också om ni
+        tycker de tillför något,
+        men detta är inget krav
+    – Täckningsgrad
+        ● Ett minimikrav på era tester är att de
+        uppnår 100% täckningsgrad på
+        programsatserna i koden. Detta ska
+        visas med hjälp av ett verktyg för att
+        mäta täckningsgraden.
+        ● Varje person ansvarar själv för att
+        detta uppnås på den kod man skriver.
+        ● Testa gärna även att försöka uppnå
+        högre nivåer av täckningsgrad
+    – Byggscript
+        ● Ett byggscript, till exempel
+        Maven eller Ant, ska kunna
+        användas för att bygga och
+        testa systemet.
+        ● Detta ska fungera för
+        samtliga gruppmedlemmar
+    – Verktyg för statisk analys
+        ● Efter att ni genomfört
+        granskningen och rättat de
+        saker som kommit fram så ska
+        ni testa minst ett verktyg för
+        statisk analys, till exempel
+        IntelliJs inspektioner eller
+        Spotbugs, på koden.
+        ● Detta ska göras både på koden
+        som den ser ut då, och på
+        koden som den såg ut innan ni
+        granskade den.
+    – Verktyg för statisk mätning
+        ● När ni är klara med projektet så ska ni
+        använde ett verktyg för statisk mätning på
+        koden.
+        ● De mått ni får fram ska redovisas i
+        slutrapporten tillsammans med de
+        slutsatser ni drar av dem.
+        ● Det räcker alltså inte med att bara
+        upprepa den information som siffrorna
+        själva ger, utan ni måste kunna tolka dem
+        också.
+    – Profiler
+        ● Ni bör också testa på att använda en
+        profiler på koden. Här är det lämpligt att ni
+        väljer ut någon intressant del av koden och
+        skriver ett speciellt test eller testprogram
+        som bara är till för att ni ska köra profilern
+        på det. Detta är test blir kanske inte helt
+        realistiskt, men eftersom det inte ingår i
+        uppgiften att implementera ett
+        tillämpningsprogram så får vi göra så.
+
+   Andra verktyg
+     ● Ni får gärna testa på att använda andra typer av
+     verktyg, till exempel byggservrar eller
+     ärendehanteringssystem, men detta är inget krav. Om
+     ni vill kan ni också byta ut några funktionella krav på
+     uppgiften och istället implementera ett grafiskt
+     användarinterface för någon mindre del och testa det.
+
+* Lämpliga delar för en person
+    ● Olika typer av spelare
+    ● Olika typer av
+    monster/fiender/npc/…
+    ● Magi
+    ● Terräng
+    ● NPC och story
+    ● Quests
+    ● Strid
+    ● Mer teknisk inriktning
+
+    okej förfan
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
