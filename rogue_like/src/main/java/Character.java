@@ -3,7 +3,7 @@ public class Character {
     // INSTANCE VARIABLES
     private String name;
     private Element element;
-    //level -> Enum?
+    //level
     //stats
 
 
@@ -25,7 +25,12 @@ public class Character {
     public Element getElement() {
         return element;
     }
+
+    public int getLevel() {
+
+    }
 }
+
 
 
 
