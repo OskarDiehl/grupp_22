@@ -10,6 +10,13 @@ public class Character {
     public Character(String name, Element element){
         this.name = name;
         this.element = element;
+        this.level = 1;
+    }
+
+
+    public void levelUp() {
+        if (level < 3)
+            level++;
     }
 
 
@@ -25,18 +32,4 @@ public class Character {
     public int getLevel() {
         return level;
     }
-
-
-
-
 }
-
-
-
-
-
-
-/*PROBLEM
-Hur
-
- */

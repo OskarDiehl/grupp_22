@@ -18,10 +18,29 @@ public class CharacterTest {
     }
 
     @Test
-    void getLevelAndCheckIfItReturnOne() {
+    void getLevelAndCheckIfItReturnsOne() {
         Character character = new Character("Malin", element);
         assertEquals(1, character.getLevel());
-
     }
 
+    @Test
+    void levelUpToSecondLevel(){
+        Character character = new Character("Sabina", element);
+        character.levelUp();
+        assertEquals(2, character.getLevel());
+    }
+
+    @Test
+    void canNotLevelUpAfterLevelThree(){
+        Character character = new Character("Sabina", element);
+        character.levelUp();
+        character.levelUp();
+        character.levelUp();                  //TODO refactor? /Malin
+        assertEquals(3, character.getLevel());
+    }
+
+//    @Test
+//    void getLevelandCheckIfItHasChanged() {
+//
+//    }
 }
