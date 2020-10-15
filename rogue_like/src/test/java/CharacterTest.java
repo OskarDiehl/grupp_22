@@ -4,9 +4,16 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CharacterTest {
 
     @Test
-    void testConstructor() {
+    void getNameFromConstructorArgument() {
         Element element = new Element();
         Character character = new Character("Malin", element);
-        assertEquals("Malin" + element , character.getName() + character.getElement());
+        assertEquals("Malin", character.getName());
+    }
+
+    @Test
+    void getElementFromConstructorArgument() {
+        Element element = new Element();
+        Character character = new Character("Malin", element);
+        assertEquals(element, character.getElement());
     }
 }
