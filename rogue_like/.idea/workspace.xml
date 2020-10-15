@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="705c9c8e-fb4c-405e-b718-7bd06db4888a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Armor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/FireElement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Item.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ArmorTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/FireElementTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ItemTest.java" afterDir="false" />
+    <list default="true" id="705c9c8e-fb4c-405e-b718-7bd06db4888a" name="Default Changelist" comment="Har lagt till attack i Element med temporär power">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Weapon.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/WeaponTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Element.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Element.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +58,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ArmorTest">
+  <component name="RunManager" selected="JUnit.WeaponTest">
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Test" />
       <module name="rogue_like" />
@@ -111,8 +106,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="WeaponTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="rogue_like" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="WeaponTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.WeaponTest" />
         <item itemvalue="JUnit.ArmorTest" />
         <item itemvalue="JUnit.ItemTest" />
         <item itemvalue="JUnit.ElementTest" />
@@ -183,7 +188,14 @@
       <option name="project" value="LOCAL" />
       <updated>1602763401636</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Har lagt till attack i Element med temporär power">
+      <created>1602769007233</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1602769007233</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,30 +226,46 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="586" y="424" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.1680.1027@0.23.1680.1027" timestamp="1602756083641" />
-    <state x="414" y="112" key="CommitChangelistDialog2" timestamp="1602763401517">
+    <state x="414" y="112" key="CommitChangelistDialog2" timestamp="1602769077104">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state x="414" y="112" key="CommitChangelistDialog2/0.23.1680.1027@0.23.1680.1027" timestamp="1602763401517" />
-    <state width="1638" height="346" key="GridCell.Tab.0.bottom" timestamp="1602768667096">
+    <state x="414" y="112" key="CommitChangelistDialog2/0.23.1680.1027@0.23.1680.1027" timestamp="1602769077103" />
+    <state width="1638" height="280" key="GridCell.Tab.0.bottom" timestamp="1602770173014">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state width="979" height="305" key="GridCell.Tab.0.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1602748849084" />
-    <state width="1638" height="346" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1602768667096" />
-    <state width="1638" height="346" key="GridCell.Tab.0.center" timestamp="1602768667095">
+    <state width="1638" height="280" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1602770173014" />
+    <state width="1638" height="280" key="GridCell.Tab.0.center" timestamp="1602770173014">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state width="979" height="305" key="GridCell.Tab.0.center/0.0.2048.1112@0.0.2048.1112" timestamp="1602748849084" />
-    <state width="1638" height="346" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1602768667095" />
-    <state width="1638" height="346" key="GridCell.Tab.0.left" timestamp="1602768667094">
+    <state width="1638" height="280" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1602770173014" />
+    <state width="1638" height="280" key="GridCell.Tab.0.left" timestamp="1602770173013">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state width="979" height="305" key="GridCell.Tab.0.left/0.0.2048.1112@0.0.2048.1112" timestamp="1602748849084" />
-    <state width="1638" height="346" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1602768667094" />
-    <state width="1638" height="346" key="GridCell.Tab.0.right" timestamp="1602768667095">
+    <state width="1638" height="280" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1602770173013" />
+    <state width="1638" height="280" key="GridCell.Tab.0.right" timestamp="1602770173014">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state width="979" height="305" key="GridCell.Tab.0.right/0.0.2048.1112@0.0.2048.1112" timestamp="1602748849084" />
-    <state width="1638" height="346" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1602768667095" />
+    <state width="1638" height="280" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1602770173014" />
+    <state width="1638" height="346" key="GridCell.Tab.1.bottom" timestamp="1602769092723">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state width="1638" height="346" key="GridCell.Tab.1.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1602769092723" />
+    <state width="1638" height="346" key="GridCell.Tab.1.center" timestamp="1602769092722">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state width="1638" height="346" key="GridCell.Tab.1.center/0.23.1680.1027@0.23.1680.1027" timestamp="1602769092722" />
+    <state width="1638" height="346" key="GridCell.Tab.1.left" timestamp="1602769092722">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state width="1638" height="346" key="GridCell.Tab.1.left/0.23.1680.1027@0.23.1680.1027" timestamp="1602769092721" />
+    <state width="1638" height="346" key="GridCell.Tab.1.right" timestamp="1602769092723">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state width="1638" height="346" key="GridCell.Tab.1.right/0.23.1680.1027@0.23.1680.1027" timestamp="1602769092723" />
     <state x="328" y="118" key="SettingsEditor" timestamp="1602756855121">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
@@ -247,19 +275,19 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="596" y="259" key="VCS.ChangeListViewerDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1602756263957" />
-    <state x="440" y="276" key="Vcs.Push.Dialog.v2" timestamp="1602763406867">
+    <state x="440" y="276" key="Vcs.Push.Dialog.v2" timestamp="1602769081601">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state x="440" y="276" key="Vcs.Push.Dialog.v2/0.23.1680.1027@0.23.1680.1027" timestamp="1602763406867" />
+    <state x="440" y="276" key="Vcs.Push.Dialog.v2/0.23.1680.1027@0.23.1680.1027" timestamp="1602769081601" />
     <state x="100" y="123" width="1480" height="827" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1602752061316">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="100" y="123" width="1480" height="827" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1602752061316" />
-    <state x="638" y="457" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602756705799">
+    <state x="638" y="457" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602769293656">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="778" y="470" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2048.1112@0.0.2048.1112" timestamp="1602748865624" />
-    <state x="638" y="457" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1680.1027@0.23.1680.1027" timestamp="1602756705799" />
+    <state x="638" y="457" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1680.1027@0.23.1680.1027" timestamp="1602769293656" />
     <state x="619" y="350" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1602751402190">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
