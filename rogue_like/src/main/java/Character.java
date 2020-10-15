@@ -3,7 +3,7 @@ public class Character {
     // INSTANCE VARIABLES
     private String name;
     private Element element;
-    private int level;
+    private int level = 1;
     //stats
 
     // CONSTRUCTOR

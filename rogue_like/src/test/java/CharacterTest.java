@@ -18,10 +18,14 @@ public class CharacterTest {
     }
 
     @Test
-    void getLevelAndCheckIfItReturnOne() {
+    void getLevelAndCheckIfItReturnsOne() {
         Character character = new Character("Malin", element);
         assertEquals(1, character.getLevel());
 
     }
 
+//    @Test
+//    void getLevelandCheckIfItHasChanged() {
+//
+//    }
 }
