@@ -1,3 +1,5 @@
+//kolla upp hur man Kan testa abstrakta klasser!!!!
+
 public class Element {
 
     public boolean isStrong() {
@@ -9,7 +11,7 @@ public class Element {
     }
 
     public int attack() {
-        int power = 5;
+        int power = 5; //temporär power tills det går att hämta från charcter
 
         if (isStrong()) {
             power += 2;
