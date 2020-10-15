@@ -7,7 +7,6 @@ public class Armor extends Item {
         super(name);
         this.hp = hp;
         this.speed = speed;
-
     }
 
     public int getHP() {
