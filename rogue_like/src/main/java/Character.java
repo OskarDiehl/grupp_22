@@ -13,12 +13,10 @@ public class Character {
         this.level = 1;
     }
 
-
     public void levelUp() {
         if (level < 3)
             level++;
     }
-
 
     // GET-METHODS
     public String getName() {
