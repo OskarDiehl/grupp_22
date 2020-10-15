@@ -5,12 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="705c9c8e-fb4c-405e-b718-7bd06db4888a" name="Default Changelist" comment="Commitar eventuella småändringar/Sabina">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Element.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/ElementTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -33,16 +43,39 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
   </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Test" />
       <module name="rogue_like" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -81,7 +114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1602687353714</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Fråga som komment">
+      <created>1602749967697</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1602749967697</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -101,10 +141,14 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="1010" y="134" key="#Project_Structure/0.0.2048.1112@0.0.2048.1112" timestamp="1602748674472" />
-    <state x="414" y="112" key="CommitChangelistDialog2" timestamp="1602687353584">
+    <state x="572" y="244" key="#com.intellij.ide.util.MemberChooser" timestamp="1602751340811">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state x="414" y="112" key="CommitChangelistDialog2/0.23.1680.1027@0.23.1680.1027" timestamp="1602687353584" />
+    <state x="572" y="244" key="#com.intellij.ide.util.MemberChooser/0.23.1680.1027@0.23.1680.1027" timestamp="1602751340811" />
+    <state x="414" y="112" key="CommitChangelistDialog2" timestamp="1602750918102">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="414" y="112" key="CommitChangelistDialog2/0.23.1680.1027@0.23.1680.1027" timestamp="1602750918102" />
     <state width="979" height="305" key="GridCell.Tab.0.bottom" timestamp="1602748849084">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
@@ -130,14 +174,18 @@
     </state>
     <state x="829" y="206" key="SettingsEditor/0.0.2048.1112@0.0.2048.1112" timestamp="1602749033715" />
     <state x="328" y="118" key="SettingsEditor/0.23.1680.1027@0.23.1680.1027" timestamp="1602687649307" />
-    <state x="440" y="276" key="Vcs.Push.Dialog.v2" timestamp="1602687365133">
+    <state x="440" y="276" key="Vcs.Push.Dialog.v2" timestamp="1602750911359">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state x="440" y="276" key="Vcs.Push.Dialog.v2/0.23.1680.1027@0.23.1680.1027" timestamp="1602687365133" />
-    <state x="778" y="470" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602748865624">
-      <screen x="0" y="0" width="2048" height="1112" />
+    <state x="440" y="276" key="Vcs.Push.Dialog.v2/0.23.1680.1027@0.23.1680.1027" timestamp="1602750911359" />
+    <state x="638" y="457" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602751441588">
+      <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="778" y="470" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2048.1112@0.0.2048.1112" timestamp="1602748865624" />
-    <state x="638" y="457" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1680.1027@0.23.1680.1027" timestamp="1602687666537" />
+    <state x="638" y="457" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1680.1027@0.23.1680.1027" timestamp="1602751441588" />
+    <state x="619" y="350" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1602751402190">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="619" y="350" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1602751402190" />
   </component>
 </project>
