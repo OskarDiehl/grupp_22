@@ -15,7 +15,8 @@ public class Character {
 
 
     public void levelUp() {
-        level++;
+        if (level < 3)
+            level++;
     }
 
 
@@ -32,13 +33,3 @@ public class Character {
         return level;
     }
 }
-
-
-
-
-
-
-/*PROBLEM
-Hur
-
- */

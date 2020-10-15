@@ -1,8 +1,17 @@
 public class Player extends Character {
 
-    public Player(String name, Element element) {
-        super(name, element);
+    // INSTANCE VARIABLES
+    private String role;
 
+    // CONSTRUCTOR
+    public Player(String name, Element element, String role) {
+        super(name, element);
+        this.role = role;
+
+    }
+
+    public String getRole() {
+        return role;
     }
 
 

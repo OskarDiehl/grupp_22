@@ -30,7 +30,14 @@ public class CharacterTest {
         assertEquals(2, character.getLevel());
     }
 
-
+    @Test
+    void canNotLevelUpAfterLevelThree(){
+        Character character = new Character("Sabina", element);
+        character.levelUp();
+        character.levelUp();
+        character.levelUp();                  //TODO refactor? /Malin
+        assertEquals(3, character.getLevel());
+    }
 
 //    @Test
 //    void getLevelandCheckIfItHasChanged() {
