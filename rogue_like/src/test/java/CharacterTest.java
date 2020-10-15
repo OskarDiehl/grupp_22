@@ -23,6 +23,15 @@ public class CharacterTest {
         assertEquals(1, character.getLevel());
     }
 
+    @Test
+    void levelUpToSecondLevel(){
+        Character character = new Character("Sabina", element);
+        character.levelUp();
+        assertEquals(2, character.getLevel());
+    }
+
+
+
 //    @Test
 //    void getLevelandCheckIfItHasChanged() {
 //
