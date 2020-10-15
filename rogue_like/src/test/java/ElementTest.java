@@ -8,4 +8,10 @@ public class ElementTest {
         Element e = new Element();
     }
 
+    @Test
+    void isStrongMethodIsTrue() {
+        Element e = new Element();
+        e.isStrong();
+    }
+
 }
