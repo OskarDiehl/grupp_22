@@ -39,8 +39,4 @@ public class CharacterTest {
         assertEquals(3, character.getLevel());
     }
 
-//    @Test
-//    void getLevelandCheckIfItHasChanged() {
-//
-//    }
 }
