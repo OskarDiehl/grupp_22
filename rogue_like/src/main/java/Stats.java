@@ -13,13 +13,18 @@ public class Stats {
     }
 
     // OTHER METHODS
-    public void looseLives(int lostLives) {
-        life = life - lostLives;
+    public void looseLifes(int lostLifes) {
+        life = life - lostLifes;
     }
 
     public void decreasePower(int lostPower) {
         power = power - lostPower;
     }
+
+    public void gainLifes(int gainedLifes) {
+       life = life + gainedLifes;
+    }
+
 
     // GET-METHODS
     public int getLife() {
@@ -33,6 +38,7 @@ public class Stats {
     public int getSpeed() {
         return speed;
     }
+
 
 
 }

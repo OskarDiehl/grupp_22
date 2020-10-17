@@ -26,11 +26,25 @@ public class StatsTest {
 
     //TEST LIFE
     @Test
-    void looseTwoLives(){
+    void looseTwoLifesFromTenExistingLifes(){
         Stats stats = new Stats();
-        stats.looseLives(2);
+        stats.looseLifes(2);
         assertEquals(8, stats.getLife());
     }
+
+    //@Test checkMinimumZeroLifes TODO skapa test som kollar att life kan vara minst 0. Vad händer då? /Malin
+
+    @Test
+    void earnTwoLifesToFiveExistingLifes(){
+        Stats stats = new Stats();
+        stats.looseLifes(5);  //TODO Här använder jag en annan metod för att minska liv. Borde vi skapa en till konstruktor för Stats där man ställer in life istället? /Malin
+        stats.gainLifes(2);
+        assertEquals(7, stats.getLife());
+    }
+
+
+    // @Test checkMaximumTenLifes TODO skapa test som kollar att det kan finnas max tio liv /Malin
+
 
     //TEST POWER
     @Test
@@ -42,5 +56,18 @@ public class StatsTest {
 
     //TEST SPEED
     //TODO Ska man kunna öka och minska speed? /Malin
+
+
+/*    @Test
+    void characterAttackAnotherCharacter(){
+        //TODO Vad händer när en karaktär går till attack? Är det bara power som påverkas? /Malin
+        Stats stats = new Stats();
+    }*/
+
+  /*  @Test
+    void characterIsAttackedByAnOtherCharacter(){
+        //TODO Vad händer när en karaktär blir attackerad? Är det bara life som påverkas? /Malin
+        Stats stats = new Stats();
+    }*/
 
 }
