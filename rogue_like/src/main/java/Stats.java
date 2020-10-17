@@ -5,6 +5,7 @@ public class Stats {
     private int power;
     private int speed;
 
+
     // CONSTRUCTORS  ------------------------------------------------------------------------
     //Constructor for character WITHOUT a role. The "standard constructor".
     public Stats(){
@@ -20,6 +21,7 @@ public class Stats {
         this.speed = speed;
     }
 
+
     // OTHER METHODS  ------------------------------------------------------------------------
     public void looseLifes(int lostLifes) {
         if ((life - lostLifes) < 0)  //TODO ska vi ersätta med Math.max? /Malin
@@ -28,13 +30,17 @@ public class Stats {
             life = life - lostLifes;
     }
 
+    public void gainLifes(int gainedLifes) {
+        if ((life + gainedLifes) <= 10)
+            life = life + gainedLifes;
+    }
+
     public void decreasePower(int lostPower) {
         power = power - lostPower;
     }
 
-    public void gainLifes(int gainedLifes) {
-        if ((life + gainedLifes) <= 10)
-            life = life + gainedLifes;
+    public void attackEnemy(int lostPower) {
+        decreasePower(lostPower);
     }
 
     public void attackedByAnEnemy(int lostLifes, int lostPower) {
@@ -42,11 +48,8 @@ public class Stats {
         decreasePower(lostPower);  //TODO Nu kan man göra looseLifes och decreasePower till privata metoder. Men då kommer inte testen åt dem.. /Malin
     }
 
-    public void attackEnemy(int lostPower) {
-        decreasePower(lostPower);
-    }
 
-    // GET-METHODS  ------------------------------------------------------------------------
+    // GET-METHODS ------------------------------------------------------------------------
     public int getLife() {
         return life;
     }
@@ -60,5 +63,9 @@ public class Stats {
     }
 
 
-
+    // TO-STRING-METHOD ------------------------------------------------------------------------
+    @Override
+    public String toString(){
+        return "Life: " + getLife() + "\nPower: " + getPower() + "\nSpeed: " + getSpeed();
+    }
 }

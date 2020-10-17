@@ -95,4 +95,11 @@ public class StatsTest {
         assertEquals(6, stats.getPower());
     }
 
+
+    //TEST TO-STRING-METHOD ------------------------------------------------------------------------
+    @Test
+    void correctToString(){
+        Stats stats = new Stats();
+        assertEquals("Life: 10\nPower: 10\nSpeed: 10", stats.toString());
+    }
 }

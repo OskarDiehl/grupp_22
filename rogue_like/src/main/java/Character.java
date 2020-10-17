@@ -4,13 +4,14 @@ public class Character {
     private String name;
     private Element element;
     private int level;
-    //stats
+    private Stats stats;
 
     // CONSTRUCTOR  ------------------------------------------------------------------------
     public Character(String name, Element element){
         this.name = name;
         this.element = element;
         this.level = 1;
+        this.stats = new Stats();
     }
 
     //OTHER METHODS ------------------------------------------------------------------------
@@ -31,5 +32,9 @@ public class Character {
 
     public int getLevel() {
         return level;
+    }
+
+    public Stats getStats() {
+        return stats;
     }
 }

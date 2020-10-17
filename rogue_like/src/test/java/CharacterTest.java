@@ -19,10 +19,19 @@ public class CharacterTest {
     }
 
     @Test
+    void getStatsFromConstructorArgument(){
+        Stats stats = new Stats();
+        Character character = new Character("Sabina", element);
+        assertEquals(stats.toString(), character.getStats().toString()); // TODO Gjorde jag rätt nu? /Malin
+    }
+
+    @Test
     void getLevelAndCheckIfItReturnsOne() {
         Character character = new Character("Malin", element);
         assertEquals(1, character.getLevel());
     }
+
+
 
     //TEST LEVELING ------------------------------------------------------------------------
     @Test
