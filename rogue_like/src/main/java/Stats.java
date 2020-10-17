@@ -37,6 +37,14 @@ public class Stats {
             life = life + gainedLifes;
     }
 
+    public void attackedByAnEnemy(int lostLifes, int lostPower) {
+        looseLifes(lostLifes);
+        decreasePower(lostPower);  //TODO Nu kan man göra looseLifes och decreasePower till privata metoder. Men då kommer inte testen åt dem.. /Malin
+    }
+
+    public void attackEnemy(int lostPower) {
+        decreasePower(lostPower);
+    }
 
     // GET-METHODS  ------------------------------------------------------------------------
     public int getLife() {
