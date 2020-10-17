@@ -2,8 +2,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestStats {
+public class StatsTest {
 
+    //TEST CONSTRUCTOR
     @Test
     void getFullLifeFromConstructorArgument() {
         Stats stats = new Stats();
@@ -22,11 +23,24 @@ public class TestStats {
         assertEquals(10, stats.getSpeed());
     }
 
+
+    //TEST LIFE
     @Test
     void looseTwoLives(){
         Stats stats = new Stats();
         stats.looseLives(2);
         assertEquals(8, stats.getLife());
     }
+
+    //TEST POWER
+    @Test
+    void decreasePowerWithThree(){
+        Stats stats = new Stats();
+        stats.decreasePower(3);
+        assertEquals(7, stats.getPower());
+    }
+
+    //TEST SPEED
+    //TODO Ska man kunna öka och minska speed? /Malin
 
 }
