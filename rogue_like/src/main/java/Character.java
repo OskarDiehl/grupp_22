@@ -1,24 +1,26 @@
 public class Character {
 
-    // INSTANCE VARIABLES
+    // INSTANCE VARIABLES  ------------------------------------------------------------------------
     private String name;
     private Element element;
     private int level;
     //stats
 
-    // CONSTRUCTOR
+    // CONSTRUCTOR  ------------------------------------------------------------------------
     public Character(String name, Element element){
         this.name = name;
         this.element = element;
         this.level = 1;
     }
 
+    //OTHER METHODS ------------------------------------------------------------------------
+
     public void levelUp() {
         if (level < 3)
             level++;
     }
 
-    // GET-METHODS
+    // GET-METHODS  ------------------------------------------------------------------------
     public String getName() {
         return name;
     }

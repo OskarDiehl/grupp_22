@@ -4,27 +4,37 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StatsTest {
 
-    //TEST CONSTRUCTOR
+    //TEST CONSTRUCTORS ------------------------------------------------------------------------
+    //Constructor for character WITHOUT a role. The "standard constructor"
     @Test
-    void getFullLifeFromConstructorArgument() {
+    void getFullLifeFromStandardConstructorArgument() {
         Stats stats = new Stats();
         assertEquals(10, stats.getLife());
     }
 
     @Test
-    void getFullPowerFromConstructorArgument() {
+    void getFullPowerFromStandardConstructorArgument() {
         Stats stats = new Stats();
         assertEquals(10, stats.getPower());
     }
 
     @Test
-    void getFullRunnerFromConstructorArgument() {
+    void getFullRunnerFromStandardConstructorArgument() {
         Stats stats = new Stats();
         assertEquals(10, stats.getSpeed());
     }
 
+    //Constructor for character WITH a role. The "role constructor".
+    @Test
+    void getFullLifeFromRoleConstructorArgument(){
+        Stats stats = new Stats(9, 5, 8);
+        assertEquals(9, stats.getLife());
+        assertEquals(5, stats.getPower());
+        assertEquals(8, stats.getSpeed());
+    }
 
-    //TEST LIFE
+
+    //TEST LIFE  ------------------------------------------------------------------------
     @Test
     void looseTwoLifesFromTenExistingLifes(){
         Stats stats = new Stats();
@@ -32,21 +42,31 @@ public class StatsTest {
         assertEquals(8, stats.getLife());
     }
 
-    //@Test checkMinimumZeroLifes TODO skapa test som kollar att life kan vara minst 0. Vad händer då? /Malin
+    //@Test checkMinimumZeroLifes TODO skapa test som kollar att life kan vara minst 0. Vad ska hända då? /Malin
+    @Test
+    void checkMinimumZeroLifes(){
+        Stats stats = new Stats();
+        stats.looseLifes(11);
+        assertEquals(0, stats.getLife());
+    }
 
     @Test
     void earnTwoLifesToFiveExistingLifes(){
-        Stats stats = new Stats();
-        stats.looseLifes(5);  //TODO Här använder jag en annan metod för att minska liv. Borde vi skapa en till konstruktor för Stats där man ställer in life istället? /Malin
-        stats.gainLifes(2);
+        Stats stats = new Stats(5,10,10);
+       stats.gainLifes(2);
         assertEquals(7, stats.getLife());
     }
 
+    @Test
+    void checkMaximumTenLifes(){
+        Stats stats = new Stats();
+        stats.gainLifes(2);
+        assertEquals(10, stats.getLife());
+    }
 
-    // @Test checkMaximumTenLifes TODO skapa test som kollar att det kan finnas max tio liv /Malin
 
 
-    //TEST POWER
+    //TEST POWER ------------------------------------------------------------------------
     @Test
     void decreasePowerWithThree(){
         Stats stats = new Stats();
@@ -54,10 +74,11 @@ public class StatsTest {
         assertEquals(7, stats.getPower());
     }
 
-    //TEST SPEED
+    //TEST SPEED ------------------------------------------------------------------------
     //TODO Ska man kunna öka och minska speed? /Malin
 
 
+    // TEST ATTACK-METHODS ------------------------------------------------------------------------
 /*    @Test
     void characterAttackAnotherCharacter(){
         //TODO Vad händer när en karaktär går till attack? Är det bara power som påverkas? /Malin

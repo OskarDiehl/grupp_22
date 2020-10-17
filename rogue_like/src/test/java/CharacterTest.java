@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CharacterTest {
     private Element element;
 
+    //TEST CONSTRUCTOR ------------------------------------------------------------------------
     @Test
     void getNameFromConstructorArgument() {
         Character character = new Character("Malin", element);
@@ -23,6 +24,7 @@ public class CharacterTest {
         assertEquals(1, character.getLevel());
     }
 
+    //TEST LEVELING ------------------------------------------------------------------------
     @Test
     void levelUpToSecondLevel(){
         Character character = new Character("Sabina", element);
