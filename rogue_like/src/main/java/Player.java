@@ -13,5 +13,4 @@ public class Player extends Character {
     public String getRole() {
         return role;
     }
-
 }

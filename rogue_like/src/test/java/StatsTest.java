@@ -26,7 +26,7 @@ public class StatsTest {
 
     //Constructor for character WITH a role. The "role constructor".
     @Test
-    void getFullLifeFromRoleConstructorArgument(){
+    void tryParametersInRoleConstructorArgument(){ //TODO slipa på namngivningen /Malin
         Stats stats = new Stats(9, 5, 8);
         assertEquals(9, stats.getLife());
         assertEquals(5, stats.getPower());
