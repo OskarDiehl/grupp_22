@@ -22,12 +22,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="705c9c8e-fb4c-405e-b718-7bd06db4888a" name="Default Changelist" comment="Protected variabel stats /Sabina">
+    <list default="true" id="705c9c8e-fb4c-405e-b718-7bd06db4888a" name="Default Changelist" comment="Ändringar i Stats-metoder/Sabina">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Stats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Stats.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/StatsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/StatsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Test.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,35 +93,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Test" />
-      <module name="rogue_like" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ArmorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="rogue_like" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="ArmorTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ElementTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="rogue_like" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="ElementTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ItemTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="rogue_like" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="ItemTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -137,13 +111,43 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="StatsTest.getFullLifeFromStandardConstructorArgument" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="rogue_like" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="StatsTest" />
+      <option name="METHOD_NAME" value="getFullLifeFromStandardConstructorArgument" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StatsTest.getFullPowerFromStandardConstructorArgument" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="rogue_like" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="StatsTest" />
+      <option name="METHOD_NAME" value="getFullPowerFromStandardConstructorArgument" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StatsTest.getFullRunnerFromStandardConstructorArgument" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="rogue_like" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="StatsTest" />
+      <option name="METHOD_NAME" value="getFullRunnerFromStandardConstructorArgument" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.StatsTest" />
+        <item itemvalue="JUnit.StatsTest.getFullRunnerFromStandardConstructorArgument" />
+        <item itemvalue="JUnit.StatsTest.getFullPowerFromStandardConstructorArgument" />
+        <item itemvalue="JUnit.StatsTest.getFullLifeFromStandardConstructorArgument" />
         <item itemvalue="JUnit.ArmorTest" />
-        <item itemvalue="JUnit.ItemTest" />
-        <item itemvalue="JUnit.ElementTest" />
-        <item itemvalue="Application.Test" />
       </list>
     </recent_temporary>
   </component>
@@ -217,7 +221,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603040119011</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Ändringar i Stats-metoder/Sabina">
+      <created>1603043667069</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1603043667069</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,7 +252,8 @@
     <MESSAGE value="Börjar skriva på ElementTest" />
     <MESSAGE value="Har lagt till attack i Element med temporär power" />
     <MESSAGE value="Protected variabel stats /Sabina" />
-    <option name="LAST_COMMIT_MESSAGE" value="Protected variabel stats /Sabina" />
+    <MESSAGE value="Ändringar i Stats-metoder/Sabina" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ändringar i Stats-metoder/Sabina" />
   </component>
   <component name="WindowStateProjectService">
     <state x="565" y="367" key="#Notifications" timestamp="1602687740693">
@@ -264,25 +276,25 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="414" y="112" key="CommitChangelistDialog2/0.23.1680.1027@0.23.1680.1027" timestamp="1602763401517" />
-    <state width="2005" height="305" key="GridCell.Tab.0.bottom" timestamp="1603042504522">
+    <state width="2005" height="305" key="GridCell.Tab.0.bottom" timestamp="1603044438978">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="305" key="GridCell.Tab.0.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1603042504522" />
+    <state width="2005" height="305" key="GridCell.Tab.0.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1603044438978" />
     <state width="1638" height="346" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1602768667096" />
-    <state width="2005" height="305" key="GridCell.Tab.0.center" timestamp="1603042504521">
+    <state width="2005" height="305" key="GridCell.Tab.0.center" timestamp="1603044438977">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="305" key="GridCell.Tab.0.center/0.0.2048.1112@0.0.2048.1112" timestamp="1603042504521" />
+    <state width="2005" height="305" key="GridCell.Tab.0.center/0.0.2048.1112@0.0.2048.1112" timestamp="1603044438977" />
     <state width="1638" height="346" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1602768667095" />
-    <state width="2005" height="305" key="GridCell.Tab.0.left" timestamp="1603042504521">
+    <state width="2005" height="305" key="GridCell.Tab.0.left" timestamp="1603044438977">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="305" key="GridCell.Tab.0.left/0.0.2048.1112@0.0.2048.1112" timestamp="1603042504521" />
+    <state width="2005" height="305" key="GridCell.Tab.0.left/0.0.2048.1112@0.0.2048.1112" timestamp="1603044438977" />
     <state width="1638" height="346" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1602768667094" />
-    <state width="2005" height="305" key="GridCell.Tab.0.right" timestamp="1603042504522">
+    <state width="2005" height="305" key="GridCell.Tab.0.right" timestamp="1603044438978">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="305" key="GridCell.Tab.0.right/0.0.2048.1112@0.0.2048.1112" timestamp="1603042504522" />
+    <state width="2005" height="305" key="GridCell.Tab.0.right/0.0.2048.1112@0.0.2048.1112" timestamp="1603044438978" />
     <state width="1638" height="346" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1602768667095" />
     <state x="328" y="118" key="SettingsEditor" timestamp="1602756855121">
       <screen x="0" y="23" width="1680" height="1027" />

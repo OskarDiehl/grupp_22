@@ -8,20 +8,20 @@ public class StatsTest {
     //Constructor for character WITHOUT a role. The "standard constructor"
     @Test
     void getFullLifeFromStandardConstructorArgument() {
-        Stats stats = new Stats();
-        assertEquals(10, stats.getLife());
+        Stats stats = new Stats(2);
+        assertEquals(5, stats.getLife());
     }
 
     @Test
     void getFullPowerFromStandardConstructorArgument() {
-        Stats stats = new Stats();
-        assertEquals(10, stats.getPower());
+        Stats stats = new Stats(2);
+        assertEquals(5, stats.getPower());
     }
 
     @Test
     void getFullRunnerFromStandardConstructorArgument() {
-        Stats stats = new Stats();
-        assertEquals(10, stats.getSpeed());
+        Stats stats = new Stats(2);
+        assertEquals(5, stats.getSpeed());
     }
 
     //Constructor for character WITH a role. The "role constructor".
@@ -42,7 +42,7 @@ public class StatsTest {
     //TEST LIFE  ------------------------------------------------------------------------
     @Test
     void looseTwoLivesFromTenExistingLives(){
-        Stats stats = new Stats();
+        Stats stats = new Stats(1);
         stats.loseLives(2);
         assertEquals(8, stats.getLife());
     }
@@ -50,7 +50,7 @@ public class StatsTest {
 
     @Test
     void checkMinimumZeroLives(){  //TODO Vad ska hända om life hamnar på 0 eller under? /Malin
-        Stats stats = new Stats();
+        Stats stats = new Stats(1);
         stats.loseLives(11);
         assertEquals(0, stats.getLife());
     }
@@ -64,7 +64,7 @@ public class StatsTest {
 
     @Test
     void checkMaximumTenLives(){
-        Stats stats = new Stats();
+        Stats stats = new Stats(1);
         stats.gainLives(2);
         assertEquals(10, stats.getLife());
     }
@@ -73,7 +73,7 @@ public class StatsTest {
     //TEST POWER ------------------------------------------------------------------------
     @Test
     void decreasePowerWithThree(){
-        Stats stats = new Stats();
+        Stats stats = new Stats(1);
         stats.decreasePower(3);
         assertEquals(7, stats.getPower());
     }
@@ -87,7 +87,7 @@ public class StatsTest {
     @Test
     void characterIsAttackedByAnOtherCharacter(){
         //TODO Vad händer när en karaktär blir attackerad? Är det bara life som påverkas? /Malin
-        Stats stats = new Stats();
+        Stats stats = new Stats(1);
         stats.attackedByAnEnemy(2);
         assertEquals(8, stats.getLife());
     }
@@ -96,7 +96,7 @@ public class StatsTest {
     //TEST TO-STRING-METHOD ------------------------------------------------------------------------
     @Test
     void correctToString(){
-        Stats stats = new Stats();
+        Stats stats = new Stats(1);
         assertEquals("Life: 10\nPower: 10\nSpeed: 10", stats.toString());
     }
 }

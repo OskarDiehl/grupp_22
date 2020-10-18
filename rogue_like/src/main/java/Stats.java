@@ -4,17 +4,25 @@ public class Stats {
     //VARIABLES  ------------------------------------------------------------------------
     private static final int MAX_STAT = 10;
     private static final int MIN_STAT = 1;
-    private int maxLife;
+    private int maxLife; //TODO är det här bra? /Sabina
     private int life;
     private int power;
     private int speed;
 
     // CONSTRUCTORS  ------------------------------------------------------------------------
     //Constructor for character WITHOUT a role. The "standard constructor".
-    public Stats(){
-        life = 10;
-        power = 10;
-        speed = 10;
+    public Stats(int level){
+        int statThing = 0;
+        if (level == 1) {
+            statThing = 3;
+        } else if (level == 2){
+            statThing = 5;
+        } else {
+            statThing = 7;
+        }
+        life = statThing;
+        power = statThing;
+        speed = statThing;
     }
 
     //Constructor for character WITH a role. The "role constructor".
