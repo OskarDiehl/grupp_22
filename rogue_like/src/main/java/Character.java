@@ -4,7 +4,7 @@ public class Character {
     private String name;
     private Element element;
     private int level;
-    private Stats stats;
+    protected Stats stats;
 
     // CONSTRUCTOR  ------------------------------------------------------------------------
     public Character(String name, Element element){

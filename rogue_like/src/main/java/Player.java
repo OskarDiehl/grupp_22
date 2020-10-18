@@ -6,8 +6,8 @@ public class Player extends Character {
     // CONSTRUCTOR
     public Player(String name, Element element, String role) {
         super(name, element);
+        stats = new Stats();
         this.role = role;
-        super.stats = new Stats();
     }
 
     // GET-METHODS
