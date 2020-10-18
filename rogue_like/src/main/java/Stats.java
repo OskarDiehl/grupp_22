@@ -1,10 +1,13 @@
 public class Stats {
+    //TODO Stats kan vara max 10.
 
-    // INSTANCE VARIABLES  ------------------------------------------------------------------------
+    //VARIABLES  ------------------------------------------------------------------------
+    private static final int MAX_STAT = 10;
+    private static final int MIN_STAT = 1;
+    private int maxLife;
     private int life;
     private int power;
     private int speed;
-
 
     // CONSTRUCTORS  ------------------------------------------------------------------------
     //Constructor for character WITHOUT a role. The "standard constructor".
@@ -16,36 +19,43 @@ public class Stats {
 
     //Constructor for character WITH a role. The "role constructor".
     public Stats(int life, int power, int speed){
-        this.life = life;
-        this.power = power;
-        this.speed = speed;
+        if (isWithinStatRange(life) && isWithinStatRange(power) && isWithinStatRange(speed)) {
+            this.life = life;
+            this.power = power;
+            this.speed = speed;
+        } else {
+            throw new IllegalArgumentException("Error: Parameters out of range");
+        }
     }
 
 
     // OTHER METHODS  ------------------------------------------------------------------------
-    public void looseLifes(int lostLifes) {
-        if ((life - lostLifes) < 0)  //TODO ska vi ersätta med Math.max? /Malin
+
+    private boolean isWithinStatRange(int number) {
+        if (number < MIN_STAT || number > MAX_STAT){
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public void loseLives(int lostLives) {
+        if ((life - lostLives) < 0)  //TODO ska vi ersätta med Math.max? /Malin
             life = 0;
         else
-            life = life - lostLifes;
+            life = life - lostLives;
     }
 
-    public void gainLifes(int gainedLifes) {
-        if ((life + gainedLifes) <= 10) //TODO ändra så att maxgränsen stämmer överens /Malin
-            life = life + gainedLifes;
+    public void gainLives(int gainedLives) {
+        if ((life + gainedLives) <= MAX_STAT) //TODO ändra så att maxgränsen stämmer överens /Malin
+            life = life + gainedLives;
     }
 
     public void decreasePower(int lostPower) {
         power = power - lostPower;
     }
 
-    public void attackEnemy(int lostPower) {
-        decreasePower(lostPower);
-    }
-
-    public void attackedByAnEnemy(int lostLifes, int lostPower) {
-        looseLifes(lostLifes);
-        decreasePower(lostPower);  //TODO Nu kan man göra looseLifes och decreasePower till privata metoder. Men då kommer inte testen åt dem.. /Malin
+    public void attackedByAnEnemy(int lostLives) {
+        loseLives(lostLives); //TODO Nu kan man göra loseLives till en privat metod. Men då kommer inte testen åt dem.. /Malin
     }
 
 

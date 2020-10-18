@@ -22,12 +22,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="705c9c8e-fb4c-405e-b718-7bd06db4888a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020-10-15__10_18__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020-10-15__10_19__Default_Changelist_.xml" beforeDir="false" />
+    <list default="true" id="705c9c8e-fb4c-405e-b718-7bd06db4888a" name="Default Changelist" comment="Protected variabel stats /Sabina">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Character.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Stats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Stats.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/StatsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/StatsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Test.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,12 +47,14 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
+        <option name="mavenHome" value="D:\Program files\IntelliJ IDEA Community Edition 2020.2.2\plugins\maven\lib\maven3" />
       </MavenGeneralSettings>
     </option>
   </component>
   <component name="ProjectId" id="1is7ThfuxgcCEoEMzi8B2ZDRdgW" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -78,7 +80,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ArmorTest">
+  <component name="RunManager" selected="JUnit.StatsTest">
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -126,8 +128,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="StatsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="rogue_like" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="StatsTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.StatsTest" />
         <item itemvalue="JUnit.ArmorTest" />
         <item itemvalue="JUnit.ItemTest" />
         <item itemvalue="JUnit.ElementTest" />
@@ -198,7 +210,14 @@
       <option name="project" value="LOCAL" />
       <updated>1602763401636</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Protected variabel stats /Sabina">
+      <created>1603040119011</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1603040119011</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -221,7 +240,8 @@
     <MESSAGE value="Lägger till imports till ElementTest.java" />
     <MESSAGE value="Börjar skriva på ElementTest" />
     <MESSAGE value="Har lagt till attack i Element med temporär power" />
-    <option name="LAST_COMMIT_MESSAGE" value="Har lagt till attack i Element med temporär power" />
+    <MESSAGE value="Protected variabel stats /Sabina" />
+    <option name="LAST_COMMIT_MESSAGE" value="Protected variabel stats /Sabina" />
   </component>
   <component name="WindowStateProjectService">
     <state x="565" y="367" key="#Notifications" timestamp="1602687740693">
@@ -244,25 +264,25 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="414" y="112" key="CommitChangelistDialog2/0.23.1680.1027@0.23.1680.1027" timestamp="1602763401517" />
-    <state width="1638" height="346" key="GridCell.Tab.0.bottom" timestamp="1602768667096">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state width="2005" height="305" key="GridCell.Tab.0.bottom" timestamp="1603042504522">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="979" height="305" key="GridCell.Tab.0.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1602748849084" />
+    <state width="2005" height="305" key="GridCell.Tab.0.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1603042504522" />
     <state width="1638" height="346" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1602768667096" />
-    <state width="1638" height="346" key="GridCell.Tab.0.center" timestamp="1602768667095">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state width="2005" height="305" key="GridCell.Tab.0.center" timestamp="1603042504521">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="979" height="305" key="GridCell.Tab.0.center/0.0.2048.1112@0.0.2048.1112" timestamp="1602748849084" />
+    <state width="2005" height="305" key="GridCell.Tab.0.center/0.0.2048.1112@0.0.2048.1112" timestamp="1603042504521" />
     <state width="1638" height="346" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1602768667095" />
-    <state width="1638" height="346" key="GridCell.Tab.0.left" timestamp="1602768667094">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state width="2005" height="305" key="GridCell.Tab.0.left" timestamp="1603042504521">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="979" height="305" key="GridCell.Tab.0.left/0.0.2048.1112@0.0.2048.1112" timestamp="1602748849084" />
+    <state width="2005" height="305" key="GridCell.Tab.0.left/0.0.2048.1112@0.0.2048.1112" timestamp="1603042504521" />
     <state width="1638" height="346" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1602768667094" />
-    <state width="1638" height="346" key="GridCell.Tab.0.right" timestamp="1602768667095">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state width="2005" height="305" key="GridCell.Tab.0.right" timestamp="1603042504522">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="979" height="305" key="GridCell.Tab.0.right/0.0.2048.1112@0.0.2048.1112" timestamp="1602748849084" />
+    <state width="2005" height="305" key="GridCell.Tab.0.right/0.0.2048.1112@0.0.2048.1112" timestamp="1603042504522" />
     <state width="1638" height="346" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1602768667095" />
     <state x="328" y="118" key="SettingsEditor" timestamp="1602756855121">
       <screen x="0" y="23" width="1680" height="1027" />
@@ -281,10 +301,10 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="100" y="123" width="1480" height="827" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1602752061316" />
-    <state x="778" y="470" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603039871746">
+    <state x="778" y="470" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603040043134">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="778" y="470" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2048.1112@0.0.2048.1112" timestamp="1603039871746" />
+    <state x="778" y="470" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2048.1112@0.0.2048.1112" timestamp="1603040043134" />
     <state x="638" y="457" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1680.1027@0.23.1680.1027" timestamp="1602756705799" />
     <state x="619" y="350" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1602751402190">
       <screen x="0" y="23" width="1680" height="1027" />

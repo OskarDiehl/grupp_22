@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class StatsTest {
 
@@ -33,34 +33,39 @@ public class StatsTest {
         assertEquals(8, stats.getSpeed());
     }
 
+    @Test
+    void throwIAEIfNotInbetweenOneToTen(){
+        assertThrows(IllegalArgumentException.class, () -> new Stats(1, 1, 11));
+    }
+
 
     //TEST LIFE  ------------------------------------------------------------------------
     @Test
-    void looseTwoLifesFromTenExistingLifes(){
+    void looseTwoLivesFromTenExistingLives(){
         Stats stats = new Stats();
-        stats.looseLifes(2);
+        stats.loseLives(2);
         assertEquals(8, stats.getLife());
     }
 
 
     @Test
-    void checkMinimumZeroLifes(){  //TODO Vad ska hända om life hamnar på 0 eller under? /Malin
+    void checkMinimumZeroLives(){  //TODO Vad ska hända om life hamnar på 0 eller under? /Malin
         Stats stats = new Stats();
-        stats.looseLifes(11);
+        stats.loseLives(11);
         assertEquals(0, stats.getLife());
     }
 
     @Test
-    void earnTwoLifesToFiveExistingLifes(){
+    void earnTwoLivesToFiveExistingLives(){
         Stats stats = new Stats(5,10,10);
-       stats.gainLifes(2);
+       stats.gainLives(2);
         assertEquals(7, stats.getLife());
     }
 
     @Test
-    void checkMaximumTenLifes(){
+    void checkMaximumTenLives(){
         Stats stats = new Stats();
-        stats.gainLifes(2);
+        stats.gainLives(2);
         assertEquals(10, stats.getLife());
     }
 
@@ -77,22 +82,14 @@ public class StatsTest {
     //TODO Ska man kunna öka och minska speed under spelets gång? /Malin
 
 
-    // TEST ATTACK-METHODS ------------------------------------------------------------------------
-    @Test
-    void characterAttackAnotherCharacter(){
-        //TODO Vad händer när en karaktär går till attack? Är det bara power som påverkas? /Malin
-        Stats stats = new Stats();
-        stats.attackEnemy(5);
-        assertEquals(5, stats.getPower());
-    }
+    // OTHER METHODS ------------------------------------------------------------------------
 
     @Test
     void characterIsAttackedByAnOtherCharacter(){
         //TODO Vad händer när en karaktär blir attackerad? Är det bara life som påverkas? /Malin
         Stats stats = new Stats();
-        stats.attackedByAnEnemy(2, 4);
+        stats.attackedByAnEnemy(2);
         assertEquals(8, stats.getLife());
-        assertEquals(6, stats.getPower());
     }
 
 
