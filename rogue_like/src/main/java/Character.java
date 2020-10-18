@@ -11,14 +11,21 @@ public class Character {
         this.name = name;
         this.element = element;
         this.level = 1;
-      //  this.stats = new Stats(); TODO ta bort? /Malin
     }
 
-    //OTHER METHODS ------------------------------------------------------------------------
+    // OTHER METHODS ------------------------------------------------------------------------
 
     public void levelUp() {
-        if (level < 3)
+        if (level < 3){
             level++;
+            levelUpChangeStats();
+        } else {
+            throw new IllegalStateException("Level 3 is the highest level that you can reach.");
+        }
+    }
+
+    public void levelUpChangeStats(){  //TODO Abstrakt? /Malin
+
     }
 
     // GET-METHODS  ------------------------------------------------------------------------

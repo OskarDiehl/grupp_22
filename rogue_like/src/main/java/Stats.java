@@ -5,30 +5,32 @@ public class Stats {
     private static final int MAX_STAT = 10;
     private static final int MIN_STAT = 1;
     private int maxLife; //TODO är det här bra? /Sabina
-    private int life;
+    private int currentLife;
     private int power;
     private int speed;
 
     // CONSTRUCTORS  ------------------------------------------------------------------------
     //Constructor for character WITHOUT a role. The "standard constructor".
     public Stats(int level){
-        int statThing = 0;
-        if (level == 1) {
+        int statThing;
+        if (level == 1) {               // Depending on the level, the default stats change
             statThing = 3;
         } else if (level == 2){
             statThing = 5;
         } else {
-            statThing = 7;
+            statThing = 8;
         }
-        life = statThing;
+        currentLife = statThing;        // Life, power and speed have the same stat TODO (Up for debate, this can be changed) /Malin & Sabina
         power = statThing;
         speed = statThing;
+        maxLife = statThing;
     }
 
     //Constructor for character WITH a role. The "role constructor".
     public Stats(int life, int power, int speed){
         if (isWithinStatRange(life) && isWithinStatRange(power) && isWithinStatRange(speed)) {
-            this.life = life;
+            this.maxLife = life;
+            this.currentLife = life;
             this.power = power;
             this.speed = speed;
         } else {
@@ -47,19 +49,15 @@ public class Stats {
         }
     }
     public void loseLives(int lostLives) {
-        if ((life - lostLives) < 0)  //TODO ska vi ersätta med Math.max? /Malin
-            life = 0;
+        if ((currentLife - lostLives) < 0)  //TODO ska vi ersätta med Math.max? /Malin
+            currentLife = 0;
         else
-            life = life - lostLives;
+            currentLife = currentLife - lostLives;
     }
 
     public void gainLives(int gainedLives) {
-        if ((life + gainedLives) <= MAX_STAT) //TODO ändra så att maxgränsen stämmer överens /Malin
-            life = life + gainedLives;
-    }
-
-    public void decreasePower(int lostPower) {
-        power = power - lostPower;
+        if ((currentLife + gainedLives) <= maxLife) //TODO ändra så att maxgränsen stämmer överens /Malin
+            currentLife = currentLife + gainedLives;
     }
 
     public void attackedByAnEnemy(int lostLives) {
@@ -68,8 +66,12 @@ public class Stats {
 
 
     // GET-METHODS ------------------------------------------------------------------------
-    public int getLife() {
-        return life;
+    public int getMaxLife() {
+        return maxLife;
+    }
+
+    public int getCurrentLife() {
+        return currentLife;
     }
 
     public int getPower() {
@@ -84,6 +86,8 @@ public class Stats {
     // TO-STRING-METHOD ------------------------------------------------------------------------
     @Override
     public String toString(){
-        return "Life: " + getLife() + "\nPower: " + getPower() + "\nSpeed: " + getSpeed();
+        return "Life: " + getCurrentLife() + "\nPower: " + getPower() + "\nSpeed: " + getSpeed();
     }
+
+
 }

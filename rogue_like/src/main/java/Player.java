@@ -14,4 +14,10 @@ public class Player extends Character {
     public String getRole() {
         return role;
     }
+
+    @Override
+    public void levelUpChangeStats(){
+        //TODO skapa metoden /Malin
+    }
+
 }
