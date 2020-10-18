@@ -11,7 +11,7 @@ public class Character {
         this.name = name;
         this.element = element;
         this.level = 1;
-        this.stats = new Stats();
+      //  this.stats = new Stats(); TODO ta bort? /Malin
     }
 
     //OTHER METHODS ------------------------------------------------------------------------

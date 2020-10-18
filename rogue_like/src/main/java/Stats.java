@@ -31,7 +31,7 @@ public class Stats {
     }
 
     public void gainLifes(int gainedLifes) {
-        if ((life + gainedLifes) <= 10)
+        if ((life + gainedLifes) <= 10) //TODO ändra så att maxgränsen stämmer överens /Malin
             life = life + gainedLifes;
     }
 
