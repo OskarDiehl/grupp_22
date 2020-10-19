@@ -1,16 +1,20 @@
 public class Player extends Character {
 
-    // INSTANCE VARIABLES
-    private String role;
+    // datasamling med element
 
-    // CONSTRUCTOR
+    // INSTANCE VARIABLES ---------------------------------------------------
+    private String role;
+    //selected element TODO fixa selected element /Malin
+
+
+    // CONSTRUCTOR ----------------------------------------------------------
     public Player(String name, Element element, String role) {
         super(name, element);
         //stats = new Stats();
         this.role = role;
     }
 
-    // GET-METHODS
+    // GET-METHODS ----------------------------------------------------------
     public String getRole() {
         return role;
     }
