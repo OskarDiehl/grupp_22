@@ -41,8 +41,8 @@ public class StatsTest {
 
     //TEST LIFE  ------------------------------------------------------------------------
     @Test
-    void looseTwoLivesFromFiveExistingLives(){
-        Stats stats = new Stats(5,3,4);
+    void looseTwoLivesFromTenExistingLives(){
+        Stats stats = new Stats(2);
         stats.loseLives(2);
         assertEquals(3, stats.getCurrentLife());
     }
@@ -50,7 +50,7 @@ public class StatsTest {
 
     @Test
     void checkMinimumZeroLives(){  //TODO Vad ska hända om life hamnar på 0 eller under? /Malin
-        Stats stats = new Stats(2,3,4);
+        Stats stats = new Stats(1);
         stats.loseLives(11);
         assertEquals(0, stats.getCurrentLife());
     }
@@ -65,7 +65,7 @@ public class StatsTest {
 
     @Test
     void checkMaximumLives(){
-        Stats stats = new Stats(5,3,4);
+        Stats stats = new Stats(2); //TODO ändra konstruktoranropen
         stats.gainLives(2);
         assertEquals(5, stats.getMaxLife());
     }
@@ -74,7 +74,7 @@ public class StatsTest {
     @Test
     void characterIsAttackedByAnOtherCharacter(){
         //TODO Vad händer när en karaktär blir attackerad? Är det bara life som påverkas? /Malin
-        Stats stats = new Stats(8,3,4);
+        Stats stats = new Stats(3);
         stats.attackedByAnEnemy(2);
         assertEquals(6, stats.getCurrentLife());
     }
@@ -83,7 +83,7 @@ public class StatsTest {
     //TEST TO-STRING-METHOD ------------------------------------------------------------------------
     @Test
     void correctToString(){
-        Stats stats = new Stats(3,3,3);
+        Stats stats = new Stats(1);
         assertEquals("Life: 3\nPower: 3\nSpeed: 3", stats.toString());
     }
 }

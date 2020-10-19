@@ -28,7 +28,7 @@ class EnemyTest {
     @Test
     void generateEnemyStats(){
         Element element = new Element();
-        Stats stats = new Stats(2,2,2); //TODO Jag la till power och speed med 2 på båda för att kunna exekvera test /Malin
+        Stats stats = new Stats(5, 5, 5);
         Enemy enemy = new Enemy("EttNamn", element, 2);
         assertEquals(stats.toString(), enemy.getStats().toString());
     }
