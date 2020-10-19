@@ -6,10 +6,10 @@ public class Enemy extends Character {
     public Enemy(String name, Element element, int level) {
         super(name, element);
         this.level = level;
-        generateStats(level);
+        calculateStats(level);
     }
 
-    protected void generateStats(int level) {
+    protected void calculateStats(int level) {
         int statForLevel;
         if (level == 1) {               // Depending on the level, the default stats change
             statForLevel = LEVEL_1_STAT;
@@ -18,7 +18,13 @@ public class Enemy extends Character {
         } else {
             statForLevel = LEVEL_3_STAT;
         }
-        stats = new Stats(statForLevel, statForLevel, statForLevel);
+        generateStats(statForLevel, statForLevel, statForLevel);
     }
+
+    protected void generateStats(int life, int power, int speed) {
+        stats = new Stats(life, power, speed);
+    }
+
+
 
 }
