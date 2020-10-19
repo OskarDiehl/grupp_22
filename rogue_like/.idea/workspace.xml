@@ -19,13 +19,18 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/AbstractClassBranch" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="705c9c8e-fb4c-405e-b718-7bd06db4888a" name="Default Changelist" comment="BossTest samt fundering kring stats-generering/Sabina">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Boss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Boss.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Enemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Character.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/BossTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/BossTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/EnemyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/EnemyTest.java" afterDir="false" />
     </list>
@@ -262,11 +267,24 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/AbstractClassBranch" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Testar att se så att jag kan commita och sedan kompilera/Oskar" />
@@ -335,10 +353,10 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="596" y="259" key="VCS.ChangeListViewerDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1602756263957" />
-    <state x="536" y="274" key="Vcs.Push.Dialog.v2" timestamp="1603107059718">
+    <state x="536" y="274" key="Vcs.Push.Dialog.v2" timestamp="1603129018229">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="536" y="274" key="Vcs.Push.Dialog.v2/0.0.2048.1112@0.0.2048.1112" timestamp="1603107059718" />
+    <state x="536" y="274" key="Vcs.Push.Dialog.v2/0.0.2048.1112@0.0.2048.1112" timestamp="1603129018229" />
     <state x="440" y="276" key="Vcs.Push.Dialog.v2/0.23.1680.1027@0.23.1680.1027" timestamp="1602763406867" />
     <state x="100" y="123" width="1480" height="827" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1602752061316">
       <screen x="0" y="23" width="1680" height="1027" />
@@ -358,5 +376,8 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="505" y="250" width="670" height="676" key="search.everywhere.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1602764436045" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/rogue_like$All_in_rogue_like.ic" NAME="All in rogue_like Coverage Results" MODIFIED="1603118924065" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

@@ -6,6 +6,7 @@ public class Character {
     protected int level;
     protected Stats stats;
     //Hej
+    //ABSTRAKT
 
     // CONSTRUCTOR  ------------------------------------------------------------------------
     public Character(String name, Element element){
