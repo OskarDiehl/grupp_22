@@ -22,9 +22,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="705c9c8e-fb4c-405e-b718-7bd06db4888a" name="Default Changelist" comment="Ändringar i Enemy, EnemyTest, Boss och BossTest">
+    <list default="true" id="705c9c8e-fb4c-405e-b718-7bd06db4888a" name="Default Changelist" comment="Ny branch med förslag på ändringar av stats-generering">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Boss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Boss.java" afterDir="false" />
+    </list>
+    <list id="296fe230-f9f7-40d3-8725-a7fe964cc7bb" name="Ny branch med förslag på ändringar av stats-generering" comment="" />
+    <list id="4c2207ba-9aad-4c31-8ded-100fa9146123" name="Revert &quot;Ny branch med förslag på ändringar av stats-generering&quot;" comment="Revert &quot;Ny branch med förslag på ändringar av stats-generering&quot;&#10;&#10;This reverts commit e0662997">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Enemy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Stats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Stats.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/BossTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/BossTest.java" afterDir="false" />
@@ -44,12 +47,43 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$/.." value="main" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/.idea/workspace.xml">
+      <ranges>
+        <range start1="15" end1="15" start2="15" end2="17" changelist="705c9c8e-fb4c-405e-b718-7bd06db4888a" />
+        <range start1="20" end1="22" start2="22" end2="23" changelist="705c9c8e-fb4c-405e-b718-7bd06db4888a" />
+        <range start1="24" end1="25" start2="25" end2="28" changelist="705c9c8e-fb4c-405e-b718-7bd06db4888a" />
+        <range start1="26" end1="27" start2="29" end2="29" changelist="705c9c8e-fb4c-405e-b718-7bd06db4888a" />
+        <range start1="46" end1="51" start2="48" end2="48" changelist="4c2207ba-9aad-4c31-8ded-100fa9146123" />
+        <range start1="71" end1="71" start2="68" end2="69" changelist="705c9c8e-fb4c-405e-b718-7bd06db4888a" />
+        <range start1="122" end1="123" start2="120" end2="121" changelist="4c2207ba-9aad-4c31-8ded-100fa9146123" />
+        <range start1="126" end1="127" start2="124" end2="126" changelist="4c2207ba-9aad-4c31-8ded-100fa9146123" />
+        <range start1="131" end1="132" start2="130" end2="131" changelist="4c2207ba-9aad-4c31-8ded-100fa9146123" />
+        <range start1="134" end1="137" start2="133" end2="135" changelist="4c2207ba-9aad-4c31-8ded-100fa9146123" />
+        <range start1="141" end1="142" start2="139" end2="140" changelist="4c2207ba-9aad-4c31-8ded-100fa9146123" />
+        <range start1="145" end1="146" start2="143" end2="145" changelist="4c2207ba-9aad-4c31-8ded-100fa9146123" />
+        <range start1="153" end1="154" start2="152" end2="152" changelist="4c2207ba-9aad-4c31-8ded-100fa9146123" />
+        <range start1="157" end1="157" start2="155" end2="156" changelist="4c2207ba-9aad-4c31-8ded-100fa9146123" />
+        <range start1="258" end1="266" start2="257" end2="258" changelist="4c2207ba-9aad-4c31-8ded-100fa9146123" />
+        <range start1="276" end1="277" start2="268" end2="306" changelist="705c9c8e-fb4c-405e-b718-7bd06db4888a" />
+        <range start1="293" end1="295" start2="322" end2="323" changelist="4c2207ba-9aad-4c31-8ded-100fa9146123" />
+        <range start1="317" end1="319" start2="345" end2="347" changelist="705c9c8e-fb4c-405e-b718-7bd06db4888a" />
+        <range start1="320" end1="320" start2="348" end2="349" changelist="705c9c8e-fb4c-405e-b718-7bd06db4888a" />
+        <range start1="321" end1="322" start2="350" end2="351" changelist="4c2207ba-9aad-4c31-8ded-100fa9146123" />
+        <range start1="324" end1="325" start2="353" end2="354" changelist="4c2207ba-9aad-4c31-8ded-100fa9146123" />
+        <range start1="326" end1="327" start2="355" end2="356" changelist="4c2207ba-9aad-4c31-8ded-100fa9146123" />
+        <range start1="329" end1="330" start2="358" end2="359" changelist="4c2207ba-9aad-4c31-8ded-100fa9146123" />
+        <range start1="331" end1="332" start2="360" end2="361" changelist="4c2207ba-9aad-4c31-8ded-100fa9146123" />
+        <range start1="334" end1="335" start2="363" end2="364" changelist="4c2207ba-9aad-4c31-8ded-100fa9146123" />
+        <range start1="336" end1="337" start2="365" end2="366" changelist="4c2207ba-9aad-4c31-8ded-100fa9146123" />
+        <range start1="339" end1="340" start2="368" end2="369" changelist="4c2207ba-9aad-4c31-8ded-100fa9146123" />
+        <range start1="346" end1="346" start2="375" end2="379" changelist="705c9c8e-fb4c-405e-b718-7bd06db4888a" />
+        <range start1="350" end1="351" start2="383" end2="384" changelist="4c2207ba-9aad-4c31-8ded-100fa9146123" />
+        <range start1="353" end1="354" start2="386" end2="387" changelist="4c2207ba-9aad-4c31-8ded-100fa9146123" />
+      </ranges>
+    </file>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
