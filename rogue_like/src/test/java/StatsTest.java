@@ -65,7 +65,7 @@ public class StatsTest {
 
     @Test
     void checkMaximumLives(){
-        Stats stats = new Stats(2);
+        Stats stats = new Stats(2); //TODO ändra konstruktoranropen
         stats.gainLives(2);
         assertEquals(5, stats.getMaxLife());
     }
