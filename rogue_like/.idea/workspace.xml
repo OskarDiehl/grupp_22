@@ -3,11 +3,29 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="705c9c8e-fb4c-405e-b718-7bd06db4888a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Shoes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ShoesTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="705c9c8e-fb4c-405e-b718-7bd06db4888a" name="Default Changelist" comment="Enemy-konstruktor samt ny bossklass/Sabina">
+      <change afterPath="$PROJECT_DIR$/src/test/java/BossTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Boss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Boss.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Stats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Stats.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +36,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -27,12 +46,14 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
+        <option name="mavenHome" value="D:\Program files\IntelliJ IDEA Community Edition 2020.2.2\plugins\maven\lib\maven3" />
       </MavenGeneralSettings>
     </option>
   </component>
   <component name="ProjectId" id="1is7ThfuxgcCEoEMzi8B2ZDRdgW" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -58,7 +79,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ShoesTest">
+  <component name="RunManager" selected="JUnit.StatsTest">
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -81,49 +102,52 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ElementTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StatsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="rogue_like" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="ElementTest" />
+      <option name="MAIN_CLASS_NAME" value="StatsTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ItemTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StatsTest.getFullLifeFromStandardConstructorArgument" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="rogue_like" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="ItemTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="StatsTest" />
+      <option name="METHOD_NAME" value="getFullLifeFromStandardConstructorArgument" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ShoesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StatsTest.getFullPowerFromStandardConstructorArgument" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="rogue_like" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="ShoesTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="StatsTest" />
+      <option name="METHOD_NAME" value="getFullPowerFromStandardConstructorArgument" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WeaponTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StatsTest.getFullRunnerFromStandardConstructorArgument" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="rogue_like" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="WeaponTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="StatsTest" />
+      <option name="METHOD_NAME" value="getFullRunnerFromStandardConstructorArgument" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ShoesTest" />
-        <item itemvalue="JUnit.WeaponTest" />
+        <item itemvalue="JUnit.StatsTest" />
+        <item itemvalue="JUnit.StatsTest.getFullRunnerFromStandardConstructorArgument" />
+        <item itemvalue="JUnit.StatsTest.getFullPowerFromStandardConstructorArgument" />
+        <item itemvalue="JUnit.StatsTest.getFullLifeFromStandardConstructorArgument" />
         <item itemvalue="JUnit.ArmorTest" />
-        <item itemvalue="JUnit.ItemTest" />
-        <item itemvalue="JUnit.ElementTest" />
       </list>
     </recent_temporary>
   </component>
@@ -190,25 +214,50 @@
       <option name="project" value="LOCAL" />
       <updated>1602763401636</updated>
     </task>
-    <task id="LOCAL-00008" summary="Har lagt till attack i Element med temporär power">
-      <created>1602769007233</created>
+    <task id="LOCAL-00008" summary="Protected variabel stats /Sabina">
+      <created>1603040119011</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1602769007233</updated>
+      <updated>1603040119011</updated>
     </task>
-    <task id="LOCAL-00009" summary="Har lagt till attack i Element med temporär power">
-      <created>1602770778554</created>
+    <task id="LOCAL-00009" summary="Ändringar i Stats-metoder/Sabina">
+      <created>1603043667069</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1602770778554</updated>
+      <updated>1603043667069</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Ändringar i Statskonstruktor/Sabina">
+      <created>1603044741874</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1603044741874</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Enemy-konstruktor samt ny bossklass/Sabina">
+      <created>1603106330772</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1603106330772</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Testar att se så att jag kan commita och sedan kompilera/Oskar" />
@@ -216,7 +265,11 @@
     <MESSAGE value="Lägger till imports till ElementTest.java" />
     <MESSAGE value="Börjar skriva på ElementTest" />
     <MESSAGE value="Har lagt till attack i Element med temporär power" />
-    <option name="LAST_COMMIT_MESSAGE" value="Har lagt till attack i Element med temporär power" />
+    <MESSAGE value="Protected variabel stats /Sabina" />
+    <MESSAGE value="Ändringar i Stats-metoder/Sabina" />
+    <MESSAGE value="Ändringar i Statskonstruktor/Sabina" />
+    <MESSAGE value="Enemy-konstruktor samt ny bossklass/Sabina" />
+    <option name="LAST_COMMIT_MESSAGE" value="Enemy-konstruktor samt ny bossklass/Sabina" />
   </component>
   <component name="WindowStateProjectService">
     <state x="565" y="367" key="#Notifications" timestamp="1602687740693">
@@ -235,46 +288,30 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="586" y="424" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.1680.1027@0.23.1680.1027" timestamp="1602756083641" />
-    <state x="414" y="112" key="CommitChangelistDialog2" timestamp="1602770778417">
+    <state x="414" y="112" key="CommitChangelistDialog2" timestamp="1602763401517">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state x="414" y="112" key="CommitChangelistDialog2/0.23.1680.1027@0.23.1680.1027" timestamp="1602770778417" />
-    <state width="1638" height="280" key="GridCell.Tab.0.bottom" timestamp="1602776576402">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state x="414" y="112" key="CommitChangelistDialog2/0.23.1680.1027@0.23.1680.1027" timestamp="1602763401517" />
+    <state width="2005" height="305" key="GridCell.Tab.0.bottom" timestamp="1603106350103">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="979" height="305" key="GridCell.Tab.0.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1602748849084" />
-    <state width="1638" height="280" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1602776576402" />
-    <state width="1638" height="280" key="GridCell.Tab.0.center" timestamp="1602776576402">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state width="2005" height="305" key="GridCell.Tab.0.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1603106350103" />
+    <state width="1638" height="346" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1602768667096" />
+    <state width="2005" height="305" key="GridCell.Tab.0.center" timestamp="1603106350103">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="979" height="305" key="GridCell.Tab.0.center/0.0.2048.1112@0.0.2048.1112" timestamp="1602748849084" />
-    <state width="1638" height="280" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1602776576402" />
-    <state width="1638" height="280" key="GridCell.Tab.0.left" timestamp="1602776576401">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state width="2005" height="305" key="GridCell.Tab.0.center/0.0.2048.1112@0.0.2048.1112" timestamp="1603106350103" />
+    <state width="1638" height="346" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1602768667095" />
+    <state width="2005" height="305" key="GridCell.Tab.0.left" timestamp="1603106350102">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="979" height="305" key="GridCell.Tab.0.left/0.0.2048.1112@0.0.2048.1112" timestamp="1602748849084" />
-    <state width="1638" height="280" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1602776576401" />
-    <state width="1638" height="280" key="GridCell.Tab.0.right" timestamp="1602776576402">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state width="2005" height="305" key="GridCell.Tab.0.left/0.0.2048.1112@0.0.2048.1112" timestamp="1603106350102" />
+    <state width="1638" height="346" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1602768667094" />
+    <state width="2005" height="305" key="GridCell.Tab.0.right" timestamp="1603106350103">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="979" height="305" key="GridCell.Tab.0.right/0.0.2048.1112@0.0.2048.1112" timestamp="1602748849084" />
-    <state width="1638" height="280" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1602776576402" />
-    <state width="1638" height="346" key="GridCell.Tab.1.bottom" timestamp="1602769092723">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="1638" height="346" key="GridCell.Tab.1.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1602769092723" />
-    <state width="1638" height="346" key="GridCell.Tab.1.center" timestamp="1602769092722">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="1638" height="346" key="GridCell.Tab.1.center/0.23.1680.1027@0.23.1680.1027" timestamp="1602769092722" />
-    <state width="1638" height="346" key="GridCell.Tab.1.left" timestamp="1602769092722">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="1638" height="346" key="GridCell.Tab.1.left/0.23.1680.1027@0.23.1680.1027" timestamp="1602769092721" />
-    <state width="1638" height="346" key="GridCell.Tab.1.right" timestamp="1602769092723">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="1638" height="346" key="GridCell.Tab.1.right/0.23.1680.1027@0.23.1680.1027" timestamp="1602769092723" />
+    <state width="2005" height="305" key="GridCell.Tab.0.right/0.0.2048.1112@0.0.2048.1112" timestamp="1603106350103" />
+    <state width="1638" height="346" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1602768667095" />
     <state x="328" y="118" key="SettingsEditor" timestamp="1602756855121">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
@@ -284,22 +321,24 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="596" y="259" key="VCS.ChangeListViewerDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1602756263957" />
-    <state x="440" y="276" key="Vcs.Push.Dialog.v2" timestamp="1602769081601">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state x="536" y="274" key="Vcs.Push.Dialog.v2" timestamp="1603106340193">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="440" y="276" key="Vcs.Push.Dialog.v2/0.23.1680.1027@0.23.1680.1027" timestamp="1602769081601" />
+    <state x="536" y="274" key="Vcs.Push.Dialog.v2/0.0.2048.1112@0.0.2048.1112" timestamp="1603106340193" />
+    <state x="440" y="276" key="Vcs.Push.Dialog.v2/0.23.1680.1027@0.23.1680.1027" timestamp="1602763406867" />
     <state x="100" y="123" width="1480" height="827" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1602752061316">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="100" y="123" width="1480" height="827" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1602752061316" />
-    <state x="638" y="457" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602769293656">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state x="778" y="470" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603040043134">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="778" y="470" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2048.1112@0.0.2048.1112" timestamp="1602748865624" />
-    <state x="638" y="457" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1680.1027@0.23.1680.1027" timestamp="1602769293656" />
-    <state x="619" y="350" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1602751402190">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state x="778" y="470" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2048.1112@0.0.2048.1112" timestamp="1603040043134" />
+    <state x="638" y="457" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1680.1027@0.23.1680.1027" timestamp="1602756705799" />
+    <state x="755" y="354" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1603106784549">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
+    <state x="755" y="354" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1603106784549" />
     <state x="619" y="350" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1602751402190" />
     <state x="505" y="250" width="670" height="676" key="search.everywhere.popup" timestamp="1602764436045">
       <screen x="0" y="23" width="1680" height="1027" />
