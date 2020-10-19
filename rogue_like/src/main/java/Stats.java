@@ -9,27 +9,8 @@ public class Stats {
     private int power;
     private int speed;
 
-    // CONSTRUCTORS  ------------------------------------------------------------------------
-    //Constructor for character WITHOUT a role. The "standard constructor".
-    //TODO Denna konstruktor är ej anpassad för bossar, ska all generering av själva statsen kanske ske i Player- resp Enemy- resp Boss-klassen?
+    // CONSTRUCTOR  ------------------------------------------------------------------------
 
-    //I denna version ska inte denna konstruktor finnas
-    public Stats(int level) {
-        int statThing;
-        if (level == 1) {               // Depending on the level, the default stats change
-            statThing = 3;
-        } else if (level == 2) {
-            statThing = 5;
-        } else {
-            statThing = 8;
-        }
-        currentLife = statThing;        // Life, power and speed have the same stat TODO (Up for debate, this can be changed) /Malin & Sabina
-        power = statThing;
-        speed = statThing;
-        maxLife = statThing;
-    }
-
-    //Constructor for character WITH a role. The "role constructor".
     public Stats(int life, int power, int speed) {
         if (isWithinStatRange(life) && isWithinStatRange(power) && isWithinStatRange(speed)) {
             this.maxLife = life;
