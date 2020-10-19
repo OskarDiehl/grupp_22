@@ -11,6 +11,7 @@ public class Stats {
 
     // CONSTRUCTORS  ------------------------------------------------------------------------
     //Constructor for character WITHOUT a role. The "standard constructor".
+    //TODO Denna konstruktor är ej anpassad för bossar, ska all generering av själva statsen kanske ske i Player- resp Enemy- resp Boss-klassen?
     public Stats(int level){
         int statThing;
         if (level == 1) {               // Depending on the level, the default stats change

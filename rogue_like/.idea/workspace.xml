@@ -22,11 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="705c9c8e-fb4c-405e-b718-7bd06db4888a" name="Default Changelist" comment="Ändringar i Statskonstruktor/Sabina">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Character.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Enemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/EnemyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/EnemyTest.java" afterDir="false" />
+    <list default="true" id="705c9c8e-fb4c-405e-b718-7bd06db4888a" name="Default Changelist" comment="Enemy-konstruktor samt ny bossklass/Sabina">
+      <change afterPath="$PROJECT_DIR$/src/test/java/BossTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Boss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Boss.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Stats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Stats.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +36,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -235,7 +235,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603044741874</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Enemy-konstruktor samt ny bossklass/Sabina">
+      <created>1603106330772</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1603106330772</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -261,7 +268,8 @@
     <MESSAGE value="Protected variabel stats /Sabina" />
     <MESSAGE value="Ändringar i Stats-metoder/Sabina" />
     <MESSAGE value="Ändringar i Statskonstruktor/Sabina" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ändringar i Statskonstruktor/Sabina" />
+    <MESSAGE value="Enemy-konstruktor samt ny bossklass/Sabina" />
+    <option name="LAST_COMMIT_MESSAGE" value="Enemy-konstruktor samt ny bossklass/Sabina" />
   </component>
   <component name="WindowStateProjectService">
     <state x="565" y="367" key="#Notifications" timestamp="1602687740693">
@@ -284,25 +292,25 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="414" y="112" key="CommitChangelistDialog2/0.23.1680.1027@0.23.1680.1027" timestamp="1602763401517" />
-    <state width="2005" height="305" key="GridCell.Tab.0.bottom" timestamp="1603047813904">
+    <state width="2005" height="305" key="GridCell.Tab.0.bottom" timestamp="1603106350103">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="305" key="GridCell.Tab.0.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1603047813904" />
+    <state width="2005" height="305" key="GridCell.Tab.0.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1603106350103" />
     <state width="1638" height="346" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1602768667096" />
-    <state width="2005" height="305" key="GridCell.Tab.0.center" timestamp="1603047813904">
+    <state width="2005" height="305" key="GridCell.Tab.0.center" timestamp="1603106350103">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="305" key="GridCell.Tab.0.center/0.0.2048.1112@0.0.2048.1112" timestamp="1603047813904" />
+    <state width="2005" height="305" key="GridCell.Tab.0.center/0.0.2048.1112@0.0.2048.1112" timestamp="1603106350103" />
     <state width="1638" height="346" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1602768667095" />
-    <state width="2005" height="305" key="GridCell.Tab.0.left" timestamp="1603047813904">
+    <state width="2005" height="305" key="GridCell.Tab.0.left" timestamp="1603106350102">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="305" key="GridCell.Tab.0.left/0.0.2048.1112@0.0.2048.1112" timestamp="1603047813904" />
+    <state width="2005" height="305" key="GridCell.Tab.0.left/0.0.2048.1112@0.0.2048.1112" timestamp="1603106350102" />
     <state width="1638" height="346" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1602768667094" />
-    <state width="2005" height="305" key="GridCell.Tab.0.right" timestamp="1603047813904">
+    <state width="2005" height="305" key="GridCell.Tab.0.right" timestamp="1603106350103">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="305" key="GridCell.Tab.0.right/0.0.2048.1112@0.0.2048.1112" timestamp="1603047813904" />
+    <state width="2005" height="305" key="GridCell.Tab.0.right/0.0.2048.1112@0.0.2048.1112" timestamp="1603106350103" />
     <state width="1638" height="346" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1602768667095" />
     <state x="328" y="118" key="SettingsEditor" timestamp="1602756855121">
       <screen x="0" y="23" width="1680" height="1027" />
@@ -313,10 +321,10 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="596" y="259" key="VCS.ChangeListViewerDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1602756263957" />
-    <state x="536" y="274" key="Vcs.Push.Dialog.v2" timestamp="1603044904621">
+    <state x="536" y="274" key="Vcs.Push.Dialog.v2" timestamp="1603106340193">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="536" y="274" key="Vcs.Push.Dialog.v2/0.0.2048.1112@0.0.2048.1112" timestamp="1603044904621" />
+    <state x="536" y="274" key="Vcs.Push.Dialog.v2/0.0.2048.1112@0.0.2048.1112" timestamp="1603106340193" />
     <state x="440" y="276" key="Vcs.Push.Dialog.v2/0.23.1680.1027@0.23.1680.1027" timestamp="1602763406867" />
     <state x="100" y="123" width="1480" height="827" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1602752061316">
       <screen x="0" y="23" width="1680" height="1027" />
@@ -327,9 +335,10 @@
     </state>
     <state x="778" y="470" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2048.1112@0.0.2048.1112" timestamp="1603040043134" />
     <state x="638" y="457" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1680.1027@0.23.1680.1027" timestamp="1602756705799" />
-    <state x="619" y="350" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1602751402190">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state x="755" y="354" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1603106784549">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
+    <state x="755" y="354" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1603106784549" />
     <state x="619" y="350" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1602751402190" />
     <state x="505" y="250" width="670" height="676" key="search.everywhere.popup" timestamp="1602764436045">
       <screen x="0" y="23" width="1680" height="1027" />
