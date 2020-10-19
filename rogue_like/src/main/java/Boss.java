@@ -2,11 +2,11 @@ public class Boss extends Enemy{
 
     public Boss(String name, Element element, int level) {
         super(name, element, level);
-        generateStats(level);
+        calculateStats(level);
     }
 
     @Override
-    protected void generateStats(int level) {
+    protected void calculateStats(int level) {
         int life;
         int power;
         int speed;
@@ -23,6 +23,6 @@ public class Boss extends Enemy{
             power = 9;
             speed = 9;
         }
-        stats = new Stats(life, power, speed);
+        generateStats(life, power, speed);
     }
 }
