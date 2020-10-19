@@ -8,19 +8,19 @@ public class StatsTest {
     //Constructor for character WITHOUT a role (enemy character).
     @Test
     void getFullLifeFromStandardConstructorArgument() {
-        Stats stats = new Stats(2);
+        Stats stats = new Stats(2, 3, 4);
         assertEquals(5, stats.getCurrentLife());
     }
 
     @Test
     void getFullPowerFromStandardConstructorArgument() {
-        Stats stats = new Stats(2);
+        Stats stats = new Stats(2, 3, 4);
         assertEquals(5, stats.getPower());
     }
 
     @Test
     void getFullRunnerFromStandardConstructorArgument() {
-        Stats stats = new Stats(2);
+        Stats stats = new Stats(2, 3, 4);
         assertEquals(5, stats.getSpeed());
     }
 
