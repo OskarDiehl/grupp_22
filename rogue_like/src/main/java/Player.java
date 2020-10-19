@@ -14,14 +14,24 @@ public class Player extends Character {
         this.role = role;
     }
 
+    // OTHER METHODS
+    public void levelUp() {
+        if (level < 3){
+            level++;
+            levelUpChangeStats();
+        } else {
+            throw new IllegalStateException("Level 3 is the highest level that you can reach.");
+        }
+    }
+
+    public void levelUpChangeStats(){
+
+    }
+
     // GET-METHODS ----------------------------------------------------------
     public String getRole() {
         return role;
     }
 
-    @Override
-    public void levelUpChangeStats(){
-        //TODO skapa metoden /Malin
-    }
 
 }
