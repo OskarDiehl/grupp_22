@@ -1,13 +1,12 @@
 public class Stats {
-    //TODO Stats kan vara max 10.
 
     //VARIABLES  ------------------------------------------------------------------------
-    private static final int MAX_STAT = 10;
-    private static final int MIN_STAT = 1;
+    private static final int MAX_STAT = 10; //Stats can have a maximum value of 10
+    private static final int MIN_STAT = 0; //Stats can have a minimum value of 0
     private int maxLife; //TODO är det här bra? /Sabina
     private int currentLife;
-    private int power;
-    private int speed;
+    private final int power;
+    private final int speed;
 
     // CONSTRUCTOR  ------------------------------------------------------------------------
 
@@ -26,11 +25,7 @@ public class Stats {
     // OTHER METHODS  ------------------------------------------------------------------------
 
     private boolean isWithinStatRange(int number) {
-        if (number < MIN_STAT || number > MAX_STAT) {
-            return false;
-        } else {
-            return true;
-        }
+        return number >= MIN_STAT && number <= MAX_STAT;
     }
 
     public void loseLives(int lostLives) {
