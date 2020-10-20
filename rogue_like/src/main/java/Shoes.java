@@ -1,4 +1,4 @@
-public class Shoes  extends Item{
+public class Shoes extends Item{
 
     int speed;
     int power;

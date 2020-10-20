@@ -31,10 +31,7 @@
   <component name="ChangeListManager">
     <list default="true" id="705c9c8e-fb4c-405e-b718-7bd06db4888a" name="Default Changelist" comment="Ny branch med förslag på ändringar av stats-generering">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Boss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Boss.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Enemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Stats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Stats.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/StatsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/StatsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Shoes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Shoes.java" afterDir="false" />
     </list>
     <list id="296fe230-f9f7-40d3-8725-a7fe964cc7bb" name="Ny branch med förslag på ändringar av stats-generering" comment="" />
     <list id="4c2207ba-9aad-4c31-8ded-100fa9146123" name="Revert &quot;Ny branch med förslag på ändringar av stats-generering&quot;" comment="Revert &quot;Ny branch med förslag på ändringar av stats-generering&quot;&#10;&#10;This reverts commit e0662997" />
@@ -96,19 +93,6 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.BossTest.generateBossStats">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="BossTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="rogue_like" />
       <option name="PACKAGE_NAME" value="" />
@@ -344,10 +328,10 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="586" y="424" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.1680.1027@0.23.1680.1027" timestamp="1602756083641" />
-    <state x="414" y="112" key="CommitChangelistDialog2" timestamp="1602763401517">
+    <state x="414" y="112" key="CommitChangelistDialog2" timestamp="1603177195748">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state x="414" y="112" key="CommitChangelistDialog2/0.23.1680.1027@0.23.1680.1027" timestamp="1602763401517" />
+    <state x="414" y="112" key="CommitChangelistDialog2/0.23.1680.1027@0.23.1680.1027" timestamp="1603177195748" />
     <state width="2005" height="305" key="GridCell.Tab.0.bottom" timestamp="1603133616360">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
@@ -410,8 +394,12 @@
     <state x="505" y="250" width="670" height="676" key="search.everywhere.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1602764436045" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/rogue_like$EnemyTest.ic" NAME="EnemyTest Coverage Results" MODIFIED="1603129678715" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/rogue_like$All_in_rogue_like.ic" NAME="All in rogue_like Coverage Results" MODIFIED="1603118924065" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/rogue_like$BossTest_generateBossStats.ic" NAME="BossTest.generateBossStats Coverage Results" MODIFIED="1603133616293" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/rogue_like$ArmorTest.ic" NAME="ArmorTest Coverage Results" MODIFIED="1603118816329" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/rogue_like$All_in_rogue_like.ic" NAME="All in rogue_like Coverage Results" MODIFIED="1603118943790" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/rogue_like$EnemyTest.ic" NAME="EnemyTest Coverage Results" MODIFIED="1603129678715" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/rogue_like$WeaponTest.ic" NAME="WeaponTest Coverage Results" MODIFIED="1603118358090" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/rogue_like$StatsTest.ic" NAME="StatsTest Coverage Results" MODIFIED="1603118301318" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/rogue_like$ShoesTest.ic" NAME="ShoesTest Coverage Results" MODIFIED="1603118371047" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
