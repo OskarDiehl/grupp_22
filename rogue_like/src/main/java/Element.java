@@ -13,6 +13,7 @@ public class Element {
     public int attack() {
         int power = 5; //temporär power tills det går att hämta från charcter
 
+
         if (isStrong()) {
             power += 2;
         } else if (isWeak()) {

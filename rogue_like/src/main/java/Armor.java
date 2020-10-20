@@ -16,4 +16,5 @@ public class Armor extends Item {
     public int getSpeed() {
         return speed;
     }
+
 }
