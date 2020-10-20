@@ -25,4 +25,5 @@ public class ShoesTest {
         assertEquals(defaultPower, s.getPower());
     }
 
+
 }
