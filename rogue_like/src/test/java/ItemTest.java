@@ -5,7 +5,7 @@ public class ItemTest {
 
     @Test
     void getNameWithConstructorArgument() {
-        Item i = new Item("TestItem");
+        Item i = new Armor("TestItem",6,-2);
         assertEquals("TestItem", i.getName());
     }
 
