@@ -1,5 +1,5 @@
 public class Room {
-    String element; //ska ändras till Element klassen sen
+     String element; //ska ändras till Element klassen sen
      private final int STANDARD_THRESHOLD = 6;
      private final int MAX_THRESHOLD = 10;
      private final int MIN_THRESHOLD = 1;
@@ -10,6 +10,8 @@ public class Room {
      private int threshold;
 
      public Room(){
+
+
         threshold = STANDARD_THRESHOLD;
         this.element = "Fire";
     }
@@ -27,6 +29,10 @@ public class Room {
             return true;
         }
         return false;
+    }
+
+    public void decideTypeOfRoom(){
+
     }
 
 
@@ -61,8 +67,13 @@ public class Room {
 
 //Denna nås av test genom andra metoder, men kan inte testas direkt eftersom den är privat.
 //Man bör fråga sig om denna bör vara publik, samt att den har begränsingar (MIN < MAX exempelvis)
-    private int generateRandomNumber(int min, int max) {
-         return (int) ((Math.random() * (max - min)) + min);
+    public int generateRandomNumber(int min, int max) {
 
+        if (min < 1  || min >= max) {
+            throw new IllegalArgumentException();
+        } else {
+            return (int) ((Math.random() * (max - min)) + min);
+
+        }
     }
 }

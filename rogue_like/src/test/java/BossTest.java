@@ -7,7 +7,7 @@ class BossTest {
     void generateBossStats() { //Själva statsen ska ändras
         Element element = new Element();
         Boss boss = new Boss("Boss", element, 3);
-        assertEquals(new Stats(3).toString(), boss.getStats().toString());
+        assertEquals(new Stats(10, 9, 9).toString(), boss.getStats().toString());
     }
 
 }

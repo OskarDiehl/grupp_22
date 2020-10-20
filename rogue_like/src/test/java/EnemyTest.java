@@ -13,7 +13,7 @@ class EnemyTest {
     @Test
     void generateEnemyStats(){
         Element element = new Element();
-        Stats stats = new Stats(2);
+        Stats stats = new Stats(5, 5, 5);
         Enemy enemy = new Enemy("EttNamn", element, 2);
         assertEquals(stats.toString(), enemy.getStats().toString());
     }

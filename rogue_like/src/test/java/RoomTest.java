@@ -7,18 +7,41 @@ class RoomTest {
 
 
 // Ska denna testas med tanke på att den är privat?
- /*   @Test
+  @Test
     void shouldGenerateNumberBetweenOneAndTen(){
 
         Room room = new Room();
-        int num = room.genereateRandomNumber(1,10);
+        int num = room.generateRandomNumber(1,10);
 
         assertTrue( 1 <= num && num <= 10, "num: " + num);
     }
 
-  */
+    @Test
+    void ifArgumentExceptionIsThrownWhenMinValueBelowOne(){
 
+      Room room = new Room();
+      assertThrows(IllegalArgumentException.class, () -> {
+          room.generateRandomNumber(0, 5);
+      });
+    }
 
+    @Test
+    void ifArgumentExceptionIsThrownWhenMaxValueAboveTen(){
+
+        Room room = new Room();
+        assertThrows(IllegalArgumentException.class, () -> {
+            room.generateRandomNumber(2, 11);
+        });
+    }
+
+    @Test
+    void ifArgumentExceptionIsThrownWhenMinValueIsEqualToMaxValue(){
+
+        Room room = new Room();
+        assertThrows(IllegalArgumentException.class, () -> {
+            room.generateRandomNumber(7, 7);
+        });
+    }
 
     @Test
     void spawnItemShouldBeTrue() {
@@ -83,6 +106,13 @@ class RoomTest {
     }
 
     @Test void ifCorrectNumberOfEnemiesHaveBeenCreated(){
+
+    }
+
+    @Test
+    void shouldGenerateElementForRoom(){
+      Room room = new Room();
+
 
     }
 
