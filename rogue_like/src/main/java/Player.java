@@ -19,7 +19,6 @@ public class Player extends Character {
         return role;
     }
 
-    @Override
     public void levelUpChangeStats(){
         //TODO skapa metoden /Malin
     }

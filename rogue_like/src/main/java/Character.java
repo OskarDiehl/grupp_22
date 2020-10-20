@@ -1,11 +1,10 @@
-public class Character {
+public abstract class Character {
 
     // INSTANCE VARIABLES  ------------------------------------------------------------------------
     private String name;
     private Element element;
     protected int level;
     protected Stats stats;
-    //Hej
 
     // CONSTRUCTOR  ------------------------------------------------------------------------
     public Character(String name, Element element){
@@ -16,18 +15,7 @@ public class Character {
 
     // OTHER METHODS ------------------------------------------------------------------------
 
-    public void levelUp() {
-        if (level < 3){
-            level++;
-            levelUpChangeStats();
-        } else {
-            throw new IllegalStateException("Level 3 is the highest level that you can reach.");
-        }
-    }
 
-    public void levelUpChangeStats(){  //TODO Abstrakt? /Malin
-
-    }
 
     // GET-METHODS  ------------------------------------------------------------------------
     public String getName() {
@@ -46,3 +34,4 @@ public class Character {
         return stats;
     }
 }
+
