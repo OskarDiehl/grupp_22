@@ -72,11 +72,11 @@ public class Player extends Character {
     }
 
     public int getPowerFromStats(){
-        return stats.getPower();
+        return stats.getDefaultPower();
     }
 
     public int getSpeedFromStats(){
-        return stats.getSpeed();
+        return stats.getDefaultSpeed();
     }
 
 

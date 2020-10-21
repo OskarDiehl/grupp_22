@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class PlayerTest {
     private Element element;
     private Role role = Role.Warrior;
-    //Hmmm
+
 
     //TEST CONSTRUCTOR ------------------------------------------------------------------------
     @Test

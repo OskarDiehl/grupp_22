@@ -1,34 +1,53 @@
 public class PlayerStats extends Stats {
-
-    // 3 , 5, 8
-
-
     //VARIABLES  --------------------------------------------------------------------------
     private int currentLevel;
-
-    // variabel för när man förändrar power och speed? /Malin
+    private int currentPower;
+    private int currentSpeed;
 
 
     // CONSTRUCTOR  ------------------------------------------------------------------------
     public PlayerStats(int life, int power, int speed) {
         super(life, power, speed);
         currentLevel = 1;
+        currentPower = getDefaultPower();
+        currentSpeed = getDefaultSpeed();
     }
 
     // OTHER METHODS  ------------------------------------------------------------------------
 
-    //Levla upp statsen.
+    public void increasePowerTemporary(int increasedPower) {            // Increases the power stats temporary when the player for example has an item that affect the power
+        if ((currentPower + increasedPower) <= getMaxStat()){
+            currentPower = currentPower + increasedPower;
+        } else
+            currentPower = getMaxStat();
+    }
 
-    //Höj power tillfälligt
+    public void decreasePowerTemporary(int decreasePower) {             // Decreases the power stats temporary when the player for example has an item that affect the power
+        if ((currentPower - decreasePower) >= getMinStat())
+            currentPower = currentPower - decreasePower;
+        else
+            currentPower = getMinStat();
+    }
 
-    //Sänk power tillfälligt
+    public void increaseSpeedTemporary(int increasedSpeed) {            // Increases the speed stats temporary when the player for example has an item that affect the power
+        if ((currentSpeed + increasedSpeed) <= getMaxStat()){
+            currentSpeed = currentSpeed + increasedSpeed;
+        } else
+            currentSpeed = getMaxStat();
+    }
 
-    //Höj speed tillfälligt
+    public void decreaseSpeedTemporary(int decreasedSpeed) {            // Decreases the speed stats temporary when the player for example has an item that affect the power
+        if ((currentSpeed - decreasedSpeed) >= getMinStat())
+            currentSpeed = currentSpeed - decreasedSpeed;
+        else
+            currentSpeed = getMinStat();
+    }
 
-    //Sänk speed tillfälligt
+    public void resetPowerAndSpeedToDefaultValues(){                    // Resets the power- and speed stats to their default values
+        currentPower = getDefaultPower();
+        currentSpeed = getDefaultSpeed();
+    }
 
-
-    //removeChangedStats
 
     // LEVEL-METHODS  ------------------------------------------------------------------------
     public void levelStatsUp(){
@@ -38,9 +57,24 @@ public class PlayerStats extends Stats {
             currentLevel = 3;
     }
 
+    private void levelConditions(){
+        //TODO -> Hur kommer jag åt default-variablerna? /Malin
+    }
+
+
 
     // GET-METHODS  ------------------------------------------------------------------------
     public int getCurrentLevel() {
         return currentLevel;
     }
+
+    public int getCurrentPower() {
+        return currentPower;
+    }
+
+    public int getCurrentSpeed() {
+        return currentSpeed;
+    }
+
+
 }

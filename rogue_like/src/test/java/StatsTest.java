@@ -15,13 +15,13 @@ public class StatsTest {
     @Test
     void getFullPowerFromStandardConstructorArgument() {
         Stats stats = new Stats(2, 3, 4);
-        assertEquals(5, stats.getPower());
+        assertEquals(5, stats.getDefaultPower());
     }
 
     @Test
     void getFullRunnerFromStandardConstructorArgument() {
         Stats stats = new Stats(2, 3, 4);
-        assertEquals(5, stats.getSpeed());
+        assertEquals(5, stats.getDefaultSpeed());
     }
 
     //Constructor for character WITH a role. The "role constructor".
@@ -29,8 +29,8 @@ public class StatsTest {
     void tryParametersInRoleConstructorArgument(){ //TODO slipa på namngivningen /Malin
         Stats stats = new Stats(9, 5, 8);
         assertEquals(9, stats.getCurrentHP());
-        assertEquals(5, stats.getPower());
-        assertEquals(8, stats.getSpeed());
+        assertEquals(5, stats.getDefaultPower());
+        assertEquals(8, stats.getDefaultSpeed());
     }
 
     @Test
@@ -67,7 +67,7 @@ public class StatsTest {
     void checkMaximumLives(){
         Stats stats = new Stats(3, 3, 4);
         stats.gainLives(2);
-        assertEquals(5, stats.getMaxHP());
+        assertEquals(5, stats.getDefaultHP());
     }
 
     // OTHER METHODS ------------------------------------------------------------------------

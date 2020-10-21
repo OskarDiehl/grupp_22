@@ -3,19 +3,19 @@ public class Stats {
     //VARIABLES  ------------------------------------------------------------------------
     private static final int MAX_STAT = 10;                 //Stats can have a maximum value of 10
     private static final int MIN_STAT = 0;                  //Stats can have a minimum value of 0
-    private int maxHP; //TODO är det här bra? /Sabina
+    private int defaultHP; //TODO är det här bra? /Sabina
     private int currentHP;
-    private final int power;
-    private final int speed;
+    private final int defaultPower;
+    private final int defaultSpeed;
 
     // CONSTRUCTOR  ------------------------------------------------------------------------
 
-    public Stats(int HP, int power, int speed) {
-        if (isWithinStatRange(HP) && isWithinStatRange(power) && isWithinStatRange(speed)) {
-            this.maxHP = HP;
-            this.currentHP = HP;
-            this.power = power;
-            this.speed = speed;
+    public Stats(int defaultHP, int defaultPower, int defaultSpeed) {
+        if (isWithinStatRange(defaultHP) && isWithinStatRange(defaultPower) && isWithinStatRange(defaultSpeed)) {
+            this.defaultHP = defaultHP;
+            this.currentHP = defaultHP;
+            this.defaultPower = defaultPower;
+            this.defaultSpeed = defaultSpeed;
         } else {
             throw new IllegalArgumentException("Error: Parameters out of range");
         }
@@ -36,7 +36,7 @@ public class Stats {
     }
 
     public void gainLives(int gainedLives) {
-        if ((currentHP + gainedLives) <= maxHP) //TODO ändra så att maxgränsen stämmer överens /Malin
+        if ((currentHP + gainedLives) <= defaultHP) //TODO ändra så att maxgränsen stämmer överens /Malin
             currentHP = currentHP + gainedLives;
     }
 
@@ -46,27 +46,34 @@ public class Stats {
 
 
     // GET-METHODS ------------------------------------------------------------------------
-    public int getMaxHP() {
-        return maxHP;
+    public int getDefaultHP() {
+        return defaultHP;
     }
 
     public int getCurrentHP() {
         return currentHP;
     }
 
-    public int getPower() {
-        return power;
+    public int getDefaultPower() {
+        return defaultPower;
     }
 
-    public int getSpeed() {
-        return speed;
+    public int getDefaultSpeed() {
+        return defaultSpeed;
     }
 
+    public static int getMaxStat() {
+        return MAX_STAT;
+    }
+
+    public static int getMinStat() {
+        return MIN_STAT;
+    }
 
     // TO-STRING-METHOD ------------------------------------------------------------------------
     @Override
     public String toString() {
-        return "HP: " + getCurrentHP() + "\nPower: " + getPower() + "\nSpeed: " + getSpeed();
+        return "HP: " + getCurrentHP() + "\nPower: " + getDefaultPower() + "\nSpeed: " + getDefaultSpeed();
     }
 
 
