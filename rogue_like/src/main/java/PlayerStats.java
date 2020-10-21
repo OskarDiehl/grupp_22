@@ -13,30 +13,30 @@ public class PlayerStats extends Stats {
         currentSpeed = getDefaultSpeed();
     }
 
-    // OTHER METHODS  ------------------------------------------------------------------------
 
-    public void increasePowerTemporary(int increasedPower) {            // Increases the power stats temporary when the player for example has an item that affect the power
+    // OTHER METHODS  ------------------------------------------------------------------------
+    private void increasePowerTemporary(int increasedPower) {            // Increases the power
         if ((currentPower + increasedPower) <= getMaxStat()){
             currentPower = currentPower + increasedPower;
         } else
             currentPower = getMaxStat();
     }
 
-    public void decreasePowerTemporary(int decreasePower) {             // Decreases the power stats temporary when the player for example has an item that affect the power
+    private void decreasePowerTemporary(int decreasePower) {             // Decreases the power
         if ((currentPower - decreasePower) >= getMinStat())
             currentPower = currentPower - decreasePower;
         else
             currentPower = getMinStat();
     }
 
-    public void increaseSpeedTemporary(int increasedSpeed) {            // Increases the speed stats temporary when the player for example has an item that affect the power
+    private void increaseSpeedTemporary(int increasedSpeed) {            // Increases the speed
         if ((currentSpeed + increasedSpeed) <= getMaxStat()){
             currentSpeed = currentSpeed + increasedSpeed;
         } else
             currentSpeed = getMaxStat();
     }
 
-    public void decreaseSpeedTemporary(int decreasedSpeed) {            // Decreases the speed stats temporary when the player for example has an item that affect the power
+    private void decreaseSpeedTemporary(int decreasedSpeed) {            // Decreases the speed
         if ((currentSpeed - decreasedSpeed) >= getMinStat())
             currentSpeed = currentSpeed - decreasedSpeed;
         else
@@ -46,6 +46,20 @@ public class PlayerStats extends Stats {
     public void resetPowerAndSpeedToDefaultValues(){                    // Resets the power- and speed stats to their default values
         currentPower = getDefaultPower();
         currentSpeed = getDefaultSpeed();
+    }
+
+    public void changePower(Boolean increase, int amount){
+        if (increase)
+            increasePowerTemporary(amount);
+        else
+            decreasePowerTemporary(amount);
+    }
+
+    public void changeSpeed(Boolean increase, int amount){
+        if (increase)
+            increaseSpeedTemporary(amount);
+        else
+            decreaseSpeedTemporary(amount);
     }
 
 

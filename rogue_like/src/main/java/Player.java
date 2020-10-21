@@ -1,9 +1,6 @@
 public class Player extends Character {
 
     // DATASAMLING/-AR -----------------------------------------------------
-    // datasamling med element  -> Array
-    // datasamling för items    -> Array
-
     private Element elements[] = new Element[4];
     private Item items[] = new Item[3];
 
@@ -14,7 +11,6 @@ public class Player extends Character {
     // INSTANCE VARIABLES ---------------------------------------------------
     private int currentLevel = 1;
     private Role role;
-    //selected element TODO fixa selected element /Malin
 
 
     // CONSTRUCTOR ----------------------------------------------------------
@@ -22,7 +18,7 @@ public class Player extends Character {
         super(name, element);
        // this.level = getCurrentLevel();   TODO Fråga Sabina /Malin
         this.role = role;
-        stats = new Stats(role.getHP(),role.getPower(),role.getSpeed());
+        stats = new PlayerStats(role.getHP(),role.getPower(),role.getSpeed());
     }
 
     // OTHER METHODS --------------------------------------------------------
@@ -34,8 +30,28 @@ public class Player extends Character {
             currentLevel = 3;
     }
 
-    public void levelUpChangeStats(){ //TODO Fixa metod som förändrar stats när man levlar upp.
+    public void levelUpChangeStats(){ //TODO Fixa metod som förändrar stats när man levlar upp. /Malin
         // levla upp stats
+    }
+
+    public void changePower(Boolean increase, int amount){
+        //TODO jag kommer inte åt metoderna som finns i PlayerStats /Malin
+        if (increase){
+            //stats.changePower(true, amount);
+        }
+        else {
+            //stats.changePower(false, amount);
+        }
+    }
+
+    public void changeSpeed(Boolean increase, int amount){
+        //TODO jag kommer inte åt metoderna som finns i PlayerStats /Malin
+        if (increase){
+            //stats.changeSpeed(true, amount);
+        }
+        else {
+            //stats.changeSpeed(false, amount);
+        }
     }
 
 
@@ -78,7 +94,6 @@ public class Player extends Character {
     public int getSpeedFromStats(){
         return stats.getDefaultSpeed();
     }
-
 
 }
 
