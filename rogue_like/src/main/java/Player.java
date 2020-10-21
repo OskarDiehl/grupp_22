@@ -2,7 +2,11 @@
 public class Player extends Character {
 
     // DATASAMLING/-AR -----------------------------------------------------
-    // datasamling med element
+    // datasamling med element  -> Array
+    // datasamling för items    -> Array
+
+    //Alla elementen har olika index. ArrayLocation? Om det finns lägg in vatten element
+    //Tar man ett Item börjar det verka direkt  /Vapen, rustning, skor
 
     // INSTANCE VARIABLES ---------------------------------------------------
     private int currentLevel = 1;
@@ -32,6 +36,8 @@ public class Player extends Character {
 
     }
 
+    //metod som ger elementen
+
     private Stats getCurrentLevelStats() {  //TODO Ta en till titt här Malin. Hur hämtar man stats:en? /Malin
         return stats;
     }
@@ -44,6 +50,9 @@ public class Player extends Character {
     public int getCurrentLevel() {
         return currentLevel;
     }
+
+    //get-metoder för stats:en
+
 }
 
 

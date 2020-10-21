@@ -1,8 +1,8 @@
 public class Stats {
 
     //VARIABLES  ------------------------------------------------------------------------
-    private static final int MAX_STAT = 10; //Stats can have a maximum value of 10
-    private static final int MIN_STAT = 0; //Stats can have a minimum value of 0
+    private static final int MAX_STAT = 10;                 //Stats can have a maximum value of 10
+    private static final int MIN_STAT = 0;                  //Stats can have a minimum value of 0
     private int maxLife; //TODO är det här bra? /Sabina
     private int currentLife;
     private final int power;
@@ -30,7 +30,7 @@ public class Stats {
 
     public void loseLives(int lostLives) {
         if ((currentLife - lostLives) < 0)  //TODO ska vi ersätta med Math.max? /Malin
-            currentLife = 0;
+            currentLife = 0; //TODO -> Spelet startas om? -> PlayerStats? /Malin
         else
             currentLife = currentLife - lostLives;
     }
