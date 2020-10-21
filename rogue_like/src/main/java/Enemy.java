@@ -3,8 +3,8 @@ public class Enemy extends Character {
     private final static int LEVEL_2_STAT = 5;
     private final static int LEVEL_3_STAT = 8;
 
-    public Enemy(String name, Element element, int level) {
-        super(name, element, level);
+    public Enemy(Element element, int level) {
+        super(element, level);
         calculateStats(level);
     }
 
