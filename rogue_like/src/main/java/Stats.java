@@ -3,17 +3,17 @@ public class Stats {
     //VARIABLES  ------------------------------------------------------------------------
     private static final int MAX_STAT = 10;                 //Stats can have a maximum value of 10
     private static final int MIN_STAT = 0;                  //Stats can have a minimum value of 0
-    private int maxLife; //TODO är det här bra? /Sabina
-    private int currentLife;
+    private int maxHP; //TODO är det här bra? /Sabina
+    private int currentHP;
     private final int power;
     private final int speed;
 
     // CONSTRUCTOR  ------------------------------------------------------------------------
 
-    public Stats(int life, int power, int speed) {
-        if (isWithinStatRange(life) && isWithinStatRange(power) && isWithinStatRange(speed)) {
-            this.maxLife = life;
-            this.currentLife = life;
+    public Stats(int HP, int power, int speed) {
+        if (isWithinStatRange(HP) && isWithinStatRange(power) && isWithinStatRange(speed)) {
+            this.maxHP = HP;
+            this.currentHP = HP;
             this.power = power;
             this.speed = speed;
         } else {
@@ -29,15 +29,15 @@ public class Stats {
     }
 
     public void loseLives(int lostLives) {
-        if ((currentLife - lostLives) < 0)  //TODO ska vi ersätta med Math.max? /Malin
-            currentLife = 0; //TODO -> Spelet startas om? -> PlayerStats? /Malin
+        if ((currentHP - lostLives) < 0)  //TODO ska vi ersätta med Math.max? /Malin
+            currentHP = 0; //TODO -> Spelet startas om? -> PlayerStats? /Malin
         else
-            currentLife = currentLife - lostLives;
+            currentHP = currentHP - lostLives;
     }
 
     public void gainLives(int gainedLives) {
-        if ((currentLife + gainedLives) <= maxLife) //TODO ändra så att maxgränsen stämmer överens /Malin
-            currentLife = currentLife + gainedLives;
+        if ((currentHP + gainedLives) <= maxHP) //TODO ändra så att maxgränsen stämmer överens /Malin
+            currentHP = currentHP + gainedLives;
     }
 
     public void attackedByAnEnemy(int lostLives) {
@@ -46,12 +46,12 @@ public class Stats {
 
 
     // GET-METHODS ------------------------------------------------------------------------
-    public int getMaxLife() {
-        return maxLife;
+    public int getMaxHP() {
+        return maxHP;
     }
 
-    public int getCurrentLife() {
-        return currentLife;
+    public int getCurrentHP() {
+        return currentHP;
     }
 
     public int getPower() {
@@ -66,7 +66,7 @@ public class Stats {
     // TO-STRING-METHOD ------------------------------------------------------------------------
     @Override
     public String toString() {
-        return "Life: " + getCurrentLife() + "\nPower: " + getPower() + "\nSpeed: " + getSpeed();
+        return "HP: " + getCurrentHP() + "\nPower: " + getPower() + "\nSpeed: " + getSpeed();
     }
 
 

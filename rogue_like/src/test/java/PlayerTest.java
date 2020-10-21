@@ -39,7 +39,7 @@ public class PlayerTest {
     @Test
     void getCorrectLifeAmountFromRoleConstructorArgument(){                       // This test check if the amount of life is correct  TODO byt namn (inte sluta på constructorArgument?) /Malin
         Player player = new Player("Sabina", element, role);
-        assertEquals(5, player.getRole().getLife());
+        assertEquals(4, player.getRole().getHP());
     }
 
     @Test
@@ -55,23 +55,42 @@ public class PlayerTest {
     }
 
 
+    //TEST GET-METHODS FOR STATS----------------------------------------------------------------------
+    @Test
+    void getCurrentHPFromGetMethod() {
+        Player player = new Player("Sabina", element, role);
+        assertEquals(4, player.getCurrentHPFromStats());
+    }
+
+    @Test
+    void getPowerFromStatsMethod(){
+        Player player = new Player("Sabina", element, role);
+        assertEquals(6, player.getPowerFromStats());
+    }
+
+    @Test
+    void getSpeedFromStatsMethod(){
+        Player player = new Player("Sabina", element, role);
+        assertEquals(5, player.getSpeedFromStats());
+    }
+
+
     //TEST LEVELING ------------------------------------------------------------------------
-/*
-    @Test               TODO Fixa med metoderna när en spelare går upp i level Malin /Malin
+    @Test              // TODO Fixa med metoderna när en spelare går upp i level Malin /Malin
     void levelUpToSecondLevel(){
         Player player = new Player("Sabina", element, role);
         player.levelUp();
-        assertEquals(2, player.getLevel());
+        assertEquals(2, player.getCurrentLevel());
     }
 
     @Test
     void canNotLevelUpAfterLevelThree(){
         Player player = new Player("Sabina", element, role);
         player.levelUp();
+        player.levelUp();
         player.levelUp();                  //TODO refactor? /Malin
-        assertEquals(3, player.getLevel());
+        assertEquals(3, player.getCurrentLevel());
     }
-*/
 
 
     //TEST XXX ------------------------------------------------------------------------

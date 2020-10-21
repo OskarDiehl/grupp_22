@@ -7,9 +7,9 @@ public class StatsTest {
     //TEST CONSTRUCTORS ------------------------------------------------------------------------
     //Constructor for character WITHOUT a role (enemy character).
     @Test
-    void getFullLifeFromStandardConstructorArgument() {
+    void getFullHPFromStandardConstructorArgument() {
         Stats stats = new Stats(2, 3, 4);
-        assertEquals(5, stats.getCurrentLife());
+        assertEquals(5, stats.getCurrentHP());
     }
 
     @Test
@@ -28,7 +28,7 @@ public class StatsTest {
     @Test
     void tryParametersInRoleConstructorArgument(){ //TODO slipa på namngivningen /Malin
         Stats stats = new Stats(9, 5, 8);
-        assertEquals(9, stats.getCurrentLife());
+        assertEquals(9, stats.getCurrentHP());
         assertEquals(5, stats.getPower());
         assertEquals(8, stats.getSpeed());
     }
@@ -39,20 +39,20 @@ public class StatsTest {
     }
 
 
-    //TEST LIFE  ------------------------------------------------------------------------
+    //TEST HP  ------------------------------------------------------------------------
     @Test
     void looseTwoLivesFromTenExistingLives(){
         Stats stats = new Stats(5, 3, 4);
         stats.loseLives(2);
-        assertEquals(3, stats.getCurrentLife());
+        assertEquals(3, stats.getCurrentHP());
     }
 
 
     @Test
-    void checkMinimumZeroLives(){  //TODO Vad ska hända om life hamnar på 0 eller under? /Malin
+    void checkMinimumZeroLives(){  //TODO Vad ska hända om HP hamnar på 0 eller under? /Malin
         Stats stats = new Stats(1, 3, 4);
         stats.loseLives(11);
-        assertEquals(0, stats.getCurrentLife());
+        assertEquals(0, stats.getCurrentHP());
     }
 
     @Test
@@ -60,23 +60,23 @@ public class StatsTest {
         Stats stats = new Stats(5,10,10);
         stats.loseLives(3);
         stats.gainLives(2);
-        assertEquals(4, stats.getCurrentLife());
+        assertEquals(4, stats.getCurrentHP());
     }
 
     @Test
     void checkMaximumLives(){
         Stats stats = new Stats(3, 3, 4);
         stats.gainLives(2);
-        assertEquals(5, stats.getMaxLife());
+        assertEquals(5, stats.getMaxHP());
     }
 
     // OTHER METHODS ------------------------------------------------------------------------
     @Test
     void characterIsAttackedByAnOtherCharacter(){
-        //TODO Vad händer när en karaktär blir attackerad? Är det bara life som påverkas? /Malin
+        //TODO Vad händer när en karaktär blir attackerad? Är det bara HP som påverkas? /Malin
         Stats stats = new Stats(8, 3, 4);
         stats.attackedByAnEnemy(2);
-        assertEquals(6, stats.getCurrentLife());
+        assertEquals(6, stats.getCurrentHP());
     }
 
 
@@ -84,6 +84,6 @@ public class StatsTest {
     @Test
     void correctToString(){
         Stats stats = new Stats(3, 3, 3);
-        assertEquals("Life: 3\nPower: 3\nSpeed: 3", stats.toString());
+        assertEquals("HP: 3\nPower: 3\nSpeed: 3", stats.toString());
     }
 }

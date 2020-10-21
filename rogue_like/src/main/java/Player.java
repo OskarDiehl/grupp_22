@@ -1,9 +1,12 @@
-
 public class Player extends Character {
 
     // DATASAMLING/-AR -----------------------------------------------------
     // datasamling med element  -> Array
     // datasamling för items    -> Array
+
+    private Element elements[] = new Element[4];
+    private Item items[] = new Item[3];
+
 
     //Alla elementen har olika index. ArrayLocation? Om det finns lägg in vatten element
     //Tar man ett Item börjar det verka direkt  /Vapen, rustning, skor
@@ -19,7 +22,7 @@ public class Player extends Character {
         super(name, element);
        // this.level = getCurrentLevel();   TODO Fråga Sabina /Malin
         this.role = role;
-        stats = new Stats(role.getLife(),role.getPower(),role.getSpeed());
+        stats = new Stats(role.getHP(),role.getPower(),role.getSpeed());
     }
 
     // OTHER METHODS --------------------------------------------------------
@@ -27,19 +30,32 @@ public class Player extends Character {
         if (currentLevel < 3){
             currentLevel++;
             levelUpChangeStats();
-        } else {
-            throw new IllegalStateException("Level 3 is the highest level that you can reach.");
-        }
+        } else
+            currentLevel = 3;
     }
 
     public void levelUpChangeStats(){ //TODO Fixa metod som förändrar stats när man levlar upp.
-
+        // levla upp stats
     }
 
-    //metod som ger elementen
 
-    private Stats getCurrentLevelStats() {  //TODO Ta en till titt här Malin. Hur hämtar man stats:en? /Malin
-        return stats;
+    // ELEMENTS-ARRAY METHODS --------------------------------------------------------
+    public Element[] getElementsList(){
+        return elements;
+    }
+
+    private void addElement(Element newElement){
+        int index = 0; //TODO ta bort 0 när if-satserna nedan är fixade /Malin
+
+        //TODO fixa olika if-satser för vart elementet ska placeras i Arrayen /Malin
+
+        newElement = elements[index];
+    }
+
+
+    // ITEMS-ARRAY METHODS --------------------------------------------------------
+    public Item[] getItemsList(){
+        return items;
     }
 
     // GET-METHODS ----------------------------------------------------------
@@ -51,7 +67,18 @@ public class Player extends Character {
         return currentLevel;
     }
 
-    //get-metoder för stats:en
+    public int getCurrentHPFromStats(){  //TODO Berätta för Oskar att get-metoder för stats är skapade /Malin
+        return stats.getCurrentHP();
+    }
+
+    public int getPowerFromStats(){
+        return stats.getPower();
+    }
+
+    public int getSpeedFromStats(){
+        return stats.getSpeed();
+    }
+
 
 }
 
