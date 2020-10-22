@@ -34,6 +34,8 @@ class RoomTest {
         });
     }
 
+
+    //TODO ändra denna eftersom jag har ändrat logiken i generateRandomNumber
     @Test
     void ifArgumentExceptionIsThrownWhenMinValueIsEqualToMaxValue(){
 
@@ -109,15 +111,51 @@ class RoomTest {
 
     }
 
-    @Test
-    void shouldGenerateElementForRoom(){
-      Room room = new Room();
-
+    @Test void GenerateAmountOfEnemiesIsTheCorrectIntervall(){
 
     }
 
+    @Test
+    void shouldGenerateElementForRoom(){
+      Room room = new Room();
+    }
+
+    @Test
+    void roomTypeShouldNotBeEmptyWhenCreatingRoom(){
+      Room room = new Room();
+
+      assertNotEquals(null, room.getRoomType());
+  }
+
+    //det finns de fyra element rummen + boss rummen för vardera + lyckohjulsrum
+    @Test
+    void roomTypeShouldBeLuckyWheel(){
+      Room room = new Room();
+
+      assertEquals("Lucky Wheel", room.decideTypeOfRoom(1));
+
+      //eftersom maxIntervall är 1 borde det alltid bli rätt?
+      // Testar så att när max intervallet är samma som det random numret så blir det true
 
 
+
+      /*så när rummet skapas bör decideTypeOfRoom kallas på som bara avgör om det blir ett lyckohjulsrum eller inte (1/5).
+      I ett senare skede bör det avgöras om spelaren har dem tre medaljongerna för att spawna en boss eller spawna enemies
+      Kanske i en decideTypeOfEnemy metod.
+
+
+      Men var ska informationen om vilken typ av rum det är sparas? Bör det finnas typ en sträng med "BOSS", "ENEMY" och "LUCKY WHEEL"
+      Eller är det ens nödvändigt? Ska det bara vara om rummet inte har något Element ska det anses som lucky wheel?
+
+
+       */
+
+    }
+
+    @Test
+    void roomTypeShouldBeEnemy(){
+
+    }
 
 
 
