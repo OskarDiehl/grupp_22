@@ -29,18 +29,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="705c9c8e-fb4c-405e-b718-7bd06db4888a" name="Default Changelist" comment="Ändarde hur konstruktorerna fungerade i Element och dess subklasser. Lade även till mer funktioner och tester för attack och elementLevel/Oskar">
-      <change afterPath="$PROJECT_DIR$/src/main/java/WaterElement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/WaterElementTest.java" afterDir="false" />
+    <list default="true" id="705c9c8e-fb4c-405e-b718-7bd06db4888a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Element.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Element.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/FireElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FireElement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/BossTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/BossTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ElementTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ElementTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/EnemyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/EnemyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PlayerTest.java" afterDir="false" />
     </list>
     <list id="296fe230-f9f7-40d3-8725-a7fe964cc7bb" name="Ny branch med förslag på ändringar av stats-generering" comment="" />
     <list id="4c2207ba-9aad-4c31-8ded-100fa9146123" name="Revert &quot;Ny branch med förslag på ändringar av stats-generering&quot;" comment="Revert &quot;Ny branch med förslag på ändringar av stats-generering&quot;&#10;&#10;This reverts commit e0662997" />
@@ -319,7 +311,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603188991775</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Lade till IAE till elemetLevel, lade även till så att attack() kräver ett element skickas med för att kolla om det är svagt eller starkt mot ett vist element.">
+      <created>1603372738159</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1603372738159</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -356,7 +355,8 @@
     <MESSAGE value="lade till två metoder i player som är bortkommenterad än så länge" />
     <MESSAGE value="testade via underklassen till element för att testa dess metoder när den blev abstrakt. Var tvungen att kommentera bort några tester i" />
     <MESSAGE value="Ändarde hur konstruktorerna fungerade i Element och dess subklasser. Lade även till mer funktioner och tester för attack och elementLevel/Oskar" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ändarde hur konstruktorerna fungerade i Element och dess subklasser. Lade även till mer funktioner och tester för attack och elementLevel/Oskar" />
+    <MESSAGE value="Lade till IAE till elemetLevel, lade även till så att attack() kräver ett element skickas med för att kolla om det är svagt eller starkt mot ett vist element." />
+    <option name="LAST_COMMIT_MESSAGE" value="Lade till IAE till elemetLevel, lade även till så att attack() kräver ett element skickas med för att kolla om det är svagt eller starkt mot ett vist element." />
   </component>
   <component name="WindowStateProjectService">
     <state x="565" y="367" key="#Notifications" timestamp="1602687740693">
@@ -379,30 +379,30 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="586" y="424" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.1680.1027@0.23.1680.1027" timestamp="1602756083641" />
-    <state x="117" y="112" key="CommitChangelistDialog2" timestamp="1603367488880">
+    <state x="0" y="112" key="CommitChangelistDialog2" timestamp="1603372737991">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state x="117" y="112" key="CommitChangelistDialog2/0.23.1680.1027@0.23.1680.1027" timestamp="1603367488880" />
-    <state width="1638" height="280" key="GridCell.Tab.0.bottom" timestamp="1603371196981">
+    <state x="0" y="112" key="CommitChangelistDialog2/0.23.1680.1027@0.23.1680.1027" timestamp="1603372737991" />
+    <state width="1638" height="280" key="GridCell.Tab.0.bottom" timestamp="1603372707355">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state width="2005" height="305" key="GridCell.Tab.0.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1603133616360" />
-    <state width="1638" height="280" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1603371196981" />
-    <state width="1638" height="280" key="GridCell.Tab.0.center" timestamp="1603371196981">
+    <state width="1638" height="280" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1603372707355" />
+    <state width="1638" height="280" key="GridCell.Tab.0.center" timestamp="1603372707353">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state width="2005" height="305" key="GridCell.Tab.0.center/0.0.2048.1112@0.0.2048.1112" timestamp="1603133616360" />
-    <state width="1638" height="280" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1603371196981" />
-    <state width="1638" height="280" key="GridCell.Tab.0.left" timestamp="1603371196980">
+    <state width="1638" height="280" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1603372707353" />
+    <state width="1638" height="280" key="GridCell.Tab.0.left" timestamp="1603372707353">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state width="2005" height="305" key="GridCell.Tab.0.left/0.0.2048.1112@0.0.2048.1112" timestamp="1603133616360" />
-    <state width="1638" height="280" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1603371196980" />
-    <state width="1638" height="280" key="GridCell.Tab.0.right" timestamp="1603371196981">
+    <state width="1638" height="280" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1603372707353" />
+    <state width="1638" height="280" key="GridCell.Tab.0.right" timestamp="1603372707354">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state width="2005" height="305" key="GridCell.Tab.0.right/0.0.2048.1112@0.0.2048.1112" timestamp="1603133616360" />
-    <state width="1638" height="280" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1603371196981" />
+    <state width="1638" height="280" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1603372707354" />
     <state x="162" y="110" key="MergeDialog" timestamp="1603353243814">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
@@ -421,11 +421,11 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="596" y="259" key="VCS.ChangeListViewerDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1602756263957" />
-    <state x="440" y="276" key="Vcs.Push.Dialog.v2" timestamp="1603359989907">
+    <state x="440" y="276" key="Vcs.Push.Dialog.v2" timestamp="1603372748109">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="536" y="274" key="Vcs.Push.Dialog.v2/0.0.2048.1112@0.0.2048.1112" timestamp="1603133669039" />
-    <state x="440" y="276" key="Vcs.Push.Dialog.v2/0.23.1680.1027@0.23.1680.1027" timestamp="1603359989907" />
+    <state x="440" y="276" key="Vcs.Push.Dialog.v2/0.23.1680.1027@0.23.1680.1027" timestamp="1603372748109" />
     <state x="100" y="123" width="1480" height="827" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1602752061316">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
@@ -448,10 +448,10 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="539" y="314" key="refactoring.ChangeSignatureDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1603369704548" />
-    <state x="505" y="250" width="670" height="676" key="search.everywhere.popup" timestamp="1603372552019">
+    <state x="505" y="250" width="670" height="676" key="search.everywhere.popup" timestamp="1603373794615">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state x="505" y="250" width="670" height="676" key="search.everywhere.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1603372552019" />
+    <state x="505" y="250" width="670" height="676" key="search.everywhere.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1603373794615" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/rogue_like$BossTest_generateBossStats.ic" NAME="BossTest.generateBossStats Coverage Results" MODIFIED="1603133616293" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

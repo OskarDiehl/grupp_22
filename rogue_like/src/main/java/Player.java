@@ -43,6 +43,16 @@ public class Player extends Character {
             playerStats.changePower(false, amount);
     }
 
+    //Möjlig lösning utan att ändra på mycket saker
+    /*public void doStuffWithChangePower(int amount){
+        if (amount >-1) {
+            changePower(true,amount);
+        } else {
+            amount = amount * -1;
+            changePower(false, amount);
+        }
+    }*/
+
     public void changeSpeed(Boolean increase, int amount){                  // Changes the stats for speed
         if (increase){
             playerStats.changeSpeed(true, amount);
