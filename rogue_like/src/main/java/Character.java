@@ -5,15 +5,14 @@ public abstract class Character {
     private Element element;
     private int level;
 
-    // CONSTRUCTOR  ------------------------------------------------------------------------
+    // CONSTRUCTORS  ------------------------------------------------------------------------
     public Character(String name, Element element){
         this.name = name;
         this.element = element;
         //this.level = 1; TODO Implementera detta i Player Malin /Sabina
     }
 
-    public Character(String name, Element element, int level){
-        this.name = name;
+    public Character(Element element, int level){
         this.element = element;
         this.level = level;
     }

@@ -1,7 +1,7 @@
 public class Boss extends Enemy{
 
-    public Boss(String name, Element element, int level) {
-        super(name, element, level);
+    public Boss(Element element, int level) {
+        super(element, level);
         calculateStats(level);
     }
 
