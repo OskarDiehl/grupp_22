@@ -12,6 +12,7 @@ public class Player extends Character {
     private int currentLevel = 1;
     private Role role;
     private PlayerStats playerStats;
+    //intar för medaljonger)
 
 
     // CONSTRUCTOR ----------------------------------------------------------
@@ -85,15 +86,15 @@ public class Player extends Character {
         return currentLevel;
     }
 
-    public int getCurrentHPFromStats(){  //TODO Berätta för Oskar att get-metoder för stats är skapade /Malin
+    public int getCurrentHPFromStats(){
         return playerStats.getCurrentHP();
     }
 
-    public int getPowerFromStats(){
+    public int getCurrentPowerFromStats(){
         return playerStats.getCurrentPower();
     }
 
-    public int getSpeedFromStats(){
+    public int getCurrentSpeedFromStats(){
         return playerStats.getCurrentSpeed();
     }
 

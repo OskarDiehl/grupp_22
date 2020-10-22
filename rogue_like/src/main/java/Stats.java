@@ -5,8 +5,8 @@ public class Stats {
     private static final int MIN_STAT = 0;                  //Stats can have a minimum value of 0
     private int defaultHP; //TODO är det här bra? /Sabina
     private int currentHP;
-    private final int defaultPower;
-    private final int defaultSpeed;
+    private int defaultPower;   // TODO Jag gjorde defaultPower och -Speed till icke-final för att kunna levla upp dem i metoden "levelUp". Om det är okej med dig Sabina kan du ta bort den här metoden <3<3 /Malin
+    private int defaultSpeed;
 
     // CONSTRUCTOR  ------------------------------------------------------------------------
 
@@ -28,20 +28,23 @@ public class Stats {
         return number >= MIN_STAT && number <= MAX_STAT;
     }
 
-    public void loseLives(int lostLives) {
-        if ((currentHP - lostLives) < 0)  //TODO ska vi ersätta med Math.max? /Malin
-            currentHP = 0; //TODO -> Spelet startas om? -> PlayerStats? /Malin
+    public void loseHP(int lostHP) {
+        if ((currentHP - lostHP) >= 0)               //TODO ska vi ersätta med Math.max? /Malin
+            currentHP = currentHP - lostHP;          //TODO -> Spelet startas om? -> PlayerStats? /Malin
         else
-            currentHP = currentHP - lostLives;
+            currentHP = MIN_STAT;
     }
 
-    public void gainLives(int gainedLives) {
-        if ((currentHP + gainedLives) <= defaultHP) //TODO ändra så att maxgränsen stämmer överens /Malin
-            currentHP = currentHP + gainedLives;
+    public void gainHP(int gainedHP) {
+        int max = defaultHP;
+        if ((currentHP + gainedHP) <= max)     //TODO ändra så att maxgränsen stämmer överens /Malin
+            currentHP = currentHP + gainedHP;
+        else
+            currentHP = defaultHP;
     }
 
     public void attackedByAnEnemy(int lostLives) {
-        loseLives(lostLives); //TODO Nu kan man göra loseLives till en privat metod. Men då kommer inte testen åt dem.. /Malin
+        loseHP(lostLives);                           //TODO Nu kan man göra loseLives till en privat metod. Men då kommer inte testen åt dem.. /Malin
     }
 
 
@@ -76,5 +79,32 @@ public class Stats {
         return "HP: " + getCurrentHP() + "\nPower: " + getDefaultPower() + "\nSpeed: " + getDefaultSpeed();
     }
 
+
+    public void levelUp(int amount) {
+        levelUpDefaultHP(amount);
+        levelUpDefaultPower(amount);
+        levelUpDefaultSpeed(amount);
+    }
+
+    private void levelUpDefaultHP(int amount){
+        if ((defaultHP + amount) <= MAX_STAT)
+            defaultHP = defaultHP + amount;
+        else
+            defaultHP = MAX_STAT;
+    }
+
+    private void levelUpDefaultPower(int amount){
+        if((defaultPower + amount) <= MAX_STAT)
+            defaultPower = defaultPower + amount;
+        else
+            defaultPower = MAX_STAT;
+    }
+
+    private void levelUpDefaultSpeed(int amount){
+        if ((defaultSpeed + amount) <= MAX_STAT)
+            defaultSpeed = defaultSpeed + amount;
+        else
+            defaultSpeed = MAX_STAT;
+    }
 
 }
