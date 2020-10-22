@@ -43,7 +43,7 @@ public class Player extends Character {
             playerStats.changePower(false, amount);
     }
 
-    //Möjlig lösning utan att ändra på mycket saker
+    //Möjlig lösning utan att ändra på mycket saker, omvandlar negativa tal och sätter false på increase i metoden den kallar på.
     /*public void doStuffWithChangePower(int amount){
         if (amount >-1) {
             changePower(true,amount);
