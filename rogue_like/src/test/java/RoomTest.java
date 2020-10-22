@@ -103,11 +103,20 @@ class RoomTest {
 
     }
 
-    @Test void ifAllEnemiesAreTheRightElement(){
+    //TODO denna borde kanske testa ALLA enemies, inte bara den första
+    @Test void ifEnemiesAreTheRightElement(){
+      Room room = new Room();
+
+      assertTrue(room.getEnemies()[0].getElement() instanceof FireElement);
 
     }
 
+    //TODO eventuellt fundera på att inte använda array? Vad händer exempelvis när en fiende dör? Kanske lättare att hålla koll på när rummet är klart via en lista och sen bara kolla när den är tom.
+
     @Test void ifCorrectNumberOfEnemiesHaveBeenCreated(){
+      Room room = new Room();
+
+      assertEquals(room.getEnemyQuantity(), room.getEnemies().length);
 
     }
 
@@ -132,7 +141,7 @@ class RoomTest {
     void roomTypeShouldBeLuckyWheel(){
       Room room = new Room();
 
-      assertEquals("Lucky Wheel", room.decideTypeOfRoom(1));
+      assertEquals("Lucky Wheel", room.decideTypeOfRoom(true));
 
       //eftersom maxIntervall är 1 borde det alltid bli rätt?
       // Testar så att när max intervallet är samma som det random numret så blir det true
