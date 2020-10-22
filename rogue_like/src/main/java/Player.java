@@ -12,6 +12,7 @@ public class Player extends Character {
     private int currentLevel = 1;
     private Role role;
     private PlayerStats playerStats;
+    //intar för medaljonger)
 
 
     // CONSTRUCTOR ----------------------------------------------------------
@@ -42,6 +43,16 @@ public class Player extends Character {
         else
             playerStats.changePower(false, amount);
     }
+
+    //Möjlig lösning utan att ändra på mycket saker, omvandlar negativa tal och sätter false på increase i metoden den kallar på.
+    /*public void doStuffWithChangePower(int amount){
+        if (amount >-1) {
+            changePower(true,amount);
+        } else {
+            amount = amount * -1;
+            changePower(false, amount);
+        }
+    }*/
 
     public void changeSpeed(Boolean increase, int amount){                  // Changes the stats for speed
         if (increase){
@@ -85,15 +96,15 @@ public class Player extends Character {
         return currentLevel;
     }
 
-    public int getCurrentHPFromStats(){  //TODO Berätta för Oskar att get-metoder för stats är skapade /Malin
+    public int getCurrentHPFromStats(){
         return playerStats.getCurrentHP();
     }
 
-    public int getPowerFromStats(){
+    public int getCurrentPowerFromStats(){
         return playerStats.getCurrentPower();
     }
 
-    public int getSpeedFromStats(){
+    public int getCurrentSpeedFromStats(){
         return playerStats.getCurrentSpeed();
     }
 
@@ -119,7 +130,7 @@ public class Player extends Character {
     }
 
     public int getItemHP() {
-        int itemHP = 3;
+        int itemHP = 3; //Placeholder
         return itemHP;
     }*/
 

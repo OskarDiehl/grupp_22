@@ -49,32 +49,29 @@ public class PlayerStats extends Stats {
     }
 
     public void changePower(Boolean increase, int amount){
-        if (increase)
+        if (increase)                                                   // if increase is true -> increase power with amount
             increasePowerTemporary(amount);
         else
-            decreasePowerTemporary(amount);
+            decreasePowerTemporary(amount);                             // if increase is false -> decrease power with amount
     }
 
     public void changeSpeed(Boolean increase, int amount){
-        if (increase)
+        if (increase)                                                   // if increase is true -> increase speed with amount
             increaseSpeedTemporary(amount);
         else
-            decreaseSpeedTemporary(amount);
+            decreaseSpeedTemporary(amount);                             // if increase is false -> decrease speed with amount
     }
 
 
     // LEVEL-METHODS  ------------------------------------------------------------------------
     public void levelStatsUp(){
-        if (currentLevel < 3)
+        if (currentLevel < 3){
             currentLevel++;
+            levelUp(2);                                        // When the player jump up a level all the stats increase with two
+        }
         else
             currentLevel = 3;
     }
-
-    private void levelConditions(){
-        //TODO -> Hur kommer jag åt default-variablerna? /Malin
-    }
-
 
 
     // GET-METHODS  ------------------------------------------------------------------------
