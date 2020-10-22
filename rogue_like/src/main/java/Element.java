@@ -1,26 +1,45 @@
 //kolla upp hur man Kan testa abstrakta klasser!!!!
 
-public class Element {
+public  abstract class Element {
 
-    public boolean isStrong() {
-        return true;
+    int elementLevel;
+
+    //Fick inte det att fungera med att ha två konstruktorer här och få dem att fungera i subklasserna /Oskar
+    public Element(int elementLevel) {
+        if (elementLevel == 1 || elementLevel == 2 || elementLevel == 3) {
+            this.elementLevel = elementLevel;
+        } else {
+            throw new IllegalArgumentException("The Element Level cant be set below 1 or above 3");
+        }
     }
 
-    public boolean isWeak() {
-        return true;
+    public abstract boolean isStrong(Element element);
+
+    public abstract boolean isWeak(Element element);
+
+    public int getElementLevel() {
+        return elementLevel;
     }
 
-    public int attack() {
-        int power = 5; //temporär power tills det går att hämta från charcter
+    //Kanske ska flyttas till Character eller någonting sådant.
+    public int attack(Element element) {
+        int power = 5; //temporär power tills det går att hämta från charcter. Ska ändras till player.getPowerFromStats()
 
-        if (isStrong()) {
+        if (isStrong(element)) {
             power += 2;
-        } else if (isWeak()) {
+        } else if (isWeak(element)) {
             power -= 2;
         }
 
-        return power;
+        if (elementLevel == 2) {
+            return power * 2;
+        } else if(elementLevel == 3) {
+            return power * 3;
+        } else {
+            return power;
+        }
 
     }
+
 
 }

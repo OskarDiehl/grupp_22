@@ -119,7 +119,7 @@ public class Player extends Character {
     }
 
     public int getItemHP() {
-        int itemHP = 3;
+        int itemHP = 3; //Placeholder
         return itemHP;
     }*/
 
