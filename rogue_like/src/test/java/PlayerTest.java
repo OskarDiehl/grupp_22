@@ -92,6 +92,16 @@ public class PlayerTest {
         assertEquals(3, player.getCurrentLevel());
     }
 
+    //TEST OTHER THINGS--------------------------------------------------------------------
+    @Test
+    void whatKindOfObjectIsStats(){
+        Player player = new Player("Sabina", element, role);
+
+        if (player.stats instanceof PlayerStats)
+            System.out.println("True");
+        else
+            System.out.println("False");
+    }
 
     //TEST XXX ------------------------------------------------------------------------
 /*    @Test TODO Ska Stats tas upp redan i Character eller ska det in i Player istället? Det underlättar en hel del /Malin

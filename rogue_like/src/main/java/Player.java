@@ -11,14 +11,16 @@ public class Player extends Character {
     // INSTANCE VARIABLES ---------------------------------------------------
     private int currentLevel = 1;
     private Role role;
+    private PlayerStats playerStats;
 
 
     // CONSTRUCTOR ----------------------------------------------------------
     public Player(String name, Element element, Role role) {
         super(name, element);
-       // this.level = getCurrentLevel();   TODO Fråga Sabina /Malin
+       //this.level = getCurrentLevel();   TODO Fråga Sabina /Malin
         this.role = role;
-        stats = new PlayerStats(role.getHP(),role.getPower(),role.getSpeed());
+        this.playerStats = new PlayerStats(role.getHP(),role.getPower(),role.getSpeed());
+
     }
 
     // OTHER METHODS --------------------------------------------------------
@@ -35,24 +37,22 @@ public class Player extends Character {
     }
 
     public void changePower(Boolean increase, int amount){
-        //TODO jag kommer inte åt metoderna som finns i PlayerStats /Malin
-        if (increase){
-            //stats.changePower(true, amount);
-        }
-        else {
-            //stats.changePower(false, amount);
-        }
+        if (increase)
+            playerStats.changePower(true, amount);
+        else
+            playerStats.changePower(false, amount);
     }
 
     public void changeSpeed(Boolean increase, int amount){
-        //TODO jag kommer inte åt metoderna som finns i PlayerStats /Malin
         if (increase){
-            //stats.changeSpeed(true, amount);
+            playerStats.changeSpeed(true, amount);
         }
         else {
-            //stats.changeSpeed(false, amount);
+            playerStats.changeSpeed(false, amount);
         }
     }
+
+
 
 
     // ELEMENTS-ARRAY METHODS --------------------------------------------------------
@@ -84,15 +84,19 @@ public class Player extends Character {
     }
 
     public int getCurrentHPFromStats(){  //TODO Berätta för Oskar att get-metoder för stats är skapade /Malin
-        return stats.getCurrentHP();
+        return playerStats.getCurrentHP();
     }
 
     public int getPowerFromStats(){
-        return stats.getDefaultPower();
+        return playerStats.getDefaultPower();
     }
 
     public int getSpeedFromStats(){
-        return stats.getDefaultSpeed();
+        return playerStats.getDefaultSpeed();
+    }
+
+    public PlayerStats getPlayerStats() {
+        return playerStats;
     }
 
 }

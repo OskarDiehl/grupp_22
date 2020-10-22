@@ -4,7 +4,6 @@ public abstract class Character {
     private String name;
     private Element element;
     private int level;
-    protected Stats stats;
 
     // CONSTRUCTOR  ------------------------------------------------------------------------
     public Character(String name, Element element){
@@ -40,10 +39,6 @@ public abstract class Character {
 
     public int getLevel() {
         return level;
-    }
-
-    public Stats getStats() {
-        return stats;
     }
 }
 
