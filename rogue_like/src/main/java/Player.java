@@ -36,14 +36,14 @@ public class Player extends Character {
         // levla upp stats
     }
 
-    public void changePower(Boolean increase, int amount){
+    public void changePower(Boolean increase, int amount){                  // Changes the stats for power
         if (increase)
             playerStats.changePower(true, amount);
         else
             playerStats.changePower(false, amount);
     }
 
-    public void changeSpeed(Boolean increase, int amount){
+    public void changeSpeed(Boolean increase, int amount){                  // Changes the stats for speed
         if (increase){
             playerStats.changeSpeed(true, amount);
         }
@@ -52,7 +52,9 @@ public class Player extends Character {
         }
     }
 
-
+    public void resetStatsForPowerAndSpeed(){                               // Resets the stats for power and speed
+        playerStats.resetPowerAndSpeedToDefaultValues();
+    }
 
 
     // ELEMENTS-ARRAY METHODS --------------------------------------------------------
@@ -88,11 +90,11 @@ public class Player extends Character {
     }
 
     public int getPowerFromStats(){
-        return playerStats.getDefaultPower();
+        return playerStats.getCurrentPower();
     }
 
     public int getSpeedFromStats(){
-        return playerStats.getDefaultSpeed();
+        return playerStats.getCurrentSpeed();
     }
 
     public PlayerStats getPlayerStats() {

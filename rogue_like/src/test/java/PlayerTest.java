@@ -76,7 +76,7 @@ public class PlayerTest {
 
 
     //TEST LEVELING ------------------------------------------------------------------------
-    @Test              // TODO Fixa med metoderna när en spelare går upp i level Malin /Malin
+    @Test                               // TODO Fixa med metoderna när en spelare går upp i level Malin /Malin
     void levelUpToSecondLevel(){
         Player player = new Player("Sabina", element, role);
         player.levelUp();
@@ -92,16 +92,46 @@ public class PlayerTest {
         assertEquals(3, player.getCurrentLevel());
     }
 
-    //TEST OTHER THINGS--------------------------------------------------------------------
-    @Test
-    void whatKindOfObjectIsStats(){
-        Player player = new Player("Sabina", element, role);
 
-        if (player.stats instanceof PlayerStats)
-            System.out.println("True");
-        else
-            System.out.println("False");
+    //TEST CHANGE STATS ------------------------------------------------------------------------
+    @Test
+    void increasePowerStats(){
+        Player player = new Player("Sabina", element, role);
+        player.changePower(true, 3);
+        assertEquals(9, player.getPowerFromStats());
     }
+
+    @Test
+    void decreasePowerStats(){
+        Player player = new Player("Sabina", element, role);
+        player.changePower(false,3);
+        assertEquals(3, player.getPowerFromStats());
+    }
+
+    @Test
+    void increaseSpeedStats(){
+        Player player = new Player("Sabina", element, role);
+        player.changeSpeed(true, 3);
+        assertEquals(8, player.getSpeedFromStats());
+    }
+
+    @Test
+    void decreaseSpeedStats(){
+        Player player = new Player("Sabina", element, role);
+        player.changeSpeed(false,3);
+        assertEquals(2, player.getPlayerStats().getCurrentSpeed());
+    }
+
+    @Test
+    void resetPowerAndSpeed(){                                                  // Checks if it is possible to reset currentPower and currentSpeed to  their default values
+        Player player = new Player("Sabina", element, role);
+        player.changePower(true,2);
+        player.changeSpeed(false,2);
+        player.resetStatsForPowerAndSpeed();
+        assertEquals(4, player.getSpeedFromStats() + 3, player.getPowerFromStats());
+    }
+
+
 
     //TEST XXX ------------------------------------------------------------------------
 /*    @Test TODO Ska Stats tas upp redan i Character eller ska det in i Player istället? Det underlättar en hel del /Malin

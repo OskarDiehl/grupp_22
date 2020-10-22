@@ -39,5 +39,8 @@ public abstract class Character {
     public int getLevel() {
         return level;
     }
+
+
+
 }
 
