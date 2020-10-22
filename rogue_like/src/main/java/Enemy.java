@@ -3,6 +3,8 @@ public class Enemy extends Character {
     private final static int LEVEL_2_STAT = 5;
     private final static int LEVEL_3_STAT = 8;
 
+    private Stats stats;     //TODO Jag deklarerade stats här för dig istället för att få koden att kompilera /Malin
+
     public Enemy(Element element, int level) {
         super(element, level);
         calculateStats(level);
@@ -24,6 +26,7 @@ public class Enemy extends Character {
         stats = new Stats(life, power, speed);
     }
 
-
-
+    public Stats getStats() {
+        return stats;
+    }
 }

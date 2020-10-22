@@ -11,14 +11,16 @@ public class Player extends Character {
     // INSTANCE VARIABLES ---------------------------------------------------
     private int currentLevel = 1;
     private Role role;
+    private PlayerStats playerStats;
 
 
     // CONSTRUCTOR ----------------------------------------------------------
     public Player(String name, Element element, Role role) {
         super(name, element);
-       // this.level = getCurrentLevel();   TODO Fråga Sabina /Malin
+       //this.level = getCurrentLevel();   TODO Fråga Sabina /Malin
         this.role = role;
-        stats = new PlayerStats(role.getHP(),role.getPower(),role.getSpeed());
+        this.playerStats = new PlayerStats(role.getHP(),role.getPower(),role.getSpeed());
+
     }
 
     // OTHER METHODS --------------------------------------------------------
@@ -34,24 +36,24 @@ public class Player extends Character {
         // levla upp stats
     }
 
-    public void changePower(Boolean increase, int amount){
-        //TODO jag kommer inte åt metoderna som finns i PlayerStats /Malin
+    public void changePower(Boolean increase, int amount){                  // Changes the stats for power
+        if (increase)
+            playerStats.changePower(true, amount);
+        else
+            playerStats.changePower(false, amount);
+    }
+
+    public void changeSpeed(Boolean increase, int amount){                  // Changes the stats for speed
         if (increase){
-            //stats.changePower(true, amount);
+            playerStats.changeSpeed(true, amount);
         }
         else {
-            //stats.changePower(false, amount);
+            playerStats.changeSpeed(false, amount);
         }
     }
 
-    public void changeSpeed(Boolean increase, int amount){
-        //TODO jag kommer inte åt metoderna som finns i PlayerStats /Malin
-        if (increase){
-            //stats.changeSpeed(true, amount);
-        }
-        else {
-            //stats.changeSpeed(false, amount);
-        }
+    public void resetStatsForPowerAndSpeed(){                               // Resets the stats for power and speed
+        playerStats.resetPowerAndSpeedToDefaultValues();
     }
 
 
@@ -84,15 +86,19 @@ public class Player extends Character {
     }
 
     public int getCurrentHPFromStats(){  //TODO Berätta för Oskar att get-metoder för stats är skapade /Malin
-        return stats.getCurrentHP();
+        return playerStats.getCurrentHP();
     }
 
     public int getPowerFromStats(){
-        return stats.getDefaultPower();
+        return playerStats.getCurrentPower();
     }
 
     public int getSpeedFromStats(){
-        return stats.getDefaultSpeed();
+        return playerStats.getCurrentSpeed();
+    }
+
+    public PlayerStats getPlayerStats() {
+        return playerStats;
     }
 
 }
