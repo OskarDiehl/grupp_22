@@ -37,7 +37,7 @@ public class Player extends Character {
         // levla upp stats
     }
 
-    public void changePower(Boolean increase, int amount){                  // Changes the stats for power
+    public void changeStatPower(Boolean increase, int amount){                  // Changes the stats for power
         if (increase)
             playerStats.changePower(true, amount);
         else
@@ -54,7 +54,7 @@ public class Player extends Character {
         }
     }*/
 
-    public void changeSpeed(Boolean increase, int amount){                  // Changes the stats for speed
+    public void changeStatSpeed(Boolean increase, int amount){                  // Changes the stats for speed
         if (increase){
             playerStats.changeSpeed(true, amount);
         }

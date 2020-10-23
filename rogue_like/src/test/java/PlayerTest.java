@@ -98,36 +98,36 @@ public class PlayerTest {
     @Test
     void increasePowerStats(){
         Player player = new Player("Sabina", element, role);
-        player.changePower(true, 3);
+        player.changeStatPower(true, 3);
         assertEquals(9, player.getCurrentPowerFromStats());
     }
 
     @Test
     void decreasePowerStats(){
         Player player = new Player("Sabina", element, role);
-        player.changePower(false,3);
+        player.changeStatPower(false,3);
         assertEquals(3, player.getCurrentPowerFromStats());
     }
 
     @Test
     void increaseSpeedStats(){
         Player player = new Player("Sabina", element, role);
-        player.changeSpeed(true, 3);
+        player.changeStatSpeed(true, 3);
         assertEquals(8, player.getCurrentSpeedFromStats());
     }
 
     @Test
     void decreaseSpeedStats(){
         Player player = new Player("Sabina", element, role);
-        player.changeSpeed(false,3);
+        player.changeStatSpeed(false,3);
         assertEquals(2, player.getPlayerStats().getCurrentSpeed());
     }
 
     @Test
     void resetPowerAndSpeed(){                                                  // Checks if it is possible to reset currentPower and currentSpeed to  their default values
         Player player = new Player("Sabina", element, role);
-        player.changePower(true,2);
-        player.changeSpeed(false,2);
+        player.changeStatPower(true,2);
+        player.changeStatSpeed(false,2);
         player.resetStatsForPowerAndSpeed();
         assertEquals(4, player.getCurrentSpeedFromStats() + 3, player.getCurrentPowerFromStats());
     }
