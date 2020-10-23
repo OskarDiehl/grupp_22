@@ -1,6 +1,14 @@
 //TODO organisera metoder, alla enemy metoder borde vara ihop exempelvis.
+
 //TODO lös ett bra sätt att ta fram om rummet ska vara ett LuckyWheel eller inte
+
 //TODO lös ett sätt för att generera ett random element för rummet (om det inte är ett luckywheel rum)
+
+//TODO rummet måste kunna komma åt en players "medaljonger" för att avgöra om det blir boss eller inte
+
+//TODO ändra enemies till en arrayList
+
+import java.util.ArrayList;
 
 public class Room {
 
@@ -12,7 +20,7 @@ public class Room {
      private final int MIN_AMOUNT_OF_ENEMIES = 4;
      private final int MAX_NUMBER_LUCKY_WHEEL = 5;
 
-     private Enemy enemies[];
+     private ArrayList<Enemy> enemies; //denna ska ändras till en arraylist efter funderande
      private int enemyQuantity;
      private String roomType;
      private Element element;
@@ -20,9 +28,18 @@ public class Room {
 
      public Room(){
          threshold = STANDARD_THRESHOLD;
-         roomType = decideTypeOfRoom(false);
+         decideTypeOfRoom(false);
 
-         spawnEnemies();
+         if(roomType.equals("Enemy")){
+             spawnEnemies();
+         }
+
+         else {
+
+             //spawnLuckyWheel();
+         }
+
+
 
     }
 
@@ -42,24 +59,19 @@ public class Room {
     }
 
 
+
+
     public String decideTypeOfRoom(boolean isItLuckyWheel){
-         if( decideIfLuckyWheelSpawn(isItLuckyWheel)){
-            return "Lucky Wheel";
+         if( (isItLuckyWheel)){
+            roomType = "Lucky Wheel";
          }
          else {
              element = new FireElement(1);
-             return "Enemy";
+             roomType = "Enemy";
          }
+
+         return roomType;
     }
-
-
-     public boolean decideIfLuckyWheelSpawn(boolean isItLuckyWheel){
-         if(isItLuckyWheel){
-             return true;
-         }
-         return false;
-
-     }
 
 
 
@@ -81,10 +93,11 @@ public class Room {
 
     public void spawnEnemies(){
         enemyQuantity = generateAmountOfEnemies();
-        enemies = new Enemy[enemyQuantity];
+        enemies = new ArrayList();
 
         for(int i = 0; i < enemyQuantity; i++){
-            enemies[i] = new Enemy(getElement(), 1);
+            enemies.add(new Enemy(getElement() , 1));
+
         }
 
     }
@@ -93,9 +106,17 @@ public class Room {
         return element;
     }
 
-//TODO returnerar för tillfället bara en enemy, borde kanske returnera hela arrayen.
-    public Enemy[] getEnemies(){
+
+    public ArrayList<Enemy> getEnemies(){
         return enemies;
+    }
+
+    public boolean isEnemiesDead() {
+        if (enemies.isEmpty()) {
+            return true;
+        }
+        return false;
+
     }
 
 
@@ -111,8 +132,25 @@ public class Room {
         return enemyQuantity;
     }
 
+    //TODO måste denna kallas på av enemy klassen? när dennes hp går ner till 0? Isåfall måste man deklarera Enemy med ett Room kanske?
+    //TODO man måste kanske ha något sätt att kolla så att enemyn faktiskt finns?
+
+    public void removeEnemy(Enemy enemy){
+
+         if(!enemies.isEmpty()){
+             if(enemies.remove(enemy)){
+                 return;
+             }
+             else {
+                 throw new IllegalArgumentException();
+             }
+         }
+
+    }
+
+
     //Denna nås av test genom andra metoder, men kan inte testas direkt eftersom den är privat.
-//Man bör fråga sig om denna bör vara publik, samt att den har begränsingar (MIN < MAX exempelvis)
+    //Man bör fråga sig om denna bör vara publik, samt att den har begränsingar (MIN <= MAX exempelvis)
     public int generateRandomNumber(int min, int max) {
 
         if (min < 1  || max < 1 || min > max) {

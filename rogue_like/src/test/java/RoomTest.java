@@ -25,6 +25,8 @@ class RoomTest {
       });
     }
 
+
+/*
     @Test
     void ifArgumentExceptionIsThrownWhenMaxValueAboveTen(){
 
@@ -33,15 +35,16 @@ class RoomTest {
             room.generateRandomNumber(2, 11);
         });
     }
+*/
 
 
     //TODO ändra denna eftersom jag har ändrat logiken i generateRandomNumber
     @Test
-    void ifArgumentExceptionIsThrownWhenMinValueIsEqualToMaxValue(){
+    void ifArgumentExceptionIsThrownWhenMinValueIsMoreThanMaxValue(){
 
         Room room = new Room();
         assertThrows(IllegalArgumentException.class, () -> {
-            room.generateRandomNumber(7, 7);
+            room.generateRandomNumber(8, 7);
         });
     }
 
@@ -103,11 +106,13 @@ class RoomTest {
 
     }
 
+
+
     //TODO denna borde kanske testa ALLA enemies, inte bara den första
     @Test void ifEnemiesAreTheRightElement(){
       Room room = new Room();
 
-      assertTrue(room.getEnemies()[0].getElement() instanceof FireElement);
+      assertTrue(room.getEnemies().get(3).getElement() instanceof FireElement);
 
     }
 
@@ -116,9 +121,12 @@ class RoomTest {
     @Test void ifCorrectNumberOfEnemiesHaveBeenCreated(){
       Room room = new Room();
 
-      assertEquals(room.getEnemyQuantity(), room.getEnemies().length);
+      assertEquals(room.getEnemyQuantity(), room.getEnemies().size());
 
     }
+
+
+
 
     @Test void GenerateAmountOfEnemiesIsTheCorrectIntervall(){
 
@@ -161,12 +169,48 @@ class RoomTest {
 
     }
 
+
+    //TODO metoden decideTypeOfRoom borde alltså kallas med en metod som har en chans 1 / 5 att returnera true
     @Test
     void roomTypeShouldBeEnemy(){
+        Room room = new Room();
+        room.decideTypeOfRoom(false);
+
+        assertEquals("Enemy", room.getRoomType());
+
+
 
     }
 
+    @Test
+    void roomShouldBeLuckyWheel(){
+      Room room = new Room();
+      room.decideTypeOfRoom(true);
+
+      assertEquals("Lucky Wheel", room.getRoomType());
 
 
+    }
+    @Test
+    void ifRemoveEnemyRemovesTheCorrectEnemy(){
 
-}
+    }
+
+    @Test
+    void itemShouldDropWhenAllEnemiesAreDead(){
+        Room room = new Room();
+
+        //room.checkIfEnemiesDead(){
+
+        }
+
+
+        /*
+        Hur kontrollerar vi att alla enemies är döda?
+        När en enemy är död måste det på något sätt skickas till Room, där vi sedan kan
+        checka så att inte alla monster är döda. Om dem är döda så bör spawnItem kallas på.
+         */
+
+
+    }
+
