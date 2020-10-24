@@ -26,18 +26,28 @@ public class Room {
      private Element element;
      private int threshold;
 
+     //TODO borde player vara ett argument i konstruktorn?
      public Room(){
          threshold = STANDARD_THRESHOLD;
          decideTypeOfRoom(false);
 
-         if(roomType.equals("Enemy")){
-             spawnEnemies();
+/*         if(roomType.equals("Enemy")){
+             if(player.getMedallions() == 3){
+                 player.resetMedallions();
+                 spawnBoss();
+             }
+
+             else {
+                 spawnEnemies();
+             }
          }
 
-         else {
+         else if(roomType.equals("Lucky Wheel")) {
 
              //spawnLuckyWheel();
          }
+
+ */
 
 
 
