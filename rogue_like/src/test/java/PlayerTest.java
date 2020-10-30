@@ -6,7 +6,7 @@ public class PlayerTest {
     private Role role = Role.Warrior;
 
 
-    //TEST CONSTRUCTOR ------------------------------------------------------------------------
+    //TEST CONSTRUCTOR -------------------------------------------------------------------------------------------------
     @Test
     void getNameFromConstructorArgument() {
         Player player = new Player("Sabina", element, role);
@@ -29,7 +29,7 @@ public class PlayerTest {
 
 
 
-    //TEST THE ENUM CLASS ROLE --------------------------------------------------------
+    //TEST THE ENUM CLASS ROLE -----------------------------------------------------------------------------------------
     //TODO Just nu testar jag Enum-klassen Role här, är det dumt? Ta en titt på om man kan testa den på något annat vis Malin /Malin
     @Test
     void getWarriorAsRoleNameConstructorArgument(){                               // This test check if the role name is correct  TODO byt namn (inte sluta på constructorArgument?) /Malin
@@ -56,7 +56,7 @@ public class PlayerTest {
     }
 
 
-    //TEST GET-METHODS FOR STATS----------------------------------------------------------------------
+    //TEST GET-METHODS FOR STATS----------------------------------------------------------------------------------------
     @Test
     void getCurrentHPFromGetMethod() {
         Player player = new Player("Sabina", element, role);
@@ -76,7 +76,7 @@ public class PlayerTest {
     }
 
 
-    //TEST LEVELING ------------------------------------------------------------------------
+    //TEST LEVELING ----------------------------------------------------------------------------------------------------
     @Test                               // TODO Fixa med metoderna när en spelare går upp i level Malin /Malin
     void levelUpToSecondLevel(){
         Player player = new Player("Sabina", element, role);
@@ -93,8 +93,7 @@ public class PlayerTest {
         assertEquals(3, player.getCurrentLevel());
     }
 
-
-    //TEST CHANGE STATS ------------------------------------------------------------------------
+    //TEST CHANGE STATS ------------------------------------------------------------------------------------------------
     @Test
     void increasePowerStats(){
         Player player = new Player("Sabina", element, role);
@@ -132,9 +131,13 @@ public class PlayerTest {
         assertEquals(4, player.getCurrentSpeedFromStats() + 3, player.getCurrentPowerFromStats());
     }
 
+    //TEST ELEMENTS ---------------------------------------------------------------------------------------------------------
+    //THE ARRAY ELEMENTS
+
+    //TODO fixa det här MalinJÄVEL mvh Malin
 
 
-    //TEST XXX ------------------------------------------------------------------------
+    //TEST XXX ---------------------------------------------------------------------------------------------------------
 /*    @Test TODO Ska Stats tas upp redan i Character eller ska det in i Player istället? Det underlättar en hel del /Malin
     void getStatsWithoutFullStats(){
         Stats stats = new Stats(9, 5, 8);
