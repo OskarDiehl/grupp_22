@@ -1,5 +1,5 @@
 public enum Role {
-    Tank ("Tank", 6, 6,4 ),   //TODO HP är life
+    Tank ("Tank", 6, 6,4 ),
     Warrior ("Warrior", 4,6,5),
     Runner("Runner",5,4,6);
 

@@ -37,11 +37,8 @@ public class Player extends Character {
         // levla upp stats
     }
 
-    public void changeStatPower(Boolean increase, int amount){                  // Changes the stats for power
-        if (increase)
-            playerStats.changePower(true, amount);
-        else
-            playerStats.changePower(false, amount);
+    public void changeStatPower(int powerAmount){                  // Changes the stats for power
+        playerStats.changePowerTemporary(powerAmount);
     }
 
     //Möjlig lösning utan att ändra på mycket saker, omvandlar negativa tal och sätter false på increase i metoden den kallar på.
@@ -54,13 +51,8 @@ public class Player extends Character {
         }
     }*/
 
-    public void changeStatSpeed(Boolean increase, int amount){                  // Changes the stats for speed
-        if (increase){
-            playerStats.changeSpeed(true, amount);
-        }
-        else {
-            playerStats.changeSpeed(false, amount);
-        }
+    public void changeStatSpeed(int speedAmount){                  // Changes the stats for speed
+        playerStats.changeSpeedTemporary(speedAmount);
     }
 
     public void resetStatsForPowerAndSpeed(){                               // Resets the stats for power and speed

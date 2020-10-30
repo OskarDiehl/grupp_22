@@ -31,70 +31,131 @@ public class PlayerStatsTest {
 
 
     //TEST CHANGE POWER AND SPEED ------------------------------------------------------------------------
+    //POWER
     @Test
-    void increasePowerWithTwo(){                                                // Checks if currentPower can increase
-        PlayerStats stats = new PlayerStats(2,3,4);
-        stats.changePower(true,2);
+    void increasePowerWith2 (){                                                 // Checks if currentPower can increase
+        PlayerStats stats = new PlayerStats(2,3,5);
+        stats.changePowerTemporary(2);
         assertEquals(5, stats.getCurrentPower());
     }
 
     @Test
-    void decreasePowerWithTwo(){                                                // Checks if currentPower can decrease
-        PlayerStats stats = new PlayerStats(2,3,4);
-        stats.changePower(false,2);
+    void decreasePowerWith2 (){                                                 // Checks if currentPower can decrease
+        PlayerStats stats = new PlayerStats(2,3,5);
+        stats.changePowerTemporary(-2);
         assertEquals(1, stats.getCurrentPower());
     }
 
     @Test
-    void increasePowerFromEightWithFour(){                                      // Checks if currentPower has 10 as maxvalue
+    void increasePowerFrom8With4(){                                             // Checks if currentPower has 10 as maxvalue
         PlayerStats stats = new PlayerStats(2,8,4);
-        stats.changePower(true,4);
+        stats.changePowerTemporary(4);
         assertEquals(10, stats.getCurrentPower());
     }
 
     @Test
-    void decreasePowerFromTwoWithFive(){                                        // Checks if currentPower has 0 as minvalue
+    void decreasePowerFrom2With5(){                                             // Checks if currentPower has 0 as minvalue
         PlayerStats stats = new PlayerStats(2,2,4);
-        stats.changePower(false,5);
+        stats.changePowerTemporary(-5);
         assertEquals(0, stats.getCurrentPower());
     }
 
+    //SPEED
     @Test
-    void increaseSpeedWithTwo(){                                                // Checks if currentSpeed can increase
+    void increaseSpeedWith2(){                                                  // Checks if currentSpeed can increase
         PlayerStats stats = new PlayerStats(2,3,4);
-        stats.changeSpeed(true,2);
+        stats.changeSpeedTemporary(2);
         assertEquals(6, stats.getCurrentSpeed());
     }
 
     @Test
-    void decreaseSpeedWithTwo(){                                                // Checks if currentSpeed can decrease
+    void decreaseSpeedWith2(){                                                  // Checks if currentSpeed can decrease
         PlayerStats stats = new PlayerStats(2,3,4);
-        stats.changeSpeed(false,2);
+        stats.changeSpeedTemporary(-2);
         assertEquals(2, stats.getCurrentSpeed());
     }
 
     @Test
-    void increaseSpeedFromSevenWithFive(){                                      // Checks if currentSpeed has 10 as maxvalue
+    void increaseSpeedFrom7With5(){                                             // Checks if currentSpeed has 10 as maxvalue
         PlayerStats stats = new PlayerStats(2,3,7);
-        stats.changeSpeed(true,5);
+        stats.changeSpeedTemporary(5);
         assertEquals(10, stats.getCurrentSpeed());
     }
 
     @Test
-    void decreaseSpeedFromTwoWithSix(){                                         // Checks if currentSpeed has 0 as minvalue
+    void decreaseSpeedFrom2With6(){                                             // Checks if currentSpeed has 0 as minvalue
         PlayerStats stats = new PlayerStats(2,3,2);
-        stats.changeSpeed(false,6);
+        stats.changeSpeedTemporary(-6);
         assertEquals(0, stats.getCurrentSpeed());
     }
 
     @Test
     void resetPowerAndSpeed(){                                                  // Checks if it is possible to reset currentPower and currentSpeed to  their default values
         PlayerStats stats = new PlayerStats(2,3,4);
-        stats.changePower(true,2);
-        stats.changeSpeed(false,2);
+        stats.changePowerTemporary(2);
+        stats.changeSpeedTemporary(2);
         stats.resetPowerAndSpeedToDefaultValues();
         assertEquals(4, stats.getCurrentSpeed() + 3, stats.getCurrentPower());
     }
+
+
+//    @Test
+//    void increasePowerWithTwo(){                                            //TODO Ta bort
+//        PlayerStats stats = new PlayerStats(2,3,4);
+//        stats.changePower(true,2);
+//        assertEquals(5, stats.getCurrentPower());
+//    }
+//
+//    @Test
+//    void decreasePowerWithTwo(){                                  //TODO Ta bort
+//        PlayerStats stats = new PlayerStats(2,3,4);
+//        stats.changePower(false,2);
+//        assertEquals(1, stats.getCurrentPower());
+//    }
+//
+//    @Test
+//    void increasePowerFromEightWithFour(){                                      // Checks if currentPower has 10 as maxvalue
+//        PlayerStats stats = new PlayerStats(2,8,4);                //TODO Ta bort
+//        stats.changePower(true,4);
+//        assertEquals(10, stats.getCurrentPower());
+//    }
+//
+//    @Test
+//    void decreasePowerFromTwoWithFive(){                                        // Checks if currentPower has 0 as minvalue
+//        PlayerStats stats = new PlayerStats(2,2,4);           //TODO Ta bort
+//        stats.changePower(false,5);
+//        assertEquals(0, stats.getCurrentPower());
+//    }
+//
+//    @Test
+//    void increaseSpeedWithTwo(){                                                // Checks if currentSpeed can increase  TODO Ta bort
+//        PlayerStats stats = new PlayerStats(2,3,4);
+//        stats.changeSpeed(true,2);
+//        assertEquals(6, stats.getCurrentSpeed());
+//    }
+//
+//    @Test
+//    void decreaseSpeedWithTwo(){                                                // Checks if currentSpeed can decrease TODO ta bort
+//        PlayerStats stats = new PlayerStats(2,3,4);
+//        stats.changeSpeed(false,2);
+//        assertEquals(2, stats.getCurrentSpeed());
+//    }
+//
+//    @Test
+//    void increaseSpeedFromSevenWithFive(){                                      // Checks if currentSpeed has 10 as maxvalue  TODO Ta bort
+//        PlayerStats stats = new PlayerStats(2,3,7);
+//        stats.changeSpeed(true,5);
+//        assertEquals(10, stats.getCurrentSpeed());
+//    }
+//
+//    @Test
+//    void decreaseSpeedFromTwoWithSix(){                                         // Checks if currentSpeed has 0 as minvalue TODO ta bort
+//        PlayerStats stats = new PlayerStats(2,3,2);
+//        stats.changeSpeed(false,6);
+//        assertEquals(0, stats.getCurrentSpeed());
+//    }
+
+
 
 
 }
