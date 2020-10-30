@@ -29,11 +29,15 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="705c9c8e-fb4c-405e-b718-7bd06db4888a" name="Default Changelist" comment="Mindre ändringar">
+    <list default="true" id="705c9c8e-fb4c-405e-b718-7bd06db4888a" name="Default Changelist" comment="Tog bort onödig/osäker metod">
+      <change afterPath="$PROJECT_DIR$/src/main/java/EnemyStats.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/EnemyStatsTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Boss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Boss.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Character.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Enemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/BossTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/BossTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CharacterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CharacterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/EnemyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/EnemyTest.java" afterDir="false" />
     </list>
     <list id="296fe230-f9f7-40d3-8725-a7fe964cc7bb" name="Ny branch med förslag på ändringar av stats-generering" comment="" />
     <list id="4c2207ba-9aad-4c31-8ded-100fa9146123" name="Revert &quot;Ny branch med förslag på ändringar av stats-generering&quot;" comment="Revert &quot;Ny branch med förslag på ändringar av stats-generering&quot;&#10;&#10;This reverts commit e0662997" />
@@ -45,9 +49,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JUnit5 Test Class" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -95,13 +99,30 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ElementTest">
+  <component name="RunManager" selected="JUnit.All in rogue_like">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in rogue_like" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="rogue_like" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BossTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="rogue_like" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="BossTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -116,16 +137,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ElementTest.ifElementLevelAboveThreeThrowIAE" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="rogue_like" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="ElementTest" />
-      <option name="METHOD_NAME" value="ifElementLevelAboveThreeThrowIAE" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ElementTest.ifElementLevelBelowOneThrowIAE" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="rogue_like" />
       <option name="PACKAGE_NAME" value="" />
@@ -136,33 +147,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ElementTest.isStrongMethodReturnsTrue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EnemyTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="rogue_like" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="ElementTest" />
-      <option name="METHOD_NAME" value="isStrongMethodReturnsTrue" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ElementTest.isWeakMethodReturnsTrue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="rogue_like" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="ElementTest" />
-      <option name="METHOD_NAME" value="isWeakMethodReturnsTrue" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="EnemyTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.All in rogue_like" />
+        <item itemvalue="JUnit.BossTest" />
+        <item itemvalue="JUnit.EnemyTest" />
         <item itemvalue="JUnit.ElementTest" />
         <item itemvalue="JUnit.ElementTest.ifElementLevelBelowOneThrowIAE" />
-        <item itemvalue="JUnit.ElementTest.ifElementLevelAboveThreeThrowIAE" />
-        <item itemvalue="JUnit.ElementTest.isWeakMethodReturnsTrue" />
-        <item itemvalue="JUnit.ElementTest.isStrongMethodReturnsTrue" />
       </list>
     </recent_temporary>
   </component>
@@ -327,7 +327,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603746272454</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Tog bort onödig/osäker metod">
+      <created>1604067240027</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1604067240027</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -366,7 +373,8 @@
     <MESSAGE value="Ändarde hur konstruktorerna fungerade i Element och dess subklasser. Lade även till mer funktioner och tester för attack och elementLevel/Oskar" />
     <MESSAGE value="Lade till IAE till elemetLevel, lade även till så att attack() kräver ett element skickas med för att kolla om det är svagt eller starkt mot ett vist element." />
     <MESSAGE value="Mindre ändringar" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mindre ändringar" />
+    <MESSAGE value="Tog bort onödig/osäker metod" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tog bort onödig/osäker metod" />
   </component>
   <component name="WindowStateProjectService">
     <state x="651" y="235" key="#Inspections" timestamp="1603740755484">
@@ -397,25 +405,25 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="0" y="112" key="CommitChangelistDialog2/0.23.1680.1027@0.23.1680.1027" timestamp="1603372737991" />
-    <state width="1638" height="280" key="GridCell.Tab.0.bottom" timestamp="1603372707355">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state width="1002" height="305" key="GridCell.Tab.0.bottom" timestamp="1604074563599">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="305" key="GridCell.Tab.0.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1603133616360" />
+    <state width="1002" height="305" key="GridCell.Tab.0.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1604074563599" />
     <state width="1638" height="280" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1603372707355" />
-    <state width="1638" height="280" key="GridCell.Tab.0.center" timestamp="1603372707353">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state width="1002" height="305" key="GridCell.Tab.0.center" timestamp="1604074563599">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="305" key="GridCell.Tab.0.center/0.0.2048.1112@0.0.2048.1112" timestamp="1603133616360" />
+    <state width="1002" height="305" key="GridCell.Tab.0.center/0.0.2048.1112@0.0.2048.1112" timestamp="1604074563599" />
     <state width="1638" height="280" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1603372707353" />
-    <state width="1638" height="280" key="GridCell.Tab.0.left" timestamp="1603372707353">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state width="1002" height="305" key="GridCell.Tab.0.left" timestamp="1604074563599">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="305" key="GridCell.Tab.0.left/0.0.2048.1112@0.0.2048.1112" timestamp="1603133616360" />
+    <state width="1002" height="305" key="GridCell.Tab.0.left/0.0.2048.1112@0.0.2048.1112" timestamp="1604074563599" />
     <state width="1638" height="280" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1603372707353" />
-    <state width="1638" height="280" key="GridCell.Tab.0.right" timestamp="1603372707354">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state width="1002" height="305" key="GridCell.Tab.0.right" timestamp="1604074563599">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="305" key="GridCell.Tab.0.right/0.0.2048.1112@0.0.2048.1112" timestamp="1603133616360" />
+    <state width="1002" height="305" key="GridCell.Tab.0.right/0.0.2048.1112@0.0.2048.1112" timestamp="1604074563599" />
     <state width="1638" height="280" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1603372707354" />
     <state x="162" y="110" key="MergeDialog" timestamp="1603353243814">
       <screen x="0" y="23" width="1680" height="1027" />
@@ -435,10 +443,10 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="596" y="259" key="VCS.ChangeListViewerDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1602756263957" />
-    <state x="536" y="274" key="Vcs.Push.Dialog.v2" timestamp="1603746278283">
+    <state x="536" y="274" key="Vcs.Push.Dialog.v2" timestamp="1604067243498">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="536" y="274" key="Vcs.Push.Dialog.v2/0.0.2048.1112@0.0.2048.1112" timestamp="1603746278283" />
+    <state x="536" y="274" key="Vcs.Push.Dialog.v2/0.0.2048.1112@0.0.2048.1112" timestamp="1604067243498" />
     <state x="440" y="276" key="Vcs.Push.Dialog.v2/0.23.1680.1027@0.23.1680.1027" timestamp="1603372748109" />
     <state x="100" y="123" width="1480" height="827" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1602752061316">
       <screen x="0" y="23" width="1680" height="1027" />
@@ -449,10 +457,10 @@
     </state>
     <state x="778" y="470" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2048.1112@0.0.2048.1112" timestamp="1603040043134" />
     <state x="638" y="457" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1680.1027@0.23.1680.1027" timestamp="1602756705799" />
-    <state x="755" y="354" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1603106784549">
+    <state x="755" y="354" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1604074997129">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="755" y="354" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1603106784549" />
+    <state x="755" y="354" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1604074997129" />
     <state x="619" y="350" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1602751402190" />
     <state x="806" y="269" key="git4idea.branch.GitSmartOperationDialog" timestamp="1603133423009">
       <screen x="0" y="0" width="2048" height="1112" />
@@ -471,7 +479,7 @@
     <SUITE FILE_PATH="coverage/rogue_like$StatsTest.ic" NAME="StatsTest Coverage Results" MODIFIED="1603118301318" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/rogue_like$ArmorTest.ic" NAME="ArmorTest Coverage Results" MODIFIED="1603118816329" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/rogue_like$ShoesTest.ic" NAME="ShoesTest Coverage Results" MODIFIED="1603118371047" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/rogue_like$EnemyTest.ic" NAME="EnemyTest Coverage Results" MODIFIED="1603129678715" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/rogue_like$EnemyTest.ic" NAME="EnemyTest Coverage Results" MODIFIED="1604073491277" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/rogue_like$All_in_rogue_like.ic" NAME="All in rogue_like Coverage Results" MODIFIED="1603118924065" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/rogue_like$BossTest_generateBossStats.ic" NAME="BossTest.generateBossStats Coverage Results" MODIFIED="1603133616293" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/rogue_like$WeaponTest.ic" NAME="WeaponTest Coverage Results" MODIFIED="1603118358090" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

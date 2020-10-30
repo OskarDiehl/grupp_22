@@ -22,6 +22,8 @@ public class Enemy extends Character {
         generateStats(statForLevel, statForLevel, statForLevel);
     }
 
+
+
     void generateStats(int life, int power, int speed) {
         stats = new Stats(life, power, speed);
     }

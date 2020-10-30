@@ -60,7 +60,6 @@ public class Room {
 
 
 
-
     public String decideTypeOfRoom(boolean isItLuckyWheel){
          if( (isItLuckyWheel)){
             roomType = "Lucky Wheel";
