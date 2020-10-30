@@ -5,18 +5,8 @@
 //    private Element element;
 //
 ////    //TEST CONSTRUCTOR ------------------------------------------------------------------------
-////    @Test
-////    void getNameFromConstructorArgument() {
-////        Character character = new Character("Malin", element);
-////        assertEquals("Malin", character.getName());
-////    }
 ////
-////    @Test
-////    void getElementFromConstructorArgument() {
-////        Element e = new Element();
-////        Character character = new Character("Malin", e);
-////        assertEquals(e, character.getElement());
-////    }
+////
 ////
 /////*    @Test   TODO KOLLA HÄR MALIN
 ////    void getStatsFromConstructorArgument(){

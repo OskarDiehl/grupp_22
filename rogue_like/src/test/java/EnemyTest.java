@@ -4,6 +4,13 @@ import static org.junit.jupiter.api.Assertions.*;
 public class EnemyTest {
 
     @Test
+    void getElementFromConstructorArgument() {
+        Element element = new FireElement(2);
+        Character character = new Enemy(element, 2, new Room());
+        assertEquals(element, character.getElement());
+    }
+
+    @Test
     void getLevelFromConstructorArgument() {
         Enemy enemy = new Enemy(new FireElement(2), 2, new Room());
         assertEquals(2, enemy.getLevel());
@@ -12,6 +19,13 @@ public class EnemyTest {
     @Test
     void getIAEFromIllegalLevelConstructorArgument() {
         assertThrows(IllegalArgumentException.class, () -> new Enemy(new FireElement(2), 4, new Room()));
+    }
+
+    @Test
+    void getRoomFromConstructorArgument() {
+        Room room = new Room();
+        Enemy enemy = new Enemy(new FireElement(2), 2, room);
+        assertEquals(room, enemy.getRoom());
     }
 
     @Test
@@ -35,8 +49,20 @@ public class EnemyTest {
         assertEquals(stats.toString(), enemy.getStats().toString());
     }
 
-//    @Test
-//    void attackPlayer() { //TODO Implementera detta
-//
-//    }
+    @Test
+    void attackPlayer() { //TODO Implementera detta
+        Enemy enemy = new Enemy(new FireElement(1), 2, new Room());
+        Player player = new Player("David", new WaterElement(1), Role.Tank);
+        enemy.attack(player);
+        assertEquals(3, player.getCurrentHPFromStats());
+    }
+
+    @Test
+    void removeIfDeadWhenIsDead() {
+        Room room = new Room();
+        Enemy enemy = new Enemy(new FireElement(1), 2, room);
+        enemy.getStats().loseHP(5);
+        enemy.removeIfDead();
+        assertFalse(room.getEnemies().contains(enemy)); //TODO kolla denna när Rooms metod är implementerad
+    }
 }

@@ -43,7 +43,7 @@ public class Stats {
             currentHP = defaultHP;
     }
 
-    public void attackedByAnEnemy(int lostLives) {
+    public void attackedByAnEnemy(int lostLives) { //TODO flytta denna till Player alt. ta bort? /Sabina
         loseHP(lostLives);                           //TODO Nu kan man göra loseLives till en privat metod. Men då kommer inte testen åt dem.. /Malin
     }
 
