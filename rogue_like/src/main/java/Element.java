@@ -2,7 +2,7 @@
 
 public abstract class Element {
 
-    int elementLevel;
+    private int elementLevel;
 
     //Fick inte det att fungera med att ha två konstruktorer här och få dem att fungera i subklasserna /Oskar
     public Element(int elementLevel) {

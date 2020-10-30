@@ -10,12 +10,12 @@ public class WaterElement extends Element {
 
     @Override
     public boolean isStrong(Element element) {
-        return false;
+        return element instanceof FireElement;
     }
 
     @Override
     public boolean isWeak(Element element) {
-        return false;
+        return element instanceof EarthElement;
     }
 
 }
