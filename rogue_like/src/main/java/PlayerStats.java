@@ -15,9 +15,8 @@ public class PlayerStats extends Stats {
 
 
     // OTHER METHODS  ------------------------------------------------------------------------
-
-    public void changePowerTemporary(int power) {           //TODO Är det ngn mening att göra den här privat och ha en metod som man "mellanlandar" hos? Är det säkrare? :)))) /Malin
-        int totalPower = currentPower + power;
+    public void changePowerTemporary(int power) {               //Increases or decreases the power temporary
+        int totalPower = currentPower + power;                  //TODO Är det ngn mening att göra den här privat och ha en metod som man "mellanlandar" hos? Är det säkrare? :)))) /Malin
         if (totalPower > getMaxStat())
             currentPower = getMaxStat();
         else if (totalPower < getMinStat())
@@ -26,7 +25,7 @@ public class PlayerStats extends Stats {
             currentPower = currentPower + power;
     }
 
-    public void changeSpeedTemporary(int speed) {
+    public void changeSpeedTemporary(int speed) {               //Increases or decreases the speed temporary
         int totalSpeed = currentSpeed + speed;
         if (totalSpeed > getMaxStat())
             currentSpeed = getMaxStat();
@@ -41,29 +40,11 @@ public class PlayerStats extends Stats {
         currentSpeed = getDefaultSpeed();
     }
 
-//
-//    public void changePower(Boolean increase, int amount){
-//
-//
-//        if (increase)                                                   // if increase is true -> increase power with amount
-//            increasePowerTemporary(amount);
-//        else
-//            decreasePowerTemporary(amount);                             // if increase is false -> decrease power with amount
-//    }
-//
-//    public void changeSpeed(Boolean increase, int amount){
-//        if (increase)                                                   // if increase is true -> increase speed with amount
-//            increaseSpeedTemporary(amount);
-//        else
-//            decreaseSpeedTemporary(amount);                             // if increase is false -> decrease speed with amount
-//    }
-
-
     // LEVEL-METHODS  ------------------------------------------------------------------------
     public void levelStatsUp(){
         if (currentLevel < 3){
             currentLevel++;
-            levelUp(2);                                        // When the player jump up a level all the stats increase with two
+            levelUpTheDefaultStats(2);                                        // When the player jump up a level all the stats increase with two
         }
         else
             currentLevel = 3;

@@ -75,14 +75,14 @@ public class StatsTest {
     @Test
     void levelStatsUpToLevelTwo(){
         Stats stats = new Stats(8, 3, 4);
-        stats.levelUp(2);
+        stats.levelUpTheDefaultStats(2);
         assertEquals( 5, stats.getDefaultPower() + 6, stats.getDefaultSpeed());
     }
 
     @Test
     void levelUpAndReachMaxStats(){
         Stats stats = new Stats(8, 6, 6);
-        stats.levelUp(5);
+        stats.levelUpTheDefaultStats(5);
         assertEquals( 10, stats.getDefaultHP() + 10, stats.getDefaultSpeed());
     }
 

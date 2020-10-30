@@ -1,6 +1,6 @@
 public class Stats {
 
-    //VARIABLES  ------------------------------------------------------------------------
+    //VARIABLES  -------------------------------------------------------------------------------------------------------
     private static final int MAX_STAT = 10;                 //Stats can have a maximum value of 10
     private static final int MIN_STAT = 0;                  //Stats can have a minimum value of 0
     private int defaultHP; //TODO är det här bra? /Sabina
@@ -8,7 +8,7 @@ public class Stats {
     private int defaultPower;   // TODO Jag gjorde defaultPower och -Speed till icke-final för att kunna levla upp dem i metoden "levelUp". Om det är okej med dig Sabina kan du ta bort den här metoden <3<3 /Malin
     private int defaultSpeed;
 
-    // CONSTRUCTOR  ------------------------------------------------------------------------
+    // CONSTRUCTOR  ----------------------------------------------------------------------------------------------------
 
     public Stats(int defaultHP, int defaultPower, int defaultSpeed) {
         if (isWithinStatRange(defaultHP) && isWithinStatRange(defaultPower) && isWithinStatRange(defaultSpeed)) {
@@ -22,7 +22,7 @@ public class Stats {
     }
 
 
-    // OTHER METHODS  ------------------------------------------------------------------------
+    // OTHER METHODS  --------------------------------------------------------------------------------------------------
 
     private boolean isWithinStatRange(int number) {
         return number >= MIN_STAT && number <= MAX_STAT;
@@ -48,7 +48,36 @@ public class Stats {
     }
 
 
-    // GET-METHODS ------------------------------------------------------------------------
+    // METHODS THAT INCREASE THE DEFAULT STATS -------------------------------------------------------------------------
+    public void levelUpTheDefaultStats(int amount) {                //When the character levels up the default stats increases
+        levelUpDefaultHP(amount);
+        levelUpDefaultPower(amount);
+        levelUpDefaultSpeed(amount);
+    }
+
+    private void levelUpDefaultHP(int amount){                      //Increases the default HP
+        if ((defaultHP + amount) <= MAX_STAT)
+            defaultHP = defaultHP + amount;
+        else
+            defaultHP = MAX_STAT;
+    }
+
+    private void levelUpDefaultPower(int amount){                  //Increases the default power
+        if((defaultPower + amount) <= MAX_STAT)
+            defaultPower = defaultPower + amount;
+        else
+            defaultPower = MAX_STAT;
+    }
+
+    private void levelUpDefaultSpeed(int amount){                   //Increases the default Speed
+        if ((defaultSpeed + amount) <= MAX_STAT)
+            defaultSpeed = defaultSpeed + amount;
+        else
+            defaultSpeed = MAX_STAT;
+    }
+
+
+    // GET-METHODS -----------------------------------------------------------------------------------------------------
     public int getDefaultHP() {
         return defaultHP;
     }
@@ -73,38 +102,9 @@ public class Stats {
         return MIN_STAT;
     }
 
-    // TO-STRING-METHOD ------------------------------------------------------------------------
+    // TO-STRING-METHOD ------------------------------------------------------------------------------------------------
     @Override
     public String toString() {
         return "HP: " + getCurrentHP() + "\nPower: " + getDefaultPower() + "\nSpeed: " + getDefaultSpeed();
     }
-
-
-    public void levelUp(int amount) {
-        levelUpDefaultHP(amount);
-        levelUpDefaultPower(amount);
-        levelUpDefaultSpeed(amount);
-    }
-
-    private void levelUpDefaultHP(int amount){
-        if ((defaultHP + amount) <= MAX_STAT)
-            defaultHP = defaultHP + amount;
-        else
-            defaultHP = MAX_STAT;
-    }
-
-    private void levelUpDefaultPower(int amount){
-        if((defaultPower + amount) <= MAX_STAT)
-            defaultPower = defaultPower + amount;
-        else
-            defaultPower = MAX_STAT;
-    }
-
-    private void levelUpDefaultSpeed(int amount){
-        if ((defaultSpeed + amount) <= MAX_STAT)
-            defaultSpeed = defaultSpeed + amount;
-        else
-            defaultSpeed = MAX_STAT;
-    }
-
 }
