@@ -1,6 +1,6 @@
 //kolla upp hur man Kan testa abstrakta klasser!!!!
 
-public  abstract class Element {
+public abstract class Element {
 
     int elementLevel;
 
