@@ -13,17 +13,20 @@ public abstract class Character {
 
     public Character(Element element, int level){
         this.element = element;
-        this.level = level;
+        if(level >= 1 && level <= 3)
+            this.level = level;
+        else
+            throw new IllegalArgumentException();
     }
 
     // OTHER METHODS ------------------------------------------------------------------------
 
     public void setLevel(int level) {
-        if (level >= 1 && level <=3) {
+        if (level >= 1 && level <=3)
             this.level = level;
-        } else {
+        else
             throw new IllegalArgumentException();
-        }
+
     }
 
     // GET-METHODS  ------------------------------------------------------------------------

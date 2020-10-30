@@ -10,7 +10,7 @@ public class Enemy extends Character {
         calculateStats(level);
     }
 
-    void calculateStats(int level) { // Depending on the level, the default stats change
+    private void calculateStats(int level) { // Depending on the level, the default stats change
         int statForLevel;
         if (level == 1) {
             statForLevel = LEVEL_1_STAT;
@@ -24,10 +24,6 @@ public class Enemy extends Character {
 
     void generateStats(int life, int power, int speed) {
         stats = new Stats(life, power, speed);
-    }
-
-    public void move() {
-        //Jag är lite lost i hur en enemy ska röra sig
     }
 
     public void attack(Player player) {
