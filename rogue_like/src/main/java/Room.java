@@ -60,7 +60,6 @@ public class Room {
 
 
 
-
     public String decideTypeOfRoom(boolean isItLuckyWheel){
          if( (isItLuckyWheel)){
             roomType = "Lucky Wheel";
@@ -96,7 +95,7 @@ public class Room {
         enemies = new ArrayList();
 
         for(int i = 0; i < enemyQuantity; i++){
-            enemies.add(new Enemy(getElement() , 1));
+            enemies.add(new Enemy(getElement() , 1, this));
 
         }
 

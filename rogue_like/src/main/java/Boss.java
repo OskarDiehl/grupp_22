@@ -1,12 +1,11 @@
-public class Boss extends Enemy{
+public class Boss extends Enemy {
 
-    public Boss(Element element, int level) {
-        super(element, level);
+    public Boss(Element element, int level, Room room) {
+        super(element, level, room);
         calculateStats(level);
     }
 
-    @Override
-    protected void calculateStats(int level) {
+    private void calculateStats(int level) {
         int life;
         int power;
         int speed;

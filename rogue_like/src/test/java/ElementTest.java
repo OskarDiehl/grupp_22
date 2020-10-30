@@ -8,7 +8,6 @@ public class ElementTest {
     void isStrongMethodReturnsTrue() {
         Element e1 = new WaterElement(1);
         Element e2 = new FireElement(1);
-
         assertTrue(e1.isStrong(e2));
     }
 
@@ -29,19 +28,32 @@ public class ElementTest {
     @Test
     void constructorWithArgumentTwoReturnsElementLevelTwo() {
         Element e = new WaterElement(2);
-        assertEquals(2, e.elementLevel);
+        assertEquals(2, e.getElementLevel());
     }
 
     @Test
-    void attackReturnsTwentyOneWithElementLevelOfThree(){
+    void attackReturnsFifteenWithElementLevelOfThree(){
         Element e1 = new FireElement(3);
         Element e2 = new FireElement(2);
-        assertEquals(21, e1.attack(e2));
+        assertEquals(15, e1.attack(e2));
+    }
+
+    @Test
+    void attackReturnsTenWithElementLevelOfTwo(){
+        Element e1 = new FireElement(2);
+        Element e2 = new FireElement(2);
+        assertEquals(10, e1.attack(e2));
+    }
+
+    @Test
+    void attackIsWeakReturnsPowerThree() {
+        Element e1 = new FireElement(1);
+        Element e2 = new WaterElement(1);
+        assertEquals(3, e1.attack(e2));
     }
 
     @Test
     void ifElementLevelAboveThreeThrowIAE() {
-
         assertThrows(IllegalArgumentException.class, () -> {
             Element e = new FireElement(4);
         });
@@ -49,7 +61,6 @@ public class ElementTest {
 
     @Test
     void ifElementLevelBelowOneThrowIAE() {
-
         assertThrows(IllegalArgumentException.class, () -> {
             Element e = new FireElement(0);
         });
