@@ -1,15 +1,17 @@
 public enum Role {
-    Tank ("Tank", 6, 6,4 ),   //TODO HP är life
+    //When a player is created, its default stats sets to different values depending on the role the user chooses
+
+    Tank ("Tank", 6, 6,4 ),
     Warrior ("Warrior", 4,6,5),
     Runner("Runner",5,4,6);
 
-    // VARIABLES -------------------------------------------------------------------------
+    // VARIABLES -------------------------------------------------------------------------------------------------------
     private final String roleName;
     private int HP;
     private int power;
     private int speed;
 
-    // CONSTRUCTOR -----------------------------------------------------------------------
+    // CONSTRUCTOR -----------------------------------------------------------------------------------------------------
     Role (String roleName, int HP, int power, int speed){
         this.roleName = roleName;
         this.HP = HP;
@@ -17,7 +19,7 @@ public enum Role {
         this.speed = speed;
     }
 
-    // GET-METHODS ------------------------------------------------------------------------
+    // GET-METHODS -----------------------------------------------------------------------------------------------------
     public String getRoleName() {
         return roleName;
     }

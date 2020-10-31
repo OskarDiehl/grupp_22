@@ -6,8 +6,8 @@ public class PlayerStats extends Stats {
 
 
     // CONSTRUCTOR  ------------------------------------------------------------------------
-    public PlayerStats(int life, int power, int speed) {
-        super(life, power, speed);
+    public PlayerStats(int HP, int power, int speed) {
+        super(HP, power, speed);
         currentLevel = 1;
         currentPower = getDefaultPower();
         currentSpeed = getDefaultSpeed();
@@ -15,32 +15,24 @@ public class PlayerStats extends Stats {
 
 
     // OTHER METHODS  ------------------------------------------------------------------------
-    private void increasePowerTemporary(int increasedPower) {            // Increases the power
-        if ((currentPower + increasedPower) <= getMaxStat()){
-            currentPower = currentPower + increasedPower;
-        } else
+    public void changePowerTemporary(int power) {               //Increases or decreases the power temporary
+        int totalPower = currentPower + power;                  //TODO Är det ngn mening att göra den här privat och ha en metod som man "mellanlandar" hos? Är det säkrare? :)))) /Malin
+        if (totalPower > getMaxStat())
             currentPower = getMaxStat();
-    }
-
-    private void decreasePowerTemporary(int decreasePower) {             // Decreases the power
-        if ((currentPower - decreasePower) >= getMinStat())
-            currentPower = currentPower - decreasePower;
-        else
+        else if (totalPower < getMinStat())
             currentPower = getMinStat();
-    }
-
-    private void increaseSpeedTemporary(int increasedSpeed) {            // Increases the speed
-        if ((currentSpeed + increasedSpeed) <= getMaxStat()){
-            currentSpeed = currentSpeed + increasedSpeed;
-        } else
-            currentSpeed = getMaxStat();
-    }
-
-    private void decreaseSpeedTemporary(int decreasedSpeed) {            // Decreases the speed
-        if ((currentSpeed - decreasedSpeed) >= getMinStat())
-            currentSpeed = currentSpeed - decreasedSpeed;
         else
+            currentPower = currentPower + power;
+    }
+
+    public void changeSpeedTemporary(int speed) {               //Increases or decreases the speed temporary
+        int totalSpeed = currentSpeed + speed;
+        if (totalSpeed > getMaxStat())
+            currentSpeed = getMaxStat();
+        else if (totalSpeed < getMinStat())
             currentSpeed = getMinStat();
+        else
+            currentSpeed = currentSpeed + speed;
     }
 
     public void resetPowerAndSpeedToDefaultValues(){                    // Resets the power- and speed stats to their default values
@@ -48,26 +40,11 @@ public class PlayerStats extends Stats {
         currentSpeed = getDefaultSpeed();
     }
 
-    public void changePower(Boolean increase, int amount){
-        if (increase)                                                   // if increase is true -> increase power with amount
-            increasePowerTemporary(amount);
-        else
-            decreasePowerTemporary(amount);                             // if increase is false -> decrease power with amount
-    }
-
-    public void changeSpeed(Boolean increase, int amount){
-        if (increase)                                                   // if increase is true -> increase speed with amount
-            increaseSpeedTemporary(amount);
-        else
-            decreaseSpeedTemporary(amount);                             // if increase is false -> decrease speed with amount
-    }
-
-
     // LEVEL-METHODS  ------------------------------------------------------------------------
     public void levelStatsUp(){
         if (currentLevel < 3){
             currentLevel++;
-            levelUp(2);                                        // When the player jump up a level all the stats increase with two
+            levelUpTheDefaultStats(2);                                        // When the player jump up a level all the stats increase with two
         }
         else
             currentLevel = 3;

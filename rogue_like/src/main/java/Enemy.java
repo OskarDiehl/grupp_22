@@ -3,11 +3,12 @@ public class Enemy extends Character {
     private final static int LEVEL_2_STAT = 5;
     private final static int LEVEL_3_STAT = 8;
 
-    private EnemyStats stats;     //TODO Jag deklarerade stats här för dig istället för att få koden att kompilera /Malin
+    private EnemyStats stats;
     private Room room;
 
     public Enemy(Element element, int level, Room room) {
         super(element, level);
+        this.room = room;
         calculateStats(level);
     }
 
@@ -28,17 +29,25 @@ public class Enemy extends Character {
     }
 
     public void attack(Player player) { //TODO gör något åt den höga couplingen vi har, kanske flytta all attackberäkning till Character?
-        int attackPower = getElement().attack(player.getElement()); //jag är ganska allmänt lost
+        int attackPower = getElement().attack(player.getElement());
         player.getPlayerStats().loseHP(attackPower);
+        //player.getPlayerStats().attackedByAnEnemy(attackPower); //Väntar på bekräftelse
     }
 
-    public void checkIfHPisZero() {
-        if (getStats().getCurrentHP() <= 0) {
+    public boolean isDead() {
+        return getStats().getCurrentHP() <= 0;
+    }
+
+    public void removeIfDead() {
+        if (isDead())
             room.removeEnemy(this);
-        }
     }
 
     public EnemyStats getStats() {
         return stats;
+    }
+
+    public Room getRoom() {
+        return room;
     }
 }
