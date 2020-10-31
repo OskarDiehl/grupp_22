@@ -23,23 +23,19 @@ public class Enemy extends Character {
         }
         generateStats(statForLevel, statForLevel, statForLevel);
     }
-    //TODO bestäm skyddsnivå för denna eller ändra om den
+
     void generateStats(int life, int power, int speed) {
         stats = new EnemyStats(life, power, speed);
     }
 
     public void attack(Player player) { //TODO gör något åt den höga couplingen vi har, kanske flytta all attackberäkning till Character?
-        int attackPower = generateAttackPower(player);
+        int attackPower = getMainElement().attack(player.getMainElement());
         player.getPlayerStats().loseHP(attackPower);
         //player.getPlayerStats().attackedByAnEnemy(attackPower); //Väntar på bekräftelse
     }
 
-    private int generateAttackPower(Player player) {
-        return getMainElement().attack(getPower(), player.getMainElement());
-    }
-
     public boolean isDead() {
-        return getHP() <= 0;
+        return getStats().getCurrentHP() <= 0;
     }
 
     public void removeIfDead() {
@@ -49,18 +45,6 @@ public class Enemy extends Character {
 
     public EnemyStats getStats() {
         return stats;
-    }
-
-    public int getHP() {
-        return getStats().getCurrentHP();
-    }
-
-    public int getPower() {
-        return getStats().getDefaultPower();
-    }
-
-    public int getSpeed() {
-        return getStats().getDefaultSpeed();
     }
 
     public Room getRoom() {

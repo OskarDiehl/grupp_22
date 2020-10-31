@@ -9,6 +9,7 @@
 //TODO ändra spawnItem till att inte vara random
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Room {
 
@@ -41,12 +42,13 @@ public class Room {
      private final int MIN_AMOUNT_OF_ENEMIES = 4;
      private final int MAX_NUMBER_LUCKY_WHEEL = 5;
 
-     private ArrayList<Enemy> enemies; //denna ska ändras till en arraylist efter funderande
+     private ArrayList<Enemy> enemies;
      private int enemyQuantity;
      private String roomType;
      private Element element;
      private int threshold;
      private Player player;
+     private LuckyWheel luckyWheel;
 
      //TODO borde player vara ett argument i konstruktorn?
 
@@ -145,12 +147,8 @@ public class Room {
     }
 
     public boolean shouldBossSpawn(){
-         int medallions =0;
-         String elementName = getElement().getClass().getName();
-         if(elementName.equals("FireElement"))
-             medallions = player.getFireMedallions();   // TODO Jag tog bort "get-metoderna för medaljongerna då jag skapade metoden "fetchMedallionStatus" /Malin
-         else if(elementName.equals("EarthElement"))
-             medallions = player.getEarthMedallions();
+
+         int medallions = player.fetchMedallionStatus(getElement());
 
          if(medallions == 3){
              return true;
@@ -165,9 +163,12 @@ public class Room {
 
     //TODO göra en klass för lucky wheel?
     public void spawnLuckyWheel(){
+         luckyWheel = new LuckyWheel(this);
+     }
 
-
-    }
+     public LuckyWheel getLuckyWheel(){
+         return luckyWheel;
+     }
 
     public Item spawnItem(){
          return ITEMS[generateRandomNumber(1,ITEMS.length-1)];
@@ -183,7 +184,7 @@ public class Room {
     }
 
     public ArrayList<Enemy> getEnemies(){
-        return enemies;
+        return new ArrayList<Enemy>(enemies);
     }
 
     public boolean isEnemiesDead() {
@@ -225,7 +226,7 @@ public class Room {
     }
 
     public Item[] getITEMS() {
-        return ITEMS;
+        return Arrays.copyOf(ITEMS, ITEMS.length);
     }
 
     //Denna nås av test genom andra metoder, men kan inte testas direkt eftersom den är privat.
