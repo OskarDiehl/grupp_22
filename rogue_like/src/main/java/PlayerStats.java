@@ -46,7 +46,7 @@ public class PlayerStats extends Stats {
     public void levelStatsUp(){
         if (currentLevel < 3){
             currentLevel++;
-            levelUpTheDefaultStats(2);                                        // When the player jump up a level all the stats increase with two
+            levelUpTheDefaultStats(2);                         // When the player jump up a level all the stats increase with two
         }
         else
             currentLevel = 3;

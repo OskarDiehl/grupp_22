@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PlayerTest {
     private Element element;
@@ -135,9 +136,30 @@ public class PlayerTest {
     @Test
     void fetchEarthMedallions(){
         EarthElement earthElement = new EarthElement(1);
-        Player player = new Player("Sabina", earthElement, role);
+        Player player = new Player("Sabina", element, role);
         player.fetchMedallionStatus(earthElement);
         assertEquals(0, player.getEarthMedallions());
+    }
+
+//    @Test
+//    void notValidElementAsParameterWhenFetchingMedallions(){
+//        assertThrows(IllegalArgumentException.class, );
+//    }
+//
+//    @Test
+//    void ifElementLevelAboveThreeThrowIAE() {
+//        assertThrows(IllegalArgumentException.class, () -> {
+//            Element e = new FireElement(4);
+//        });
+//    }
+
+    @Test
+    void add2AFireMedallions(){
+        FireElement fireElement = new FireElement(2);
+        Player player = new Player("Sabina", element, role);
+        player.addMedallion(fireElement);
+        player.addMedallion(fireElement);
+        assertEquals(2, player.getFireMedallions());
     }
 
     //TEST ELEMENTS ----------------------------------------------------------------------------------------------------
