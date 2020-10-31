@@ -20,7 +20,7 @@ public class WeaponTest {
     }
 
     @Test
-    void getHPreturnsNegativeOne() {
+    void getHPReturnsNegativeOne() {
         Weapon w = new Weapon(defaultName, defaultPower, defaultHP);
         assertEquals(defaultHP, w.getHp());
     }
