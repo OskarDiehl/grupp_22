@@ -22,7 +22,7 @@ public abstract class Element {
     }
 
     public void levelUpElement() {
-        if (elementLevel == 3){
+        if (elementLevel >= 3 || elementLevel < 1){
             throw new IllegalArgumentException("The Element Level can't be above 3");
         } else {
             elementLevel++;
