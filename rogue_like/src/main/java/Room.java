@@ -34,7 +34,7 @@ public class Room {
 
     };
 
-
+     private final int MAX_AMOUNT_OF_MEDALLIONS = 3;
      private final int MIN_THRESHOLD = 1;
      private final int AMOUNT_OF_ELEMENTS = 4;
 
@@ -49,19 +49,20 @@ public class Room {
      private int threshold;
      private Player player;
      private LuckyWheel luckyWheel;
+     private Item itemDropped;
+     private Boss boss;
+
 
      //TODO borde player vara ett argument i konstruktorn?
 
      public Room(){
          this(new Player("test",new FireElement(1), Role.Tank));
      }
-
      public Room(Player player , Element element){
          this.element = element;
          this.player = player;
          buildRoom();
      }
-
 
      public Room(Player player){
          this.player = player;
@@ -86,11 +87,9 @@ public class Room {
             roomType = "Lucky Wheel";
         }
         else {
-
             if (shouldBossSpawn()){
                 roomType = "Boss";
             }
-
             else {
                 roomType = "Enemy";
             }
@@ -140,28 +139,34 @@ public class Room {
         enemies = new ArrayList();
 
         for(int i = 0; i < enemyQuantity; i++){
-            enemies.add(new Enemy(getElement() , 1, this));
+            enemies.add(new Enemy(getElement() , player.getCurrentLevel(), this));
 
         }
 
     }
 
+    //TODO be malin ändra resetMedallions
     public boolean shouldBossSpawn(){
 
          int medallions = player.fetchMedallionStatus(getElement());
 
-         if(medallions == 3){
+         if(medallions == MAX_AMOUNT_OF_MEDALLIONS){
+             player.resetMedallion(getElement());
              return true;
          }
          return false;
      }
 
+     //TODO spawna boss!
     public void spawnBoss(){
+         boss = new Boss(getElement(), player.getCurrentLevel(),this);
 
     }
 
+    public Boss getBoss() {
+        return boss;
+    }
 
-    //TODO göra en klass för lucky wheel?
     public void spawnLuckyWheel(){
          luckyWheel = new LuckyWheel(this);
      }
@@ -215,7 +220,7 @@ public class Room {
              if(enemies.remove(enemy)){
 
                  if(isEnemiesDead()){
-                     spawnItem();
+                     itemDropped = spawnItem();
                  }
                  return;
              }
@@ -223,6 +228,10 @@ public class Room {
                  throw new IllegalArgumentException();
              }
          }
+    }
+
+    public Item getItemDropped() {
+        return itemDropped;
     }
 
     public Item[] getITEMS() {

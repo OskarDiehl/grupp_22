@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class LuckyWheel {
 
@@ -7,14 +8,12 @@ public class LuckyWheel {
     private Room room;
     private ArrayList<Object> droptable = new ArrayList<>();
 
-
     public LuckyWheel(Room room) {
         this.room = room;
         this.ITEMS_AVAILABLE = room.getITEMS();
         placeRandomItemsInDropTable();
-
-
     }
+
 
     public void placeRandomItemsInDropTable() {
         int size = room.getITEMS().length;
@@ -24,30 +23,29 @@ public class LuckyWheel {
             droptable.add(i, ITEMS_AVAILABLE[rndNum]);
         }
         droptable.add(DROPTABLE_SIZE - 1, "DEATH");
-
     }
-
 
     public Item spinLuckyWheel() {
         int num = room.generateRandomNumber(1, 10) - 1;
-
         if (droptable.get(num).equals("DEATH")) {
             room.getPlayer().getPlayerStats().loseHP(room.getPlayer().getCurrentHPFromStats());
             return null;
         }
-
         Item item = (Item) droptable.get(num);
-
         return item;
     }
+
 
     public ArrayList<Object> getDroptable() {
         return new ArrayList<Object>(droptable);
     }
+
+    public Room getRoom() {
+        return room;
+    }
+
+
+    public Item[] getITEMS_AVAILABLE() {
+        return Arrays.copyOf(ITEMS_AVAILABLE, ITEMS_AVAILABLE.length);
+    }
 }
-
-
-
-
-
-
