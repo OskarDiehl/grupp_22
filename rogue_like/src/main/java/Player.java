@@ -1,6 +1,8 @@
+import java.util.Set;
+
 public class Player extends Character {
 
-    // DATASAMLING/-AR -----------------------------------------------------
+    // DATASAMLING/-AR -------------------------------------------------------------------------------------------------
     private Element elements[] = new Element[4];
     private Item items[] = new Item[3];
 
@@ -17,8 +19,10 @@ public class Player extends Character {
     private int currentLevel = 1;
     private Role role;
     private PlayerStats playerStats;
-    //intar för medaljonger)
-
+    private int earthMedallions = 0;
+    private int waterMedallions = 0;
+    private int fireMedallions = 0;
+    private int airMedallions = 0;
 
     // CONSTRUCTOR -----------------------------------------------------------------------------------------------------
     public Player(String name, Element element, Role role) {
@@ -26,6 +30,7 @@ public class Player extends Character {
         //this.level = getCurrentLevel();   TODO Fråga Sabina /Malin
         this.role = role;
         this.playerStats = new PlayerStats(role.getHP(), role.getPower(), role.getSpeed());
+        //TODO Skapa metod som lägger in elementet i elements /Malin
 
     }
 
@@ -57,6 +62,9 @@ public class Player extends Character {
 
     // ELEMENTS-ARRAY METHODS ------------------------------------------------------------------------------------------
     private void addElement(Element newElement) {
+      /*  if (newElement.getClass().isInstance(newElement) || newElement.getClass() instanceof new FireElement(1)){
+
+        }*/
        /* if (newElement.getName.equals("Earth element")) TODO be Oskar fixa getName eller annan lösning för elementen
             checkIfPlayerHasElement(0, newElement);
 
@@ -94,11 +102,31 @@ public class Player extends Character {
 
 
     // ITEMS-ARRAY METHODS ---------------------------------------------------------------------------------------------
+    private void addItem(Item newItem){
+        //TODO Vad sägs om följande? /Malin  :
+        // 1. Ta reda på vilket typ av element.
+        // 2. Om användaren redan har ett item av den typen -> Fråga användaren om hen vill byta ut item.
+        // 3. Om användaren säger ja -> Byt. Annars avbryt?
+    }
 
     //Bestämda index för array:en med items
     //Armor = index 0
     //Shoes = index 1
     //Weapon = index 2
+
+    // ELEMENT MEDALLION METHODS ---------------------------------------------------------------------------------------
+    public int fetchMedallionStatus(Element element){
+        if (element.getClass().isInstance(new EarthElement(1)))
+            return earthMedallions;
+        else
+            return 3;
+
+    }
+
+    //hämta intarna (tar in element eller string som parameter)
+
+    //restet medaljerna för just det elementet
+
 
 
     // GET-METHODS -----------------------------------------------------------------------------------------------------
@@ -134,7 +162,21 @@ public class Player extends Character {
         return playerStats.getCurrentSpeed();
     }
 
+    public int getEarthMedallions() {
+        return earthMedallions;
+    }
 
+    public int getWaterMedallions() {
+        return waterMedallions;
+    }
+
+    public int getFireMedallions() {
+        return fireMedallions;
+    }
+
+    public int getAirMedallions() {
+        return airMedallions;
+    }
 }
 
 

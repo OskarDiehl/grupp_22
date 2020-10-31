@@ -131,10 +131,26 @@ public class PlayerTest {
         assertEquals(4, player.getCurrentSpeedFromStats() + 3, player.getCurrentPowerFromStats());
     }
 
-    //TEST ELEMENTS ---------------------------------------------------------------------------------------------------------
-    //THE ARRAY ELEMENTS
+    //TEST MEDALLIONS ----------------------------------------------------------------------------------------------------
+    @Test
+    void fetchEarthMedallions(){
+        EarthElement earthElement = new EarthElement(1);
+        Player player = new Player("Sabina", earthElement, role);
+        player.fetchMedallionStatus(earthElement);
+        assertEquals(0, player.getEarthMedallions());
+    }
 
+    //TEST ELEMENTS ----------------------------------------------------------------------------------------------------
+    //THE ARRAY ELEMENTS
     //TODO fixa det här MalinJÄVEL mvh Malin
+
+    //TODO metod som lägger in element i elements -> implementera i konstruktorn /Malin
+
+    @Test
+    void searchForElementInElementsArray(){
+        FireElement fireElement = new FireElement(1);
+        Player player = new Player("Sabina", fireElement, role);
+    }
 
 
     //TEST XXX ---------------------------------------------------------------------------------------------------------
