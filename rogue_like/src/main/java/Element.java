@@ -30,8 +30,7 @@ public abstract class Element {
     }
 
     //Kanske ska flyttas till Character eller någonting sådant.
-    public int attack(Element element) {
-        int power = 5; //temporär power tills det går att hämta från charcter. Ska ändras till player.getPowerFromStats()
+    public int attack(int power,Element element) {
 
         if (isStrong(element)) {
             power += 2;

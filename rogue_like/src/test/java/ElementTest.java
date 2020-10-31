@@ -3,11 +3,13 @@ import org.junit.jupiter.api.Test;
 
 public class ElementTest {
 
+    int defaultPower = 5;
 
     @Test
     void isStrongMethodReturnsTrue() {
         Element e1 = new WaterElement(1);
         Element e2 = new FireElement(1);
+
         assertTrue(e1.isStrong(e2));
     }
 
@@ -22,7 +24,7 @@ public class ElementTest {
     void attackAndIsStrongReturnsSeven() {
         Element e1 = new WaterElement(1);
         Element e2 = new FireElement(1);
-        assertEquals(7,e1.attack(e2));
+        assertEquals(7,e1.attack(defaultPower,e2));
     }
 
     @Test
@@ -35,21 +37,21 @@ public class ElementTest {
     void attackReturnsFifteenWithElementLevelOfThree(){
         Element e1 = new FireElement(3);
         Element e2 = new FireElement(2);
-        assertEquals(15, e1.attack(e2));
+        assertEquals(15, e1.attack(defaultPower,e2));
     }
 
     @Test
     void attackReturnsTenWithElementLevelOfTwo(){
         Element e1 = new FireElement(2);
         Element e2 = new FireElement(2);
-        assertEquals(10, e1.attack(e2));
+        assertEquals(10, e1.attack(defaultPower,e2));
     }
 
     @Test
     void attackIsWeakReturnsPowerThree() {
         Element e1 = new FireElement(1);
         Element e2 = new WaterElement(1);
-        assertEquals(3, e1.attack(e2));
+        assertEquals(3, e1.attack(defaultPower,e2));
     }
 
     @Test

@@ -6,15 +6,36 @@
 
 //TODO rummet måste kunna komma åt en players "medaljonger" för att avgöra om det blir boss eller inte
 
-//TODO ändra enemies till en arrayList
+//TODO ändra spawnItem till att inte vara random
 
 import java.util.ArrayList;
 
 public class Room {
 
-     private final int STANDARD_THRESHOLD = 6;
-     private final int MAX_THRESHOLD = 10;
+    private final Item[] ITEMS = new Item[]{
+            new Weapon("Boring Sword", 1, 0),
+            new Weapon("Cool Sword", 3,-1),
+            new Weapon("Mega Hammer", 10,-5),
+            new Weapon("Dinky Hammer",-1,0),
+            new Weapon("Cast Iron Frying Pan", 4, -2),
+
+            new Armor("Knight's Armor", 4, -2),
+            new Armor("Leather Scrap Armor", 1, 0),
+            new Armor("Wearable Bank Vault", 10, -10),
+            new Armor("Bussiness Casual", 0, 0),
+            new Armor("Birthday Suit", 0, 0),
+
+            new Shoes("Flip Flops", 1, -1),
+            new Shoes("Sneakers", 3, 0),
+            new Shoes("Yeezys", 4, -1),
+            new Shoes("Clogs", 2, -3),
+            new Shoes("Stilettos", 8, -4)
+
+    };
+
+
      private final int MIN_THRESHOLD = 1;
+     private final int AMOUNT_OF_ELEMENTS = 4;
 
      private final int MAX_AMOUNT_OF_ENEMIES = 7;
      private final int MIN_AMOUNT_OF_ENEMIES = 4;
@@ -25,34 +46,59 @@ public class Room {
      private String roomType;
      private Element element;
      private int threshold;
+     private Player player;
+
+     //TODO borde player vara ett argument i konstruktorn?
 
      public Room(){
-         threshold = STANDARD_THRESHOLD;
-         decideTypeOfRoom(false);
+         this(new Player("test",new FireElement(1), Role.Tank));
+     }
 
-         if(roomType.equals("Enemy")){
-             spawnEnemies();
-         }
-
-         else {
-
-             //spawnLuckyWheel();
-         }
+     public Room(Player player , Element element){
+         this.element = element;
+         this.player = player;
+         buildRoom();
+     }
 
 
+     public Room(Player player){
+         this.player = player;
+         this.element = decideTypeOfElement(generateRandomNumber(MIN_THRESHOLD, AMOUNT_OF_ELEMENTS));
+         buildRoom();
 
+
+     }
+
+    private void buildRoom(){
+        decideTypeOfRoom(decideIfLuckyWheel());
+
+        switch(roomType) {
+            case "Enemy": spawnEnemies(); break;
+            case "Boss": spawnBoss(); break;
+            case "Lucky Wheel": spawnLuckyWheel(); break;
+        }
     }
 
-    public boolean spawnItem() {
-        return spawnItem(generateRandomNumber(MIN_THRESHOLD, MAX_THRESHOLD));
+    public String decideTypeOfRoom(boolean isItLuckyWheel){
+        if( (isItLuckyWheel)){
+            roomType = "Lucky Wheel";
+        }
+        else {
+
+            if (shouldBossSpawn()){
+                roomType = "Boss";
+            }
+
+            else {
+                roomType = "Enemy";
+            }
+        }
+        return roomType;
     }
 
-    public boolean spawnItem(int num){
-        return spawnItem(num, threshold);
-    }
 
-    private boolean spawnItem(int num, int threshold){
-        if( num >= threshold){
+    private boolean decideIfLuckyWheel(){
+        if(generateRandomNumber(MIN_THRESHOLD, MAX_NUMBER_LUCKY_WHEEL) == MAX_NUMBER_LUCKY_WHEEL){
             return true;
         }
         return false;
@@ -60,35 +106,32 @@ public class Room {
 
 
 
-    public String decideTypeOfRoom(boolean isItLuckyWheel){
-         if( (isItLuckyWheel)){
-            roomType = "Lucky Wheel";
-         }
-         else {
-             element = new FireElement(1);
-             roomType = "Enemy";
-         }
 
-         return roomType;
-    }
+    public Element decideTypeOfElement(int elementNumber){ //denna är private eftersom jag endast vill att ett element ska kunna kallas på en gång
 
+        if(element == null) {
 
+            switch (elementNumber) {
+                case 1:
+                    element = new FireElement(1);
+                    break;
+                case 2:
+                    element = new WaterElement(1);
+                    break;
+                case 3:
+                    element = new WindElement(1);
+                    break;
+                case 4:
+                    element = new EarthElement(1);
+                    break;
 
-    public void setThreshold(int threshold) {
-        if (threshold > MAX_THRESHOLD || threshold < MIN_THRESHOLD) {
-            throw new IllegalArgumentException();
-        } else {
-            this.threshold = threshold;
+            }
+
         }
+
+        return element;
+
     }
-
-    public int getThreshold() {
-        return threshold;
-    }
-
-    //När ett rum skapas finns det en threshold som avgör hur stor chans det är att man får dropp, ju lägre threshold är, ju större chans är det att man får drop.
-
-
 
     public void spawnEnemies(){
         enemyQuantity = generateAmountOfEnemies();
@@ -101,10 +144,43 @@ public class Room {
 
     }
 
+    public boolean shouldBossSpawn(){
+         int medallions =0;
+         String elementName = getElement().getClass().getName();
+         if(elementName.equals("FireElement"))
+             medallions = player.getFireMedallions();
+         else if(elementName.equals("EarthElement"))
+             medallions = player.getEarthMedallions();
+
+         if(medallions == 3){
+             return true;
+         }
+         return false;
+     }
+
+    public void spawnBoss(){
+
+    }
+
+
+    //TODO göra en klass för lucky wheel?
+    public void spawnLuckyWheel(){
+
+
+    }
+
+    public Item spawnItem(){
+         return ITEMS[generateRandomNumber(1,ITEMS.length-1)];
+     }
+
+
+    public Player getPlayer() {
+        return player;
+    }
+
     public Element getElement() {
         return element;
     }
-
 
     public ArrayList<Enemy> getEnemies(){
         return enemies;
@@ -115,9 +191,7 @@ public class Room {
             return true;
         }
         return false;
-
-    }
-
+     }
 
     public int generateAmountOfEnemies(){
          return generateRandomNumber(MIN_AMOUNT_OF_ENEMIES, MAX_AMOUNT_OF_ENEMIES);
@@ -138,6 +212,10 @@ public class Room {
 
          if(!enemies.isEmpty()){
              if(enemies.remove(enemy)){
+
+                 if(isEnemiesDead()){
+                     spawnItem();
+                 }
                  return;
              }
              else {
@@ -146,17 +224,23 @@ public class Room {
          }
     }
 
+    public Item[] getITEMS() {
+        return ITEMS;
+    }
 
     //Denna nås av test genom andra metoder, men kan inte testas direkt eftersom den är privat.
     //Man bör fråga sig om denna bör vara publik, samt att den har begränsingar (MIN <= MAX exempelvis)
     public int generateRandomNumber(int min, int max) {
 
+
         if (min < 1  || max < 1 || min > max) {
             throw new IllegalArgumentException();
         } else {
+            max+=1;
 
             return (int) ((Math.random() * (max - min)) + min);
 
         }
     }
 }
+

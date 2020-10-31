@@ -17,7 +17,7 @@ class RoomTest {
     }
 
     @Test
-    void ifArgumentExceptionIsThrownWhenMinValueBelowOne(){
+    void ifArgumentExceptionIsThrownWhenMinValueBelowOneOnGenerateRandomNumber(){
 
       Room room = new Room();
       assertThrows(IllegalArgumentException.class, () -> {
@@ -25,85 +25,25 @@ class RoomTest {
       });
     }
 
-
-/*
     @Test
-    void ifArgumentExceptionIsThrownWhenMaxValueAboveTen(){
+    void getPlayerShouldReturnCorrectPlayer(){
+    Player ply = new Player("test",new EarthElement(1),Role.Warrior);
+    Room room = new Room(ply);
 
-        Room room = new Room();
-        assertThrows(IllegalArgumentException.class, () -> {
-            room.generateRandomNumber(2, 11);
-        });
+    assertEquals(ply, room.getPlayer());
     }
-*/
 
 
-    //TODO ändra denna eftersom jag har ändrat logiken i generateRandomNumber
+
+
+
     @Test
-    void ifArgumentExceptionIsThrownWhenMinValueIsMoreThanMaxValue(){
+    void ifArgumentExceptionIsThrownWhenMinValueIsMoreThanMaxValueInGenerateRandomNumber(){
 
         Room room = new Room();
         assertThrows(IllegalArgumentException.class, () -> {
             room.generateRandomNumber(8, 7);
         });
-    }
-
-    @Test
-    void spawnItemShouldBeTrue() {
-        Room room = new Room();
-        assertEquals(true, room.spawnItem(6));
-    }
-
-    @Test
-    void spawnItemShouldBeFalse(){
-        Room room = new Room();
-        assertEquals(false, room.spawnItem(5));
-    }
-
-    @Test
-    void spawnItemShouldBeTrueWithNewThreshold(){
-        Room room = new Room();
-        room.setThreshold(3);
-        assertEquals(true, room.spawnItem(4));
-    }
-
-    @Test
-    void spawnItemShouldBeFalseWithNewThreshold(){
-        Room room = new Room();
-        room.setThreshold(8);
-        assertEquals(false, room.spawnItem(7));
-    }
-
-
-    @Test
-    void ifThresholdValueChanges(){
-        Room room = new Room();
-        room.setThreshold(4);
-        assertEquals(4, room.getThreshold());
-    }
-
-    @Test
-    void spawnItemShouldBeTrueAfterSetThreshold(){
-        Room room = new Room();
-        room.setThreshold(1);
-        assertTrue(room.spawnItem());
-    }
-
-    @Test
-    void ifArgumentExceptionIsThrownWhenSetThresholdAboveTen() {
-        Room room = new Room();
-        assertThrows(IllegalArgumentException.class, () -> {
-            room.setThreshold(13);
-        });
-    }
-
-    @Test
-    void ifArgumentExceptionIsThrownWhenSetThresholdBelowOne(){
-        Room room = new Room();
-        assertThrows(IllegalArgumentException.class, () -> {
-            room.setThreshold(-1);
-        });
-
     }
 
 
@@ -112,8 +52,8 @@ class RoomTest {
     @Test void ifEnemiesAreTheRightElement(){
       Room room = new Room();
 
-      assertTrue(room.getEnemies().get(3).getMainElement() instanceof FireElement);
-
+      Element el = room.getElement();
+     //assertTrue(room.getEnemies().get(3).getMainElement() instanceof el.getClass());
     }
 
     //TODO eventuellt fundera på att inte använda array? Vad händer exempelvis när en fiende dör? Kanske lättare att hålla koll på när rummet är klart via en lista och sen bara kolla när den är tom.
@@ -149,10 +89,16 @@ class RoomTest {
     void roomTypeShouldBeLuckyWheel(){
       Room room = new Room();
 
-      assertEquals("Lucky Wheel", room.decideTypeOfRoom(true));
+      while(room.getRoomType() != "Lucky Wheel"){
+        room = new Room();
+      }
+      assertEquals("Lucky Wheel", room.getRoomType());
+  }
 
-      //eftersom maxIntervall är 1 borde det alltid bli rätt?
-      // Testar så att när max intervallet är samma som det random numret så blir det true
+
+
+  //eftersom maxIntervall är 1 borde det alltid bli rätt?
+  // Testar så att när max intervallet är samma som det random numret så blir det true
 
 
 
@@ -166,8 +112,6 @@ class RoomTest {
 
 
        */
-
-    }
 
 
     //TODO metoden decideTypeOfRoom borde alltså kallas med en metod som har en chans 1 / 5 att returnera true
@@ -200,9 +144,53 @@ class RoomTest {
     void itemShouldDropWhenAllEnemiesAreDead(){
         Room room = new Room();
 
+
+
         //room.checkIfEnemiesDead(){
 
         }
+
+    @Test
+    void elementShouldBeAddedToPlayerWhenKilledBoss(){
+
+    }
+
+    @Test
+    void itemShouldDropWhenLuckyWheelIsActivated(){
+
+
+    }
+
+    @Test
+    void enemyCantSpawnWhenPlayerHas3MedallionsOfRoomsElement(){
+      FireElement elm = new FireElement(1);
+      Player ply = new Player("test", elm, Role.Runner);
+      ply.addMedallion(elm);
+      ply.addMedallion(elm);
+      ply.addMedallion(elm);
+
+      Room room = new Room(ply, elm);
+
+
+
+      assertNotEquals("Enemy",room.getRoomType());
+    }
+
+
+
+    @Test
+    void bossCantSpawnWhenPlayerDoesNotHaveEnoughMedallionsOfRoomElement(){
+      FireElement elm = new FireElement(1);
+      Player ply = new Player("test", elm, Role.Runner);
+      ply.addMedallion(elm);
+      ply.addMedallion(elm);
+
+
+      Room room = new Room(ply, elm);
+
+      assertNotEquals("Boss",room.getRoomType());
+
+    }
 
 
         /*
