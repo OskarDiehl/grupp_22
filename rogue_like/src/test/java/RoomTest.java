@@ -171,22 +171,29 @@ class RoomTest {
 
       Room room = new Room(ply, elm);
 
+      while(room.getRoomType() == "Lucky Wheel") {
+        room = new Room(ply, elm);
+      }
 
 
-      assertNotEquals("Enemy",room.getRoomType());
+      assertEquals("Boss",room.getRoomType());
     }
 
 
 
     @Test
     void bossCantSpawnWhenPlayerDoesNotHaveEnoughMedallionsOfRoomElement(){
-      FireElement elm = new FireElement(1);
+      EarthElement elm = new EarthElement(1);
       Player ply = new Player("test", elm, Role.Runner);
       ply.addMedallion(elm);
       ply.addMedallion(elm);
 
 
       Room room = new Room(ply, elm);
+
+      while(room.getRoomType() == "Lucky Wheel") {
+        room = new Room(ply, elm);
+      }
 
       assertNotEquals("Boss",room.getRoomType());
 
