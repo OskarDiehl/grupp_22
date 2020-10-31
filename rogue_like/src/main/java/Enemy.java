@@ -31,7 +31,6 @@ public class Enemy extends Character {
     public void attack(Player player) { //TODO gör något åt den höga couplingen vi har, kanske flytta all attackberäkning till Character?
         int attackPower = generateAttackPower(player);
         player.getPlayerStats().loseHP(attackPower);
-        //player.getPlayerStats().attackedByAnEnemy(attackPower); //Väntar på bekräftelse
     }
 
     private int generateAttackPower(Player player) {

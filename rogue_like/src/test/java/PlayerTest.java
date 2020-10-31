@@ -6,6 +6,11 @@ public class PlayerTest {
     private Element element = new WindElement(1);
     private Role role = Role.Warrior;
 
+    @Test
+    void getNullPointerExceptionFromAddElement() {
+        Player player = new Player("Sabina", element, role);
+        assertThrows(NullPointerException.class, () -> player.addElement(null));
+    }
 
     //TEST CONSTRUCTOR -------------------------------------------------------------------------------------------------
     @Test

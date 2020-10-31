@@ -71,7 +71,7 @@ public class Player extends Character {
         else if (newElement.getClass().isInstance(new WindElement(1)))        //For wind elements
             upgradeOrAddElement(3, newElement);                                    //... upgrade or add wind element
         else
-            System.out.println("Not an allowed element");
+            throw new NullPointerException();
 
          //   throw new IllegalArgumentException("Error: no allowed element is chosen");
         //TODO kalla på ngt exception?

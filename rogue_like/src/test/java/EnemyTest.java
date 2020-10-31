@@ -19,6 +19,7 @@ public class EnemyTest {
     @Test
     void getIAEFromIllegalLevelConstructorArgument() {
         assertThrows(IllegalArgumentException.class, () -> new Enemy(new FireElement(2), 4, new Room()));
+
     }
 
     @Test
@@ -61,7 +62,8 @@ public class EnemyTest {
     void removeIfDeadWhenIsDead() {
         Room room = new Room();
         Enemy enemy = room.getEnemies().get(0);
-        enemy.getStats().loseHP(enemy.getHP());
+        int hp = enemy.getHP();
+        enemy.getStats().loseHP(hp);
         enemy.removeIfDead();
         assertFalse(room.getEnemies().contains(enemy));
     }

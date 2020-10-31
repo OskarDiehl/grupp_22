@@ -88,10 +88,10 @@ public class StatsTest {
 
     //TEST OTHER METHODS --------------------------------------------------------------------------
     @Test
-    void characterIsAttackedByAnOtherCharacter(){
+    void characterIsAttackedByAnotherCharacter(){
         //TODO Vad händer när en karaktär blir attackerad? Är det bara HP som påverkas? /Malin
         Stats stats = new Stats(8, 3, 4);
-        stats.attackedByAnEnemy(2);
+        stats.loseHP(2);
         assertEquals(6, stats.getCurrentHP());
     }
 
