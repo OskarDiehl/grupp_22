@@ -70,7 +70,10 @@ public class Player extends Character {
 
         else if (newElement.getClass().isInstance(new WindElement(1)))        //For wind elements
             upgradeOrAddElement(3, newElement);                                    //... upgrade or add wind element
+        else
+            System.out.println("Not an allowed element");
 
+         //   throw new IllegalArgumentException("Error: no allowed element is chosen");
         //TODO kalla på ngt exception?
 
         //TODO Jag behöver ngn metod som returnerar vilken typ av element som det är /Malin
@@ -106,15 +109,15 @@ public class Player extends Character {
     }
 
     // ITEMS-ARRAY METHODS ---------------------------------------------------------------------------------------------
-    private void addItem(Item newItem) {
-
-        //metod som på ngt vis lägger till ett item och eventuellt byter mot ett annat.
-
-        //TODO Vad sägs om följande? /Malin  :
-        // 1. Ta reda på vilket typ av item.
-        // 2. Om användaren redan har ett item av den typen -> Fråga användaren om hen vill byta ut item.
-        // 3. Om användaren säger ja -> Byt. Annars avbryt?
-    }
+//    private void addItem(Item newItem) {
+//
+//        //metod som på ngt vis lägger till ett item och eventuellt byter mot ett annat.
+//
+//        //TODO Vad sägs om följande? /Malin  :
+//        // 1. Ta reda på vilket typ av item.
+//        // 2. Om användaren redan har ett item av den typen -> Fråga användaren om hen vill byta ut item.
+//        // 3. Om användaren säger ja -> Byt. Annars avbryt?
+//    }
 
     //Bestämda index för array:en med items
     //Armor = index 0
@@ -157,16 +160,6 @@ public class Player extends Character {
 
 
     // GET-METHODS -----------------------------------------------------------------------------------------------------
-    public Element[] getElementsList() {
-        return elements;
-    }
-
-    //TODO getElement /Malin
-
-    public Item[] getItemsList() {
-        return items;
-    }
-
     public Role getRole() {
         return role;
     }
@@ -191,55 +184,10 @@ public class Player extends Character {
         return playerStats.getCurrentSpeed();
     }
 
-    public int getEarthMedallions() {
-        return earthMedallions;
-    }
-
-    public int getWaterMedallions() {
-        return waterMedallions;
-    }
-
-    public int getFireMedallions() {
-        return fireMedallions;
-    }
-
-    public int getWindMedallions() {
-        return windMedallions;
-    }
-
     public Element getActivatedElement() {
         if (activatedElement != null)
             return activatedElement;
         else
-            throw new NullPointerException(); //TODO Testa Malin
+            throw new NullPointerException("Error: No activated element"); //TODO Testa Malin
     }
 }
-
-
-//Oskar här! Tänker att det kan vara bra att ha en metod som samlar stats från de olika items som spelaren har.
-//Kommenterar bort metoderna nu i alla fall så att den inte stör med det du gör.
-    /*public int getItemPower() {
-        int itemPower = 7; //7 är en placeholder tills vi kan hämta power från items.
-        return itemPower;
-    }
-
-    public int getItemSpeed() {
-        int itemSpeed = 5; //Placeholder
-        return itemSpeed;
-    }
-
-    public int getItemHP() {
-        int itemHP = 3; //Placeholder
-        return itemHP;
-    }*/
-
-
-//Möjlig lösning utan att ändra på mycket saker, omvandlar negativa tal och sätter false på increase i metoden den kallar på.
-    /*public void doStuffWithChangePower(int amount){
-        if (amount >-1) {
-            changePower(true,amount);
-        } else {
-            amount = amount * -1;
-            changePower(false, amount);
-        }
-    }*/

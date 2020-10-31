@@ -14,6 +14,11 @@ public class PlayerTest {
         assertEquals("Sabina", player.getName());
     }
 
+    @Test
+    void getNullPointerExceptionFromIllegalLevelConstructorArgument() {
+        assertThrows(NullPointerException.class, () -> new Player("Sabina", null, role));
+    }
+
     //commenterade bort testet för att det hindrade mig från att testa Element/ Oskar
     /*@Test
     void getElementFromConstructorArgument() {
@@ -141,34 +146,32 @@ public class PlayerTest {
     //TEST MEDALLIONS ----------------------------------------------------------------------------------------------------
     @Test
     void fetchWaterMedallions(){
-        WaterElement waterElement = new WaterElement(1);
         Player player = new Player("Sabina", element, role);
-        player.fetchMedallionStatus(waterElement);
-        assertEquals(0, player.getWaterMedallions());
+        player.addMedallion(new WaterElement(1));
+        assertEquals(1, player.fetchMedallionStatus(new WaterElement(3)));
     }
 
     @Test
     void fetchEarthMedallions(){
-        EarthElement earthElement = new EarthElement(1);
         Player player = new Player("Sabina", element, role);
-        player.fetchMedallionStatus(earthElement);
-        assertEquals(0, player.getEarthMedallions());
+        player.addMedallion(new EarthElement(1));
+        player.addMedallion(new WaterElement(2));
+        player.addMedallion(new EarthElement(3));
+        assertEquals(2,  player.fetchMedallionStatus(new EarthElement(1)));
     }
 
     @Test
     void fetchFireMedallions(){
-        FireElement fireElement = new FireElement(2);
         Player player = new Player("Sabina", element, role);
-        player.fetchMedallionStatus(fireElement);
-        assertEquals(0, player.getFireMedallions());
+        assertEquals(0, player.fetchMedallionStatus(new FireElement(3)));
     }
 
     @Test
     void fetchWindMedallions(){
-        WindElement windElement = new WindElement(3);
         Player player = new Player("Sabina", element, role);
-        player.fetchMedallionStatus(windElement);
-        assertEquals(0, player.getEarthMedallions());
+        player.addMedallion(new WindElement(2));
+        player.addMedallion(new WindElement(3));
+        assertEquals(2, player.fetchMedallionStatus(new WindElement(1)));
     }
 
     @Test
@@ -177,7 +180,7 @@ public class PlayerTest {
         Player player = new Player("Sabina", element, role);
         player.addMedallion(fireElement);
         player.addMedallion(fireElement);
-        assertEquals(2, player.getFireMedallions());
+        assertEquals(2, player.fetchMedallionStatus(new FireElement(2)));
     }
 
     @Test
@@ -188,7 +191,7 @@ public class PlayerTest {
         player.addMedallion(waterElement);
         player.addMedallion(waterElement);
         player.addMedallion(waterElement);
-        assertEquals(3 ,player.getWaterMedallions());
+        assertEquals(3 ,player.fetchMedallionStatus(waterElement));
     }
 
     //TODO fundera på om du ska skriva siffror med bokstäver eller siffror?
@@ -205,14 +208,12 @@ public class PlayerTest {
 
         player.resetMedallions();
 
-        assertEquals(0 , player.getWindMedallions(), player.getEarthMedallions());
+        assertEquals(0 , player.fetchMedallionStatus(new WindElement(2)), player.fetchMedallionStatus(new EarthElement(3)));
     }
 
 
 
     //TEST ELEMENTS ----------------------------------------------------------------------------------------------------
-    //THE ARRAY ELEMENTS
-
     @Test
     void addFireElementToElements(){
         FireElement fireElement = new FireElement(2);
@@ -222,43 +223,60 @@ public class PlayerTest {
     }
 
     @Test
-    void getWindElementAsActivatedElement(){
+    void getEarthElementAsActivatedElement(){                                           //Tests the method "changeActivatedElement"
         FireElement fireElement = new FireElement(2);
-        WindElement windElement = new WindElement(3);
-        Player player = new Player("Sabina", fireElement, role);         //Makes a fire element as the main element and therefor the activated element
-        player.addElement(windElement);                                         //Adds a wind element to the player´s owned elements
-        player.changeActivatedElement("Wind");                    //Changes the activated element to the wind element
-        assertEquals(windElement, player.getActivatedElement());
-    }
-
-
-
-    @Test
-    void levelUpElement(){
-        Player player = new Player("Sabina", element, role);
-        player.addElement(new WindElement(3));
-        assertEquals(2, player.getMainElement().getElementLevel());
+        EarthElement earthElement = new EarthElement(3);
+        Player player = new Player("Sabina", fireElement, role);                //Makes a fire element as the main element and therefor the activated element
+        player.addElement(earthElement);                                                //Adds a wind element to the player´s owned elements
+        player.changeActivatedElement("Earth");                             //Changes the activated element to the wind element
+        assertEquals(earthElement, player.getActivatedElement());
     }
 
     @Test
-    void levelUpElementWrong(){
+    void spellEarthWrongInChangeActivatedElement(){                                     //Tests the method "changeActivatedElement" and "getActivatedElement"
+        FireElement fireElement = new FireElement(2);
+        EarthElement earthElement = new EarthElement(3);
+        Player player = new Player("Sabina", fireElement, role);                //Makes a fire element as the main element and therefor the activated element
+        player.addElement(earthElement);                                                //Adds a wind element to the player´s owned elements
+        player.changeActivatedElement("Earh");                              //Changes the activated element to the wind element
+        assertEquals(fireElement, player.getActivatedElement());
+    }
+
+    @Test
+    void levelUpElement(){                                                              //Test level up player´s wind element
         Player player = new Player("Sabina", element, role);
         player.addElement(new WindElement(3));
         player.addElement(new WindElement(3));
-        player.addElement(new WindElement(3));
-        assertNotEquals(1, player.getMainElement().getElementLevel());
+        assertEquals(3, player.getMainElement().getElementLevel());
     }
-
-
-    //TODO fixa det här MalinJÄVEL mvh Malin
 
     //TODO metod som lägger in element i elements -> implementera i konstruktorn /Malin
 
     @Test
-    void searchForElementInElementsArray(){
+    void searchForElementInElementsArray(){                                             //Test method "findElement"
+        WaterElement waterElement = new WaterElement(3);
         FireElement fireElement = new FireElement(1);
-        Player player = new Player("Sabina", fireElement, role);
+        Player player = new Player("Sabina", element, role);
+        player.addElement(waterElement);
+        player.addElement(fireElement);
+        assertEquals(waterElement, player.findElement("water"));
     }
+
+    @Test
+    void typWrongInFindElementMethod(){                                                 //Type wrong in method "findElement"
+        Player player = new Player("Sabina", element, role);
+        assertNull(player.findElement("win"));
+    }
+
+//    @Test
+//    void throwExceptionInGetActivatedElement(){
+//        Player player = new Player("Sabina", element, role);
+//        assertThrows(IllegalArgumentException.class, () -> player.addElement(null));
+//
+//     //   assertThrows(NullPointerException.class, () -> player.getActivatedElement());
+//
+//     //   assertThrows(NullPointerException.class, () -> new Player("Sabina", null, role));
+//    }
 
 
 
