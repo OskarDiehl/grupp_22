@@ -1,9 +1,9 @@
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PlayerTest {
-    private Element element;
+    private Element element = new WindElement(1);
     private Role role = Role.Warrior;
 
 
@@ -57,6 +57,7 @@ public class PlayerTest {
     }
 
 
+
     //TEST GET-METHODS FOR STATS----------------------------------------------------------------------------------------
     @Test
     void getCurrentHPFromGetMethod() {
@@ -77,6 +78,7 @@ public class PlayerTest {
     }
 
 
+
     //TEST LEVELING ----------------------------------------------------------------------------------------------------
     @Test                               // TODO Fixa med metoderna när en spelare går upp i level Malin /Malin
     void levelUpToSecondLevel(){
@@ -93,6 +95,8 @@ public class PlayerTest {
         player.levelUp();                  //TODO refactor? /Malin
         assertEquals(3, player.getCurrentLevel());
     }
+
+
 
     //TEST CHANGE STATS ------------------------------------------------------------------------------------------------
     @Test
@@ -131,6 +135,8 @@ public class PlayerTest {
         player.resetStatsForPowerAndSpeed();
         assertEquals(4, player.getCurrentSpeedFromStats() + 3, player.getCurrentPowerFromStats());
     }
+
+
 
     //TEST MEDALLIONS ----------------------------------------------------------------------------------------------------
     @Test
@@ -202,14 +208,45 @@ public class PlayerTest {
         assertEquals(0 , player.getWindMedallions(), player.getEarthMedallions());
     }
 
+
+
     //TEST ELEMENTS ----------------------------------------------------------------------------------------------------
     //THE ARRAY ELEMENTS
 
     @Test
     void addFireElementToElements(){
         FireElement fireElement = new FireElement(2);
-        Player player = new Player("Sabina", fireElement, role);
-        assertEquals("Fire", player.returnOwnedElements());
+        Player player = new Player("Sabina", element, role);
+        player.addElement(fireElement);
+        assertEquals(fireElement, player.findElement("Fire"));
+    }
+
+    @Test
+    void getWindElementAsActivatedElement(){
+        FireElement fireElement = new FireElement(2);
+        WindElement windElement = new WindElement(3);
+        Player player = new Player("Sabina", fireElement, role);         //Makes a fire element as the main element and therefor the activated element
+        player.addElement(windElement);                                         //Adds a wind element to the player´s owned elements
+        player.changeActivatedElement("Wind");                    //Changes the activated element to the wind element
+        assertEquals(windElement, player.getActivatedElement());
+    }
+
+
+
+    @Test
+    void levelUpElement(){
+        Player player = new Player("Sabina", element, role);
+        player.addElement(new WindElement(3));
+        assertEquals(2, player.getMainElement().getElementLevel());
+    }
+
+    @Test
+    void levelUpElementWrong(){
+        Player player = new Player("Sabina", element, role);
+        player.addElement(new WindElement(3));
+        player.addElement(new WindElement(3));
+        player.addElement(new WindElement(3));
+        assertNotEquals(1, player.getMainElement().getElementLevel());
     }
 
 
@@ -222,6 +259,7 @@ public class PlayerTest {
         FireElement fireElement = new FireElement(1);
         Player player = new Player("Sabina", fireElement, role);
     }
+
 
 
     //TEST XXX ---------------------------------------------------------------------------------------------------------

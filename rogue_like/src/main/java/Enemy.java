@@ -6,8 +6,8 @@ public class Enemy extends Character {
     private EnemyStats stats;
     private Room room;
 
-    public Enemy(Element element, int level, Room room) {
-        super(element, level);
+    public Enemy(Element mainElement, int level, Room room) {       //TODO Jag döpte om element till mainElement för att hålla reda på vad som är vad. Hoppas att det är okej. Hojta till annars! /Malin
+        super(mainElement, level);
         this.room = room;
         calculateStats(level);
     }
