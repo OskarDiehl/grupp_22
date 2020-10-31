@@ -1,5 +1,3 @@
-import java.util.Set;
-
 public class Player extends Character {
 
     // DATASAMLING/-AR -------------------------------------------------------------------------------------------------
@@ -22,7 +20,7 @@ public class Player extends Character {
     private int earthMedallions = 0;
     private int waterMedallions = 0;
     private int fireMedallions = 0;
-    private int airMedallions = 0;
+    private int windMedallions = 0;
 
     // CONSTRUCTOR -----------------------------------------------------------------------------------------------------
     public Player(String name, Element element, Role role) {
@@ -118,14 +116,22 @@ public class Player extends Character {
     public int fetchMedallionStatus(Element element){
         if (element.getClass().isInstance(new EarthElement(1)))
             return earthMedallions;
+        else if (element.getClass().isInstance(new WaterElement(1)))
+            return waterMedallions;
+        else if (element.getClass().isInstance(new FireElement(1)))
+            return fireMedallions;
+        else if (element.getClass().isInstance(new WindElement(1)))
+            return windMedallions;
         else
-            return 3;
+            return 5; //TODO throw ngt /Malin
 
     }
 
     //hämta intarna (tar in element eller string som parameter)
 
     //restet medaljerna för just det elementet
+
+    //metod som begränsar medaljonerna till 3
 
 
 
@@ -174,8 +180,8 @@ public class Player extends Character {
         return fireMedallions;
     }
 
-    public int getAirMedallions() {
-        return airMedallions;
+    public int getWindMedallions() {
+        return windMedallions;
     }
 }
 
