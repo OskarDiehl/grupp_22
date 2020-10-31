@@ -60,9 +60,9 @@ public class EnemyTest {
     @Test
     void removeIfDeadWhenIsDead() {
         Room room = new Room();
-        Enemy enemy = new Enemy(new FireElement(1), 2, room);
-        enemy.getStats().loseHP(5);
+        Enemy enemy = room.getEnemies().get(0);
+        enemy.getStats().loseHP(enemy.getHP());
         enemy.removeIfDead();
-        assertFalse(room.getEnemies().contains(enemy)); //TODO kolla denna när Rooms metod är implementerad
+        assertFalse(room.getEnemies().contains(enemy));
     }
 }

@@ -29,12 +29,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="705c9c8e-fb4c-405e-b718-7bd06db4888a" name="Default Changelist" comment="Implementerat en del av kallelsen på Room när en fiende dör samt vissa tester">
+    <list default="true" id="705c9c8e-fb4c-405e-b718-7bd06db4888a" name="Default Changelist" comment="Implementering av fler tester samt i Enemy">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Enemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Stats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Stats.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/BossTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/BossTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/CharacterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CharacterTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/EnemyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/EnemyTest.java" afterDir="false" />
     </list>
     <list id="296fe230-f9f7-40d3-8725-a7fe964cc7bb" name="Ny branch med förslag på ändringar av stats-generering" comment="" />
@@ -97,7 +94,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.BossTest">
+  <component name="RunManager" selected="JUnit.EnemyTest.removeIfDeadWhenIsDead">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -157,10 +154,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.EnemyTest.removeIfDeadWhenIsDead" />
         <item itemvalue="JUnit.BossTest" />
         <item itemvalue="JUnit.All in rogue_like" />
         <item itemvalue="JUnit.EnemyTest" />
-        <item itemvalue="JUnit.EnemyTest.removeIfDeadWhenIsDead" />
         <item itemvalue="JUnit.EnemyTest.attackPlayer" />
       </list>
     </recent_temporary>
@@ -347,7 +344,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604077530490</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Implementering av fler tester samt i Enemy">
+      <created>1604083600724</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1604083600724</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -358,19 +362,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="origin/main" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -401,7 +393,8 @@
     <MESSAGE value="Tog bort onödig/osäker metod" />
     <MESSAGE value="Uppdatering av tester" />
     <MESSAGE value="Implementerat en del av kallelsen på Room när en fiende dör samt vissa tester" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementerat en del av kallelsen på Room när en fiende dör samt vissa tester" />
+    <MESSAGE value="Implementering av fler tester samt i Enemy" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementering av fler tester samt i Enemy" />
   </component>
   <component name="WindowStateProjectService">
     <state x="651" y="235" key="#Inspections" timestamp="1603740755484">
@@ -436,25 +429,25 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="0" y="112" key="CommitChangelistDialog2/0.23.1680.1027@0.23.1680.1027" timestamp="1603372737991" />
-    <state width="1002" height="305" key="GridCell.Tab.0.bottom" timestamp="1604082327732">
+    <state width="1002" height="305" key="GridCell.Tab.0.bottom" timestamp="1604111689756">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="1002" height="305" key="GridCell.Tab.0.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1604082327732" />
+    <state width="1002" height="305" key="GridCell.Tab.0.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1604111689756" />
     <state width="1638" height="280" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1603372707355" />
-    <state width="1002" height="305" key="GridCell.Tab.0.center" timestamp="1604082327732">
+    <state width="1002" height="305" key="GridCell.Tab.0.center" timestamp="1604111689756">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="1002" height="305" key="GridCell.Tab.0.center/0.0.2048.1112@0.0.2048.1112" timestamp="1604082327732" />
+    <state width="1002" height="305" key="GridCell.Tab.0.center/0.0.2048.1112@0.0.2048.1112" timestamp="1604111689756" />
     <state width="1638" height="280" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1603372707353" />
-    <state width="1002" height="305" key="GridCell.Tab.0.left" timestamp="1604082327731">
+    <state width="1002" height="305" key="GridCell.Tab.0.left" timestamp="1604111689756">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="1002" height="305" key="GridCell.Tab.0.left/0.0.2048.1112@0.0.2048.1112" timestamp="1604082327731" />
+    <state width="1002" height="305" key="GridCell.Tab.0.left/0.0.2048.1112@0.0.2048.1112" timestamp="1604111689756" />
     <state width="1638" height="280" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1603372707353" />
-    <state width="1002" height="305" key="GridCell.Tab.0.right" timestamp="1604082327732">
+    <state width="1002" height="305" key="GridCell.Tab.0.right" timestamp="1604111689756">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="1002" height="305" key="GridCell.Tab.0.right/0.0.2048.1112@0.0.2048.1112" timestamp="1604082327732" />
+    <state width="1002" height="305" key="GridCell.Tab.0.right/0.0.2048.1112@0.0.2048.1112" timestamp="1604111689756" />
     <state width="1638" height="280" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1603372707354" />
     <state x="162" y="110" key="MergeDialog" timestamp="1603353243814">
       <screen x="0" y="23" width="1680" height="1027" />
@@ -474,10 +467,10 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="596" y="259" key="VCS.ChangeListViewerDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1602756263957" />
-    <state x="536" y="274" key="Vcs.Push.Dialog.v2" timestamp="1604077534741">
+    <state x="536" y="274" key="Vcs.Push.Dialog.v2" timestamp="1604083603813">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="536" y="274" key="Vcs.Push.Dialog.v2/0.0.2048.1112@0.0.2048.1112" timestamp="1604077534741" />
+    <state x="536" y="274" key="Vcs.Push.Dialog.v2/0.0.2048.1112@0.0.2048.1112" timestamp="1604083603813" />
     <state x="440" y="276" key="Vcs.Push.Dialog.v2/0.23.1680.1027@0.23.1680.1027" timestamp="1603372748109" />
     <state x="100" y="123" width="1480" height="827" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1602752061316">
       <screen x="0" y="23" width="1680" height="1027" />
