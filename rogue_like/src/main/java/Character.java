@@ -1,13 +1,11 @@
 public abstract class Character {
 
     // INSTANCE VARIABLES  ------------------------------------------------------------------------
-    private String name;
     private Element mainElement;
     private int level;
 
     // CONSTRUCTORS  ------------------------------------------------------------------------
-    public Character(String name, Element mainElement){
-        this.name = name;
+    public Character(Element mainElement){
         this.mainElement = mainElement;
     }
 
@@ -30,9 +28,6 @@ public abstract class Character {
     }
 
     // GET-METHODS  ------------------------------------------------------------------------
-    public String getName() {
-        return name;
-    }
 
     public Element getMainElement() {
         return mainElement;

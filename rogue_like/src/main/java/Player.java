@@ -21,11 +21,14 @@ public class Player extends Character {
     private int fireMedallions = 0;
     private int windMedallions = 0;
     private Element activatedElement;
+    private String name;
 
     // CONSTRUCTOR -----------------------------------------------------------------------------------------------------
     public Player(String name, Element element, Role role) {
-        super(name, element);
+        super(element);
         //this.level = getCurrentLevel();   TODO Fråga Sabina /Malin
+        //TODO försök fixa
+        this.name = name;
         this.role = role;
         this.playerStats = new PlayerStats(role.getHP(), role.getPower(), role.getSpeed());
         activatedElement = element;
@@ -62,6 +65,7 @@ public class Player extends Character {
     public void addElement(Element newElement) {
         if (newElement.getClass().isInstance(new EarthElement(1))) {          //For earth elements
             upgradeOrAddElement(0, newElement);                                    //... upgrade or add earth element
+
         } else if (newElement.getClass().isInstance(new WaterElement(1)))       //For water elements
             upgradeOrAddElement(1, newElement);                                    //... upgrade or add water element
 
@@ -71,7 +75,7 @@ public class Player extends Character {
         else if (newElement.getClass().isInstance(new WindElement(1)))        //For wind elements
             upgradeOrAddElement(3, newElement);                                    //... upgrade or add wind element
         else
-            throw new NullPointerException();
+            throw new NullPointerException();  //TODO HUR FANKEN FÅR JAG MED DEN HÄR I COVERAGE?! /Malin
 
          //   throw new IllegalArgumentException("Error: no allowed element is chosen");
         //TODO kalla på ngt exception?
@@ -128,18 +132,15 @@ public class Player extends Character {
     public int fetchMedallionStatus(Element element) {
         if (element.getClass().isInstance(new EarthElement(1)))
             return earthMedallions;
+
         else if (element.getClass().isInstance(new WaterElement(1)))
             return waterMedallions;
+
         else if (element.getClass().isInstance(new FireElement(1)))
             return fireMedallions;
-        else if (element.getClass().isInstance(new WindElement(1)))
-            return windMedallions;
-        else
-            return 5;
-        //TODO lösa det här eller ta bort? /Malin
-//        else                      eller detta?
-//            throw new IllegalArgumentException("Error: Can´t find the element");
 
+        else
+            return windMedallions;
     }
 
     public void addMedallion(Element element) {
@@ -164,6 +165,10 @@ public class Player extends Character {
     // GET-METHODS -----------------------------------------------------------------------------------------------------
     public Role getRole() {
         return role;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public PlayerStats getPlayerStats() {
