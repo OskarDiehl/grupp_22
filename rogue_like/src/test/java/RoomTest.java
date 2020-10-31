@@ -112,7 +112,7 @@ class RoomTest {
     @Test void ifEnemiesAreTheRightElement(){
       Room room = new Room();
 
-      assertTrue(room.getEnemies().get(3).getElement() instanceof FireElement);
+      assertTrue(room.getEnemies().get(3).getMainElement() instanceof FireElement);
 
     }
 

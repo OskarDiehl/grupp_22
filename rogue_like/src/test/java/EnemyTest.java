@@ -7,7 +7,7 @@ public class EnemyTest {
     void getElementFromConstructorArgument() {
         Element element = new FireElement(2);
         Character character = new Enemy(element, 2, new Room());
-        assertEquals(element, character.getElement());
+        assertEquals(element, character.getMainElement());
     }
 
     @Test
