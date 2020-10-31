@@ -17,16 +17,6 @@ public abstract class Character {
             throw new IllegalArgumentException();
     }
 
-    // OTHER METHODS ------------------------------------------------------------------------
-
-    public void setLevel(int level) {
-        if (level >= 1 && level <=3)
-            this.level = level;
-        else
-            throw new IllegalArgumentException();
-
-    }
-
     // GET-METHODS  ------------------------------------------------------------------------
 
     public Element getMainElement() {

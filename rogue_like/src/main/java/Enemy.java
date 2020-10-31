@@ -1,4 +1,7 @@
+import org.jetbrains.annotations.NotNull;
+
 public class Enemy extends Character {
+
     private final static int LEVEL_1_STAT = 3;
     private final static int LEVEL_2_STAT = 5;
     private final static int LEVEL_3_STAT = 8;
@@ -45,6 +48,7 @@ public class Enemy extends Character {
     public EnemyStats getStats() {
         return stats;
     }
+
     public int getHP() {
         return getStats().getCurrentHP();
     }

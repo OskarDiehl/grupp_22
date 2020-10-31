@@ -51,6 +51,24 @@ public class EnemyTest {
     }
 
     @Test
+    void getStatPowerThroughEnemy() {
+        Enemy enemy = new Enemy(new FireElement(2), 2, new Room());
+        assertEquals(5, enemy.getPower());
+    }
+
+    @Test
+    void getStatHPThroughEnemy() {
+        Enemy enemy = new Enemy(new FireElement(2), 2, new Room());
+        assertEquals(5, enemy.getHP());
+    }
+
+    @Test
+    void getStatSpeedThroughEnemy() {
+        Enemy enemy = new Enemy(new FireElement(2), 2, new Room());
+        assertEquals(5, enemy.getSpeed());
+    }
+
+    @Test
     void attackPlayer() { //TODO Implementera detta
         Enemy enemy = new Enemy(new FireElement(1), 2, new Room());
         Player player = new Player("David", new WaterElement(1), Role.Tank);
