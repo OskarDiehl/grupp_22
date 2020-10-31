@@ -9,7 +9,7 @@ public abstract class Element {
         if (elementLevel == 1 || elementLevel == 2 || elementLevel == 3) {
             this.elementLevel = elementLevel;
         } else {
-            throw new IllegalArgumentException("The Element Level cant be set below 1 or above 3");
+            throw new IllegalArgumentException("The Element Level can't be set below 1 or above 3");
         }
     }
 
@@ -19,6 +19,14 @@ public abstract class Element {
 
     public int getElementLevel() {
         return elementLevel;
+    }
+
+    public void levelUpElement() {
+        if (elementLevel == 3){
+            throw new IllegalArgumentException("The Element Level can't be above 3");
+        } else {
+            elementLevel++;
+        }
     }
 
     //Kanske ska flyttas till Character eller någonting sådant.

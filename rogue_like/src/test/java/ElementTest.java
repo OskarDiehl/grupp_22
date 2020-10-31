@@ -66,6 +66,21 @@ public class ElementTest {
         });
     }
 
+    @Test
+    void levelUpElementFromOneToTwoAndGetLevelReturnsTwo() {
+        Element e1 = new FireElement(1);
+        e1.levelUpElement();
+        assertEquals(2, e1.getElementLevel());
+    }
+
+    @Test
+    void levelUpElementIfElementLevelThreeThrowIAE() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            Element e1 = new FireElement(3);
+            e1.levelUpElement();
+        });
+    }
+
 
 
 }
