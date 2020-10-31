@@ -63,7 +63,7 @@ public class Player extends Character {
       /*  if (newElement.getClass().isInstance(newElement) || newElement.getClass() instanceof new FireElement(1)){
 
         }*/
-       /* if (newElement.getName.equals("Earth element")) TODO be Oskar fixa getName eller annan lösning för elementen
+       /* if (newElement.getName.equals("Earth element"))
             checkIfPlayerHasElement(0, newElement);
 
         else if (newElement.getName.equals("Water element"))
@@ -101,8 +101,11 @@ public class Player extends Character {
 
     // ITEMS-ARRAY METHODS ---------------------------------------------------------------------------------------------
     private void addItem(Item newItem){
+
+        //metod som på ngt vis lägger till ett item och eventuellt byter mot ett annat.
+
         //TODO Vad sägs om följande? /Malin  :
-        // 1. Ta reda på vilket typ av element.
+        // 1. Ta reda på vilket typ av item.
         // 2. Om användaren redan har ett item av den typen -> Fråga användaren om hen vill byta ut item.
         // 3. Om användaren säger ja -> Byt. Annars avbryt?
     }
@@ -120,12 +123,34 @@ public class Player extends Character {
             return waterMedallions;
         else if (element.getClass().isInstance(new FireElement(1)))
             return fireMedallions;
-        else if (element.getClass().isInstance(new WindElement(1)))
+        else /*if (element.getClass().isInstance(new WindElement(1)))*/
             return windMedallions;
-        else
-            return 5; //TODO throw ngt /Malin
+            //TODO lösa det här eller ta bort? /Malin
+//        else                      eller detta?
+//            throw new IllegalArgumentException("Error: Can´t find the element");
 
     }
+
+    public void addMedallion(Element element){
+        if (element.getClass().isInstance(new EarthElement(1)) && earthMedallions < 3)
+            earthMedallions++;
+        else if (element.getClass().isInstance(new WaterElement(1)) && waterMedallions < 3)
+            waterMedallions++;
+        else if (element.getClass().isInstance(new FireElement(1)) && fireMedallions < 3)
+            fireMedallions++;
+        else if (element.getClass().isInstance(new WindElement(1)) && windMedallions < 3)
+            windMedallions++;
+        //TODO Snacka med David om att kalla på metod om man nått tre medaljer? /Malin
+    }
+
+    public void resetMedallions(){
+        earthMedallions = 0;
+        waterMedallions = 0;
+        fireMedallions = 0;
+        windMedallions = 0;
+    }
+
+
 
     //hämta intarna (tar in element eller string som parameter)
 
@@ -139,6 +164,8 @@ public class Player extends Character {
     public Element[] getElementsList() {
         return elements;
     }
+
+    //TODO getElement /Malin
 
     public Item[] getItemsList() {
         return items;
