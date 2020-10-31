@@ -169,10 +169,6 @@ public class Room {
 
     }
 
-
-
-
-
     public Item spawnItem(){
          return ITEMS[generateRandomNumber(1,ITEMS.length-1)];
      }
