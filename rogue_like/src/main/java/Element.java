@@ -1,10 +1,7 @@
-//kolla upp hur man Kan testa abstrakta klasser!!!!
-
 public abstract class Element {
 
     private int elementLevel;
 
-    //Fick inte det att fungera med att ha två konstruktorer här och få dem att fungera i subklasserna /Oskar
     public Element(int elementLevel) {
         if (elementLevel == 1 || elementLevel == 2 || elementLevel == 3) {
             this.elementLevel = elementLevel;
