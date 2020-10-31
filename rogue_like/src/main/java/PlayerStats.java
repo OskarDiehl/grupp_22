@@ -40,6 +40,8 @@ public class PlayerStats extends Stats {
         currentSpeed = getDefaultSpeed();
     }
 
+    //TODO Skapa metod för om Playern "dör" /Malin
+
     // LEVEL-METHODS  ------------------------------------------------------------------------
     public void levelStatsUp(){
         if (currentLevel < 3){
