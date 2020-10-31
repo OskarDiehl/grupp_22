@@ -148,7 +148,7 @@ public class Room {
          int medallions =0;
          String elementName = getElement().getClass().getName();
          if(elementName.equals("FireElement"))
-             medallions = player.getFireMedallions();
+             medallions = player.getFireMedallions();   // TODO Jag tog bort "get-metoderna för medaljongerna då jag skapade metoden "fetchMedallionStatus" /Malin
          else if(elementName.equals("EarthElement"))
              medallions = player.getEarthMedallions();
 

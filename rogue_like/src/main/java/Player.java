@@ -132,8 +132,10 @@ public class Player extends Character {
             return waterMedallions;
         else if (element.getClass().isInstance(new FireElement(1)))
             return fireMedallions;
-        else /*if (element.getClass().isInstance(new WindElement(1)))*/
+        else if (element.getClass().isInstance(new WindElement(1)))
             return windMedallions;
+        else
+            return 5;
         //TODO lösa det här eller ta bort? /Malin
 //        else                      eller detta?
 //            throw new IllegalArgumentException("Error: Can´t find the element");
