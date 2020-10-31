@@ -29,7 +29,7 @@ public class Enemy extends Character {
     }
 
     public void attack(Player player) { //TODO gör något åt den höga couplingen vi har, kanske flytta all attackberäkning till Character?
-        int attackPower = getMainElement().attack(player.getMainElement());
+        int attackPower = getMainElement().attack(getPower(), player.getMainElement());
         player.getPlayerStats().loseHP(attackPower);
     }
 
@@ -44,6 +44,17 @@ public class Enemy extends Character {
 
     public EnemyStats getStats() {
         return stats;
+    }
+    public int getHP() {
+        return getStats().getCurrentHP();
+    }
+
+    public int getPower() {
+        return getStats().getDefaultPower();
+    }
+
+    public int getSpeed() {
+        return getStats().getDefaultSpeed();
     }
 
     public Room getRoom() {
