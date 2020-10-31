@@ -134,6 +134,14 @@ public class PlayerTest {
 
     //TEST MEDALLIONS ----------------------------------------------------------------------------------------------------
     @Test
+    void fetchWaterMedallions(){
+        WaterElement waterElement = new WaterElement(1);
+        Player player = new Player("Sabina", element, role);
+        player.fetchMedallionStatus(waterElement);
+        assertEquals(0, player.getWaterMedallions());
+    }
+
+    @Test
     void fetchEarthMedallions(){
         EarthElement earthElement = new EarthElement(1);
         Player player = new Player("Sabina", element, role);
@@ -141,25 +149,57 @@ public class PlayerTest {
         assertEquals(0, player.getEarthMedallions());
     }
 
-//    @Test
-//    void notValidElementAsParameterWhenFetchingMedallions(){
-//        assertThrows(IllegalArgumentException.class, );
-//    }
-//
-//    @Test
-//    void ifElementLevelAboveThreeThrowIAE() {
-//        assertThrows(IllegalArgumentException.class, () -> {
-//            Element e = new FireElement(4);
-//        });
-//    }
+    @Test
+    void fetchFireMedallions(){
+        FireElement fireElement = new FireElement(2);
+        Player player = new Player("Sabina", element, role);
+        player.fetchMedallionStatus(fireElement);
+        assertEquals(0, player.getFireMedallions());
+    }
 
     @Test
-    void add2AFireMedallions(){
+    void fetchWindMedallions(){
+        WindElement windElement = new WindElement(3);
+        Player player = new Player("Sabina", element, role);
+        player.fetchMedallionStatus(windElement);
+        assertEquals(0, player.getEarthMedallions());
+    }
+
+    @Test
+    void add2FireMedallions(){
         FireElement fireElement = new FireElement(2);
         Player player = new Player("Sabina", element, role);
         player.addMedallion(fireElement);
         player.addMedallion(fireElement);
         assertEquals(2, player.getFireMedallions());
+    }
+
+    @Test
+    void add4WaterMedallions(){
+        WaterElement waterElement = new WaterElement(1);
+        Player player = new Player("Sabina", element, role);
+        player.addMedallion(waterElement);
+        player.addMedallion(waterElement);
+        player.addMedallion(waterElement);
+        player.addMedallion(waterElement);
+        assertEquals(3 ,player.getWaterMedallions());
+    }
+
+    //TODO fundera på om du ska skriva siffror med bokstäver eller siffror?
+
+    @Test
+    void resetMedallionsTo0(){ ;
+        EarthElement earthElement = new EarthElement(2);
+        WindElement windElement = new WindElement(3);
+        Player player = new Player("Sabina", element, role);
+        player.addMedallion(windElement);
+        player.addMedallion(windElement);
+        player.addMedallion(windElement);
+        player.addMedallion(earthElement);
+
+        player.resetMedallions();
+
+        assertEquals(0 , player.getWindMedallions(), player.getEarthMedallions());
     }
 
     //TEST ELEMENTS ----------------------------------------------------------------------------------------------------

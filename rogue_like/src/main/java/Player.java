@@ -123,23 +123,34 @@ public class Player extends Character {
             return waterMedallions;
         else if (element.getClass().isInstance(new FireElement(1)))
             return fireMedallions;
-        else if (element.getClass().isInstance(new WindElement(1)))
+        else /*if (element.getClass().isInstance(new WindElement(1)))*/
             return windMedallions;
-        else
-            throw new IllegalArgumentException("Error: Can´t find the element");
+            //TODO lösa det här eller ta bort? /Malin
+//        else                      eller detta?
+//            throw new IllegalArgumentException("Error: Can´t find the element");
 
     }
 
     public void addMedallion(Element element){
-        if (element.getClass().isInstance(new EarthElement(1)))
+        if (element.getClass().isInstance(new EarthElement(1)) && earthMedallions < 3)
             earthMedallions++;
-        else if (element.getClass().isInstance(new WaterElement(1)))
+        else if (element.getClass().isInstance(new WaterElement(1)) && waterMedallions < 3)
             waterMedallions++;
-        else if (element.getClass().isInstance(new FireElement(1)))
+        else if (element.getClass().isInstance(new FireElement(1)) && fireMedallions < 3)
             fireMedallions++;
-        else if (element.getClass().isInstance(new WindElement(1)))
+        else if (element.getClass().isInstance(new WindElement(1)) && windMedallions < 3)
             windMedallions++;
+        //TODO Snacka med David om att kalla på metod om man nått tre medaljer? /Malin
     }
+
+    public void resetMedallions(){
+        earthMedallions = 0;
+        waterMedallions = 0;
+        fireMedallions = 0;
+        windMedallions = 0;
+    }
+
+
 
     //hämta intarna (tar in element eller string som parameter)
 
