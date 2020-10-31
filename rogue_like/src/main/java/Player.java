@@ -20,7 +20,7 @@ public class Player extends Character {
     private int waterMedallions = 0;
     private int fireMedallions = 0;
     private int windMedallions = 0;
-    private int ownedElements = 0;
+    private Element activatedElement;
 
     // CONSTRUCTOR -----------------------------------------------------------------------------------------------------
     public Player(String name, Element element, Role role) {
@@ -28,6 +28,7 @@ public class Player extends Character {
         //this.level = getCurrentLevel();   TODO Fråga Sabina /Malin
         this.role = role;
         this.playerStats = new PlayerStats(role.getHP(), role.getPower(), role.getSpeed());
+        activatedElement = element;
         addElement(element);
     }
 
@@ -80,28 +81,20 @@ public class Player extends Character {
             elements[index].levelUpElement();
         else {
             elements[index] = newElement;
-            ownedElements++;
         }
     }
 
-    public String returnOwnedElements(){
-        String mainElement = null;
-        for (int i = 0 ; i < elements.length ; i++){
-            if (elements[i] != null)
-                mainElement = theMainElement(i);
-        }
-        return mainElement;
-    }
-
-    public String theMainElement(int index){
-        if (index == 0)
-            return "Earth";
-        else if (index == 1)
-            return "Water";
-        else if (index == 2)
-            return "Fire";
+    public void changeActivatedElement(String chosenElement){
+        if (chosenElement.toLowerCase().equals("earth" + "earth element") && elements[0].getClass().isInstance(new EarthElement(2)))
+            activatedElement = elements[0];
+        else if (chosenElement.toLowerCase().equals("water") && elements[1].getClass().isInstance(new WaterElement(2)))
+            activatedElement = elements[1];
+        else if (chosenElement.toLowerCase().equals("fire") && elements[2].getClass().isInstance(new FireElement(3)))
+            activatedElement = elements[2];
+        else if (chosenElement.toLowerCase().equals("wind") && elements[3].getClass().isInstance(new WindElement(1)))
+            activatedElement = elements[3];
         else
-            return "Wind";
+            System.out.println("Type again please");   //TODO MALIN FIXA DIN LILLA BAJSFIA /Malin
     }
 
 
@@ -146,8 +139,6 @@ public class Player extends Character {
             fireMedallions++;
         else if (element.getClass().isInstance(new WindElement(1)) && windMedallions < 3)
             windMedallions++;
-        //TODO Snacka med David om att kalla på metod om man nått tre medaljer? /Malin
-
     }
 
     public void resetMedallions() {                      //When the player has defeated a boss all the medallions disappears
@@ -207,6 +198,13 @@ public class Player extends Character {
 
     public int getWindMedallions() {
         return windMedallions;
+    }
+
+    public Element getActivatedElement() {
+        if (activatedElement != null)
+            return activatedElement;
+        else
+            throw new NullPointerException(); //TODO Testa Malin
     }
 }
 

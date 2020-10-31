@@ -205,12 +205,23 @@ public class PlayerTest {
     //TEST ELEMENTS ----------------------------------------------------------------------------------------------------
     //THE ARRAY ELEMENTS
 
+//    @Test
+//    void addFireElementToElements(){
+//        FireElement fireElement = new FireElement(2);
+//        Player player = new Player("Sabina", fireElement, role);
+//        assertEquals("Fire", player.returnOwnedElements());
+//    }
+
     @Test
-    void addFireElementToElements(){
+    void getWindElementAsActivatedElement(){
         FireElement fireElement = new FireElement(2);
-        Player player = new Player("Sabina", fireElement, role);
-        assertEquals("Fire", player.returnOwnedElements());
+        WindElement windElement = new WindElement(3);
+        Player player = new Player("Sabina", fireElement, role);         //Makes a fire element as the main element and therefor the activated element
+        player.addElement(windElement);                                         //Adds a wind element to the player´s owned elements
+        player.changeActivatedElement("Wind");                    //Changes the activated element to the wind element
+        assertEquals(windElement, player.getActivatedElement());
     }
+
 
 
     //TODO fixa det här MalinJÄVEL mvh Malin
