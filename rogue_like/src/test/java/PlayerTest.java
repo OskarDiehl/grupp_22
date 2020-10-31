@@ -204,6 +204,15 @@ public class PlayerTest {
 
     //TEST ELEMENTS ----------------------------------------------------------------------------------------------------
     //THE ARRAY ELEMENTS
+
+    @Test
+    void addFireElementToElements(){
+        FireElement fireElement = new FireElement(2);
+        Player player = new Player("Sabina", fireElement, role);
+        assertEquals("Fire", player.returnOwnedElements());
+    }
+
+
     //TODO fixa det här MalinJÄVEL mvh Malin
 
     //TODO metod som lägger in element i elements -> implementera i konstruktorn /Malin

@@ -10,7 +10,6 @@ public class Player extends Character {
     //Air element   == index 3
 
 
-    //Alla elementen har olika index. ArrayLocation? Om det finns lägg in vatten element
     //Tar man ett Item börjar det verka direkt  /Vapen, rustning, skor
 
     // INSTANCE VARIABLES ----------------------------------------------------------------------------------------------
@@ -21,6 +20,7 @@ public class Player extends Character {
     private int waterMedallions = 0;
     private int fireMedallions = 0;
     private int windMedallions = 0;
+    private int ownedElements = 0;
 
     // CONSTRUCTOR -----------------------------------------------------------------------------------------------------
     public Player(String name, Element element, Role role) {
@@ -28,8 +28,7 @@ public class Player extends Character {
         //this.level = getCurrentLevel();   TODO Fråga Sabina /Malin
         this.role = role;
         this.playerStats = new PlayerStats(role.getHP(), role.getPower(), role.getSpeed());
-        //TODO Skapa metod som lägger in elementet i elements /Malin
-
+        addElement(element);
     }
 
     // OTHER METHODS ---------------------------------------------------------------------------------------------------
@@ -59,48 +58,55 @@ public class Player extends Character {
 
 
     // ELEMENTS-ARRAY METHODS ------------------------------------------------------------------------------------------
-    private void addElement(Element newElement) {
-      /*  if (newElement.getClass().isInstance(newElement) || newElement.getClass() instanceof new FireElement(1)){
+    public void addElement(Element newElement) {
+        if (newElement.getClass().isInstance(new EarthElement(1))) {          //For earth elements
+            upgradeOrAddElement(0, newElement);                                    //... upgrade or add earth element
+        } else if (newElement.getClass().isInstance(new WaterElement(1)))       //For water elements
+            upgradeOrAddElement(1, newElement);                                    //... upgrade or add water element
 
-        }*/
-       /* if (newElement.getName.equals("Earth element"))
-            checkIfPlayerHasElement(0, newElement);
+        else if (newElement.getClass().isInstance(new FireElement(1)))        //For fire elements
+            upgradeOrAddElement(2, newElement);                                    //... upgrade or add fire element
 
-        else if (newElement.getName.equals("Water element"))
-            checkIfPlayerHasElement(1, newElement);
+        else if (newElement.getClass().isInstance(new WindElement(1)))        //For wind elements
+            upgradeOrAddElement(3, newElement);                                    //... upgrade or add wind element
 
-        else if (newElement.getName.equals("Fire element"))
-            checkIfPlayerHasElement(2, newElement);
-
-        else if (newElement.getName.equals("Air element"))
-            checkIfPlayerHasElement(3, newElement);
-
-        else */
-            //TODO kalla på ngt exception?
+        //TODO kalla på ngt exception?
 
         //TODO Jag behöver ngn metod som returnerar vilken typ av element som det är /Malin
-
-
-        //TODO fixa olika if-satser för vart elementet ska placeras i Arrayen /Malin
     }
 
-
-    private void upgradeElement(int index, Element newElement) {
-        if (elements[index].getElementLevel() != 3) {
-            //TODO Be Oskar fixa metod som levlar upp ett element.
+    private void upgradeOrAddElement(int index, Element newElement) {
+        if (elements[index] != null && elements[index].getElementLevel() != 3)
+            elements[index].levelUpElement();
+        else {
+            elements[index] = newElement;
+            ownedElements++;
         }
     }
 
-    private void checkIfPlayerHasElement(int index, Element newElement) {
-        if (elements[index] != null)
-            upgradeElement(index, newElement);
+    public String returnOwnedElements(){
+        String mainElement = null;
+        for (int i = 0 ; i < elements.length ; i++){
+            if (elements[i] != null)
+                mainElement = theMainElement(i);
+        }
+        return mainElement;
+    }
+
+    public String theMainElement(int index){
+        if (index == 0)
+            return "Earth";
+        else if (index == 1)
+            return "Water";
+        else if (index == 2)
+            return "Fire";
         else
-            elements[index] = newElement;
+            return "Wind";
     }
 
 
     // ITEMS-ARRAY METHODS ---------------------------------------------------------------------------------------------
-    private void addItem(Item newItem){
+    private void addItem(Item newItem) {
 
         //metod som på ngt vis lägger till ett item och eventuellt byter mot ett annat.
 
@@ -116,7 +122,7 @@ public class Player extends Character {
     //Weapon = index 2
 
     // ELEMENT MEDALLION METHODS ---------------------------------------------------------------------------------------
-    public int fetchMedallionStatus(Element element){
+    public int fetchMedallionStatus(Element element) {
         if (element.getClass().isInstance(new EarthElement(1)))
             return earthMedallions;
         else if (element.getClass().isInstance(new WaterElement(1)))
@@ -125,13 +131,13 @@ public class Player extends Character {
             return fireMedallions;
         else /*if (element.getClass().isInstance(new WindElement(1)))*/
             return windMedallions;
-            //TODO lösa det här eller ta bort? /Malin
+        //TODO lösa det här eller ta bort? /Malin
 //        else                      eller detta?
 //            throw new IllegalArgumentException("Error: Can´t find the element");
 
     }
 
-    public void addMedallion(Element element){
+    public void addMedallion(Element element) {
         if (element.getClass().isInstance(new EarthElement(1)) && earthMedallions < 3)
             earthMedallions++;
         else if (element.getClass().isInstance(new WaterElement(1)) && waterMedallions < 3)
@@ -141,23 +147,15 @@ public class Player extends Character {
         else if (element.getClass().isInstance(new WindElement(1)) && windMedallions < 3)
             windMedallions++;
         //TODO Snacka med David om att kalla på metod om man nått tre medaljer? /Malin
+
     }
 
-    public void resetMedallions(){
+    public void resetMedallions() {                      //When the player has defeated a boss all the medallions disappears
         earthMedallions = 0;
         waterMedallions = 0;
         fireMedallions = 0;
         windMedallions = 0;
     }
-
-
-
-    //hämta intarna (tar in element eller string som parameter)
-
-    //restet medaljerna för just det elementet
-
-    //metod som begränsar medaljonerna till 3
-
 
 
     // GET-METHODS -----------------------------------------------------------------------------------------------------
