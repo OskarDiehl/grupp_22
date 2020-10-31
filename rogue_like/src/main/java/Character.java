@@ -7,6 +7,7 @@ public abstract class Character {
     // CONSTRUCTORS  ------------------------------------------------------------------------
     public Character(Element mainElement){
         this.mainElement = mainElement;
+        level = 1;
     }
 
     public Character(Element mainElement, int level){
@@ -15,6 +16,12 @@ public abstract class Character {
             this.level = level;
         else
             throw new IllegalArgumentException();
+    }
+
+
+    // CONSTRUCTORS  ------------------------------------------------------------------------
+    public int setLevel(){
+        return 0;
     }
 
     // GET-METHODS  ------------------------------------------------------------------------

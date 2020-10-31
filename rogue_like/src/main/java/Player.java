@@ -37,7 +37,7 @@ public class Player extends Character {
 
     // OTHER METHODS ---------------------------------------------------------------------------------------------------
     public void levelUp() {
-        if (currentLevel < 3) {
+        if (getLevel() < 3) {
             currentLevel++;
             levelUpChangeStats();
         } else
@@ -144,22 +144,40 @@ public class Player extends Character {
     }
 
     public void addMedallion(Element element) {
-        if (element.getClass().isInstance(new EarthElement(1)) && earthMedallions < 3)
-            earthMedallions++;
-        else if (element.getClass().isInstance(new WaterElement(1)) && waterMedallions < 3)
-            waterMedallions++;
-        else if (element.getClass().isInstance(new FireElement(1)) && fireMedallions < 3)
-            fireMedallions++;
-        else if (element.getClass().isInstance(new WindElement(1)) && windMedallions < 3)
-            windMedallions++;
+        interpretElement(element, 1);
     }
 
-    public void resetMedallions() {                      //When the player has defeated a boss all the medallions disappears
-        earthMedallions = 0;
-        waterMedallions = 0;
-        fireMedallions = 0;
-        windMedallions = 0;
+    public void resetMedallion(Element element) {                      //When the player has defeated a boss all the medallions disappears
+        interpretElement(element, 0);
     }
+
+    private void interpretElement(Element element, int changeWithAmount){
+        if (element.getClass().isInstance(new EarthElement(1)))
+            if (changeWithAmount == 1)
+                earthMedallions++;
+            else
+                earthMedallions = 0;
+
+        else if (element.getClass().isInstance(new WaterElement(1)))
+            if (changeWithAmount == 1)
+                waterMedallions++;
+            else
+                waterMedallions = 0;
+
+        else if (element.getClass().isInstance(new FireElement(1)))
+            if (changeWithAmount == 1)
+                fireMedallions++;
+            else
+                fireMedallions = 0;
+
+        else if (element.getClass().isInstance(new WindElement(1)))
+            if (changeWithAmount == 1)
+                windMedallions++;
+            else
+                windMedallions = 0;
+    }
+
+
 
 
     // GET-METHODS -----------------------------------------------------------------------------------------------------

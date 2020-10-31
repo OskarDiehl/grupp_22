@@ -206,7 +206,7 @@ public class PlayerTest {
         player.addMedallion(windElement);
         player.addMedallion(earthElement);
 
-        player.resetMedallions();
+        player.resetMedallion(windElement);
 
         assertEquals(0 , player.fetchMedallionStatus(new WindElement(2)), player.fetchMedallionStatus(new EarthElement(3)));
     }
