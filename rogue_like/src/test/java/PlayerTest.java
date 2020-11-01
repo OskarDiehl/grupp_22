@@ -3,8 +3,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PlayerTest {
-    private Element element = new WindElement(1);
-    private Role role = Role.Warrior;
+    private final Element element = new WindElement(1);
+    private final Role role = Role.Warrior;
 
 
     //TEST CONSTRUCTOR -------------------------------------------------------------------------------------------------
@@ -228,7 +228,7 @@ public class PlayerTest {
     @Test
     void getNullPointerExceptionFromAddElement() {
         Player player = new Player("Sabina", element, role);
-        assertThrows(NullPointerException.class, () -> player.addElement(null));
+        assertThrows(NullPointerException.class, () -> player.addElement(null));  //TODO fick "Probable bugs" -> "Constant conditions & exceptions för null /Malin
     }
 
 //    @Test

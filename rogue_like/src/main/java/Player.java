@@ -1,13 +1,13 @@
 public class Player extends Character {
 
     // DATASAMLING/-AR -------------------------------------------------------------------------------------------------
-    private Element elements[] = new Element[4];        // Array containing different elements the player has collected
-    private Item items[] = new Item[3];                 // Array containing different items the player has picked up
+    private final Element[] elements = new Element[4];        // Array containing different elements the player has collected
+    private final Item[] items = new Item[3];                 // Array containing different items the player has picked up
 
     // INSTANCE VARIABLES ----------------------------------------------------------------------------------------------
-    private String name;
-    private Role role;
-    private PlayerStats playerStats;
+    private final String name;
+    private final Role role;
+    private final PlayerStats playerStats;
     private Element activatedElement;     // The element the player use at the moment (You can only use one at the time)
 
     private int earthMedallions = 0;      // When the player has completed a room ze earns a medallion. There are
