@@ -9,6 +9,12 @@ public class ItemTest {
         assertEquals("TestItem", i.getName());
     }
 
+    @Test
+    void returnZeroHPFromGetHP() {
+        Item i = new Shoes("Shoo",2,2);
+        assertEquals(0, i.getHP());
+    }
+
 
 
 }

@@ -55,9 +55,6 @@ public class Room {
 
      //TODO borde player vara ett argument i konstruktorn?
 
-     public Room(){
-         this(new Player("test",new FireElement(1), Role.Tank));
-     }
 
     public Room(Player player ,  String roomType){
         this.element = decideTypeOfElement(generateRandomNumber(MIN_THRESHOLD, AMOUNT_OF_ELEMENTS));
@@ -71,8 +68,15 @@ public class Room {
         buildRoom(decideTypeOfRoom(decideIfLuckyWheel()));
     }
 
+    public Room(Player player , Element element, String roomType){
+        this.element = element;
+        this.player = player;
+        buildRoom(roomType);
+    }
 
-     public Room(Player player){
+
+
+    public Room(Player player){
          this.player = player;
          this.element = decideTypeOfElement(generateRandomNumber(MIN_THRESHOLD, AMOUNT_OF_ELEMENTS));
          buildRoom(decideTypeOfRoom(decideIfLuckyWheel()));
@@ -80,13 +84,30 @@ public class Room {
 
      }
 
-    private void buildRoom(String typeOfRoom){
-        roomType = typeOfRoom;
+    private void buildRoom(String typeOfRoom) {
 
-        switch(typeOfRoom) {
-            case "Enemy": spawnEnemies(); break;
-            case "Boss": spawnBoss(); break;
-            case "Lucky Wheel": spawnLuckyWheel(); break;
+        if (typeOfRoom == "Boss" && !shouldBossSpawn()) {
+            throw new IllegalArgumentException();
+        } else {
+
+            if (typeOfRoom == "Enemy" && shouldBossSpawn()) {
+                typeOfRoom = "Boss";
+            }
+
+
+            roomType = typeOfRoom;
+
+            switch (typeOfRoom) {
+                case "Enemy":
+                    spawnEnemies();
+                    break;
+                case "Boss":
+                    spawnBoss();
+                    break;
+                case "Lucky Wheel":
+                    spawnLuckyWheel();
+                    break;
+            }
         }
     }
 
@@ -98,12 +119,8 @@ public class Room {
              name = "Lucky Wheel";
         }
         else {
-            if (shouldBossSpawn()){
-                name = "Boss";
-            }
-            else {
-                name = "Enemy";
-            }
+            name = "Enemy";
+
         }
         return name;
     }

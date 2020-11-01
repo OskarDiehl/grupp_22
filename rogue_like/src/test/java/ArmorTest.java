@@ -25,4 +25,10 @@ public class ArmorTest {
         assertEquals(defaultSpeed, a.getSpeed());
     }
 
+    @Test
+    void getPowerReturnsZero() {
+        Item i = new Armor("Armor", 7,0);
+        assertEquals(0,i.getPower());
+    }
+
 }

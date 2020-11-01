@@ -29,18 +29,27 @@ public class Stats {
     }
 
     public void loseHP(int lostHP) {
-        if ((currentHP - lostHP) >= 0)               //TODO ska vi ersätta med Math.max? /Malin
+        if ((currentHP - lostHP) >= MIN_STAT)
             currentHP = currentHP - lostHP;          //TODO -> Spelet startas om? -> PlayerStats? /Malin
         else
             currentHP = MIN_STAT;
     }
 
     public void gainHP(int gainedHP) {
-        int max = defaultHP;
-        if ((currentHP + gainedHP) <= max)     //TODO ändra så att maxgränsen stämmer överens /Malin
+        if ((currentHP + gainedHP) <= defaultHP)
             currentHP = currentHP + gainedHP;
         else
             currentHP = defaultHP;
+    }
+
+    public void changeCurrentHP(int hp) {               //Increases or decreases the HP temporarily
+        int totalHP = currentHP + hp;
+        if (totalHP > defaultHP)
+            currentHP = defaultHP;
+        else if (totalHP < MIN_STAT)
+            currentHP = MIN_STAT;
+        else
+            currentHP = currentHP + hp;
     }
 
 

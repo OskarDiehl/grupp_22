@@ -17,4 +17,8 @@ public class Shoes extends Item{
         return power;
     }
 
+    @Override
+    public int getHP() {
+        return 0;
+    }
 }
