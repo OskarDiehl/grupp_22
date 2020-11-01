@@ -24,8 +24,8 @@ public class Stats {
 
     // OTHER METHODS  --------------------------------------------------------------------------------------------------
 
-    private boolean isWithinStatRange(int number) {
-        return number >= MIN_STAT && number <= MAX_STAT;
+    private boolean isWithinStatRange(int stat) {
+        return stat >= MIN_STAT && stat <= MAX_STAT;
     }
 
     public void loseHP(int lostHP) {
@@ -42,15 +42,15 @@ public class Stats {
             currentHP = defaultHP;
     }
 
-    public void changeCurrentHP(int hp) {               //Increases or decreases the HP temporarily
-        int totalHP = currentHP + hp;
-        if (totalHP > defaultHP)
-            currentHP = defaultHP;
-        else if (totalHP < MIN_STAT)
-            currentHP = MIN_STAT;
-        else
-            currentHP = currentHP + hp;
-    }
+//    public void changeCurrentHP(int hp) {               //Increases or decreases the HP temporarily
+//        int totalHP = currentHP + hp;
+//        if (totalHP > defaultHP)
+//            currentHP = defaultHP;
+//        else if (totalHP < MIN_STAT)
+//            currentHP = MIN_STAT;
+//        else
+//            currentHP = currentHP + hp;
+//    }
 
 
     // METHODS THAT INCREASE THE DEFAULT STATS -------------------------------------------------------------------------

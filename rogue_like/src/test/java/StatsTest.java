@@ -7,30 +7,28 @@ public class StatsTest {
     //TEST CONSTRUCTORS ------------------------------------------------------------------------
     //Constructor for character WITHOUT a role (enemy character).
     @Test
-    void getFullHPFromStandardConstructorArgument() {
+    void getDefaultHPFromStandardConstructorArgument() {
         Stats stats = new Stats(5, 3, 4);
         assertEquals(5, stats.getDefaultHP());
     }
 
     @Test
-    void getFullPowerFromStandardConstructorArgument() {
+    void getDefaultPowerFromStandardConstructorArgument() {
         Stats stats = new Stats(2, 5, 4);
         assertEquals(5, stats.getDefaultPower());
     }
 
     @Test
-    void getFullRunnerFromStandardConstructorArgument() {
+    void getDefaultSpeedFromStandardConstructorArgument() {
         Stats stats = new Stats(2, 3, 5);
         assertEquals(5, stats.getDefaultSpeed());
     }
 
     //Constructor for character WITH a role. The "role constructor".
     @Test
-    void tryParametersInRoleConstructorArgument(){ //TODO slipa på namngivningen /Malin
+    void getCurrentHPFromRoleConstructorArgument(){ //TODO slipa på namngivningen /Malin
         Stats stats = new Stats(9, 5, 8);
         assertEquals(9, stats.getCurrentHP());
-        assertEquals(5, stats.getDefaultPower());
-        assertEquals(8, stats.getDefaultSpeed());
     }
 
     @Test
@@ -49,7 +47,7 @@ public class StatsTest {
 
 
     @Test
-    void checkMinimumZeroHP(){  //TODO Vad ska hända om HP hamnar på 0 eller under? /Malin
+    void checkMinimumZeroHP(){
         Stats stats = new Stats(1, 3, 4);
         stats.loseHP(11);
         assertEquals(0, stats.getCurrentHP() + 0, stats.getDefaultHP());
@@ -89,7 +87,6 @@ public class StatsTest {
     //TEST OTHER METHODS --------------------------------------------------------------------------
     @Test
     void characterIsAttackedByAnotherCharacter(){
-        //TODO Vad händer när en karaktär blir attackerad? Är det bara HP som påverkas? /Malin
         Stats stats = new Stats(8, 3, 4);
         stats.loseHP(2);
         assertEquals(6, stats.getCurrentHP());

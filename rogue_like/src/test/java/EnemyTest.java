@@ -68,7 +68,7 @@ public class EnemyTest {
     }
 
     @Test
-    void attackPlayer() { //TODO Implementera detta
+    void attackPlayer() {
         Enemy enemy = new Enemy(new FireElement(1), 2, new Room(new Player("Test", new FireElement(1), Role.Tank)));
         Player player = new Player("David", new WaterElement(1), Role.Tank);
         enemy.attack(player);
@@ -77,7 +77,7 @@ public class EnemyTest {
 
     @Test
     void removeIfDeadWhenIsDead() {
-        Room room = new Room(new Player("Test", new FireElement(1), Role.Tank));
+        Room room = new Room(new Player("Test", new FireElement(1), Role.Tank), "Enemy");
         Enemy enemy = room.getEnemies().get(0);
         int hp = enemy.getHP();
         enemy.getStats().loseHP(hp);
