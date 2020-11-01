@@ -57,27 +57,36 @@ public class EnemyTest {
 
     @Test
     void getStatHPThroughEnemy() {
-        Enemy enemy = new Enemy(new FireElement(2), 2, new Room(new Player("Test", new FireElement(1), Role.Tank)));
+        Enemy enemy = new Enemy(new FireElement(2), 2, new Room(new Player("Malin", new FireElement(1), Role.Tank)));
         assertEquals(5, enemy.getHP());
     }
 
     @Test
     void getStatSpeedThroughEnemy() {
-        Enemy enemy = new Enemy(new FireElement(2), 2, new Room(new Player("Test", new FireElement(1), Role.Tank)));
+        Enemy enemy = new Enemy(new FireElement(2), 2, new Room(new Player("Malin", new FireElement(1), Role.Tank)));
         assertEquals(5, enemy.getSpeed());
     }
 
     @Test
     void attackPlayer() {
-        Enemy enemy = new Enemy(new FireElement(1), 2, new Room(new Player("Test", new FireElement(1), Role.Tank)));
         Player player = new Player("David", new WaterElement(1), Role.Tank);
+        Enemy enemy = new Enemy(new FireElement(1), 2, new Room(player));
         enemy.attack(player);
         assertEquals(3, player.getCurrentHPFromStats());
     }
 
     @Test
+    void throwCCEWhenParameterIsNotOfTypePlayer() {
+        Enemy enemy = new Enemy(new FireElement(2), 2,
+                new Room(new Player("Malin", new FireElement(1), Role.Tank)));
+        Character notPlayer = new Enemy(new EarthElement(1), 1,
+                new Room(new Player("Oskar", new WaterElement(1), Role.Warrior)));
+        assertThrows(ClassCastException.class, () -> enemy.attack(notPlayer));
+    }
+
+    @Test
     void removeIfDeadWhenIsDead() {
-        Room room = new Room(new Player("Test", new FireElement(1), Role.Tank), "Enemy");
+        Room room = new Room(new Player("David", new FireElement(1), Role.Tank), "Enemy");
         Enemy enemy = room.getEnemies().get(0);
         int hp = enemy.getHP();
         enemy.getStats().loseHP(hp);
