@@ -92,7 +92,7 @@ class RoomTest {
     void roomTypeShouldBeLuckyWheel(){
       Room room = new Room();
 
-      while(room.getRoomType() != "Lucky Wheel"){
+      while(room.getRoomType() == "Enemy"){
         room = new Room();
       }
       assertEquals("Lucky Wheel", room.getRoomType());
@@ -121,7 +121,11 @@ class RoomTest {
     @Test
     void roomTypeShouldBeEnemy(){
         Room room = new Room();
-        room.decideTypeOfRoom(false);
+
+        while(room.getRoomType() == "Lucky Wheel"){
+          room = new Room();
+        }
+
 
         assertEquals("Enemy", room.getRoomType());
 
@@ -132,7 +136,10 @@ class RoomTest {
     @Test
     void roomShouldBeLuckyWheel(){
       Room room = new Room();
-      room.decideTypeOfRoom(true);
+
+      while(room.getRoomType() == "Enemy"){
+        room = new Room();
+      }
 
       assertEquals("Lucky Wheel", room.getRoomType());
 
@@ -155,6 +162,12 @@ class RoomTest {
 
     @Test
     void elementShouldBeAddedToPlayerWhenKilledBoss(){
+
+    }
+
+    @Test
+    void iLLegalStateExceptionThrownWhenRemovingNonExistingBoss(){
+
 
     }
 
@@ -240,11 +253,8 @@ class RoomTest {
 
   @Test
   void luckyWheelShouldntBeCreatedWhenItHasntSpawned(){
-    Room room = new Room();
+    Room room = new Room(new Player("test",new FireElement(1), Role.Tank), "Enemy");
 
-    while(room.getRoomType() == "Lucky Wheel"){
-      room = new Room();
-    }
 
     assertTrue(room.getLuckyWheel() == null);
 
