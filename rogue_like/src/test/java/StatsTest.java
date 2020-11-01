@@ -50,7 +50,7 @@ public class StatsTest {
     void checkMinimumZeroHP(){
         Stats stats = new Stats(1, 3, 4);
         stats.loseHP(11);
-        assertEquals(0, stats.getCurrentHP() + 0, stats.getDefaultHP());
+        assertEquals(0, stats.getCurrentHP(), stats.getDefaultHP());
     }
 
     @Test

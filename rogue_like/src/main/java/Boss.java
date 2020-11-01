@@ -23,13 +23,11 @@ public class Boss extends Enemy {
                 power = 6;
                 speed = 6;
             break;
-            case 3:
+            default:
                 life = 10;
                 power = 9;
                 speed = 9;
-                break;
-            default:
-                return;
+
         }
         generateStats(life, power, speed);
     }
