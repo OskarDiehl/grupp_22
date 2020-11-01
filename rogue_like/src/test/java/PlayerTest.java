@@ -287,34 +287,34 @@ public class PlayerTest {
 
     //TEST ITEMS METHODS  ----------------------------------------------------------------------------------------------
 
-//    //4,6,5 TODO Ta bort sen /Malin
-//    @Test
-//    void addShoesToItems(){                                                         // Add shoes
-//        Player player = new Player("Sabina", element, role);
-//        player.addItem(new Shoes("Heels", 3, 3));
-//        assertEquals("Heels", player.findItem(new Shoes("Shoes", 0, 0)).getName());
-//    }
-//
-//    @Test                                                        //TODO fixa när Oskar kanske har fixat med get-metoderna i Item :) /Malin    +  metoden för HP i Stats
-//    void doesArmorAddHPToStats(){                                                // Check if HP increases because of armor
-//        Player player = new Player("Sabina", element, role);
-//        player.addItem(new Armor("Birthday suit", 3, 3));
-//        assertEquals(9, player.getCurrentHPFromStats());
-//    }
-//
-//    @Test                                                        //TODO fixa när Oskar kanske har fixat med get-metoderna i Item :) /Malin
-//    void doesWeaponAddPowerToStats(){                                                // Check if Power increases because of armor
-//        Player player = new Player("Sabina", element, role);
-//        player.addItem(new Weapon("Love", 3, 3));
-//        assertEquals(9, player.getCurrentPowerFromStats());
-//    }
-//
-//    @Test                                                        //TODO fixa när Oskar kanske har fixat med get-metoderna i Item :) /Malin
-//    void doesShoesAddSpeedToStats(){                                                // Check if stats increases because of armor
-//        Player player = new Player("Sabina", element, role);
-//        player.addItem(new Shoes("Slippers", 3, 3));
-//        assertEquals(9, player.getCurrentSpeedFromStats());
-//    }
+    //4,6,5 TODO Ta bort sen /Malin
+    @Test
+    void addShoesToItems(){                                                         // Add shoes
+        Player player = new Player("Sabina", element, role);
+        player.addItem(new Shoes("Heels", 3, 3));
+        assertEquals("Heels", player.findItem("Shoes").getName());
+    }
+
+    @Test                                                        //TODO fixa när Oskar kanske har fixat med get-metoderna i Item :) /Malin    +  metoden för HP i Stats
+    void doesArmorAddHPToStats(){                                                // Check if HP increases because of armor
+        Player player = new Player("Sabina", element, role);
+        player.addItem(new Armor("Birthday suit", 3, 3));
+        assertEquals(7, player.getCurrentHPFromStats());
+    }
+
+    @Test                                                        //TODO fixa när Oskar kanske har fixat med get-metoderna i Item :) /Malin
+    void doesWeaponAddPowerToStats(){                                                // Check if Power increases because of armor
+        Player player = new Player("Sabina", element, role);
+        player.addItem(new Weapon("Love", 3, 3));
+        assertEquals(9, player.getCurrentPowerFromStats());
+    }
+
+    @Test                                                        //TODO fixa när Oskar kanske har fixat med get-metoderna i Item :) /Malin
+    void doesShoesAddSpeedToStats(){                                                // Check if stats increases because of armor
+        Player player = new Player("Sabina", element, role);
+        player.addItem(new Shoes("Slippers", 3, 3));
+        assertEquals(8, player.getCurrentSpeedFromStats());
+    }
 
 
     //ATT KOLLA:
