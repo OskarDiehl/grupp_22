@@ -111,20 +111,30 @@ public class Player extends Character {
     //    * index 1 = Shoes
     //    * index 2 = Weapon
 
-    public void addItem(Item newItem){                                                          // Add an item to the array items  TODO gör private?
-        if (newItem.getClass().isInstance(new Armor(null,0,0)))             // Add armor
-            items[0] = newItem;
+    public void addItem(Item newItem){                                                              // Add an item to the array items
+        if (newItem.getClass().isInstance(new Armor(null,0,0)))    {
+            seeIfSwitchItem("Armor");                                                     // Check if the player already has an armor
+            items[0] = newItem;                                                                     // Add armor
+        }
 
-        else if (newItem.getClass().isInstance(new Shoes(null,0,0)))     // Add shoes
-            items[1] = newItem;
+        else if (newItem.getClass().isInstance(new Shoes(null,0,0))) {
+            seeIfSwitchItem("Shoes");                                                     // Check if the player already has shoes
+            items[1] = newItem;                                                                     // Add shoes
+        }
+        else {
+            seeIfSwitchItem("Weapon");                                                    // Check if the player already has a weapon
+            items[2] = newItem;                                                                     // Add weapon
+        }
 
-        else
-            items[2] = newItem;                                                                 // Add weapon
-
-        itemIncreaseStats(newItem);
+        itemIncreaseStats(newItem);                                                                 // Add the bonus stats the item gives
     }
 
-    public Item getItem(String itemType){                                                                                                       // Look if the player has an item of a special type (class). If yes -> fetch the item
+    private void seeIfSwitchItem(String itemType) {
+        if (findItem(itemType) != null)                                                             // Check if the player has an item of the chosen item type...
+            dropItemDecreaseStats(findItem(itemType));                                              // ... if ze does -> remove the bonus stats from that object
+    }
+
+    public Item findItem(String itemType){                                                                                                       // Look if the player has an item of a special type (class). If yes -> fetch the item
         if (itemType.toLowerCase().equals("armor") && items[0].getClass().isInstance(new Armor(null, 0, 0)))
             return items[0];                                                                                                                    // Armor
         else if (itemType.toLowerCase().equals("shoes") && items[1].getClass().isInstance(new Shoes(null,0,0)))
@@ -135,13 +145,6 @@ public class Player extends Character {
             return null;                                //TODO TA UPP bra lösning? /Malin
     }
 
-    public void addOrSwitchItem(Item newItem){          //TODO fixa Malin /Malin
-
-    }
-
-    public void dropItem(String itemType){              //TODO fixa Malin /Malin
-
-    }
 
     private void itemIncreaseStats(Item item){
         int power = 0; /* = item.getPower();              TODO Vänta på att Oskar kanske fixar med abstrakta metoder :) /Malin */
@@ -150,18 +153,17 @@ public class Player extends Character {
         //TODO fixa för HP
         changeStatPower(power);
         changeStatSpeed(speed);
-        //changeStatHP(HP);
+        playerStats.gainHP(HP);
     }
 
     private void dropItemDecreaseStats(Item item){
         int power = 0; /* = item.getPower();              TODO Vänta på att Oskar kanske fixar med abstrakta metoder :) /Malin */
         int speed = 0 ;
-        int HP = 0;                                     //TODO multiplicera med -1 på allt /Malin
+        int HP = 0;                                      //TODO multiplicera med -1 på allt /Malin
         //TODO fixa för HP
-        changeStatPower(power);
-        changeStatSpeed(speed);
-        // a
-        //changeStatHP(HP);
+        changeStatPower((power * -1));
+        changeStatSpeed((speed * -1));
+        playerStats.loseHP(HP);
     }
 
     // ELEMENT MEDALLION METHODS ---------------------------------------------------------------------------------------
