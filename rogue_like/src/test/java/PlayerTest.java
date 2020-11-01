@@ -19,49 +19,6 @@ public class PlayerTest {
         assertThrows(NullPointerException.class, () -> new Player("Sabina", null, role));
     }
 
-    //commenterade bort testet för att det hindrade mig från att testa Element/ Oskar
-    /*@Test
-    void getElementFromConstructorArgument() {
-        Element e = new Element();
-        Player player = new Player("Sabina", e, role);
-        assertEquals(e, player.getElement());
-    }*/
-
-//    @Test
-//    void getLevelFromConstructorArgument(){    TODO fixa det här Malin /Malin
-//        Player player = new Player("Sabina", element, role);
-//        assertEquals(1, player.getLevel());
-//    }
-
-
-
-    //TEST THE ENUM CLASS ROLE -----------------------------------------------------------------------------------------
-    //TODO Just nu testar jag Enum-klassen Role här, är det dumt? Ta en titt på om man kan testa den på något annat vis Malin /Malin
-    @Test
-    void getWarriorAsRoleNameConstructorArgument(){                               // This test check if the role name is correct  TODO byt namn (inte sluta på constructorArgument?) /Malin
-        Player player = new Player("Sabina", element, role);
-        assertEquals("Warrior", player.getRole().getRoleName());
-    }
-
-    @Test
-    void getCorrectLifeAmountFromRoleConstructorArgument(){                       // This test check if the amount of life is correct  TODO byt namn (inte sluta på constructorArgument?) /Malin
-        Player player = new Player("Sabina", element, role);
-        assertEquals(4, player.getRole().getHP());
-    }
-
-    @Test
-    void getCorrectPowerAmountFromRoleConstructorArgument(){                      // This test check if the amount of power is correct   TODO byt namn (inte sluta på constructorArgument?) /Malin
-        Player player = new Player("Sabina", element, role);
-        assertEquals(6, player.getRole().getPower());
-    }
-
-    @Test
-    void getCorrectSpeedAmountFromRoleConstructorArgument(){                      // This test check if the amount of speed is correct   TODO byt namn (inte sluta på constructorArgument?) /Malin
-        Player player = new Player("Sabina", element, role);
-        assertEquals(5, player.getRole().getSpeed());
-    }
-
-
 
     //TEST GET-METHODS FOR STATS----------------------------------------------------------------------------------------
     @Test
