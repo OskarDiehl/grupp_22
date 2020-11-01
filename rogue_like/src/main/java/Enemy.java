@@ -1,5 +1,3 @@
-import org.jetbrains.annotations.NotNull;
-
 public class Enemy extends Character {
 
     private final static int LEVEL_1_STAT = 3;

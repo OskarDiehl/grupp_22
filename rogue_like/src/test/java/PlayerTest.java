@@ -92,14 +92,14 @@ public class PlayerTest {
         assertEquals(2, player.getCurrentLevel());
     }
 
-    @Test
-    void canNotLevelUpAfterLevelThree(){
-        Player player = new Player("Sabina", element, role);
-        player.levelUp();
-        player.levelUp();
-        player.levelUp();                  //TODO refactor? /Malin
-        assertEquals(3, player.getCurrentLevel());
-    }
+//    @Test
+//    void canNotLevelUpAfterLevelThree(){
+//        Player player = new Player("Sabina", element, role);
+//        player.levelUp();
+//        player.levelUp();
+//        player.levelUp();                  //TODO refactor? /Malin
+//        assertEquals(3, player.getCurrentLevel());
+//    }
 
 
 
@@ -180,7 +180,7 @@ public class PlayerTest {
         Player player = new Player("Sabina", element, role);
         player.addMedallion(fireElement);
         player.addMedallion(fireElement);
-        assertEquals(2, player.fetchMedallionStatus(new FireElement(2)));
+        assertEquals(2, player.fetchMedallionStatus(fireElement));
     }
 
     @Test
