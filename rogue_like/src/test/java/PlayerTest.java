@@ -122,7 +122,7 @@ public class PlayerTest {
     void increaseSpeedStats(){
         Player player = new Player("Sabina", element, role);
         player.changeStatSpeed( 3);
-        assertEquals(8, player.getCurrentSpeedFromStats());
+        assertEquals(8, player.getCurrentSpeedFromStats()); //TODO Jag bytte ut "player.getStats().getCurrentSpeed()" till detta då den var arg, hoppas det var okej! /Sabina
     }
 
     @Test
