@@ -58,43 +58,54 @@ public class Room {
      public Room(){
          this(new Player("test",new FireElement(1), Role.Tank));
      }
-     public Room(Player player , Element element){
-         this.element = element;
-         this.player = player;
-         buildRoom();
-     }
+
+    public Room(Player player ,  String roomType){
+        this.element = decideTypeOfElement(generateRandomNumber(MIN_THRESHOLD, AMOUNT_OF_ELEMENTS));
+        this.player = player;
+        buildRoom(roomType);
+    }
+
+    public Room(Player player , Element element){
+        this.element = element;
+        this.player = player;
+        buildRoom(decideTypeOfRoom(decideIfLuckyWheel()));
+    }
+
 
      public Room(Player player){
          this.player = player;
          this.element = decideTypeOfElement(generateRandomNumber(MIN_THRESHOLD, AMOUNT_OF_ELEMENTS));
-         buildRoom();
+         buildRoom(decideTypeOfRoom(decideIfLuckyWheel()));
 
 
      }
 
-    private void buildRoom(){
-        decideTypeOfRoom(decideIfLuckyWheel());
+    private void buildRoom(String typeOfRoom){
+        roomType = typeOfRoom;
 
-        switch(roomType) {
+        switch(typeOfRoom) {
             case "Enemy": spawnEnemies(); break;
             case "Boss": spawnBoss(); break;
             case "Lucky Wheel": spawnLuckyWheel(); break;
         }
     }
 
-    public String decideTypeOfRoom(boolean isItLuckyWheel){
-        if( (isItLuckyWheel)){
-            roomType = "Lucky Wheel";
+    //denna ville jag göra private eftersom när ett rum väl skapats ska man inte kunna ändra type
+    private String decideTypeOfRoom(boolean isItLuckyWheel){
+         String name;
+
+         if( (isItLuckyWheel)){
+             name = "Lucky Wheel";
         }
         else {
             if (shouldBossSpawn()){
-                roomType = "Boss";
+                name = "Boss";
             }
             else {
-                roomType = "Enemy";
+                name = "Enemy";
             }
         }
-        return roomType;
+        return name;
     }
 
 
@@ -108,7 +119,7 @@ public class Room {
 
 
 
-    public Element decideTypeOfElement(int elementNumber){ //denna är private eftersom jag endast vill att ett element ska kunna kallas på en gång
+    private Element decideTypeOfElement(int elementNumber){ //denna är private eftersom jag endast vill att ett element ska kunna kallas på en gång
 
         if(element == null) {
 
@@ -160,6 +171,22 @@ public class Room {
      //TODO spawna boss!
     public void spawnBoss(){
          boss = new Boss(getElement(), player.getLevel(),this);
+
+    }
+
+    public void removeBoss(){
+         if(boss != null){
+             boss = null;
+             givePlayerElement();
+         }
+
+         else {
+             throw new IllegalStateException();
+         }
+    }
+
+    private void givePlayerElement(){
+         player.addElement(getElement());
 
     }
 
