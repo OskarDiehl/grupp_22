@@ -38,8 +38,10 @@ public class Player extends Character {
     // OTHER METHODS ---------------------------------------------------------------------------------------------------
     public void levelUp() {
         if (getLevel() < 3) {
-            currentLevel++;
+            int changeToThisLevel = getLevel() + 1;
+            setLevel(changeToThisLevel);
             levelUpChangeStats();
+
         } else
             currentLevel = 3;
     }

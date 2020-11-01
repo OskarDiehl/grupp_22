@@ -15,7 +15,7 @@ public abstract class Character {
         setLevel(level);
     }
 
-    // CONSTRUCTORS  ------------------------------------------------------------------------
+    // OTHER METHODS ------------------------------------------------------------------------
     public void setLevel(int level){
         if(level >= 1 && level <= 3)
             this.level = level;
