@@ -52,7 +52,8 @@ public class TestMethodFindElementInClassPlayerTest {
     // - Ska jag blanda versaler osv?
     // - Byta namn på t.ex: fireAsAnArgumentWithASuccessfulSearch()
     // - I vissa test lägger jag till element i efterhand och andra lägger jag direkt in dem i parametern, spelar roll?
-    // -
+    // - NullpointerException i testet "earthAsAnArgumentWithNoSuccessfulSearch"
+    // - Byta namn på testsviten
 
 
 
