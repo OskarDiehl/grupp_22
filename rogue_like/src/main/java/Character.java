@@ -1,7 +1,7 @@
 public abstract class Character {
 
     // INSTANCE VARIABLES  ------------------------------------------------------------------------
-    private Element mainElement;
+    private final Element mainElement;
     private int level;
 
     //TODO fixa minLevel och maxLevel

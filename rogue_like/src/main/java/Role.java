@@ -7,9 +7,9 @@ public enum Role {
 
     // VARIABLES -------------------------------------------------------------------------------------------------------
     private final String roleName;
-    private int HP;
-    private int power;
-    private int speed;
+    private final int HP;
+    private final int power;
+    private final int speed;
 
     // CONSTRUCTOR -----------------------------------------------------------------------------------------------------
     Role (String roleName, int HP, int power, int speed){
