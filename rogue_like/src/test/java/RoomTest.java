@@ -43,6 +43,18 @@ class RoomTest {
     }
 
     @Test
+    void decideTypeOfRoomShouldBeEnemyWhenIsLuckyWheelFalse(){
+        Room room = new Room(new Player("Test", new FireElement(1), Role.Runner));
+
+
+        assertEquals("Enemy" , room.decideTypeOfRoom(false));
+    }
+
+
+
+
+
+    @Test
     void getPlayerShouldReturnCorrectPlayer(){
     Player ply = new Player("test",new EarthElement(1),Role.Warrior);
     Room room = new Room(ply);
@@ -112,29 +124,6 @@ class RoomTest {
       assertEquals("Lucky Wheel", room.getRoomType());
   }
 
-
-
-
-
-
-  //eftersom maxIntervall är 1 borde det alltid bli rätt?
-  // Testar så att när max intervallet är samma som det random numret så blir det true
-
-
-
-      /*så när rummet skapas bör decideTypeOfRoom kallas på som bara avgör om det blir ett lyckohjulsrum eller inte (1/5).
-      I ett senare skede bör det avgöras om spelaren har dem tre medaljongerna för att spawna en boss eller spawna enemies
-      Kanske i en decideTypeOfEnemy metod.
-
-
-      Men var ska informationen om vilken typ av rum det är sparas? Bör det finnas typ en sträng med "BOSS", "ENEMY" och "LUCKY WHEEL"
-      Eller är det ens nödvändigt? Ska det bara vara om rummet inte har något Element ska det anses som lucky wheel?
-
-
-       */
-
-
-    //TODO metoden decideTypeOfRoom borde alltså kallas med en metod som har en chans 1 / 5 att returnera true
     @Test
     void roomTypeShouldBeEnemy(){
         Room room = new Room(new Player("test",new EarthElement(1),Role.Warrior), "Enemy");
@@ -162,7 +151,7 @@ class RoomTest {
 
     @Test
     void removeEnemyShouldThrowIllegalArgumentWhenEnemyIsNotInEnemies(){
-        Room room = new Room(new Player("Test", new FireElement(1), Role.Runner));
+        Room room = new Room(new Player("Test", new FireElement(1), Role.Runner), "Enemy");
         Enemy enemy = new Enemy(room.getElement(), 1,room);
 
         assertThrows(IllegalArgumentException.class, () -> {
@@ -447,9 +436,45 @@ class RoomTest {
         Room room = new Room(new Player("Test", new FireElement(1), Role.Tank), "Enemy");
 
 
-        assertTrue(room.decideTypeOfElement(4) instanceof EarthElement);
+        assertThrows(IllegalArgumentException.class, () -> {
+            room.decideTypeOfElement(6);
+        });
 
     }
+
+    @Test
+    void illegalStateExceptionThrownWhenRoomTypeIsNotLuckyWheel(){
+        Room room = new Room(new Player("Test", new EarthElement(1), Role.Tank), "Enemy");
+
+        assertThrows(IllegalStateException.class, () -> {
+            room.spinTheLuckyWheel();
+        });
+
+    }
+
+    @Test
+    void itemDroppedFromLuckyWheelIsInstanceOfItem(){
+        Room room = new Room(new Player("Test", new EarthElement(1), Role.Tank), "Lucky Wheel");
+        room.spinTheLuckyWheel();
+
+        while(room.getItemDropped() == null){
+            room.spinTheLuckyWheel();
+        }
+
+        assertTrue(room.getItemDropped() instanceof Item);
+
+    }
+
+    @Test
+    void givePlayerElementGivesElementToPlayer(){
+      Player ply = new Player("Test", new FireElement(1), Role.Tank);
+      Room room = new Room(ply, new EarthElement(1));
+      room.givePlayerElement();
+      assertTrue(ply.findElement("earth") instanceof EarthElement);
+
+    }
+
+
 
 
 

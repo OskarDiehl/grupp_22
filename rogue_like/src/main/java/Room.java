@@ -13,7 +13,7 @@ import java.util.Arrays;
 
 public class Room {
 
-    private final Item[] ITEMS = new Item[]{
+    private static final Item[] ITEMS = new Item[]{
             new Weapon("Boring Sword", 1, 0),
             new Weapon("Cool Sword", 3, -1),
             new Weapon("Mega Hammer", 10, -5),
@@ -52,14 +52,15 @@ public class Room {
     private Boss boss;
 
     public Room(Player player, String roomType) {
-        if (roomType.equals("Boss")) {
-            throw new IllegalArgumentException();
+        if (checkIfRoomTypeIncorrect(roomType)) {
+            throw new IllegalArgumentException(); //TODO gör test
         } else {
             this.element = decideTypeOfElement(generateRandomNumber(MIN_THRESHOLD, AMOUNT_OF_ELEMENTS));
             this.player = player;
             buildRoom(roomType);
         }
     }
+
     public Room(Player player, Element element) {
         this.element = element;
         this.player = player;
@@ -67,13 +68,18 @@ public class Room {
     }
 
     public Room(Player player, Element element, String roomType) {
-        if (roomType.equals("Boss")) {
+        if (checkIfRoomTypeIncorrect(roomType)) {
             throw new IllegalArgumentException();
         } else {
             this.element = element;
             this.player = player;
             buildRoom(roomType);
         }
+    }
+
+    private boolean checkIfRoomTypeIncorrect(String roomType) {
+        return (!(roomType.equals("Enemy")) && !(roomType.equals("Lucky Wheel")));
+
     }
 
     public Room(Player player) {
@@ -84,12 +90,13 @@ public class Room {
 
     private void buildRoom(String typeOfRoom) {
 
-        if (typeOfRoom == "Boss" && !shouldBossSpawn()) {
+        if (checkIfRoomTypeIncorrect(typeOfRoom)) {
             throw new IllegalArgumentException();
         } else {
 
             if (typeOfRoom == "Enemy" && shouldBossSpawn()) {
-                typeOfRoom = "Boss"; }
+                typeOfRoom = "Boss";
+            }
 
             roomType = typeOfRoom;
 
@@ -128,30 +135,25 @@ public class Room {
     }
 
     public Element decideTypeOfElement(int elementNumber) { //denna är private eftersom jag endast vill att ett element ska kunna kallas på en gång
-
-
-
-            switch (elementNumber) {
-                case 1:
-                    element = new FireElement(1);
-                    break;
-                case 2:
-                    element = new WaterElement(1);
-                    break;
-                case 3:
-                    element = new WindElement(1);
-                    break;
-                case 4:
-                    element = new EarthElement(1);
-                    break;
-                default:
-                    throw new IllegalArgumentException();
-            }
+        switch (elementNumber) {
+            case 1:
+                element = new FireElement(1);
+                break;
+            case 2:
+                element = new WaterElement(1);
+                break;
+            case 3:
+                element = new WindElement(1);
+                break;
+            case 4:
+                element = new EarthElement(1);
+                break;
+            default:
+                throw new IllegalArgumentException(); //TODO testa
+        }
 
         return element;
     }
-
-
 
 
     public ArrayList<Enemy> spawnEnemies() {
@@ -195,7 +197,7 @@ public class Room {
         }
     }
 
-    private void givePlayerElement() {
+    public void givePlayerElement() {
         player.addElement(getElement());
 
     }
@@ -208,6 +210,17 @@ public class Room {
         luckyWheel = new LuckyWheel(this);
     }
 
+    public void spinTheLuckyWheel() {
+        if (roomType == "Lucky Wheel") {
+            Item item = luckyWheel.spinLuckyWheel();
+            if (item != null) {
+                itemDropped = luckyWheel.spinLuckyWheel();
+            }
+        } else {
+            throw new IllegalStateException();
+        }
+    }
+
     public LuckyWheel getLuckyWheel() {
         return luckyWheel;
     }
@@ -215,7 +228,6 @@ public class Room {
     public Item spawnItem() {
         return ITEMS[generateRandomNumber(1, ITEMS.length - 1)];
     }
-
 
     public Player getPlayer() {
         return player;
@@ -228,6 +240,7 @@ public class Room {
     public ArrayList<Enemy> getEnemies() {
         return new ArrayList<Enemy>(enemies);
     }
+
 
     public boolean isEnemiesDead() {
         if (enemies.isEmpty()) {
@@ -252,15 +265,13 @@ public class Room {
 
         if (enemies.isEmpty() || !enemies.contains(enemy)) {
             throw new IllegalArgumentException();
-        }
-
-        else {
+        } else {
             enemies.remove(enemy);
-            if(isEnemiesDead()){
+            if (isEnemiesDead()) {
                 itemDropped = spawnItem();
-                }
             }
         }
+    }
 
     public Item getItemDropped() {
         return itemDropped;
