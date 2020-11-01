@@ -15,6 +15,4 @@ public class ItemTest {
         assertEquals(0, i.getHP());
     }
 
-
-
 }

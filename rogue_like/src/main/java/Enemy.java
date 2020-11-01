@@ -7,7 +7,7 @@ public class Enemy extends Character {
     private Stats stats;
     private Room room;
 
-    public Enemy(Element mainElement, int level, Room room) {
+    public Enemy(Element mainElement, int level, Room room) { //Aside from the Character constructor, this constructor accepts a Room parameter and calculates an enemy's stats
         super(mainElement, level);
         this.room = room;
         calculateStats(super.getLevel());
@@ -25,17 +25,22 @@ public class Enemy extends Character {
         generateStats(statForLevel, statForLevel, statForLevel);
     }
 
-    void generateStats(int life, int power, int speed) {
+    void generateStats(int life, int power, int speed) { //Bara en parameter?
         stats = new Stats(life, power, speed);
-    }
+    } //TODO fixa skyddsnivån
 
-    public void attack(Player player) { //TODO gör något åt den höga couplingen vi har, kanske flytta all attackberäkning till Character?
-        int attackPower = getMainElement().attack(getPower(), player.getMainElement());
-        player.getStats().loseHP(attackPower);  //TODO ändra när det går    //* -1 to ensure HP is lost
+    @Override
+    public void attack(Character character) {
+        if (character instanceof Player) {
+            int attackPower = getMainElement().attack(getPower(), character.getMainElement());
+            character.getStats().loseHP(attackPower);
+        } else {
+            throw new ClassCastException();
+        }
     }
 
     public boolean isDead() {
-        return getStats().getCurrentHP() <= 0;
+        return getHP() <= 0;
     }
 
     public void removeIfDead() {

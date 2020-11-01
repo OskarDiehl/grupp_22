@@ -18,13 +18,15 @@ public abstract class Character {
     }
 
     // OTHER METHODS ------------------------------------------------------------------------
-    public void setLevel(int level){
+    public void setLevel(int level){ //TODO skriv fyndig kommentar
         if(level >= 1 && level <= 3)        //A character can reach up to level 3
             this.level = level;
         else {
             throw new IllegalArgumentException();
         }
     }
+
+    public abstract void attack(Character character);
 
     // GET-METHODS  ------------------------------------------------------------------------
 
