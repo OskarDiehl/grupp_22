@@ -139,7 +139,7 @@ public class Room {
         enemies = new ArrayList();
 
         for(int i = 0; i < enemyQuantity; i++){
-            enemies.add(new Enemy(getElement() , player.getCurrentLevel(), this));
+            enemies.add(new Enemy(getElement() , player.getLevel(), this));
 
         }
 
@@ -159,7 +159,7 @@ public class Room {
 
      //TODO spawna boss!
     public void spawnBoss(){
-         boss = new Boss(getElement(), player.getCurrentLevel(),this);
+         boss = new Boss(getElement(), player.getLevel(),this);
 
     }
 

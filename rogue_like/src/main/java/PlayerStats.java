@@ -1,6 +1,5 @@
 public class PlayerStats extends Stats {
     //VARIABLES  --------------------------------------------------------------------------
-    private int currentLevel;
     private int currentPower;
     private int currentSpeed;
 
@@ -8,7 +7,6 @@ public class PlayerStats extends Stats {
     // CONSTRUCTOR  ------------------------------------------------------------------------
     public PlayerStats(int HP, int power, int speed) {
         super(HP, power, speed);
-        currentLevel = 1;
         currentPower = getDefaultPower();
         currentSpeed = getDefaultSpeed();
     }
@@ -44,20 +42,11 @@ public class PlayerStats extends Stats {
 
     // LEVEL-METHODS  ------------------------------------------------------------------------
     public void levelStatsUp(){
-        if (currentLevel < 3){
-            currentLevel++;
             levelUpTheDefaultStats(2);                         // When the player jump up a level all the stats increase with two
-        }
-        else
-            currentLevel = 3;
     }
 
 
     // GET-METHODS  ------------------------------------------------------------------------
-    public int getCurrentLevel() {
-        return currentLevel;
-    }
-
     public int getCurrentPower() {
         return currentPower;
     }

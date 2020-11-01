@@ -89,7 +89,7 @@ public class PlayerTest {
     void levelUpToSecondLevel(){
         Player player = new Player("Sabina", element, role);
         player.levelUp();
-        assertEquals(2, player.getCurrentLevel());
+        assertEquals(2, player.getLevel());
     }
 
 //    @Test

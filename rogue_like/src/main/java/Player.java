@@ -13,7 +13,6 @@ public class Player extends Character {
     //Tar man ett Item börjar det verka direkt  /Vapen, rustning, skor
 
     // INSTANCE VARIABLES ----------------------------------------------------------------------------------------------
-    private int currentLevel = 1;
     private Role role;
     private PlayerStats playerStats;
     private int earthMedallions = 0;
@@ -26,8 +25,6 @@ public class Player extends Character {
     // CONSTRUCTOR -----------------------------------------------------------------------------------------------------
     public Player(String name, Element element, Role role) {
         super(element);
-        //this.level = getCurrentLevel();   TODO Fråga Sabina /Malin
-        //TODO försök fixa
         this.name = name;
         this.role = role;
         this.playerStats = new PlayerStats(role.getHP(), role.getPower(), role.getSpeed());
@@ -37,17 +34,9 @@ public class Player extends Character {
 
     // OTHER METHODS ---------------------------------------------------------------------------------------------------
     public void levelUp() {
-        if (getLevel() < 3) {
-            int changeToThisLevel = getLevel() + 1;
-            setLevel(changeToThisLevel);
-            levelUpChangeStats();
-
-        } else
-            currentLevel = 3;
-    }
-
-    public void levelUpChangeStats() {                              // When the player moves up a level the player´s default stats increases
-        playerStats.levelStatsUp();
+        int changeToThisLevel = getLevel() + 1;
+        setLevel(changeToThisLevel);
+        playerStats.levelStatsUp();                                 // When the player moves up a level the player´s default stats increases
     }
 
     public void changeStatPower(int powerAmount) {                  // Changes the stats for power
@@ -79,7 +68,7 @@ public class Player extends Character {
         else
             throw new NullPointerException();  //TODO HUR FANKEN FÅR JAG MED DEN HÄR I COVERAGE?! /Malin
 
-         //   throw new IllegalArgumentException("Error: no allowed element is chosen");
+        //   throw new IllegalArgumentException("Error: no allowed element is chosen");
         //TODO kalla på ngt exception?
 
         //TODO Jag behöver ngn metod som returnerar vilken typ av element som det är /Malin
@@ -93,7 +82,7 @@ public class Player extends Character {
         }
     }
 
-    public void changeActivatedElement(String elementType){
+    public void changeActivatedElement(String elementType) {
         Element chosenElement = findElement(elementType);
         if (chosenElement != null)
             activatedElement = chosenElement;
@@ -101,7 +90,7 @@ public class Player extends Character {
             System.out.println("Type again please");   //TODO MALIN FIXA DIN LILLA BAJSFIA /Malin
     }
 
-    public Element findElement(String elementType){
+    public Element findElement(String elementType) {
         if (elementType.toLowerCase().equals("earth") && elements[0].getClass().isInstance(new EarthElement(2)))
             return elements[0];
         else if (elementType.toLowerCase().equals("water") && elements[1].getClass().isInstance(new WaterElement(2)))
@@ -186,10 +175,6 @@ public class Player extends Character {
     @Override
     public Stats getStats() {
         return playerStats;
-    }
-
-    public int getCurrentLevel() {
-        return currentLevel;
     }
 
     public int getCurrentHPFromStats() {
