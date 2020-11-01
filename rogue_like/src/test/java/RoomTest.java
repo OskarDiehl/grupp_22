@@ -32,14 +32,14 @@ class RoomTest {
     void decideTypeOfRoomReturnsLuckyWheelWhenTrue(){
       Room room = new Room(new Player("Test", new FireElement(1), Role.Runner));
 
-      assertEquals("LuckyWheel" , room.decideTypeOfRoom(true));
+      assertEquals("Lucky Wheel" , room.decideTypeOfRoom(true));
     }
 
     @Test
-    void decideTypeOfRoomReturnsEnemyWhenFalse(){
+    void decideTypeOfRoomIsNotEnemy(){
         Room room = new Room(new Player("Test", new FireElement(1), Role.Runner));
 
-        assertEquals("Enemy" , room.decideTypeOfRoom(true));
+        assertNotEquals("Enemy" , room.decideTypeOfRoom(true));
     }
 
     @Test
