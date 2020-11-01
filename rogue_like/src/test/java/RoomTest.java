@@ -95,11 +95,6 @@ class RoomTest {
 
 
 
-
-    @Test void GenerateAmountOfEnemiesIsTheCorrectIntervall(){
-
-    }
-
     @Test
     void shouldGenerateElementForRoom(){
       Room room = new Room(new Player("Test", new FireElement(1), Role.Runner));
@@ -144,10 +139,7 @@ class RoomTest {
 
 
     }
-    @Test
-    void ifRemoveEnemyRemovesTheCorrectEnemy(){
 
-    }
 
     @Test
     void removeEnemyShouldThrowIllegalArgumentWhenEnemyIsNotInEnemies(){
@@ -160,32 +152,8 @@ class RoomTest {
 
     }
 
-    @Test
-    void itemShouldDropWhenAllEnemiesAreDead(){
-        Room room = new Room(new Player("test",new EarthElement(1),Role.Warrior));
 
 
-
-        //room.checkIfEnemiesDead(){
-
-        }
-
-    @Test
-    void elementShouldBeAddedToPlayerWhenKilledBoss(){
-
-    }
-
-    @Test
-    void iLLegalStateExceptionThrownWhenRemovingNonExistingBoss(){
-
-
-    }
-
-    @Test
-    void itemShouldDropWhenLuckyWheelIsActivated(){
-
-
-    }
 
     @Test
     void enemyCantSpawnWhenPlayerHas3MedallionsOfRoomsElement(){
@@ -220,9 +188,9 @@ class RoomTest {
 
     @Test
     void isEnemiesDeadShouldReturnTrueWhenAllEnemiesRemoved(){
-      Room room = new Room(new Player("test",new EarthElement(1),Role.Warrior));
+      Room room = new Room(new Player("test",new EarthElement(1),Role.Warrior),"Enemy");
 
-      ArrayList<Enemy>  enemies = room.getEnemies();
+      ArrayList<Enemy> enemies = room.getEnemies();
 
       for( Enemy e : enemies){
         room.removeEnemy(e);
@@ -250,7 +218,7 @@ class RoomTest {
         room = new Room(new Player("test",new EarthElement(1),Role.Warrior));
       }
 
-      assertTrue(room.getLuckyWheel() != null);
+      assertNotNull(room.getLuckyWheel());
 
   }
 
@@ -259,7 +227,7 @@ class RoomTest {
     Room room = new Room(new Player("test",new FireElement(1), Role.Tank), "Enemy");
 
 
-    assertTrue(room.getLuckyWheel() == null);
+    assertNull(room.getLuckyWheel());
 
   }
 
@@ -274,7 +242,7 @@ class RoomTest {
         room.removeEnemy(e);
       }
 
-      assertTrue(room.getItemDropped() != null);
+      assertNotNull(room.getItemDropped());
 
   }
 
@@ -285,7 +253,7 @@ class RoomTest {
 
 
 
-    assertTrue(room.getItemDropped() == null);
+    assertNull(room.getItemDropped());
 
     }
 
@@ -304,7 +272,7 @@ class RoomTest {
         room = new Room(ply, elm);
       }
 
-      assertTrue(room.getBoss() != null);
+      assertNotNull(room.getBoss());
 
 
 
@@ -323,17 +291,11 @@ class RoomTest {
       room = new Room(ply, elm);
     }
 
-    assertTrue(room.getBoss() == null);
+    assertNull(room.getBoss());
 
 
   }
 
-
-  @Test
-  void illegalArgumentShouldBeThrownWhenBossIsCalledAsRoomType(){
-
-
-  }
 
   @Test
   void bossShouldBeRemoved(){
@@ -346,7 +308,7 @@ class RoomTest {
       Room room = new Room(ply, elm, "Enemy");
       room.removeBoss();
 
-      assertTrue(room.getBoss() == null);
+      assertNull(room.getBoss());
   }
 
   @Test
@@ -491,27 +453,5 @@ class RoomTest {
         });
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /*
-        Hur kontrollerar vi att alla enemies är döda?
-        När en enemy är död måste det på något sätt skickas till Room, där vi sedan kan
-        checka så att inte alla monster är döda. Om dem är döda så bör spawnItem kallas på.
-         */
-
-
     }
 

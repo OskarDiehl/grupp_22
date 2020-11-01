@@ -81,7 +81,6 @@ public class Room {
             return true;
         }
         throw new IllegalArgumentException();
-
     }
 
 
@@ -145,10 +144,8 @@ public class Room {
     }
 
     private boolean decideIfLuckyWheel() {
-        if (generateRandomNumber(MIN_THRESHOLD, MAX_NUMBER_LUCKY_WHEEL) == MAX_NUMBER_LUCKY_WHEEL) {
-            return true;
-        }
-        return false;
+        return (generateRandomNumber(MIN_THRESHOLD, MAX_NUMBER_LUCKY_WHEEL) == MAX_NUMBER_LUCKY_WHEEL);
+
     }
 
 
@@ -237,10 +234,8 @@ public class Room {
     }
 
     public boolean isEnemiesDead() {
-        if (enemies.isEmpty()) {
-            return true;
-        }
-        return false;
+        return (enemies.isEmpty());
+
     }
 
 
