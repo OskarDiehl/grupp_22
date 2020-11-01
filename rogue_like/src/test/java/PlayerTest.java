@@ -129,7 +129,7 @@ public class PlayerTest {
     void decreaseSpeedStats(){
         Player player = new Player("Sabina", element, role);
         player.changeStatSpeed(-3);
-        assertEquals(2, player.getPlayerStats().getCurrentSpeed());
+        assertEquals(2, player.getStats().getCurrentSpeed());
     }
 
     @Test

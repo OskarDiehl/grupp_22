@@ -31,7 +31,7 @@ public class Enemy extends Character {
 
     public void attack(Player player) { //TODO gör något åt den höga couplingen vi har, kanske flytta all attackberäkning till Character?
         int attackPower = getMainElement().attack(getPower(), player.getMainElement());
-        player.getPlayerStats().loseHP(attackPower);
+        player.getStats().loseHP(attackPower);
     }
 
     public boolean isDead() {

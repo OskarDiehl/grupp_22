@@ -28,7 +28,7 @@ public class LuckyWheel {
     public Item spinLuckyWheel() {
         int num = room.generateRandomNumber(1, 10) - 1;
         if (droptable.get(num).equals("DEATH")) {
-            room.getPlayer().getPlayerStats().loseHP(room.getPlayer().getCurrentHPFromStats());
+            room.getPlayer().getStats().loseHP(room.getPlayer().getCurrentHPFromStats());
             return null;
         }
         Item item = (Item) droptable.get(num);

@@ -181,7 +181,8 @@ public class Player extends Character {
         return name;
     }
 
-    public PlayerStats getPlayerStats() {
+    @Override
+    public Stats getStats() {
         return playerStats;
     }
 
