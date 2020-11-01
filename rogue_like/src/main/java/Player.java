@@ -82,8 +82,8 @@ public class Player extends Character {
         //TODO Jag behöver ngn metod som returnerar vilken typ av element som det är /Malin
     }
 
-    public Element findElement(String elementType) {
-        if (elementType.toLowerCase().equals("earth") && elements[0].getClass().isInstance(new EarthElement(2)))            // Checks if the player has an certain element
+    public Element findElement(String elementType) {                                                                                   // Checks if the player has an certain element
+        if (elementType.toLowerCase().equals("earth") && elements[0].getClass().isInstance(new EarthElement(2)))
             return elements[0];
         else if (elementType.toLowerCase().equals("water") && elements[1].getClass().isInstance(new WaterElement(2)))
             return elements[1];
