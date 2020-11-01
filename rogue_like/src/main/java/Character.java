@@ -15,7 +15,6 @@ public abstract class Character {
         setLevel(level);
     }
 
-
     // CONSTRUCTORS  ------------------------------------------------------------------------
     public void setLevel(int level){
         if(level >= 1 && level <= 3)
@@ -35,7 +34,7 @@ public abstract class Character {
         return level;
     }
 
-    //public abstract Stats getStats();
+    public abstract Stats getStats();
 
 
 
