@@ -83,13 +83,13 @@ public class Player extends Character {
     }
 
     public Element findElement(String elementType) {                                                                                   // Checks if the player has an certain element
-        if (elementType.toLowerCase().equals("earth") && elements[0].getClass().isInstance(new EarthElement(2)))
+        if (elementType.toLowerCase().equals("earth") && elements[0] != null && elements[0].getClass().isInstance(new EarthElement(2)))
             return elements[0];
-        else if (elementType.toLowerCase().equals("water") && elements[1].getClass().isInstance(new WaterElement(2)))
+        else if (elementType.toLowerCase().equals("water") && elements[1] != null && elements[1].getClass().isInstance(new WaterElement(2)))
             return elements[1];
-        else if (elementType.toLowerCase().equals("fire") && elements[2].getClass().isInstance(new FireElement(3)))
+        else if (elementType.toLowerCase().equals("fire") && elements[2] != null && elements[2].getClass().isInstance(new FireElement(3)))
             return elements[2];
-        else if (elementType.toLowerCase().equals("wind") && elements[3].getClass().isInstance(new WindElement(1)))
+        else if (elementType.toLowerCase().equals("wind") && elements[3] != null && elements[3].getClass().isInstance(new WindElement(1)))
             return elements[3];
         else
             return null;        //TODO TA UPP bra lösning? /Malin      Fixa illegalargument
