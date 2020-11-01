@@ -90,7 +90,7 @@ public class Player extends Character {
         else if (elementType.toLowerCase().equals("wind") && elements[3].getClass().isInstance(new WindElement(1)))
             return elements[3];
         else
-            return null;        //TODO TA UPP bra lösning? /Malin
+            return null;        //TODO TA UPP bra lösning? /Malin      Fixa illegalargument
     }
 
     private void upgradeOrAddElement(int index, Element newElement) {                     // Upgrade or add an element
