@@ -4,23 +4,19 @@ public class Player extends Character {
     private Element elements[] = new Element[4];
     private Item items[] = new Item[3];
 
-    //Earth element == index 0
-    //Water element == index 1
-    //Fire element  == index 2
-    //Air element   == index 3
-
-
-    //Tar man ett Item börjar det verka direkt  /Vapen, rustning, skor
-
     // INSTANCE VARIABLES ----------------------------------------------------------------------------------------------
+    private String name;
     private Role role;
     private PlayerStats playerStats;
-    private int earthMedallions = 0;
-    private int waterMedallions = 0;
-    private int fireMedallions = 0;
-    private int windMedallions = 0;
-    private Element activatedElement;
-    private String name;
+    private Element activatedElement;     // The element the player use at the moment (You can only use one at the time)
+
+    private int earthMedallions = 0;      // When the player has completed a room ze earns a medallion. There are
+    private int waterMedallions = 0;      // four different kind of medallions, one for each element.
+    private int fireMedallions = 0;       //      If the player has three of one sort, the next room will be a
+    private int windMedallions = 0;       // boss room for the element the three medallions symbolize.
+                                          //      When the player defeats the boss, ze will either earn or upgrade
+                                          // the element for the boss room. It depends on if ze already has the object.
+
 
     // CONSTRUCTOR -----------------------------------------------------------------------------------------------------
     public Player(String name, Element element, Role role) {
@@ -33,7 +29,7 @@ public class Player extends Character {
     }
 
     // OTHER METHODS ---------------------------------------------------------------------------------------------------
-    public void levelUp() {
+    public void levelUp() {                                         // Level up the player
         int changeToThisLevel = getLevel() + 1;
         setLevel(changeToThisLevel);
         playerStats.levelStatsUp();                                 // When the player moves up a level the player´s default stats increases
@@ -52,18 +48,24 @@ public class Player extends Character {
     }
 
 
-    // ELEMENTS-ARRAY METHODS ------------------------------------------------------------------------------------------
+    // ELEMENTS METHODS ------------------------------------------------------------------------------------------------
+    // The index each element has in the array "elements":
+    //   * index 0 = Earth element
+    //   * index 1 = Water element
+    //   * index 2 = Fire element
+    //   * index 3 = Air element
+
     public void addElement(Element newElement) {
-        if (newElement.getClass().isInstance(new EarthElement(1))) {          //For earth elements
+        if (newElement.getClass().isInstance(new EarthElement(1))) {          // For earth elements
             upgradeOrAddElement(0, newElement);                                    //... upgrade or add earth element
 
-        } else if (newElement.getClass().isInstance(new WaterElement(1)))       //For water elements
+        } else if (newElement.getClass().isInstance(new WaterElement(1)))     // For water elements
             upgradeOrAddElement(1, newElement);                                    //... upgrade or add water element
 
-        else if (newElement.getClass().isInstance(new FireElement(1)))        //For fire elements
+        else if (newElement.getClass().isInstance(new FireElement(1)))        // For fire elements
             upgradeOrAddElement(2, newElement);                                    //... upgrade or add fire element
 
-        else if (newElement.getClass().isInstance(new WindElement(1)))        //For wind elements
+        else if (newElement.getClass().isInstance(new WindElement(1)))        // For wind elements
             upgradeOrAddElement(3, newElement);                                    //... upgrade or add wind element
         else
             throw new NullPointerException();  //TODO HUR FANKEN FÅR JAG MED DEN HÄR I COVERAGE?! /Malin
@@ -74,7 +76,7 @@ public class Player extends Character {
         //TODO Jag behöver ngn metod som returnerar vilken typ av element som det är /Malin
     }
 
-    private void upgradeOrAddElement(int index, Element newElement) {
+    private void upgradeOrAddElement(int index, Element newElement) {                     // Upgrade or add an element
         if (elements[index] != null && elements[index].getElementLevel() != 3)
             elements[index].levelUpElement();
         else {
@@ -82,8 +84,8 @@ public class Player extends Character {
         }
     }
 
-    public void changeActivatedElement(String elementType) {
-        Element chosenElement = findElement(elementType);
+    public void changeActivatedElement(String elementType) {                              // Since you only can use one element at the time...
+        Element chosenElement = findElement(elementType);                                 //... the player can change to another element (of the elements the player own)
         if (chosenElement != null)
             activatedElement = chosenElement;
         else
@@ -91,7 +93,7 @@ public class Player extends Character {
     }
 
     public Element findElement(String elementType) {
-        if (elementType.toLowerCase().equals("earth") && elements[0].getClass().isInstance(new EarthElement(2)))
+        if (elementType.toLowerCase().equals("earth") && elements[0].getClass().isInstance(new EarthElement(2)))            // Checks if the player has an certain element
             return elements[0];
         else if (elementType.toLowerCase().equals("water") && elements[1].getClass().isInstance(new WaterElement(2)))
             return elements[1];
@@ -104,6 +106,15 @@ public class Player extends Character {
     }
 
     // ITEMS-ARRAY METHODS ---------------------------------------------------------------------------------------------
+    // The index each item has in the array "items":
+    //    * index 0 = Armor
+    //    * index 1 = Shoes
+    //    * index 2 = Weapon
+
+
+
+    //Tar man ett Item börjar det verka direkt  /Vapen, rustning, skor
+
 //    private void addItem(Item newItem) {
 //
 //        //metod som på ngt vis lägger till ett item och eventuellt byter mot ett annat.
@@ -114,10 +125,7 @@ public class Player extends Character {
 //        // 3. Om användaren säger ja -> Byt. Annars avbryt?
 //    }
 
-    //Bestämda index för array:en med items
-    //Armor = index 0
-    //Shoes = index 1
-    //Weapon = index 2
+
 
     // ELEMENT MEDALLION METHODS ---------------------------------------------------------------------------------------
     public int fetchMedallionStatus(Element element) {
