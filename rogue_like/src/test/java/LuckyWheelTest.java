@@ -15,10 +15,7 @@ class LuckyWheelTest {
 
     @Test
     void deathShouldBePlacedOnFirstIndex(){
-        Room room = new Room();
-        while(room.getRoomType() != "Lucky Wheel"){
-            room = new Room();
-        }
+        Room room = new Room(new Player("Test", new FireElement(1), Role.Tank), "Lucky Wheel");
 
         LuckyWheel lw = room.getLuckyWheel();
 
@@ -30,10 +27,7 @@ class LuckyWheelTest {
 
     @Test
     void deathShouldBePlacedOnLastIndex(){
-        Room room = new Room();
-        while(room.getRoomType() != "Lucky Wheel"){
-            room = new Room();
-        }
+        Room room = new Room(new Player("Test", new FireElement(1), Role.Tank), "Lucky Wheel");
 
         LuckyWheel lw = room.getLuckyWheel();
         int lastIndex = lw.getDroptable().size() -1;
@@ -44,10 +38,7 @@ class LuckyWheelTest {
 
     @Test
     void playerShouldLoseAllHPWhenLuckyWheelIsDeath(){
-        Room room = new Room();
-        while(room.getRoomType() != "Lucky Wheel"){
-            room = new Room();
-        }
+        Room room = new Room(new Player("Test", new FireElement(1), Role.Tank), "Lucky Wheel");
 
         LuckyWheel lw = room.getLuckyWheel();
         Item item = lw.spinLuckyWheel();
@@ -62,10 +53,7 @@ class LuckyWheelTest {
 
     @Test
     void spinLuckyWheelShouldReturnNullIfDEATH(){
-        Room room = new Room();
-        while(room.getRoomType() != "Lucky Wheel"){
-            room = new Room();
-        }
+        Room room = new Room(new Player("Test", new FireElement(1), Role.Tank), "Lucky Wheel");
 
         LuckyWheel lw = room.getLuckyWheel();
         Item item = lw.spinLuckyWheel();
@@ -79,10 +67,8 @@ class LuckyWheelTest {
 
     @Test
     void spinLuckyWheelShouldReturnItemWhenWheelIsNotDEATH(){
-        Room room = new Room();
-        while(room.getRoomType() != "Lucky Wheel"){
-            room = new Room();
-        }
+        Room room = new Room(new Player("Test", new FireElement(1), Role.Tank), "Lucky Wheel");
+
 
         LuckyWheel lw = room.getLuckyWheel();
         Item item = lw.spinLuckyWheel();
@@ -95,10 +81,8 @@ class LuckyWheelTest {
 
     @Test
     void IfGetDroptableReturnsADropTableWith10Objects(){
-        Room room = new Room();
-        while(room.getRoomType() != "Lucky Wheel"){
-            room = new Room();
-        }
+        Room room = new Room(new Player("Test", new FireElement(1), Role.Tank), "Lucky Wheel");
+
 
         LuckyWheel lw = room.getLuckyWheel();
         assertEquals(10,lw.getDroptable().size());
@@ -107,10 +91,7 @@ class LuckyWheelTest {
 
     @Test
     void getITEMS_AVAILABLEShouldBeSameSizeAsRoomItems(){
-        Room room = new Room();
-        while(room.getRoomType() != "Lucky Wheel"){
-            room = new Room();
-        }
+        Room room = new Room(new Player("Test", new FireElement(1), Role.Tank), "Lucky Wheel");
 
         LuckyWheel lw = room.getLuckyWheel();
 
@@ -121,10 +102,8 @@ class LuckyWheelTest {
 
     @Test
     void getRoomShouldBeTheSameInstanceAsRoom(){
-        Room room = new Room();
-        while(room.getRoomType() != "Lucky Wheel"){
-            room = new Room();
-        }
+        Room room = new Room(new Player("Test", new FireElement(1), Role.Tank), "Lucky Wheel");
+
 
         LuckyWheel lw = room.getLuckyWheel();
         Room roomFromLW = lw.getRoom();

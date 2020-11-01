@@ -13,7 +13,7 @@ class RoomTest {
   @Test
     void shouldGenerateNumberBetweenOneAndTen(){
 
-        Room room = new Room();
+        Room room = new Room(new Player("test",new EarthElement(1),Role.Warrior));
         int num = room.generateRandomNumber(1,10);
 
         assertTrue( 1 <= num && num <= 10, "num: " + num);
@@ -22,7 +22,7 @@ class RoomTest {
     @Test
     void ifArgumentExceptionIsThrownWhenMinValueBelowOneOnGenerateRandomNumber(){
 
-      Room room = new Room();
+      Room room = new Room(new Player("test",new EarthElement(1),Role.Warrior));
       assertThrows(IllegalArgumentException.class, () -> {
           room.generateRandomNumber(0, 5);
       });
@@ -43,7 +43,7 @@ class RoomTest {
     @Test
     void ifArgumentExceptionIsThrownWhenMinValueIsMoreThanMaxValueInGenerateRandomNumber(){
 
-        Room room = new Room();
+        Room room = new Room(new Player("test",new EarthElement(1),Role.Warrior));
         assertThrows(IllegalArgumentException.class, () -> {
             room.generateRandomNumber(8, 7);
         });
@@ -53,16 +53,15 @@ class RoomTest {
 
     //TODO denna borde kanske testa ALLA enemies, inte bara den första
     @Test void ifEnemiesAreTheRightElement(){
-      Room room = new Room();
+      Room room = new Room(new Player("Test", new FireElement(1), Role.Warrior), new EarthElement(1), "Enemy");
 
-      Element el = room.getElement();
-     //assertTrue(room.getEnemies().get(3).getMainElement() instanceof el.getClass());
+     assertTrue(room.getEnemies().get(3).getMainElement() instanceof EarthElement);
     }
 
     //TODO eventuellt fundera på att inte använda array? Vad händer exempelvis när en fiende dör? Kanske lättare att hålla koll på när rummet är klart via en lista och sen bara kolla när den är tom.
 
     @Test void ifCorrectNumberOfEnemiesHaveBeenCreated(){
-      Room room = new Room();
+      Room room = new Room(new Player("test",new EarthElement(1),Role.Warrior));
 
       assertEquals(room.getEnemyQuantity(), room.getEnemies().size());
 
@@ -77,24 +76,25 @@ class RoomTest {
 
     @Test
     void shouldGenerateElementForRoom(){
-      Room room = new Room();
+      Room room = new Room(new Player("Test", new FireElement(1), Role.Runner));
+
+      assertNotEquals(null, room.getElement());
+
     }
 
     @Test
     void roomTypeShouldNotBeEmptyWhenCreatingRoom(){
-      Room room = new Room();
+      Room room = new Room(new Player("Test", new EarthElement(1), Role.Tank), new FireElement(1));
 
       assertNotEquals(null, room.getRoomType());
   }
 
-    //det finns de fyra element rummen + boss rummen för vardera + lyckohjulsrum
+
+
     @Test
     void roomTypeShouldBeLuckyWheel(){
-      Room room = new Room();
+      Room room = new Room(new Player("test",new EarthElement(1),Role.Warrior), "Lucky Wheel");
 
-      while(room.getRoomType() == "Enemy"){
-        room = new Room();
-      }
       assertEquals("Lucky Wheel", room.getRoomType());
   }
 
@@ -120,11 +120,7 @@ class RoomTest {
     //TODO metoden decideTypeOfRoom borde alltså kallas med en metod som har en chans 1 / 5 att returnera true
     @Test
     void roomTypeShouldBeEnemy(){
-        Room room = new Room();
-
-        while(room.getRoomType() == "Lucky Wheel"){
-          room = new Room();
-        }
+        Room room = new Room(new Player("test",new EarthElement(1),Role.Warrior), "Enemy");
 
 
         assertEquals("Enemy", room.getRoomType());
@@ -135,11 +131,8 @@ class RoomTest {
 
     @Test
     void roomShouldBeLuckyWheel(){
-      Room room = new Room();
+      Room room = new Room(new Player("test",new EarthElement(1),Role.Warrior), "Lucky Wheel");
 
-      while(room.getRoomType() == "Enemy"){
-        room = new Room();
-      }
 
       assertEquals("Lucky Wheel", room.getRoomType());
 
@@ -152,7 +145,7 @@ class RoomTest {
 
     @Test
     void itemShouldDropWhenAllEnemiesAreDead(){
-        Room room = new Room();
+        Room room = new Room(new Player("test",new EarthElement(1),Role.Warrior));
 
 
 
@@ -185,11 +178,7 @@ class RoomTest {
       ply.addMedallion(elm);
       ply.addMedallion(elm);
 
-      Room room = new Room(ply, elm);
-
-      while(room.getRoomType() == "Lucky Wheel") {
-        room = new Room(ply, elm);
-      }
+      Room room = new Room(ply, elm, "Enemy");
 
 
       assertEquals("Boss",room.getRoomType());
@@ -205,11 +194,8 @@ class RoomTest {
       ply.addMedallion(elm);
 
 
-      Room room = new Room(ply, elm);
+      Room room = new Room(ply, elm, "Enemy");
 
-      while(room.getRoomType() == "Lucky Wheel") {
-        room = new Room(ply, elm);
-      }
 
       assertNotEquals("Boss",room.getRoomType());
 
@@ -217,7 +203,7 @@ class RoomTest {
 
     @Test
     void isEnemiesDeadShouldReturnTrueWhenAllEnemiesRemoved(){
-      Room room = new Room();
+      Room room = new Room(new Player("test",new EarthElement(1),Role.Warrior));
 
       ArrayList<Enemy>  enemies = room.getEnemies();
 
@@ -232,7 +218,7 @@ class RoomTest {
 
   @Test
   void isEnemiesDeadShouldReturnFalseWhenNotAllEnemiesRemoved(){
-    Room room = new Room();
+    Room room = new Room(new Player("Test", new FireElement(1), Role.Warrior));
 
     assertFalse(room.isEnemiesDead());
 
@@ -241,10 +227,10 @@ class RoomTest {
 
   @Test
   void luckyWheelShouldBeCreatedWhenItHasSpawned(){
-      Room room = new Room();
+      Room room = new Room(new Player("test",new EarthElement(1),Role.Warrior));
 
       while(room.getRoomType() != "Lucky Wheel"){
-        room = new Room();
+        room = new Room(new Player("test",new EarthElement(1),Role.Warrior));
       }
 
       assertTrue(room.getLuckyWheel() != null);
@@ -262,11 +248,8 @@ class RoomTest {
 
   @Test
   void itemDroppedShouldNotBeNullWhenAllEnemiesAreKilled(){
-      Room room = new Room();
+      Room room = new Room(new Player("test",new EarthElement(1),Role.Warrior), new EarthElement(1),"Enemy");
 
-      while(room.getRoomType() == "Lucky Wheel"){
-        room = new Room();
-      }
 
       ArrayList<Enemy> enemies = room.getEnemies();
 
@@ -280,11 +263,9 @@ class RoomTest {
 
   @Test
   void itemDroppedShouldBeNullWhenEnemiesAreAlive(){
-    Room room = new Room();
 
-    while(room.getRoomType() == "Lucky Wheel"){
-      room = new Room();
-    }
+      Room room = new Room(new Player("test",new EarthElement(1),Role.Warrior), "Enemy");
+
 
 
     assertTrue(room.getItemDropped() == null);
