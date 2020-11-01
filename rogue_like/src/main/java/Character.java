@@ -4,6 +4,8 @@ public abstract class Character {
     private Element mainElement;
     private int level;
 
+    //TODO fixa minLevel och maxLevel
+
     // CONSTRUCTORS  ------------------------------------------------------------------------
     public Character(Element mainElement){
         this.mainElement = mainElement;
