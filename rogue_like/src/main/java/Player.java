@@ -35,10 +35,6 @@ public class Player extends Character {
         playerStats.levelStatsUp();                                 // When the player moves up a level the player´s default stats increases
     }
 
-    public void changeStatHP(int hp) {                              // Changes the stats for HP
-        playerStats.changeCurrentHP(hp);
-    }
-
     public void changeStatPower(int powerAmount) {                  // Changes the stats for power
         playerStats.changePowerTemporary(powerAmount);
     }
@@ -80,6 +76,19 @@ public class Player extends Character {
         //TODO Jag behöver ngn metod som returnerar vilken typ av element som det är /Malin
     }
 
+    public Element findElement(String elementType) {
+        if (elementType.toLowerCase().equals("earth") && elements[0].getClass().isInstance(new EarthElement(2)))            // Checks if the player has an certain element
+            return elements[0];
+        else if (elementType.toLowerCase().equals("water") && elements[1].getClass().isInstance(new WaterElement(2)))
+            return elements[1];
+        else if (elementType.toLowerCase().equals("fire") && elements[2].getClass().isInstance(new FireElement(3)))
+            return elements[2];
+        else if (elementType.toLowerCase().equals("wind") && elements[3].getClass().isInstance(new WindElement(1)))
+            return elements[3];
+        else
+            return null;        //TODO TA UPP bra lösning? /Malin
+    }
+
     private void upgradeOrAddElement(int index, Element newElement) {                     // Upgrade or add an element
         if (elements[index] != null && elements[index].getElementLevel() != 3)
             elements[index].levelUpElement();
@@ -96,39 +105,31 @@ public class Player extends Character {
             System.out.println("Type again please");   //TODO MALIN FIXA DIN LILLA BAJSFIA /Malin
     }
 
-    public Element findElement(String elementType) {
-        if (elementType.toLowerCase().equals("earth") && elements[0].getClass().isInstance(new EarthElement(2)))            // Checks if the player has an certain element
-            return elements[0];
-        else if (elementType.toLowerCase().equals("water") && elements[1].getClass().isInstance(new WaterElement(2)))
-            return elements[1];
-        else if (elementType.toLowerCase().equals("fire") && elements[2].getClass().isInstance(new FireElement(3)))
-            return elements[2];
-        else if (elementType.toLowerCase().equals("wind") && elements[3].getClass().isInstance(new WindElement(1)))
-            return elements[3];
-        else
-            return null;        //TODO TA UPP bra lösning? /Malin
-    }
-
     // ITEMS-ARRAY METHODS ---------------------------------------------------------------------------------------------
     // The index each item has in the array "items":
     //    * index 0 = Armor
     //    * index 1 = Shoes
     //    * index 2 = Weapon
 
-    public void addItem(Item newItem){                                                          // Add an item to the array items  TODO gör private?
-        if (newItem.getClass().isInstance(new Armor(null,0,0)))             // Add armor
-            items[0] = newItem;
+    public void addItem(Item newItem){                                                              // Add an item to the array items  TODO gör private?
+        if (newItem.getClass().isInstance(new Armor(null,0,0))) {
+            switchPotentiallyExistingItem("Armor");                                       // Remove extra stats from potentially already existing armor
+            items[0] = newItem;                                                                     // Add new armor
+        }
+        else if (newItem.getClass().isInstance(new Shoes(null,0,0))){
+            switchPotentiallyExistingItem("Shoes");                                       // Remove extra stats from potentially already existing shoes
+            items[1] = newItem;                                                                     // Add new shoes
+        }
 
-        else if (newItem.getClass().isInstance(new Shoes(null,0,0)))     // Add shoes
-            items[1] = newItem;
+        else{
+            switchPotentiallyExistingItem("Weapon");                                      // Remove extra stats from potentially already existing weapon
+            items[2] = newItem;                                                                     // Add new weapon
+        }
 
-        else
-            items[2] = newItem;                                                                 // Add weapon
-
-        itemIncreaseStats(newItem);
+        itemIncreaseStats(newItem);                                                                 // Add extra stats from the new item
     }
 
-    public Item getItem(String itemType){                                                                                                       // Look if the player has an item of a special type (class). If yes -> fetch the item
+    public Item findItem(String itemType){                                                                                                       // Look if the player has an item of a special type (class). If yes -> fetch the item
         if (itemType.toLowerCase().equals("armor") && items[0].getClass().isInstance(new Armor(null, 0, 0)))
             return items[0];                                                                                                                    // Armor
         else if (itemType.toLowerCase().equals("shoes") && items[1].getClass().isInstance(new Shoes(null,0,0)))
@@ -139,33 +140,29 @@ public class Player extends Character {
             return null;                                //TODO TA UPP bra lösning? /Malin
     }
 
-    public void addOrSwitchItem(Item newItem){          //TODO fixa Malin /Malin
-
-    }
-
-    public void dropItem(String itemType){              //TODO fixa Malin /Malin
-
+    public void switchPotentiallyExistingItem(String itemType){
+        if (findItem(itemType) != null)                                     // Check if there already exist an item with the certain itemType...
+            dropItemDecreaseStats(findItem(itemType));                      // ... if it exist -> take back the extra stats the item gave
     }
 
     private void itemIncreaseStats(Item item){
-        int power = 0; /* = item.getPower();              TODO Vänta på att Oskar kanske fixar med abstrakta metoder :) /Malin */
-        int speed = 0;
-        int hp = 0;
-        //TODO fixa för HP
+        int power = item.getPower();
+        int speed = item.getSpeed();
+        int HP    = item.getHP();
+
         changeStatPower(power);
         changeStatSpeed(speed);
-        changeStatHP(hp);
+        playerStats.gainHP(HP);
     }
 
     private void dropItemDecreaseStats(Item item){
-        int power = 0; /* = item.getPower();              TODO Vänta på att Oskar kanske fixar med abstrakta metoder :) /Malin */
-        int speed = 0 ;
-        int hp = 0;                                     //TODO multiplicera med -1 på allt /Malin
-        //TODO fixa för HP
-        changeStatPower(power);
-        changeStatSpeed(speed);
-        // a
-        changeStatHP(hp);
+        int power = item.getPower();
+        int speed = item.getSpeed() ;
+        int HP    = item.getHP();
+
+        changeStatPower((power * -1));
+        changeStatSpeed((speed * -1));
+        playerStats.loseHP((HP * -1));
     }
 
     // ELEMENT MEDALLION METHODS ---------------------------------------------------------------------------------------

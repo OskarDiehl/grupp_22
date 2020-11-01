@@ -292,7 +292,7 @@ public class PlayerTest {
     void addShoesToItems(){                                                         // Add shoes
         Player player = new Player("Sabina", element, role);
         player.addItem(new Shoes("Heels", 3, 3));
-        assertEquals("Heels", player.getItem("Shoes").getName());
+        assertEquals("Heels", player.findItem("Shoes").getName());
     }
 
     @Test                                                        //TODO fixa när Oskar kanske har fixat med get-metoderna i Item :) /Malin    +  metoden för HP i Stats
