@@ -13,6 +13,4 @@ public abstract class Item {
     public abstract int getHP();
     public abstract int getSpeed();
     public abstract int getPower();
-
-
 }
