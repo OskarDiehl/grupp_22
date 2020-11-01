@@ -474,6 +474,24 @@ class RoomTest {
 
     }
 
+    @Test
+    void illegalArgumentThrownWhenRoomTypeNotEnemyOrLuckyWheel(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Room(new Player("Test",new WaterElement(1), Role.Tank), "asdfasdf");
+
+        });
+    }
+
+    @Test
+    void illegalArgumentThrownWhenRemoveBossWhenBossDontExists(){
+      Room room = new Room(new Player("Test", new FireElement(1), Role.Tank), "Lucky Wheel");
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            room.removeBoss();
+        });
+
+    }
+
 
 
 

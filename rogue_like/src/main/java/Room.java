@@ -52,9 +52,7 @@ public class Room {
     private Boss boss;
 
     public Room(Player player, String roomType) {
-        if (checkIfRoomTypeIncorrect(roomType)) {
-            throw new IllegalArgumentException(); //TODO gör test
-        } else {
+        if (checkIfRoomTypeCorrect(roomType)) {
             this.element = decideTypeOfElement(generateRandomNumber(MIN_THRESHOLD, AMOUNT_OF_ELEMENTS));
             this.player = player;
             buildRoom(roomType);
@@ -68,17 +66,18 @@ public class Room {
     }
 
     public Room(Player player, Element element, String roomType) {
-        if (checkIfRoomTypeIncorrect(roomType)) {
-            throw new IllegalArgumentException();
-        } else {
+        if (checkIfRoomTypeCorrect(roomType)) {
             this.element = element;
             this.player = player;
             buildRoom(roomType);
         }
     }
 
-    private boolean checkIfRoomTypeIncorrect(String roomType) {
-        return (!(roomType.equals("Enemy")) && !(roomType.equals("Lucky Wheel")));
+    private boolean checkIfRoomTypeCorrect(String roomType) {
+        if((roomType.equals("Enemy")) || (roomType.equals("Lucky Wheel"))){
+            return true;
+        }
+        throw new IllegalArgumentException();
 
     }
 
@@ -90,9 +89,7 @@ public class Room {
 
     private void buildRoom(String typeOfRoom) {
 
-        if (checkIfRoomTypeIncorrect(typeOfRoom)) {
-            throw new IllegalArgumentException();
-        } else {
+        if (checkIfRoomTypeCorrect(typeOfRoom)) {
 
             if (typeOfRoom == "Enemy" && shouldBossSpawn()) {
                 typeOfRoom = "Boss";
