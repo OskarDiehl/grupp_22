@@ -486,7 +486,7 @@ class RoomTest {
     void illegalArgumentThrownWhenRemoveBossWhenBossDontExists(){
       Room room = new Room(new Player("Test", new FireElement(1), Role.Tank), "Lucky Wheel");
 
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(IllegalStateException.class, () -> {
             room.removeBoss();
         });
 

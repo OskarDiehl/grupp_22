@@ -1,12 +1,7 @@
 //TODO organisera metoder, alla enemy metoder borde vara ihop exempelvis.
 
-//TODO lös ett bra sätt att ta fram om rummet ska vara ett LuckyWheel eller inte
 
-//TODO lös ett sätt för att generera ett random element för rummet (om det inte är ett luckywheel rum)
 
-//TODO rummet måste kunna komma åt en players "medaljonger" för att avgöra om det blir boss eller inte
-
-//TODO ändra spawnItem till att inte vara random
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,6 +46,13 @@ public class Room {
     private Item itemDropped;
     private Boss boss;
 
+
+    public Room(Player player) {
+        this.player = player;
+        this.element = decideTypeOfElement(generateRandomNumber(MIN_THRESHOLD, AMOUNT_OF_ELEMENTS));
+        buildRoom(decideTypeOfRoom(decideIfLuckyWheel()));
+    }
+
     public Room(Player player, String roomType) {
         if (checkIfRoomTypeCorrect(roomType)) {
             this.element = decideTypeOfElement(generateRandomNumber(MIN_THRESHOLD, AMOUNT_OF_ELEMENTS));
@@ -73,6 +75,7 @@ public class Room {
         }
     }
 
+
     private boolean checkIfRoomTypeCorrect(String roomType) {
         if((roomType.equals("Enemy")) || (roomType.equals("Lucky Wheel"))){
             return true;
@@ -81,11 +84,7 @@ public class Room {
 
     }
 
-    public Room(Player player) {
-        this.player = player;
-        this.element = decideTypeOfElement(generateRandomNumber(MIN_THRESHOLD, AMOUNT_OF_ELEMENTS));
-        buildRoom(decideTypeOfRoom(decideIfLuckyWheel()));
-    }
+
 
     private void buildRoom(String typeOfRoom) {
 
@@ -124,13 +123,6 @@ public class Room {
         return name;
     }
 
-    private boolean decideIfLuckyWheel() {
-        if (generateRandomNumber(MIN_THRESHOLD, MAX_NUMBER_LUCKY_WHEEL) == MAX_NUMBER_LUCKY_WHEEL) {
-            return true;
-        }
-        return false;
-    }
-
     public Element decideTypeOfElement(int elementNumber) { //denna är private eftersom jag endast vill att ett element ska kunna kallas på en gång
         switch (elementNumber) {
             case 1:
@@ -146,11 +138,20 @@ public class Room {
                 element = new EarthElement(1);
                 break;
             default:
-                throw new IllegalArgumentException(); //TODO testa
+                throw new IllegalArgumentException();
         }
 
         return element;
     }
+
+    private boolean decideIfLuckyWheel() {
+        if (generateRandomNumber(MIN_THRESHOLD, MAX_NUMBER_LUCKY_WHEEL) == MAX_NUMBER_LUCKY_WHEEL) {
+            return true;
+        }
+        return false;
+    }
+
+
 
 
     public ArrayList<Enemy> spawnEnemies() {
@@ -168,41 +169,6 @@ public class Room {
 
     }
 
-    //TODO be malin ändra resetMedallions
-    public boolean shouldBossSpawn() {
-        int medallions = player.fetchMedallionStatus(getElement());
-
-        if (medallions == MAX_AMOUNT_OF_MEDALLIONS) {
-            player.resetMedallion(getElement());
-            return true;
-        }
-        return false;
-    }
-
-
-    public void spawnBoss() {
-        boss = new Boss(getElement(), player.getLevel(), this);
-
-    }
-
-    public void removeBoss() {
-        if (boss != null) {
-            boss = null;
-            givePlayerElement();
-        } else {
-            throw new IllegalStateException();
-        }
-    }
-
-    public void givePlayerElement() {
-        player.addElement(getElement());
-
-    }
-
-    public Boss getBoss() {
-        return boss;
-    }
-
     public void spawnLuckyWheel() {
         luckyWheel = new LuckyWheel(this);
     }
@@ -218,12 +184,84 @@ public class Room {
         }
     }
 
-    public LuckyWheel getLuckyWheel() {
-        return luckyWheel;
-    }
-
     public Item spawnItem() {
         return ITEMS[generateRandomNumber(1, ITEMS.length - 1)];
+    }
+
+    public void spawnBoss() {
+        boss = new Boss(getElement(), player.getLevel(), this);
+
+    }
+
+
+    public boolean shouldBossSpawn() {
+        int medallions = player.fetchMedallionStatus(getElement());
+
+        if (medallions == MAX_AMOUNT_OF_MEDALLIONS) {
+            player.resetMedallion(getElement());
+            return true;
+        }
+        return false;
+    }
+
+
+
+    public void removeEnemy(Enemy enemy) {
+
+        if (enemies.isEmpty() || !enemies.contains(enemy)) {
+            throw new IllegalArgumentException();
+        } else {
+            enemies.remove(enemy);
+            if (isEnemiesDead()) {
+                itemDropped = spawnItem();
+            }
+        }
+    }
+
+
+    public void removeBoss() {
+        if (boss != null) {
+            boss = null;
+            givePlayerElement();
+        } else {
+            throw new IllegalStateException();
+        }
+    }
+
+    public void givePlayerElement() {
+        player.addElement(getElement());
+    }
+
+    public int generateAmountOfEnemies() {
+        return generateRandomNumber(MIN_AMOUNT_OF_ENEMIES, MAX_AMOUNT_OF_ENEMIES);
+    }
+
+    public boolean isEnemiesDead() {
+        if (enemies.isEmpty()) {
+            return true;
+        }
+        return false;
+    }
+
+
+    public int generateRandomNumber(int min, int max) {
+
+        if (min < 1 || max < 1 || min > max) {
+            throw new IllegalArgumentException();
+        } else {
+            max += 1;
+            return (int) ((Math.random() * (max - min)) + min);
+        }
+    }
+
+
+
+
+    public Boss getBoss() {
+        return boss;
+    }
+    public LuckyWheel getLuckyWheel() {
+        return luckyWheel;
     }
 
     public Player getPlayer() {
@@ -239,17 +277,6 @@ public class Room {
     }
 
 
-    public boolean isEnemiesDead() {
-        if (enemies.isEmpty()) {
-            return true;
-        }
-        return false;
-    }
-
-    public int generateAmountOfEnemies() {
-        return generateRandomNumber(MIN_AMOUNT_OF_ENEMIES, MAX_AMOUNT_OF_ENEMIES);
-    }
-
     public String getRoomType() {
         return roomType;
     }
@@ -258,17 +285,6 @@ public class Room {
         return enemyQuantity;
     }
 
-    public void removeEnemy(Enemy enemy) {
-
-        if (enemies.isEmpty() || !enemies.contains(enemy)) {
-            throw new IllegalArgumentException();
-        } else {
-            enemies.remove(enemy);
-            if (isEnemiesDead()) {
-                itemDropped = spawnItem();
-            }
-        }
-    }
 
     public Item getItemDropped() {
         return itemDropped;
@@ -277,14 +293,5 @@ public class Room {
     public Item[] getITEMS() {
         return Arrays.copyOf(ITEMS, ITEMS.length);
     }
-
-    public int generateRandomNumber(int min, int max) {
-
-        if (min < 1 || max < 1 || min > max) {
-            throw new IllegalArgumentException();
-        } else {
-            max += 1;
-            return (int) ((Math.random() * (max - min)) + min);
-        }
-    }
 }
+
