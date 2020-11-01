@@ -144,44 +144,32 @@ public class Player extends Character {
     }
 
     public void addMedallion(Element element) {
-        interpretElement(element, false);
+        if (element.getClass().isInstance(new EarthElement(1)) && earthMedallions < 3)
+            earthMedallions++;
+
+        else if (element.getClass().isInstance(new WaterElement(1)) && waterMedallions < 3)
+            waterMedallions++;
+
+        else if (element.getClass().isInstance(new FireElement(1)) && fireMedallions < 3)
+            fireMedallions++;
+
+        else if (element.getClass().isInstance(new WindElement(1)) && windMedallions < 3)
+            windMedallions++;
     }
 
-    public void resetMedallion(Element element) {                                       //When the player has defeated a boss all the medallions disappears
-        interpretElement(element, true);
+    public void resetMedallion(Element element) {                                                               //When the player has defeated a boss all the medallions for that element resets
+        if (element.getClass().isInstance(new EarthElement(1)))
+            earthMedallions = 0;
+
+        else if (element.getClass().isInstance(new WaterElement(1)))
+            waterMedallions = 0;
+
+        else if (element.getClass().isInstance(new FireElement(1)))
+            fireMedallions = 0;
+
+        else if (element.getClass().isInstance(new WindElement(1)))
+            windMedallions = 0;
     }
-
-    private void interpretElement(Element element, boolean decrease){
-        if (element.getClass().isInstance(new EarthElement(1))){
-            if (decrease)
-                earthMedallions = 0;
-            else if (earthMedallions < 3)
-                earthMedallions++;
-        }
-
-        else if (element.getClass().isInstance(new WaterElement(1))){
-            if (decrease)
-                waterMedallions = 0;
-            else if (waterMedallions < 3)
-                waterMedallions++;
-        }
-
-        else if (element.getClass().isInstance(new FireElement(1))){
-            if (decrease)
-                fireMedallions = 0;
-            else if(fireMedallions < 3)
-                fireMedallions++;
-        }
-
-        else if (element.getClass().isInstance(new WindElement(1))){
-            if (decrease)
-                windMedallions = 0;
-            else if (windMedallions < 3)
-                windMedallions++;
-        }
-    }
-
-
 
 
     // GET-METHODS -----------------------------------------------------------------------------------------------------
