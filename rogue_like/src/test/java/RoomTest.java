@@ -29,6 +29,20 @@ class RoomTest {
     }
 
     @Test
+    void decideTypeOfRoomReturnsLuckyWheelWhenTrue(){
+      Room room = new Room(new Player("Test", new FireElement(1), Role.Runner));
+
+      assertEquals("Lucky Wheel" , room.decideTypeOfRoom(true));
+    }
+
+    @Test
+    void decideTypeOfRoomIsNotEnemy(){
+        Room room = new Room(new Player("Test", new FireElement(1), Role.Runner));
+
+        assertNotEquals("Enemy" , room.decideTypeOfRoom(true));
+    }
+
+    @Test
     void getPlayerShouldReturnCorrectPlayer(){
     Player ply = new Player("test",new EarthElement(1),Role.Warrior);
     Room room = new Room(ply);
@@ -61,7 +75,7 @@ class RoomTest {
     //TODO eventuellt fundera på att inte använda array? Vad händer exempelvis när en fiende dör? Kanske lättare att hålla koll på när rummet är klart via en lista och sen bara kolla när den är tom.
 
     @Test void ifCorrectNumberOfEnemiesHaveBeenCreated(){
-      Room room = new Room(new Player("test",new EarthElement(1),Role.Warrior));
+      Room room = new Room(new Player("test",new EarthElement(1),Role.Warrior), "Enemy");
 
       assertEquals(room.getEnemyQuantity(), room.getEnemies().size());
 
@@ -97,6 +111,9 @@ class RoomTest {
 
       assertEquals("Lucky Wheel", room.getRoomType());
   }
+
+
+
 
 
 
@@ -140,6 +157,17 @@ class RoomTest {
     }
     @Test
     void ifRemoveEnemyRemovesTheCorrectEnemy(){
+
+    }
+
+    @Test
+    void removeEnemyShouldThrowIllegalArgumentWhenEnemyIsNotInEnemies(){
+        Room room = new Room(new Player("Test", new FireElement(1), Role.Runner));
+        Enemy enemy = new Enemy(room.getElement(), 1,room);
+
+        assertThrows(IllegalArgumentException.class, () -> {
+           room.removeEnemy(enemy);
+        });
 
     }
 
@@ -218,7 +246,7 @@ class RoomTest {
 
   @Test
   void isEnemiesDeadShouldReturnFalseWhenNotAllEnemiesRemoved(){
-    Room room = new Room(new Player("Test", new FireElement(1), Role.Warrior));
+    Room room = new Room(new Player("Test", new FireElement(1), Role.Warrior), "Enemy");
 
     assertFalse(room.isEnemiesDead());
 
@@ -294,23 +322,138 @@ class RoomTest {
   }
 
   @Test
-  void bossShouldBeNull(){
+  void bossShouldBeNull() {
     FireElement elm = new FireElement(1);
-    Player ply = new Player("test",elm, Role.Tank);
+    Player ply = new Player("test", elm, Role.Tank);
 
     ply.addMedallion(elm);
 
     Room room = new Room(ply, elm);
 
-    while(room.getRoomType() == "Lucky Wheel"){
+    while (room.getRoomType() == "Lucky Wheel") {
       room = new Room(ply, elm);
     }
 
     assertTrue(room.getBoss() == null);
 
 
+  }
+
+
+  @Test
+  void illegalArgumentShouldBeThrownWhenBossIsCalledAsRoomType(){
+
 
   }
+
+  @Test
+  void bossShouldBeRemoved(){
+      Player ply = new Player("Test", new FireElement(1), Role.Tank);
+      EarthElement elm = new EarthElement(1);
+      ply.addMedallion(elm);
+      ply.addMedallion(elm);
+      ply.addMedallion(elm);
+
+      Room room = new Room(ply, elm, "Enemy");
+      room.removeBoss();
+
+      assertTrue(room.getBoss() == null);
+  }
+
+  @Test
+    void fireElementRoomShouldReturnFireElement(){
+        Room room = new Room(new Player("Test", new EarthElement(1), Role.Warrior), new FireElement(1));
+
+        assertTrue(room.getElement() instanceof FireElement);
+  }
+
+    @Test
+    void earthElementRoomShouldReturnEarthElement(){
+        Room room = new Room(new Player("Test", new EarthElement(1), Role.Warrior), new EarthElement(1));
+
+        assertTrue(room.getElement() instanceof EarthElement);
+    }
+
+    @Test
+    void waterElementRoomShouldReturnWaterElement(){
+        Room room = new Room(new Player("Test", new EarthElement(1), Role.Warrior), new WaterElement(1));
+
+        assertTrue(room.getElement() instanceof WaterElement);
+    }
+
+    @Test
+    void waterElementRoomShouldReturnWindElement(){
+        Room room = new Room(new Player("Test", new EarthElement(1), Role.Warrior), new WindElement(1));
+
+        assertTrue(room.getElement() instanceof WindElement);
+    }
+
+    @Test
+    void spawnEnemiesShouldReturnArrayListOfSameSizeAsEnemies(){
+        Room room = new Room(new Player("Test", new FireElement(1), Role.Tank), "Enemy");
+
+        assertEquals(room.spawnEnemies().size(), room.getEnemies().size());
+
+    }
+
+    @Test
+    void whenBossSpawnedBossShouldNotBeNull(){
+        Player ply = new Player("Test", new FireElement(1), Role.Tank);
+
+        Room room = new Room(ply, "Enemy");
+        room.spawnBoss();
+
+        assertNotNull(room.getBoss());
+
+
+    }
+
+    @Test
+    void decideTypeOfElementShouldBeFire(){
+        Room room = new Room(new Player("Test", new FireElement(1), Role.Tank), "Enemy");
+
+        assertTrue(room.decideTypeOfElement(1) instanceof FireElement);
+
+    }
+
+    @Test
+    void decideTypeOfElementShouldBeWater(){
+        Room room = new Room(new Player("Test", new FireElement(1), Role.Tank), "Enemy");
+
+        assertTrue(room.decideTypeOfElement(2) instanceof WaterElement);
+
+    }
+
+    @Test
+    void decideTypeOfElementShouldBeWind(){
+        Room room = new Room(new Player("Test", new FireElement(1), Role.Tank), "Enemy");
+
+        assertTrue(room.decideTypeOfElement(3) instanceof WindElement);
+
+    }
+
+    @Test
+    void decideTypeOfElementShouldBeEarth(){
+        Room room = new Room(new Player("Test", new FireElement(1), Role.Tank), "Enemy");
+
+
+        assertTrue(room.decideTypeOfElement(4) instanceof EarthElement);
+
+    }
+
+
+    @Test
+    void decideTypeOfElementShouldThrowIllegalArgumentException(){
+        Room room = new Room(new Player("Test", new FireElement(1), Role.Tank), "Enemy");
+
+
+        assertTrue(room.decideTypeOfElement(4) instanceof EarthElement);
+
+    }
+
+
+
+
 
 
 
