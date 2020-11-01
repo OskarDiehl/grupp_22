@@ -57,9 +57,15 @@ public class Room {
 
 
     public Room(Player player ,  String roomType){
-        this.element = decideTypeOfElement(generateRandomNumber(MIN_THRESHOLD, AMOUNT_OF_ELEMENTS));
-        this.player = player;
-        buildRoom(roomType);
+        if(roomType.equals("Boss")){
+            throw new IllegalArgumentException();
+        }
+
+        else {
+            this.element = decideTypeOfElement(generateRandomNumber(MIN_THRESHOLD, AMOUNT_OF_ELEMENTS));
+            this.player = player;
+            buildRoom(roomType);
+        }
     }
 
     public Room(Player player , Element element){
@@ -69,11 +75,17 @@ public class Room {
     }
 
     public Room(Player player , Element element, String roomType){
-        this.element = element;
-        this.player = player;
-        buildRoom(roomType);
-    }
+        if(roomType.equals("Boss")){
+            throw new IllegalArgumentException();
+        }
 
+        else {
+
+            this.element = element;
+            this.player = player;
+            buildRoom(roomType);
+        }
+    }
 
 
     public Room(Player player){
@@ -112,7 +124,7 @@ public class Room {
     }
 
     //denna ville jag göra private eftersom när ett rum väl skapats ska man inte kunna ändra type
-    private String decideTypeOfRoom(boolean isItLuckyWheel){
+    public String decideTypeOfRoom(boolean isItLuckyWheel){
          String name;
 
          if( (isItLuckyWheel)){
@@ -125,16 +137,12 @@ public class Room {
         return name;
     }
 
-
     private boolean decideIfLuckyWheel(){
         if(generateRandomNumber(MIN_THRESHOLD, MAX_NUMBER_LUCKY_WHEEL) == MAX_NUMBER_LUCKY_WHEEL){
             return true;
         }
         return false;
     }
-
-
-
 
     private Element decideTypeOfElement(int elementNumber){ //denna är private eftersom jag endast vill att ett element ska kunna kallas på en gång
 
@@ -162,14 +170,18 @@ public class Room {
 
     }
 
-    public void spawnEnemies(){
-        enemyQuantity = generateAmountOfEnemies();
-        enemies = new ArrayList();
+    public ArrayList<Enemy> spawnEnemies(){
 
-        for(int i = 0; i < enemyQuantity; i++){
-            enemies.add(new Enemy(getElement() , player.getLevel(), this));
+        if(enemies == null) {
+            enemyQuantity = generateAmountOfEnemies();
+            enemies = new ArrayList();
 
-        }
+            for (int i = 0; i < enemyQuantity; i++) {
+                enemies.add(new Enemy(getElement(), player.getLevel(), this));
+
+            } }
+
+        return new ArrayList<Enemy>(getEnemies());
 
     }
 
@@ -185,7 +197,7 @@ public class Room {
          return false;
      }
 
-     //TODO spawna boss!
+
     public void spawnBoss(){
          boss = new Boss(getElement(), player.getLevel(),this);
 
