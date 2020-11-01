@@ -111,7 +111,7 @@ public class Player extends Character {
     //    * index 1 = Shoes
     //    * index 2 = Weapon
 
-    public void addItem(Item newItem){                                                              // Add an item to the array items  TODO gör private?
+    public void addItem(Item newItem){                                                              // Add an item to the array items
         if (newItem.getClass().isInstance(new Armor(null,0,0))) {
             switchPotentiallyExistingItem("Armor");                                       // Remove extra stats from potentially already existing armor
             items[0] = newItem;                                                                     // Add new armor
@@ -140,12 +140,12 @@ public class Player extends Character {
             return null;                                //TODO TA UPP bra lösning? /Malin
     }
 
-    public void switchPotentiallyExistingItem(String itemType){
+    private void switchPotentiallyExistingItem(String itemType){
         if (findItem(itemType) != null)                                     // Check if there already exist an item with the certain itemType...
             dropItemDecreaseStats(findItem(itemType));                      // ... if it exist -> take back the extra stats the item gave
     }
 
-    private void itemIncreaseStats(Item item){
+    private void itemIncreaseStats(Item item){                              // Add extra stats from an item
         int power = item.getPower();
         int speed = item.getSpeed();
         int HP    = item.getHP();
@@ -155,7 +155,7 @@ public class Player extends Character {
         playerStats.gainHP(HP);
     }
 
-    private void dropItemDecreaseStats(Item item){
+    private void dropItemDecreaseStats(Item item){                          // Take back extra stats from an item
         int power = item.getPower();
         int speed = item.getSpeed() ;
         int HP    = item.getHP();
