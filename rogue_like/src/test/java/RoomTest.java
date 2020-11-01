@@ -246,7 +246,7 @@ class RoomTest {
 
   @Test
   void isEnemiesDeadShouldReturnFalseWhenNotAllEnemiesRemoved(){
-    Room room = new Room(new Player("Test", new FireElement(1), Role.Warrior));
+    Room room = new Room(new Player("Test", new FireElement(1), Role.Warrior), "Enemy");
 
     assertFalse(room.isEnemiesDead());
 
@@ -407,6 +407,50 @@ class RoomTest {
 
 
     }
+
+    @Test
+    void decideTypeOfElementShouldBeFire(){
+        Room room = new Room(new Player("Test", new FireElement(1), Role.Tank), "Enemy");
+
+        assertTrue(room.decideTypeOfElement(1) instanceof FireElement);
+
+    }
+
+    @Test
+    void decideTypeOfElementShouldBeWater(){
+        Room room = new Room(new Player("Test", new FireElement(1), Role.Tank), "Enemy");
+
+        assertTrue(room.decideTypeOfElement(2) instanceof WaterElement);
+
+    }
+
+    @Test
+    void decideTypeOfElementShouldBeWind(){
+        Room room = new Room(new Player("Test", new FireElement(1), Role.Tank), "Enemy");
+
+        assertTrue(room.decideTypeOfElement(3) instanceof WindElement);
+
+    }
+
+    @Test
+    void decideTypeOfElementShouldBeEarth(){
+        Room room = new Room(new Player("Test", new FireElement(1), Role.Tank), "Enemy");
+
+
+        assertTrue(room.decideTypeOfElement(4) instanceof EarthElement);
+
+    }
+
+
+    @Test
+    void decideTypeOfElementShouldThrowIllegalArgumentException(){
+        Room room = new Room(new Player("Test", new FireElement(1), Role.Tank), "Enemy");
+
+
+        assertTrue(room.decideTypeOfElement(4) instanceof EarthElement);
+
+    }
+
 
 
 

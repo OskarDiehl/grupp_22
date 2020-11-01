@@ -46,15 +46,10 @@ public class Room {
     private int enemyQuantity;
     private String roomType;
     private Element element;
-    private int threshold;
     private Player player;
     private LuckyWheel luckyWheel;
     private Item itemDropped;
     private Boss boss;
-
-
-    //TODO borde player vara ett argument i konstruktorn?
-
 
     public Room(Player player, String roomType) {
         if (roomType.equals("Boss")) {
@@ -65,7 +60,6 @@ public class Room {
             buildRoom(roomType);
         }
     }
-
     public Room(Player player, Element element) {
         this.element = element;
         this.player = player;
@@ -82,13 +76,10 @@ public class Room {
         }
     }
 
-
     public Room(Player player) {
         this.player = player;
         this.element = decideTypeOfElement(generateRandomNumber(MIN_THRESHOLD, AMOUNT_OF_ELEMENTS));
         buildRoom(decideTypeOfRoom(decideIfLuckyWheel()));
-
-
     }
 
     private void buildRoom(String typeOfRoom) {
@@ -98,9 +89,7 @@ public class Room {
         } else {
 
             if (typeOfRoom == "Enemy" && shouldBossSpawn()) {
-                typeOfRoom = "Boss";
-            }
-
+                typeOfRoom = "Boss"; }
 
             roomType = typeOfRoom;
 
@@ -118,7 +107,7 @@ public class Room {
         }
     }
 
-    //denna ville jag göra private eftersom när ett rum väl skapats ska man inte kunna ändra type
+
     public String decideTypeOfRoom(boolean isItLuckyWheel) {
         String name;
 
@@ -138,9 +127,9 @@ public class Room {
         return false;
     }
 
-    private Element decideTypeOfElement(int elementNumber) { //denna är private eftersom jag endast vill att ett element ska kunna kallas på en gång
+    public Element decideTypeOfElement(int elementNumber) { //denna är private eftersom jag endast vill att ett element ska kunna kallas på en gång
 
-        if (element == null) {
+
 
             switch (elementNumber) {
                 case 1:
@@ -155,21 +144,21 @@ public class Room {
                 case 4:
                     element = new EarthElement(1);
                     break;
-
+                default:
+                    throw new IllegalArgumentException();
             }
 
-        }
-
         return element;
-
     }
+
+
+
 
     public ArrayList<Enemy> spawnEnemies() {
 
         if (enemies == null) {
             enemyQuantity = generateAmountOfEnemies();
             enemies = new ArrayList();
-
             for (int i = 0; i < enemyQuantity; i++) {
                 enemies.add(new Enemy(getElement(), player.getLevel(), this));
 
@@ -259,9 +248,6 @@ public class Room {
         return enemyQuantity;
     }
 
-    //TODO måste denna kallas på av enemy klassen? när dennes hp går ner till 0? Isåfall måste man deklarera Enemy med ett Room kanske?
-    //TODO man måste kanske ha något sätt att kolla så att enemyn faktiskt finns?
-
     public void removeEnemy(Enemy enemy) {
 
         if (enemies.isEmpty() || !enemies.contains(enemy)) {
@@ -284,19 +270,13 @@ public class Room {
         return Arrays.copyOf(ITEMS, ITEMS.length);
     }
 
-    //Denna nås av test genom andra metoder, men kan inte testas direkt eftersom den är privat.
-    //Man bör fråga sig om denna bör vara publik, samt att den har begränsingar (MIN <= MAX exempelvis)
     public int generateRandomNumber(int min, int max) {
-
 
         if (min < 1 || max < 1 || min > max) {
             throw new IllegalArgumentException();
         } else {
             max += 1;
-
             return (int) ((Math.random() * (max - min)) + min);
-
         }
     }
 }
-
