@@ -35,10 +35,6 @@ public class Player extends Character {
         playerStats.levelStatsUp();                                 // When the player moves up a level the player´s default stats increases
     }
 
-    public void changeStatHP(int hp) {                              // Changes the stats for HP
-        playerStats.changeCurrentHP(hp);
-    }
-
     public void changeStatPower(int powerAmount) {                  // Changes the stats for power
         playerStats.changePowerTemporary(powerAmount);
     }
@@ -115,20 +111,24 @@ public class Player extends Character {
     //    * index 1 = Shoes
     //    * index 2 = Weapon
 
-    public void addItem(Item newItem){                                                          // Add an item to the array items  TODO gör private?
-        if (newItem.getClass().isInstance(new Armor(null,0,0)))             // Add armor
-            items[0] = newItem;
+    public void addItem(Item newItem){                                                              // Add an item to the array items  TODO gör private?
+        if (newItem.getClass().isInstance(new Armor(null,0,0))) {
 
-        else if (newItem.getClass().isInstance(new Shoes(null,0,0)))     // Add shoes
-            items[1] = newItem;
+            items[0] = newItem;                                                                     // Add armor
+        }
+        else if (newItem.getClass().isInstance(new Shoes(null,0,0))){
+            items[1] = newItem;                                                                     // Add shoes
 
-        else
-            items[2] = newItem;                                                                 // Add weapon
+        }
+
+        else{
+            items[2] = newItem;                                                                     // Add weapon
+        }
 
         itemIncreaseStats(newItem);
     }
 
-    public Item getItem(String itemType){                                                                                                       // Look if the player has an item of a special type (class). If yes -> fetch the item
+    public Item findItem(String itemType){                                                                                                       // Look if the player has an item of a special type (class). If yes -> fetch the item
         if (itemType.toLowerCase().equals("armor") && items[0].getClass().isInstance(new Armor(null, 0, 0)))
             return items[0];                                                                                                                    // Armor
         else if (itemType.toLowerCase().equals("shoes") && items[1].getClass().isInstance(new Shoes(null,0,0)))
@@ -148,24 +148,23 @@ public class Player extends Character {
     }
 
     private void itemIncreaseStats(Item item){
-        int power = 0; /* = item.getPower();              TODO Vänta på att Oskar kanske fixar med abstrakta metoder :) /Malin */
-        int speed = 0;
-        int hp = 0;
-        //TODO fixa för HP
+        int power = item.getPower();
+        int speed = item.getSpeed();
+        int HP    = item.getHP();
+
         changeStatPower(power);
         changeStatSpeed(speed);
-        changeStatHP(hp);
+        playerStats.gainHP(HP);
     }
 
     private void dropItemDecreaseStats(Item item){
-        int power = 0; /* = item.getPower();              TODO Vänta på att Oskar kanske fixar med abstrakta metoder :) /Malin */
-        int speed = 0 ;
-        int hp = 0;                                     //TODO multiplicera med -1 på allt /Malin
-        //TODO fixa för HP
-        changeStatPower(power);
-        changeStatSpeed(speed);
-        // a
-        changeStatHP(hp);
+        int power = item.getPower();
+        int speed = item.getSpeed() ;
+        int HP    = item.getHP();
+
+        changeStatPower((power * -1));
+        changeStatSpeed((speed * -1));
+        playerStats.loseHP((HP * -1));
     }
 
     // ELEMENT MEDALLION METHODS ---------------------------------------------------------------------------------------
