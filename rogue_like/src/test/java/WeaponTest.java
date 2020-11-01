@@ -22,7 +22,13 @@ public class WeaponTest {
     @Test
     void getHPReturnsNegativeOne() {
         Weapon w = new Weapon(defaultName, defaultPower, defaultHP);
-        assertEquals(defaultHP, w.getHp());
+        assertEquals(defaultHP, w.getHP());
+    }
+
+    @Test
+    void getSpeedReturnsZero() {
+        Item i = new Weapon("Weapon",2,2);
+        assertEquals(0, i.getSpeed());
     }
 
 }

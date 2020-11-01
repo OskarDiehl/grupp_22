@@ -10,6 +10,9 @@ public abstract class Item {
         return name;
     }
 
+    public abstract int getHP();
+    public abstract int getSpeed();
+    public abstract int getPower();
 
 
 }

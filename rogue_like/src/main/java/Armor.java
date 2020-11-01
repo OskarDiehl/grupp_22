@@ -13,8 +13,14 @@ public class Armor extends Item {
         return hp;
     }
 
+
     public int getSpeed() {
         return speed;
+    }
+
+    @Override
+    public int getPower() {
+        return 0;
     }
 
 }

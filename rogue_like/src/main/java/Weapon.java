@@ -13,8 +13,13 @@ public class Weapon extends Item{
         return power;
     }
 
-    public int getHp() {
+    public int getHP() {
         return hp;
+    }
+
+    @Override
+    public int getSpeed() {
+        return 0;
     }
 
 }
