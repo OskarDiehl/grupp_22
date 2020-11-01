@@ -29,13 +29,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="705c9c8e-fb4c-405e-b718-7bd06db4888a" name="Default Changelist" comment="Ny metod som kanske ska tas bort? Samt ändringar i EnemyTest">
+    <list default="true" id="705c9c8e-fb4c-405e-b718-7bd06db4888a" name="Default Changelist" comment="Ändringar i tester">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Stats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Stats.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Test.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/BossTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/BossTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/EnemyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/EnemyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/StatsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/StatsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Enemy.java" afterDir="false" />
     </list>
     <list id="296fe230-f9f7-40d3-8725-a7fe964cc7bb" name="Ny branch med förslag på ändringar av stats-generering" comment="" />
     <list id="4c2207ba-9aad-4c31-8ded-100fa9146123" name="Revert &quot;Ny branch med förslag på ändringar av stats-generering&quot;" comment="Revert &quot;Ny branch med förslag på ändringar av stats-generering&quot;&#10;&#10;This reverts commit e0662997" />
@@ -410,7 +406,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604239201428</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Ändringar i tester">
+      <created>1604241548670</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1604241548670</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -456,7 +459,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Ändringar i Stats-metoder/Sabina" />
     <MESSAGE value="Ändringar i Statskonstruktor/Sabina" />
     <MESSAGE value="Enemy-konstruktor samt ny bossklass/Sabina" />
     <MESSAGE value="BossTest samt fundering kring stats-generering/Sabina" />
@@ -481,7 +483,8 @@
     <MESSAGE value="Fix" />
     <MESSAGE value="Små ändringar, bl.a i PlayerTest" />
     <MESSAGE value="Ny metod som kanske ska tas bort? Samt ändringar i EnemyTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ny metod som kanske ska tas bort? Samt ändringar i EnemyTest" />
+    <MESSAGE value="Ändringar i tester" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ändringar i tester" />
   </component>
   <component name="WindowStateProjectService">
     <state x="651" y="235" key="#Inspections" timestamp="1603740755484">
@@ -558,10 +561,10 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="596" y="259" key="VCS.ChangeListViewerDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1602756263957" />
-    <state x="536" y="274" key="Vcs.Push.Dialog.v2" timestamp="1604239205461">
+    <state x="536" y="274" key="Vcs.Push.Dialog.v2" timestamp="1604241552411">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="536" y="274" key="Vcs.Push.Dialog.v2/0.0.2048.1112@0.0.2048.1112" timestamp="1604239205461" />
+    <state x="536" y="274" key="Vcs.Push.Dialog.v2/0.0.2048.1112@0.0.2048.1112" timestamp="1604241552411" />
     <state x="440" y="276" key="Vcs.Push.Dialog.v2/0.23.1680.1027@0.23.1680.1027" timestamp="1603372748109" />
     <state x="100" y="123" width="1480" height="827" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1602752061316">
       <screen x="0" y="23" width="1680" height="1027" />
