@@ -26,7 +26,6 @@ public abstract class Element {
         }
     }
 
-    //Kanske ska flyttas till Character eller någonting sådant.
     public int attack(int power,Element element) {
 
         if (isStrong(element)) {
@@ -42,8 +41,6 @@ public abstract class Element {
         } else {
             return power;
         }
-
     }
-
 
 }
