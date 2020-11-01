@@ -13,6 +13,7 @@ public class PlayerStats extends Stats {
 
 
     // OTHER METHODS  ------------------------------------------------------------------------
+
     public void changePowerTemporary(int power) {               //Increases or decreases the power temporary
         int totalPower = currentPower + power;                  //TODO Är det ngn mening att göra den här privat och ha en metod som man "mellanlandar" hos? Är det säkrare? :)))) /Malin
         if (totalPower > getMaxStat())

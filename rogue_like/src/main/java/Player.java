@@ -35,6 +35,10 @@ public class Player extends Character {
         playerStats.levelStatsUp();                                 // When the player moves up a level the player´s default stats increases
     }
 
+    public void changeStatHP(int hp) {                              // Changes the stats for HP
+        playerStats.changeCurrentHP(hp);
+    }
+
     public void changeStatPower(int powerAmount) {                  // Changes the stats for power
         playerStats.changePowerTemporary(powerAmount);
     }
@@ -146,22 +150,22 @@ public class Player extends Character {
     private void itemIncreaseStats(Item item){
         int power = 0; /* = item.getPower();              TODO Vänta på att Oskar kanske fixar med abstrakta metoder :) /Malin */
         int speed = 0;
-        int HP = 0;
+        int hp = 0;
         //TODO fixa för HP
         changeStatPower(power);
         changeStatSpeed(speed);
-        //changeStatHP(HP);
+        changeStatHP(hp);
     }
 
     private void dropItemDecreaseStats(Item item){
         int power = 0; /* = item.getPower();              TODO Vänta på att Oskar kanske fixar med abstrakta metoder :) /Malin */
         int speed = 0 ;
-        int HP = 0;                                     //TODO multiplicera med -1 på allt /Malin
+        int hp = 0;                                     //TODO multiplicera med -1 på allt /Malin
         //TODO fixa för HP
         changeStatPower(power);
         changeStatSpeed(speed);
         // a
-        //changeStatHP(HP);
+        changeStatHP(hp);
     }
 
     // ELEMENT MEDALLION METHODS ---------------------------------------------------------------------------------------
