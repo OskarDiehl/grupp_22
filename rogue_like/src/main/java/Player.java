@@ -116,37 +116,54 @@ public class Player extends Character {
     //    * index 2 = Weapon
 
     public void addItem(Item newItem){                                                              // Add an item to the array items
-        if (newItem.getClass().isInstance(new Armor(null,0,0))) {
-            switchPotentiallyExistingItem(new Armor("Armor", 0, 0));            // Remove extra stats from potentially already existing armor
-            items[0] = newItem;                                                                     // Add new armor
-        }
-        else if (newItem.getClass().isInstance(new Shoes(null,0,0))){
-            switchPotentiallyExistingItem(new Shoes("Shoes", 0, 0));         // Remove extra stats from potentially already existing shoes
-            items[1] = newItem;                                                                     // Add new shoes
-        }
+        if (newItem.getClass().isInstance(new Armor(null,0,0)))
+            switchAndAddItem(0, newItem);                                                     // Remove extra stats from potentially already existing armor
+                                                                                                     // Add new armor
+        else if (newItem.getClass().isInstance(new Shoes(null,0,0)))
+            switchAndAddItem(1, newItem);                                                     // Remove extra stats from potentially already existing shoes
+                                                                                                     // Add new shoes
+        else
+            switchAndAddItem(2, newItem);                                                   // Remove extra stats from potentially already existing weapon
+                                                                                                    // Add new weapon
+    }
+//
+//    public void addItem2(Item newItem){                                                              // Add an item to the array items
+//        if (newItem.getClass().isInstance(new Armor(null,0,0))) {
+//            switchPotentiallyExistingItem(new Armor("Armor", 0, 0));            // Remove extra stats from potentially already existing armor
+//            items[0] = newItem;                                                                     // Add new armor
+//        }
+//        else if (newItem.getClass().isInstance(new Shoes(null,0,0))){
+//            switchPotentiallyExistingItem(new Shoes("Shoes", 0, 0));         // Remove extra stats from potentially already existing shoes
+//            items[1] = newItem;                                                                     // Add new shoes
+//        }
+//
+//        else{
+//            switchPotentiallyExistingItem(new Weapon("Weapon", 0, 0));          // Remove extra stats from potentially already existing weapon
+//            items[2] = newItem;                                                                     // Add new weapon
+//        }
+//
+//        itemIncreaseStats(newItem);                                                                 // Add extra stats from the new item
+//    }
 
-        else{
-            switchPotentiallyExistingItem(new Weapon("Weapon", 0, 0));          // Remove extra stats from potentially already existing weapon
-            items[2] = newItem;                                                                     // Add new weapon
-        }
+    public Item findItem(String itemType){                                                                                                       // Look if the player has an item of a special type (class). If yes -> fetch the item
+        if (itemType.toLowerCase().equals("armor") && items[0].getClass().isInstance(new Armor("Armor", 0, 0)))
+            return items[0];                                                                                                                     // Return armor
 
-        itemIncreaseStats(newItem);                                                                 // Add extra stats from the new item
+        else if (itemType.toLowerCase().equals("shoes") && items[1].getClass().isInstance(new Shoes("Shoes",0,0)))
+            return items[1];                                                                                                                     // Return shoes
+
+        else if (itemType.toLowerCase().equals("weapon") && items[2].getClass().isInstance(new Weapon("Weapon",0,0)))
+                return items[2];                                                                                                                 // Return weapon
+        else
+            return null;                                                      //TODO TA UPP bra lösning? /Malin
     }
 
-    public Item findItem(Item itemType){                                                                                                       // Look if the player has an item of a special type (class). If yes -> fetch the item
-        if (itemType.getName().toLowerCase().equals("armor") && items[0].getClass().isInstance(new Armor("Armor", 0, 0)) && items[0] != null){
-                return items[0];                                                                                                                     // Armor
-        }
+    private void switchAndAddItem(int index, Item newItem) {                  // Upgrade or add an element
+        if (items[index] != null)
+            dropItemDecreaseStats(items[index]);
 
-        else if (itemType.getName().toLowerCase().equals("shoes") && items[1].getClass().isInstance(new Shoes("Shoes",0,0)) && items[1] != null){
-                return items[1];                                                                                                                     // Shoes
-        }
-
-        else if (itemType.getName().toLowerCase().equals("weapon") && items[2].getClass().isInstance(new Weapon("Weapon",0,0)) && items[2] != null){
-                return items[2];                                                                                                                     // Weapon
-        }
-        else
-            return null;                                //TODO TA UPP bra lösning? /Malin
+        items[index] = newItem;
+        itemIncreaseStats(newItem);                                          // Add extra stats from the new item
     }
 
 //    public Item findItem2(String itemType){                                                                                                       // Look if the player has an item of a special type (class). If yes -> fetch the item
@@ -165,10 +182,10 @@ public class Player extends Character {
 //            return null;                                //TODO TA UPP bra lösning? /Malin
 //    }
 
-    private void switchPotentiallyExistingItem(Item itemType){
-        if (findItem(itemType) != null)                                     // Check if there already exist an item with the certain itemType...
-            dropItemDecreaseStats(findItem(itemType));                      // ... if it exist -> take back the extra stats the item gave
-    }
+//    private void switchPotentiallyExistingItem(Item itemType){
+//        if (findItem(itemType) != null)                                     // Check if there already exist an item with the certain itemType...
+//            dropItemDecreaseStats(findItem(itemType));                      // ... if it exist -> take back the extra stats the item gave
+//    }
 
     private void itemIncreaseStats(Item item){                              // Add extra stats from an item
         int power = item.getPower();
