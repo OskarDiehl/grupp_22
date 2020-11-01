@@ -4,13 +4,13 @@ public class Enemy extends Character {
     private final static int LEVEL_2_STAT = 5;
     private final static int LEVEL_3_STAT = 8;
 
-    private EnemyStats stats;
+    private Stats stats;
     private Room room;
 
     public Enemy(Element mainElement, int level, Room room) {       //TODO Jag döpte om element till mainElement för att hålla reda på vad som är vad. Hoppas att det är okej. Hojta till annars! /Malin
         super(mainElement, level);
         this.room = room;
-        calculateStats(level);
+        calculateStats(super.getLevel());
     }
 
     private void calculateStats(int level) { // Depending on the level, the default stats change
@@ -26,7 +26,7 @@ public class Enemy extends Character {
     }
 
     void generateStats(int life, int power, int speed) {
-        stats = new EnemyStats(life, power, speed);
+        stats = new Stats(life, power, speed);
     }
 
     public void attack(Player player) { //TODO gör något åt den höga couplingen vi har, kanske flytta all attackberäkning till Character?
@@ -43,7 +43,7 @@ public class Enemy extends Character {
             room.removeEnemy(this);
     }
 
-    public EnemyStats getStats() {
+    public Stats getStats() {
         return stats;
     }
 

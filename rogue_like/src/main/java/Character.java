@@ -12,16 +12,17 @@ public abstract class Character {
 
     public Character(Element mainElement, int level){
         this.mainElement = mainElement;
-        if(level >= 1 && level <= 3)
-            this.level = level;
-        else
-            throw new IllegalArgumentException();
+        setLevel(level);
     }
 
 
     // CONSTRUCTORS  ------------------------------------------------------------------------
-    public int setLevel(){
-        return 0;
+    public void setLevel(int level){
+        if(level >= 1 && level <= 3)
+            this.level = level;
+        else {
+            throw new IllegalArgumentException();
+        }
     }
 
     // GET-METHODS  ------------------------------------------------------------------------
@@ -33,6 +34,8 @@ public abstract class Character {
     public int getLevel() {
         return level;
     }
+
+    //public abstract Stats getStats();
 
 
 

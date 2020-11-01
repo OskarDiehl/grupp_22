@@ -19,7 +19,6 @@ public class EnemyTest {
     @Test
     void getIAEFromIllegalLevelConstructorArgument() {
         assertThrows(IllegalArgumentException.class, () -> new Enemy(new FireElement(2), 4, new Room()));
-
     }
 
     @Test
