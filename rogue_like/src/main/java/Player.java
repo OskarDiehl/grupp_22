@@ -76,6 +76,19 @@ public class Player extends Character {
         //TODO Jag behöver ngn metod som returnerar vilken typ av element som det är /Malin
     }
 
+    public Element findElement(String elementType) {
+        if (elementType.toLowerCase().equals("earth") && elements[0].getClass().isInstance(new EarthElement(2)))            // Checks if the player has an certain element
+            return elements[0];
+        else if (elementType.toLowerCase().equals("water") && elements[1].getClass().isInstance(new WaterElement(2)))
+            return elements[1];
+        else if (elementType.toLowerCase().equals("fire") && elements[2].getClass().isInstance(new FireElement(3)))
+            return elements[2];
+        else if (elementType.toLowerCase().equals("wind") && elements[3].getClass().isInstance(new WindElement(1)))
+            return elements[3];
+        else
+            return null;        //TODO TA UPP bra lösning? /Malin
+    }
+
     private void upgradeOrAddElement(int index, Element newElement) {                     // Upgrade or add an element
         if (elements[index] != null && elements[index].getElementLevel() != 3)
             elements[index].levelUpElement();
@@ -92,19 +105,6 @@ public class Player extends Character {
             System.out.println("Type again please");   //TODO MALIN FIXA DIN LILLA BAJSFIA /Malin
     }
 
-    public Element findElement(String elementType) {
-        if (elementType.toLowerCase().equals("earth") && elements[0].getClass().isInstance(new EarthElement(2)))            // Checks if the player has an certain element
-            return elements[0];
-        else if (elementType.toLowerCase().equals("water") && elements[1].getClass().isInstance(new WaterElement(2)))
-            return elements[1];
-        else if (elementType.toLowerCase().equals("fire") && elements[2].getClass().isInstance(new FireElement(3)))
-            return elements[2];
-        else if (elementType.toLowerCase().equals("wind") && elements[3].getClass().isInstance(new WindElement(1)))
-            return elements[3];
-        else
-            return null;        //TODO TA UPP bra lösning? /Malin
-    }
-
     // ITEMS-ARRAY METHODS ---------------------------------------------------------------------------------------------
     // The index each item has in the array "items":
     //    * index 0 = Armor
@@ -113,19 +113,20 @@ public class Player extends Character {
 
     public void addItem(Item newItem){                                                              // Add an item to the array items  TODO gör private?
         if (newItem.getClass().isInstance(new Armor(null,0,0))) {
-
-            items[0] = newItem;                                                                     // Add armor
+            switchPotentiallyExistingItem("Armor");                                       // Remove extra stats from potentially already existing armor
+            items[0] = newItem;                                                                     // Add new armor
         }
         else if (newItem.getClass().isInstance(new Shoes(null,0,0))){
-            items[1] = newItem;                                                                     // Add shoes
-
+            switchPotentiallyExistingItem("Shoes");                                       // Remove extra stats from potentially already existing shoes
+            items[1] = newItem;                                                                     // Add new shoes
         }
 
         else{
-            items[2] = newItem;                                                                     // Add weapon
+            switchPotentiallyExistingItem("Weapon");                                      // Remove extra stats from potentially already existing weapon
+            items[2] = newItem;                                                                     // Add new weapon
         }
 
-        itemIncreaseStats(newItem);
+        itemIncreaseStats(newItem);                                                                 // Add extra stats from the new item
     }
 
     public Item findItem(String itemType){                                                                                                       // Look if the player has an item of a special type (class). If yes -> fetch the item
@@ -139,12 +140,9 @@ public class Player extends Character {
             return null;                                //TODO TA UPP bra lösning? /Malin
     }
 
-    public void addOrSwitchItem(Item newItem){          //TODO fixa Malin /Malin
-
-    }
-
-    public void dropItem(String itemType){              //TODO fixa Malin /Malin
-
+    public void switchPotentiallyExistingItem(String itemType){
+        if (findItem(itemType) != null)                                     // Check if there already exist an item with the certain itemType...
+            dropItemDecreaseStats(findItem(itemType));                      // ... if it exist -> take back the extra stats the item gave
     }
 
     private void itemIncreaseStats(Item item){
