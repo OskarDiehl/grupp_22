@@ -111,7 +111,7 @@ public class Player extends Character {
     //    * index 1 = Shoes
     //    * index 2 = Weapon
 
-    public void addItem(Item newItem){                                                          // Add an item to the array items
+    public void addItem(Item newItem){                                                          // Add an item to the array items  TODO gör private?
         if (newItem.getClass().isInstance(new Armor(null,0,0)))             // Add armor
             items[0] = newItem;
 
@@ -121,7 +121,7 @@ public class Player extends Character {
         else
             items[2] = newItem;                                                                 // Add weapon
 
-
+        itemIncreaseStats(newItem);
     }
 
     public Item getItem(String itemType){                                                                                                       // Look if the player has an item of a special type (class). If yes -> fetch the item
@@ -132,30 +132,36 @@ public class Player extends Character {
         else if (itemType.toLowerCase().equals("weapon") && items[2].getClass().isInstance(new Weapon(null,0,0)))
             return items[2];                                                                                                                    // Weapon
         else
-            return null;    //TODO TA UPP bra lösning? /Malin                                                                                   //
+            return null;                                //TODO TA UPP bra lösning? /Malin
     }
 
-    private void itemChangeStats(Item item){
-        int power = 0; /* = item.getPower(); TODO Vänta på att Oskar kanske fixar med abstrakta metoder :) /Malin */
+    public void addOrSwitchItem(Item newItem){          //TODO fixa Malin /Malin
+
+    }
+
+    public void dropItem(String itemType){              //TODO fixa Malin /Malin
+
+    }
+
+    private void itemIncreaseStats(Item item){
+        int power = 0; /* = item.getPower();              TODO Vänta på att Oskar kanske fixar med abstrakta metoder :) /Malin */
         int speed = 0;
+        int HP = 0;
         //TODO fixa för HP
         changeStatPower(power);
         changeStatSpeed(speed);
+        //changeStatHP(HP);
     }
 
-    //Tar man ett Item börjar det verka direkt  /Vapen, rustning, skor
-
-//    private void addItem(Item newItem) {
-//
-//        //metod som på ngt vis lägger till ett item och eventuellt byter mot ett annat.
-//
-//        //TODO Vad sägs om följande? /Malin  :
-//        // 1. Ta reda på vilket typ av item.
-//        // 2. Om användaren redan har ett item av den typen -> Fråga användaren om hen vill byta ut item.
-//        // 3. Om användaren säger ja -> Byt. Annars avbryt?
-//    }
-
-
+    private void dropItemDecreaseStats(Item item){
+        int power = 0; /* = item.getPower();              TODO Vänta på att Oskar kanske fixar med abstrakta metoder :) /Malin */
+        int speed = 0 ;
+        int HP = 0;                                     //TODO multiplicera med -1 på allt /Malin
+        //TODO fixa för HP
+        changeStatPower(power);
+        changeStatSpeed(speed);
+        //changeStatHP(HP);
+    }
 
     // ELEMENT MEDALLION METHODS ---------------------------------------------------------------------------------------
     public int fetchMedallionStatus(Element element) {
