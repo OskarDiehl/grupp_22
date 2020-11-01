@@ -3,9 +3,9 @@ public class Stats {
     //VARIABLES  -------------------------------------------------------------------------------------------------------
     private static final int MAX_STAT = 10;                 //Stats can have a maximum value of 10
     private static final int MIN_STAT = 0;                  //Stats can have a minimum value of 0
-    private int defaultHP; //TODO är det här bra? /Sabina
+    private int defaultHP;
     private int currentHP;
-    private int defaultPower;   // TODO Jag gjorde defaultPower och -Speed till icke-final för att kunna levla upp dem i metoden "levelUp". Om det är okej med dig Sabina kan du ta bort den här metoden <3<3 /Malin
+    private int defaultPower;
     private int defaultSpeed;
 
     // CONSTRUCTOR  ----------------------------------------------------------------------------------------------------

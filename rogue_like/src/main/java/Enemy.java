@@ -7,7 +7,7 @@ public class Enemy extends Character {
     private Stats stats;
     private Room room;
 
-    public Enemy(Element mainElement, int level, Room room) {       //TODO Jag döpte om element till mainElement för att hålla reda på vad som är vad. Hoppas att det är okej. Hojta till annars! /Malin
+    public Enemy(Element mainElement, int level, Room room) {
         super(mainElement, level);
         this.room = room;
         calculateStats(super.getLevel());
@@ -43,6 +43,7 @@ public class Enemy extends Character {
             room.removeEnemy(this);
     }
 
+    @Override
     public Stats getStats() {
         return stats;
     }
