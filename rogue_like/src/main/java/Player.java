@@ -1,8 +1,8 @@
 public class Player extends Character {
 
     // DATASAMLING/-AR -------------------------------------------------------------------------------------------------
-    private Element elements[] = new Element[4];
-    private Item items[] = new Item[3];
+    private Element elements[] = new Element[4];        // Array containing different elements the player has collected
+    private Item items[] = new Item[3];                 // Array containing different items the player has picked up
 
     // INSTANCE VARIABLES ----------------------------------------------------------------------------------------------
     private String name;
@@ -17,6 +17,8 @@ public class Player extends Character {
                                           //      When the player defeats the boss, ze will either earn or upgrade
                                           // the element for the boss room. It depends on if ze already has the object.
 
+
+    //TODO fixa switch för level?
 
     // CONSTRUCTOR -----------------------------------------------------------------------------------------------------
     public Player(String name, Element element, Role role) {
@@ -46,6 +48,8 @@ public class Player extends Character {
     public void resetStatsForPowerAndSpeed() {                      // Resets the stats for power and speed
         playerStats.resetPowerAndSpeedToDefaultValues();
     }
+
+    //TODO fixa attack-metod
 
 
     // ELEMENTS METHODS ------------------------------------------------------------------------------------------------
