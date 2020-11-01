@@ -213,7 +213,7 @@ public class PlayerTest {
 
 
 
-    //TEST ELEMENTS METHODS --------------------------------------------------------------------------------------------
+    //TEST ELEMENT METHODS --------------------------------------------------------------------------------------------
     @Test
     void addFireElementToElements(){
         FireElement fireElement = new FireElement(2);
@@ -263,7 +263,7 @@ public class PlayerTest {
     }
 
     @Test
-    void typWrongInFindElementMethod(){                                                 //Type wrong in method "findElement"
+    void typeWrongInFindElementMethod(){                                                 //Type wrong in method "findElement"
         Player player = new Player("Sabina", element, role);
         assertNull(player.findElement("win"));
     }

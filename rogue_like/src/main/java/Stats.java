@@ -37,7 +37,7 @@ public class Stats {
 
     public void gainHP(int gainedHP) {
         if ((currentHP + gainedHP) <= defaultHP)
-            currentHP = currentHP + gainedHP;
+            currentHP = currentHP + gainedHP;       //TODO Problem för Malins Player
         else
             currentHP = defaultHP;
     }

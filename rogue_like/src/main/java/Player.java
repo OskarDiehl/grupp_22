@@ -49,8 +49,10 @@ public class Player extends Character {
         playerStats.resetPowerAndSpeedToDefaultValues();
     }
 
-    //TODO fixa attack-metod
-
+    @Override
+    public void attack(Character character) {
+        //TODO fixa attack-metod
+    }
 
     // ELEMENTS METHODS ------------------------------------------------------------------------------------------------
     // The index each element has in the array "elements":
@@ -80,8 +82,8 @@ public class Player extends Character {
         //TODO Jag behöver ngn metod som returnerar vilken typ av element som det är /Malin
     }
 
-    public Element findElement(String elementType) {
-        if (elementType.toLowerCase().equals("earth") && elements[0].getClass().isInstance(new EarthElement(2)))            // Checks if the player has an certain element
+    public Element findElement(String elementType) {                                                                                   // Checks if the player has an certain element
+        if (elementType.toLowerCase().equals("earth") && elements[0].getClass().isInstance(new EarthElement(2)))
             return elements[0];
         else if (elementType.toLowerCase().equals("water") && elements[1].getClass().isInstance(new WaterElement(2)))
             return elements[1];
@@ -90,7 +92,7 @@ public class Player extends Character {
         else if (elementType.toLowerCase().equals("wind") && elements[3].getClass().isInstance(new WindElement(1)))
             return elements[3];
         else
-            return null;        //TODO TA UPP bra lösning? /Malin
+            return null;        //TODO TA UPP bra lösning? /Malin      Fixa illegalargument
     }
 
     private void upgradeOrAddElement(int index, Element newElement) {                     // Upgrade or add an element
