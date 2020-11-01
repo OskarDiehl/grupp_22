@@ -160,6 +160,7 @@ public class Player extends Character {
         //TODO fixa för HP
         changeStatPower(power);
         changeStatSpeed(speed);
+        // a
         //changeStatHP(HP);
     }
 
