@@ -49,8 +49,10 @@ public class Player extends Character {
         playerStats.resetPowerAndSpeedToDefaultValues();
     }
 
-    //TODO fixa attack-metod
-
+    @Override
+    public void attack(Character character) {
+        //TODO fixa attack-metod
+    }
 
     // ELEMENTS METHODS ------------------------------------------------------------------------------------------------
     // The index each element has in the array "elements":
