@@ -129,7 +129,7 @@ public class PlayerTest {
     void decreaseSpeedStats(){
         Player player = new Player("Sabina", element, role);
         player.changeStatSpeed(-3);
-        assertEquals(2, player.getStats().getCurrentSpeed());
+        assertEquals(2, player.getCurrentSpeedFromStats());
     }
 
     @Test
@@ -213,7 +213,7 @@ public class PlayerTest {
 
 
 
-    //TEST ELEMENTS ----------------------------------------------------------------------------------------------------
+    //TEST ELEMENTS METHODS --------------------------------------------------------------------------------------------
     @Test
     void addFireElementToElements(){
         FireElement fireElement = new FireElement(2);
@@ -283,6 +283,51 @@ public class PlayerTest {
 //
 //     //   assertThrows(NullPointerException.class, () -> new Player("Sabina", null, role));
 //    }
+
+
+    //TEST ITEMS METHODS  ----------------------------------------------------------------------------------------------
+
+    //4,6,5 TODO Ta bort sen /Malin
+    @Test
+    void addShoesToItems(){                                                         // Add shoes
+        Player player = new Player("Sabina", element, role);
+        player.addItem(new Shoes("Heels", 3, 3));
+        assertEquals("Heels", player.getItem("Shoes").getName());
+    }
+
+    @Test                                                        //TODO fixa när Oskar kanske har fixat med get-metoderna i Item :) /Malin    +  metoden för HP i Stats
+    void doesArmorAddHPToStats(){                                                // Check if HP increases because of armor
+        Player player = new Player("Sabina", element, role);
+        player.addItem(new Armor("Birthdaysuit", 3, 3));
+        assertEquals(9, player.getCurrentHPFromStats());
+    }
+
+    @Test                                                        //TODO fixa när Oskar kanske har fixat med get-metoderna i Item :) /Malin
+    void doesWeaponAddPowerToStats(){                                                // Check if Power increases because of armor
+        Player player = new Player("Sabina", element, role);
+        player.addItem(new Weapon("Love", 3, 3));
+        assertEquals(9, player.getCurrentPowerFromStats());
+    }
+
+    @Test                                                        //TODO fixa när Oskar kanske har fixat med get-metoderna i Item :) /Malin
+    void doesShoesAddSpeedToStats(){                                                // Check if stats increases because of armor
+        Player player = new Player("Sabina", element, role);
+        player.addItem(new Shoes("Slippers", 3, 3));
+        assertEquals(9, player.getCurrentSpeedFromStats());
+    }
+
+
+    // Adderas speed?
+    // Adderas power?
+    // Hittar man shoes på rätt plats?
+    // Hittar man armor på rätt plats?
+    // Hittar man weapon på rätt plats?
+    // Byts shoes ut?
+    // Byts armor ut?
+    // Byts weapon ut?
+    // Kan man hitta ett item?
+    // Kan man ta bort ett item?
+    // Försvinner extra stats när item:et tas bort?
 
 
 

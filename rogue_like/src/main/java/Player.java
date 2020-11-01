@@ -102,7 +102,7 @@ public class Player extends Character {
         else if (elementType.toLowerCase().equals("wind") && elements[3].getClass().isInstance(new WindElement(1)))
             return elements[3];
         else
-            return null;
+            return null;        //TODO TA UPP bra lösning? /Malin
     }
 
     // ITEMS-ARRAY METHODS ---------------------------------------------------------------------------------------------
@@ -111,7 +111,37 @@ public class Player extends Character {
     //    * index 1 = Shoes
     //    * index 2 = Weapon
 
+    public void addItem(Item newItem){                                                          // Add an item to the array items
+        if (newItem.getClass().isInstance(new Armor(null,0,0)))             // Add armor
+            items[0] = newItem;
 
+        else if (newItem.getClass().isInstance(new Shoes(null,0,0)))     // Add shoes
+            items[1] = newItem;
+
+        else
+            items[2] = newItem;                                                                 // Add weapon
+
+
+    }
+
+    public Item getItem(String itemType){                                                                                                       // Look if the player has an item of a special type (class). If yes -> fetch the item
+        if (itemType.toLowerCase().equals("armor") && items[0].getClass().isInstance(new Armor(null, 0, 0)))
+            return items[0];                                                                                                                    // Armor
+        else if (itemType.toLowerCase().equals("shoes") && items[1].getClass().isInstance(new Shoes(null,0,0)))
+            return items[1];                                                                                                                    // Shoes
+        else if (itemType.toLowerCase().equals("weapon") && items[2].getClass().isInstance(new Weapon(null,0,0)))
+            return items[2];                                                                                                                    // Weapon
+        else
+            return null;    //TODO TA UPP bra lösning? /Malin                                                                                   //
+    }
+
+    private void itemChangeStats(Item item){
+        int power = 0; /* = item.getPower(); TODO Vänta på att Oskar kanske fixar med abstrakta metoder :) /Malin */
+        int speed = 0;
+        //TODO fixa för HP
+        changeStatPower(power);
+        changeStatSpeed(speed);
+    }
 
     //Tar man ett Item börjar det verka direkt  /Vapen, rustning, skor
 
