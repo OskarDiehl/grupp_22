@@ -61,6 +61,23 @@ class LuckyWheelTest {
     }
 
     @Test
+    void spinLuckyWheelShouldReturnNullIfDEATH(){
+        Room room = new Room();
+        while(room.getRoomType() != "Lucky Wheel"){
+            room = new Room();
+        }
+
+        LuckyWheel lw = room.getLuckyWheel();
+        Item item = lw.spinLuckyWheel();
+        while(item instanceof Item) {
+            item = lw.spinLuckyWheel();
+        }
+
+        assertEquals(null, item);
+
+    }
+
+    @Test
     void spinLuckyWheelShouldReturnItemWhenWheelIsNotDEATH(){
         Room room = new Room();
         while(room.getRoomType() != "Lucky Wheel"){
@@ -74,5 +91,44 @@ class LuckyWheelTest {
         }
 
         assertTrue(item instanceof Item);
+    }
+
+    @Test
+    void IfGetDroptableReturnsADropTableWith10Objects(){
+        Room room = new Room();
+        while(room.getRoomType() != "Lucky Wheel"){
+            room = new Room();
+        }
+
+        LuckyWheel lw = room.getLuckyWheel();
+        assertEquals(10,lw.getDroptable().size());
+
+    }
+
+    @Test
+    void getITEMS_AVAILABLEShouldBeSameSizeAsRoomItems(){
+        Room room = new Room();
+        while(room.getRoomType() != "Lucky Wheel"){
+            room = new Room();
+        }
+
+        LuckyWheel lw = room.getLuckyWheel();
+
+        assertEquals(lw.getITEMS_AVAILABLE().length, room.getITEMS().length);
+
+    }
+
+
+    @Test
+    void getRoomShouldBeTheSameInstanceAsRoom(){
+        Room room = new Room();
+        while(room.getRoomType() != "Lucky Wheel"){
+            room = new Room();
+        }
+
+        LuckyWheel lw = room.getLuckyWheel();
+        Room roomFromLW = lw.getRoom();
+
+        assertEquals(room, roomFromLW);
     }
 }

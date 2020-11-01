@@ -1,4 +1,7 @@
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class RoomTest {
@@ -198,6 +201,132 @@ class RoomTest {
       assertNotEquals("Boss",room.getRoomType());
 
     }
+
+    @Test
+    void isEnemiesDeadShouldReturnTrueWhenAllEnemiesRemoved(){
+      Room room = new Room();
+
+      ArrayList<Enemy>  enemies = room.getEnemies();
+
+      for( Enemy e : enemies){
+        room.removeEnemy(e);
+      }
+
+      assertTrue(room.isEnemiesDead());
+
+
+    }
+
+  @Test
+  void isEnemiesDeadShouldReturnFalseWhenNotAllEnemiesRemoved(){
+    Room room = new Room();
+
+    assertFalse(room.isEnemiesDead());
+
+
+  }
+
+  @Test
+  void luckyWheelShouldBeCreatedWhenItHasSpawned(){
+      Room room = new Room();
+
+      while(room.getRoomType() != "Lucky Wheel"){
+        room = new Room();
+      }
+
+      assertTrue(room.getLuckyWheel() != null);
+
+  }
+
+  @Test
+  void luckyWheelShouldntBeCreatedWhenItHasntSpawned(){
+    Room room = new Room();
+
+    while(room.getRoomType() == "Lucky Wheel"){
+      room = new Room();
+    }
+
+    assertTrue(room.getLuckyWheel() == null);
+
+  }
+
+  @Test
+  void itemDroppedShouldNotBeNullWhenAllEnemiesAreKilled(){
+      Room room = new Room();
+
+      while(room.getRoomType() == "Lucky Wheel"){
+        room = new Room();
+      }
+
+      ArrayList<Enemy> enemies = room.getEnemies();
+
+      for(Enemy e: enemies){
+        room.removeEnemy(e);
+      }
+
+      assertTrue(room.getItemDropped() != null);
+
+  }
+
+  @Test
+  void itemDroppedShouldBeNullWhenEnemiesAreAlive(){
+    Room room = new Room();
+
+    while(room.getRoomType() == "Lucky Wheel"){
+      room = new Room();
+    }
+
+
+    assertTrue(room.getItemDropped() == null);
+
+    }
+
+  @Test
+  void bossShouldNotBeNull(){
+      FireElement elm = new FireElement(1);
+      Player ply = new Player("test",elm, Role.Tank);
+
+      ply.addMedallion(elm);
+      ply.addMedallion(elm);
+      ply.addMedallion(elm);
+
+      Room room = new Room(ply, elm);
+
+      while(room.getRoomType() == "Lucky Wheel"){
+        room = new Room(ply, elm);
+      }
+
+      assertTrue(room.getBoss() != null);
+
+
+
+  }
+
+  @Test
+  void bossShouldBeNull(){
+    FireElement elm = new FireElement(1);
+    Player ply = new Player("test",elm, Role.Tank);
+
+    ply.addMedallion(elm);
+
+    Room room = new Room(ply, elm);
+
+    while(room.getRoomType() == "Lucky Wheel"){
+      room = new Room(ply, elm);
+    }
+
+    assertTrue(room.getBoss() == null);
+
+
+
+  }
+
+
+
+
+
+
+
 
 
         /*
