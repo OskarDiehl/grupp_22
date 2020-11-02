@@ -212,14 +212,8 @@ class RoomTest {
 
   @Test
   void luckyWheelShouldBeCreatedWhenItHasSpawned(){
-      Room room = new Room(new Player("test",new EarthElement(1),Role.Warrior));
-
-      while(room.getRoomType() != "Lucky Wheel"){
-        room = new Room(new Player("test",new EarthElement(1),Role.Warrior));
-      }
-
+      Room room = new Room(new Player("test",new EarthElement(1),Role.Warrior), "Lucky Wheel");
       assertNotNull(room.getLuckyWheel());
-
   }
 
   @Test
