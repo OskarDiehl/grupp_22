@@ -202,7 +202,7 @@ public class PlayerTest {
     }
 
 
-    //TEST ELEMENT METHODS --------------------------------------------------------------------------------------------
+    //TEST ELEMENT METHODS ---------------------------------------------------------------------------------------------
     @Test
     void addFireElementToElements() {
         FireElement fireElement = new FireElement(2);
@@ -349,6 +349,26 @@ public class PlayerTest {
         assertEquals(7, player.getTemporarySpeedFromStats());
     }
 
+    @Test
+    void armorAsAnArgumentWithNoSuccessfulSearch() {                                 // Check if the String "Earth" as an argument has a non successful search
+        Player player = new Player("Sabina", element, role);
+        assertNull(player.findItem("Armor"));
+    }
+
+
+    //ATT KOLLA:
+    // Adderas speed?
+    // Adderas power?
+    // Hittar man shoes på rätt plats?
+    // Hittar man armor på rätt plats?
+    // Hittar man weapon på rätt plats?
+    // Byts shoes ut?
+    // Byts armor ut?
+    // Byts weapon ut?
+    // Kan man hitta ett item?
+    // Kan man ta bort ett item?
+    // Försvinner extra stats när item:et tas bort?
+
     // TEST ATTACK ENEMY METHOD ----------------------------------------------------------------------------------------
     @Test
     void attackEnemy() {
@@ -366,17 +386,6 @@ public class PlayerTest {
     }
 
 
-    //ATT KOLLA:
-    // Adderas speed?
-    // Adderas power?
-    // Hittar man shoes på rätt plats?
-    // Hittar man armor på rätt plats?
-    // Hittar man weapon på rätt plats?
-    // Byts shoes ut?
-    // Byts armor ut?
-    // Byts weapon ut?
-    // Kan man hitta ett item?
-    // Kan man ta bort ett item?
-    // Försvinner extra stats när item:et tas bort?
+
 
 }
