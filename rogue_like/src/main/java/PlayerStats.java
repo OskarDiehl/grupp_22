@@ -1,42 +1,55 @@
 public class PlayerStats extends Stats {
     //VARIABLES  --------------------------------------------------------------------------
-    private int currentPower;
-    private int currentSpeed;
+    private int temporaryPower;
+    private int temporarySpeed;
+    private int temporaryHP;
 
 
     // CONSTRUCTOR  ------------------------------------------------------------------------
     public PlayerStats(int HP, int power, int speed) {
         super(HP, power, speed);
-        currentPower = getDefaultPower();
-        currentSpeed = getDefaultSpeed();
+        temporaryPower = getDefaultPower();
+        temporarySpeed = getDefaultSpeed();
+        temporaryHP    = getDefaultHP();
     }
 
 
     // OTHER METHODS  ------------------------------------------------------------------------
 
     public void changePowerTemporary(int power) {               //Increases or decreases the power temporary
-        int totalPower = currentPower + power;                  //TODO Är det ngn mening att göra den här privat och ha en metod som man "mellanlandar" hos? Är det säkrare? :)))) /Malin
+        int totalPower = temporaryPower + power;                  //TODO Är det ngn mening att göra den här privat och ha en metod som man "mellanlandar" hos? Är det säkrare? :)))) /Malin
         if (totalPower > getMaxStat())
-            currentPower = getMaxStat();
+            temporaryPower = getMaxStat();
         else if (totalPower < getMinStat())
-            currentPower = getMinStat();
+            temporaryPower = getMinStat();
         else
-            currentPower = currentPower + power;
+            temporaryPower = temporaryPower + power;
     }
 
     public void changeSpeedTemporary(int speed) {               //Increases or decreases the speed temporary
-        int totalSpeed = currentSpeed + speed;
+        int totalSpeed = temporarySpeed + speed;
         if (totalSpeed > getMaxStat())
-            currentSpeed = getMaxStat();
+            temporarySpeed = getMaxStat();
         else if (totalSpeed < getMinStat())
-            currentSpeed = getMinStat();
+            temporarySpeed = getMinStat();
         else
-            currentSpeed = currentSpeed + speed;
+            temporarySpeed = temporarySpeed + speed;
+    }
+
+    public void changeHPTemporary(int HP) {               //Increases or decreases the HP temporary
+        int totalHP = temporaryHP + HP;
+        if (totalHP > getMaxStat())
+            temporaryHP = getMaxStat();
+        else if (totalHP < getMinStat())
+            temporaryHP = getMinStat();
+        else
+            temporaryHP = temporaryHP + HP;
     }
 
     public void resetPowerAndSpeedToDefaultValues(){                    // Resets the power- and speed stats to their default values
-        currentPower = getDefaultPower();
-        currentSpeed = getDefaultSpeed();
+        temporaryPower = getDefaultPower();
+        temporarySpeed = getDefaultSpeed();
+        temporaryHP    = getDefaultHP();
     }
 
     //TODO Skapa metod för om Playern "dör" /Malin
@@ -48,13 +61,15 @@ public class PlayerStats extends Stats {
 
 
     // GET-METHODS  ------------------------------------------------------------------------
-    public int getCurrentPower() {
-        return currentPower;
+    public int getTemporaryPower() {
+        return temporaryPower;
     }
 
-    public int getCurrentSpeed() {
-        return currentSpeed;
+    public int getTemporarySpeed() {
+        return temporarySpeed;
     }
 
-
+    public int getTemporaryHP() {
+        return temporaryHP;
+    }
 }

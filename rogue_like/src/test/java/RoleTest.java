@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class RoleTest {
     private final Element element = new EarthElement(2);
     private final Role role = Role.Tank;
+
     @Test
     void getWarriorAsRoleName(){                                            // This test check if the role name is correct
         Player player = new Player("Sabina", element, role);

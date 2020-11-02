@@ -1,9 +1,9 @@
 public enum Role {
     //When a player is created, its default stats sets to different values depending on the role the user chooses
 
-    Tank ("Tank", 6, 6,4 ),
-    Warrior ("Warrior", 4,6,5),
-    Runner("Runner",5,4,6);
+    Tank    ("Tank",    6,  6,4 ),
+    Warrior ("Warrior", 4,  6,5),
+    Runner  ("Runner",  5,  4,6);
 
     // VARIABLES -------------------------------------------------------------------------------------------------------
     private final String roleName;
