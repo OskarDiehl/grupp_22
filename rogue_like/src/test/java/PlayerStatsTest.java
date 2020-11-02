@@ -65,35 +65,35 @@ public class PlayerStatsTest {
 
     //HP ---------------------------------------------------------------------------------------------------------------
     @Test
-    void increaseHPWithTwo (){                                                      // Checks if temporaryHP can increase
+    void increaseHPWithTwo (){                                                  // Checks if temporaryHP can increase
         PlayerStats stats = new PlayerStats(2,3,5);
         stats.changeHPTemporary(2);
         assertEquals(4, stats.getTemporaryHP());
     }
 
     @Test
-    void decreaseHPWithTwo(){                                                      // Checks if temporaryHP can decrease
+    void decreaseHPWithTwo(){                                                   // Checks if temporaryHP can decrease
         PlayerStats stats = new PlayerStats(4,3,5);
         stats.changeHPTemporary(-2);
         assertEquals(2, stats.getTemporaryHP());
     }
 
     @Test
-    void increaseHPFromSevenWithFour(){                                             // Checks if temporaryHP has 10 as maxvalue
+    void increaseHPFromSevenWithFour(){                                         // Checks if temporaryHP has 10 as maxvalue
         PlayerStats stats = new PlayerStats(7,5,4);
         stats.changeHPTemporary(4);
         assertEquals(10, stats.getTemporaryHP());
     }
 
     @Test
-    void decreaseHPFromThreeWithFive(){                                               // Checks if temporaryHP has 0 as minvalue
+    void decreaseHPFromThreeWithFive(){                                         // Checks if temporaryHP has 0 as minvalue
         PlayerStats stats = new PlayerStats(3,2,4);
         stats.changeHPTemporary(-5);
         assertEquals(0, stats.getTemporaryHP());
     }
 
     @Test
-    void resetHP(){                                                                 // Reset temporaryHP
+    void resetHP(){                                                             // Reset temporaryHP
         PlayerStats stats = new PlayerStats(2,3,4);
         stats.changeHPTemporary(2);
         stats.resetPowerAndSpeedToDefaultValues();
@@ -103,15 +103,15 @@ public class PlayerStatsTest {
 
     // OTHER -----------------------------------------------------------------------------------------------------------
     @Test
-    void tryLevelUpStats(){                                                         // Level up the stats
+    void tryLevelUpStats(){                                                     // Level up the stats
         PlayerStats stats = new PlayerStats(2,3,2);
         stats.levelStatsUp();
         assertEquals(4, stats.getDefaultHP());
     }
 
     @Test
-    void resetPowerAndSpeed(){                                                      // Checks if it is possible to reset currentPower and currentSpeed to  their default values
-        PlayerStats stats = new PlayerStats(2,3,4);
+    void resetPowerAndSpeed(){                                                  // Checks if it is possible to reset currentPower
+        PlayerStats stats = new PlayerStats(2,3,4);        // and currentSpeed to their default values.
         stats.changePowerTemporary(2);
         stats.changeSpeedTemporary(2);
         stats.resetPowerAndSpeedToDefaultValues();

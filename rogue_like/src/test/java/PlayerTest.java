@@ -215,23 +215,19 @@ public class PlayerTest {
     }
 
     @Test
-    void getEarthElementAsActivatedElement(){                                           //Tests the method "changeActivatedElement"
+    void switchToEarthElementAsActivatedElement(){                          //Tests the method "changeActivatedElement"
         FireElement fireElement = new FireElement(2);
         EarthElement earthElement = new EarthElement(3);
-        Player player = new Player("Sabina", fireElement, role);                //Makes a fire element as the main element and therefor the activated element
-        player.addElement(earthElement);                                                //Adds a wind element to the player´s owned elements
-        player.changeActivatedElement("Earth");                             //Changes the activated element to the wind element
+        Player player = new Player("Sabina", fireElement, role);    //Makes a fire element as the main element and therefor the activated element
+        player.addElement(earthElement);                                   //Adds a earth element to the player´s owned elements
+        player.changeActivatedElement("Earth");                //Changes the activated element to the earth element
         assertEquals(earthElement, player.getActivatedElement());
     }
 
     @Test
-    void spellEarthWrongInChangeActivatedElement(){                                     //Tests the method "changeActivatedElement" and "getActivatedElement"
-        FireElement fireElement = new FireElement(2);
-        EarthElement earthElement = new EarthElement(3);
-        Player player = new Player("Sabina", fireElement, role);                //Makes a fire element as the main element and therefor the activated element
-        player.addElement(earthElement);                                                //Adds a wind element to the player´s owned elements
-        player.changeActivatedElement("Earh");                              //Changes the activated element to the wind element
-        assertEquals(fireElement, player.getActivatedElement());
+    void throwIAEInChangeActivatedElement(){                                  // Throw IllegalArgumentException in the method "changeActivatedElement"
+        Player player = new Player("Sabina", element, role);
+        assertThrows(IllegalArgumentException.class, () -> player.changeActivatedElement("Bad argument"));
     }
 
     @Test

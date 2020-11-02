@@ -87,10 +87,7 @@ public class Player extends Character {
             return elements[2];
         else if (elementType.toLowerCase().equals("wind") && elements[3] != null && elements[3].getClass().isInstance(new WindElement(1)))
             return elements[3];
-        else if (elementType.toLowerCase().equals("earth")
-                || elementType.toLowerCase().equals("water")
-                || elementType.toLowerCase().equals("fire")
-                || elementType.toLowerCase().equals("wind")){
+        else if (elementSpelledCorrect(elementType)){
             System.out.println("You do not have this element yet!");
             return null;
         }
@@ -106,17 +103,22 @@ public class Player extends Character {
         }
     }
 
-    public void changeActivatedElement(String elementType) {                                        // Since you only can use one element at the time...
-        if (elementType.toLowerCase().equals("earth")                                               // check if user spelled the elementType correct
-                || elementType.toLowerCase().equals("water")
-                || elementType.toLowerCase().equals("fire")
-                || elementType.toLowerCase().equals("wind")) {
-            Element chosenElement = findElement(elementType);                                       //... the player can change to another element (of the elements the player own)
-            if (chosenElement != null)
-                activatedElement = chosenElement;
-        }
-        else
-            System.out.println("Can´t find the a element of the type you wish.");                   // If the player don´t have the element yet or spelled the argument wrong.
+    public void changeActivatedElement(String elementType) {                    // Since you only can use one element at the time the player can change to another element (of the elements the player own)
+        if (!elementSpelledCorrect(elementType))                                // check if user spelled the elementType correct
+            throw new IllegalArgumentException();                               // Throw exception if the player has spelled the argument wrong
+
+        else if (findElement(elementType) != null)
+            activatedElement = findElement(elementType);
+
+         else
+            System.out.println("Dang it! You don´t have that element yet.");      // If the player don´t have the element yet
+    }
+
+    private boolean elementSpelledCorrect(String elementType){
+        return elementType.equalsIgnoreCase("earth")                         // check if the elementType is correct spelled
+                || elementType.equalsIgnoreCase("water")
+                || elementType.equalsIgnoreCase("fire")
+                || elementType.equalsIgnoreCase("wind");
     }
 
     // ITEMS-ARRAY METHODS ---------------------------------------------------------------------------------------------
