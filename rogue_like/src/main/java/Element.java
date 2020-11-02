@@ -18,6 +18,7 @@ public abstract class Element {
         return elementLevel;
     }
 
+    // TODO: 2020-11-02 Gör den här mer komplex
     public void levelUpElement() {
         if (elementLevel >= 3 || elementLevel < 1){
             throw new IllegalArgumentException("The Element Level can't be above 3");
