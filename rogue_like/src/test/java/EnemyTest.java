@@ -62,6 +62,12 @@ public class EnemyTest {
     }
 
     @Test
+    void getStatDefaultHPThroughEnemy() {
+        Enemy enemy = new Enemy(new FireElement(2), 2, new Room(new Player("Malin", new FireElement(1), Role.Tank)));
+        assertEquals(5, enemy.getDefaultHP());
+    }
+
+    @Test
     void getStatSpeedThroughEnemy() {
         Enemy enemy = new Enemy(new FireElement(2), 2, new Room(new Player("Malin", new FireElement(1), Role.Tank)));
         assertEquals(5, enemy.getSpeed());
