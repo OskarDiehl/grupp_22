@@ -1,0 +1,180 @@
+Index: rogue_like/src/test/java/RoomTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import org.junit.jupiter.api.Test;\r\n\r\nimport java.util.ArrayList;\r\n\r\nimport static org.junit.jupiter.api.Assertions.*;\r\n\r\nclass RoomTest {\r\n\r\n\r\n\r\n\r\n// Ska denna testas med tanke på att den är privat?\r\n  @Test\r\n    void shouldGenerateNumberBetweenOneAndTen(){\r\n\r\n        Room room = new Room();\r\n        int num = room.generateRandomNumber(1,10);\r\n\r\n        assertTrue( 1 <= num && num <= 10, \"num: \" + num);\r\n    }\r\n\r\n    @Test\r\n    void ifArgumentExceptionIsThrownWhenMinValueBelowOneOnGenerateRandomNumber(){\r\n\r\n      Room room = new Room();\r\n      assertThrows(IllegalArgumentException.class, () -> {\r\n          room.generateRandomNumber(0, 5);\r\n      });\r\n    }\r\n\r\n    @Test\r\n    void getPlayerShouldReturnCorrectPlayer(){\r\n    Player ply = new Player(\"test\",new EarthElement(1),Role.Warrior);\r\n    Room room = new Room(ply);\r\n\r\n    assertEquals(ply, room.getPlayer());\r\n    }\r\n\r\n\r\n\r\n\r\n\r\n    @Test\r\n    void ifArgumentExceptionIsThrownWhenMinValueIsMoreThanMaxValueInGenerateRandomNumber(){\r\n\r\n        Room room = new Room();\r\n        assertThrows(IllegalArgumentException.class, () -> {\r\n            room.generateRandomNumber(8, 7);\r\n        });\r\n    }\r\n\r\n\r\n\r\n    //TODO denna borde kanske testa ALLA enemies, inte bara den första\r\n    @Test void ifEnemiesAreTheRightElement(){\r\n      Room room = new Room();\r\n\r\n      Element el = room.getElement();\r\n     //assertTrue(room.getEnemies().get(3).getMainElement() instanceof el.getClass());\r\n    }\r\n\r\n    //TODO eventuellt fundera på att inte använda array? Vad händer exempelvis när en fiende dör? Kanske lättare att hålla koll på när rummet är klart via en lista och sen bara kolla när den är tom.\r\n\r\n    @Test void ifCorrectNumberOfEnemiesHaveBeenCreated(){\r\n      Room room = new Room();\r\n\r\n      assertEquals(room.getEnemyQuantity(), room.getEnemies().size());\r\n\r\n    }\r\n\r\n\r\n\r\n\r\n    @Test void GenerateAmountOfEnemiesIsTheCorrectIntervall(){\r\n\r\n    }\r\n\r\n    @Test\r\n    void shouldGenerateElementForRoom(){\r\n      Room room = new Room();\r\n    }\r\n\r\n    @Test\r\n    void roomTypeShouldNotBeEmptyWhenCreatingRoom(){\r\n      Room room = new Room();\r\n\r\n      assertNotEquals(null, room.getRoomType());\r\n  }\r\n\r\n    //det finns de fyra element rummen + boss rummen för vardera + lyckohjulsrum\r\n    @Test\r\n    void roomTypeShouldBeLuckyWheel(){\r\n      Room room = new Room();\r\n\r\n      while(room.getRoomType() != \"Lucky Wheel\"){\r\n        room = new Room();\r\n      }\r\n      assertEquals(\"Lucky Wheel\", room.getRoomType());\r\n  }\r\n\r\n\r\n\r\n  //eftersom maxIntervall är 1 borde det alltid bli rätt?\r\n  // Testar så att när max intervallet är samma som det random numret så blir det true\r\n\r\n\r\n\r\n      /*så när rummet skapas bör decideTypeOfRoom kallas på som bara avgör om det blir ett lyckohjulsrum eller inte (1/5).\r\n      I ett senare skede bör det avgöras om spelaren har dem tre medaljongerna för att spawna en boss eller spawna enemies\r\n      Kanske i en decideTypeOfEnemy metod.\r\n\r\n\r\n      Men var ska informationen om vilken typ av rum det är sparas? Bör det finnas typ en sträng med \"BOSS\", \"ENEMY\" och \"LUCKY WHEEL\"\r\n      Eller är det ens nödvändigt? Ska det bara vara om rummet inte har något Element ska det anses som lucky wheel?\r\n\r\n\r\n       */\r\n\r\n\r\n    //TODO metoden decideTypeOfRoom borde alltså kallas med en metod som har en chans 1 / 5 att returnera true\r\n    @Test\r\n    void roomTypeShouldBeEnemy(){\r\n        Room room = new Room();\r\n        room.decideTypeOfRoom(false);\r\n\r\n        assertEquals(\"Enemy\", room.getRoomType());\r\n\r\n\r\n\r\n    }\r\n\r\n    @Test\r\n    void roomShouldBeLuckyWheel(){\r\n      Room room = new Room();\r\n      room.decideTypeOfRoom(true);\r\n\r\n      assertEquals(\"Lucky Wheel\", room.getRoomType());\r\n\r\n\r\n    }\r\n    @Test\r\n    void ifRemoveEnemyRemovesTheCorrectEnemy(){\r\n\r\n    }\r\n\r\n    @Test\r\n    void itemShouldDropWhenAllEnemiesAreDead(){\r\n        Room room = new Room();\r\n\r\n\r\n\r\n        //room.checkIfEnemiesDead(){\r\n\r\n        }\r\n\r\n    @Test\r\n    void elementShouldBeAddedToPlayerWhenKilledBoss(){\r\n\r\n    }\r\n\r\n    @Test\r\n    void itemShouldDropWhenLuckyWheelIsActivated(){\r\n\r\n\r\n    }\r\n\r\n    @Test\r\n    void enemyCantSpawnWhenPlayerHas3MedallionsOfRoomsElement(){\r\n      FireElement elm = new FireElement(1);\r\n      Player ply = new Player(\"test\", elm, Role.Runner);\r\n      ply.addMedallion(elm);\r\n      ply.addMedallion(elm);\r\n      ply.addMedallion(elm);\r\n\r\n      Room room = new Room(ply, elm);\r\n\r\n      while(room.getRoomType() == \"Lucky Wheel\") {\r\n        room = new Room(ply, elm);\r\n      }\r\n\r\n\r\n      assertEquals(\"Boss\",room.getRoomType());\r\n    }\r\n\r\n\r\n\r\n    @Test\r\n    void bossCantSpawnWhenPlayerDoesNotHaveEnoughMedallionsOfRoomElement(){\r\n      EarthElement elm = new EarthElement(1);\r\n      Player ply = new Player(\"test\", elm, Role.Runner);\r\n      ply.addMedallion(elm);\r\n      ply.addMedallion(elm);\r\n\r\n\r\n      Room room = new Room(ply, elm);\r\n\r\n      while(room.getRoomType() == \"Lucky Wheel\") {\r\n        room = new Room(ply, elm);\r\n      }\r\n\r\n      assertNotEquals(\"Boss\",room.getRoomType());\r\n\r\n    }\r\n\r\n    @Test\r\n    void isEnemiesDeadShouldReturnTrueWhenAllEnemiesRemoved(){\r\n      Room room = new Room();\r\n\r\n      ArrayList<Enemy>  enemies = room.getEnemies();\r\n\r\n      for( Enemy e : enemies){\r\n        room.removeEnemy(e);\r\n      }\r\n\r\n      assertTrue(room.isEnemiesDead());\r\n\r\n\r\n    }\r\n\r\n  @Test\r\n  void isEnemiesDeadShouldReturnFalseWhenNotAllEnemiesRemoved(){\r\n    Room room = new Room();\r\n\r\n    assertFalse(room.isEnemiesDead());\r\n\r\n\r\n  }\r\n\r\n  @Test\r\n  void luckyWheelShouldBeCreatedWhenItHasSpawned(){\r\n      Room room = new Room();\r\n\r\n      while(room.getRoomType() != \"Lucky Wheel\"){\r\n        room = new Room();\r\n      }\r\n\r\n      assertTrue(room.getLuckyWheel() != null);\r\n\r\n  }\r\n\r\n  @Test\r\n  void luckyWheelShouldntBeCreatedWhenItHasntSpawned(){\r\n    Room room = new Room();\r\n\r\n    while(room.getRoomType() == \"Lucky Wheel\"){\r\n      room = new Room();\r\n    }\r\n\r\n    assertTrue(room.getLuckyWheel() == null);\r\n\r\n  }\r\n\r\n  @Test\r\n  void itemDroppedShouldNotBeNullWhenAllEnemiesAreKilled(){\r\n      Room room = new Room();\r\n\r\n      while(room.getRoomType() == \"Lucky Wheel\"){\r\n        room = new Room();\r\n      }\r\n\r\n      ArrayList<Enemy> enemies = room.getEnemies();\r\n\r\n      for(Enemy e: enemies){\r\n        room.removeEnemy(e);\r\n      }\r\n\r\n      assertTrue(room.getItemDropped() != null);\r\n\r\n  }\r\n\r\n  @Test\r\n  void itemDroppedShouldBeNullWhenEnemiesAreAlive(){\r\n    Room room = new Room();\r\n\r\n    while(room.getRoomType() == \"Lucky Wheel\"){\r\n      room = new Room();\r\n    }\r\n\r\n\r\n    assertTrue(room.getItemDropped() == null);\r\n\r\n    }\r\n\r\n  @Test\r\n  void bossShouldNotBeNull(){\r\n      FireElement elm = new FireElement(1);\r\n      Player ply = new Player(\"test\",elm, Role.Tank);\r\n\r\n      ply.addMedallion(elm);\r\n      ply.addMedallion(elm);\r\n      ply.addMedallion(elm);\r\n\r\n      Room room = new Room(ply, elm);\r\n\r\n      while(room.getRoomType() == \"Lucky Wheel\"){\r\n        room = new Room(ply, elm);\r\n      }\r\n\r\n      assertTrue(room.getBoss() != null);\r\n\r\n\r\n\r\n  }\r\n\r\n  @Test\r\n  void bossShouldBeNull(){\r\n    FireElement elm = new FireElement(1);\r\n    Player ply = new Player(\"test\",elm, Role.Tank);\r\n\r\n    ply.addMedallion(elm);\r\n\r\n    Room room = new Room(ply, elm);\r\n\r\n    while(room.getRoomType() == \"Lucky Wheel\"){\r\n      room = new Room(ply, elm);\r\n    }\r\n\r\n    assertTrue(room.getBoss() == null);\r\n\r\n\r\n\r\n  }\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n        /*\r\n        Hur kontrollerar vi att alla enemies är döda?\r\n        När en enemy är död måste det på något sätt skickas till Room, där vi sedan kan\r\n        checka så att inte alla monster är döda. Om dem är döda så bör spawnItem kallas på.\r\n         */\r\n\r\n\r\n    }\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- rogue_like/src/test/java/RoomTest.java	(revision 47ebd56d5b96dac7065bb6a7a3af27dc8fe85bcf)
++++ rogue_like/src/test/java/RoomTest.java	(date 1604234599543)
+@@ -92,7 +92,7 @@
+     void roomTypeShouldBeLuckyWheel(){
+       Room room = new Room();
+ 
+-      while(room.getRoomType() != "Lucky Wheel"){
++      while(room.getRoomType() == "Enemy"){
+         room = new Room();
+       }
+       assertEquals("Lucky Wheel", room.getRoomType());
+@@ -121,7 +121,11 @@
+     @Test
+     void roomTypeShouldBeEnemy(){
+         Room room = new Room();
+-        room.decideTypeOfRoom(false);
++
++        while(room.getRoomType() == "Lucky Wheel"){
++          room = new Room();
++        }
++
+ 
+         assertEquals("Enemy", room.getRoomType());
+ 
+@@ -132,7 +136,10 @@
+     @Test
+     void roomShouldBeLuckyWheel(){
+       Room room = new Room();
+-      room.decideTypeOfRoom(true);
++
++      while(room.getRoomType() == "Enemy"){
++        room = new Room();
++      }
+ 
+       assertEquals("Lucky Wheel", room.getRoomType());
+ 
+@@ -158,6 +165,12 @@
+ 
+     }
+ 
++    @Test
++    void iLLegalStateExceptionThrownWhenRemovingNonExistingBoss(){
++
++
++    }
++
+     @Test
+     void itemShouldDropWhenLuckyWheelIsActivated(){
+ 
+@@ -240,11 +253,8 @@
+ 
+   @Test
+   void luckyWheelShouldntBeCreatedWhenItHasntSpawned(){
+-    Room room = new Room();
++    Room room = new Room(new Player("test",new FireElement(1), Role.Tank), "Enemy");
+ 
+-    while(room.getRoomType() == "Lucky Wheel"){
+-      room = new Room();
+-    }
+ 
+     assertTrue(room.getLuckyWheel() == null);
+ 
+Index: rogue_like/src/main/java/Room.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//TODO organisera metoder, alla enemy metoder borde vara ihop exempelvis.\r\n\r\n//TODO lös ett bra sätt att ta fram om rummet ska vara ett LuckyWheel eller inte\r\n\r\n//TODO lös ett sätt för att generera ett random element för rummet (om det inte är ett luckywheel rum)\r\n\r\n//TODO rummet måste kunna komma åt en players \"medaljonger\" för att avgöra om det blir boss eller inte\r\n\r\n//TODO ändra spawnItem till att inte vara random\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.Arrays;\r\n\r\npublic class Room {\r\n\r\n    private final Item[] ITEMS = new Item[]{\r\n            new Weapon(\"Boring Sword\", 1, 0),\r\n            new Weapon(\"Cool Sword\", 3,-1),\r\n            new Weapon(\"Mega Hammer\", 10,-5),\r\n            new Weapon(\"Dinky Hammer\",-1,0),\r\n            new Weapon(\"Cast Iron Frying Pan\", 4, -2),\r\n\r\n            new Armor(\"Knight's Armor\", 4, -2),\r\n            new Armor(\"Leather Scrap Armor\", 1, 0),\r\n            new Armor(\"Wearable Bank Vault\", 10, -10),\r\n            new Armor(\"Bussiness Casual\", 0, 0),\r\n            new Armor(\"Birthday Suit\", 0, 0),\r\n\r\n            new Shoes(\"Flip Flops\", 1, -1),\r\n            new Shoes(\"Sneakers\", 3, 0),\r\n            new Shoes(\"Yeezys\", 4, -1),\r\n            new Shoes(\"Clogs\", 2, -3),\r\n            new Shoes(\"Stilettos\", 8, -4)\r\n\r\n    };\r\n\r\n     private final int MAX_AMOUNT_OF_MEDALLIONS = 3;\r\n     private final int MIN_THRESHOLD = 1;\r\n     private final int AMOUNT_OF_ELEMENTS = 4;\r\n\r\n     private final int MAX_AMOUNT_OF_ENEMIES = 7;\r\n     private final int MIN_AMOUNT_OF_ENEMIES = 4;\r\n     private final int MAX_NUMBER_LUCKY_WHEEL = 5;\r\n\r\n     private ArrayList<Enemy> enemies;\r\n     private int enemyQuantity;\r\n     private String roomType;\r\n     private Element element;\r\n     private int threshold;\r\n     private Player player;\r\n     private LuckyWheel luckyWheel;\r\n     private Item itemDropped;\r\n     private Boss boss;\r\n\r\n\r\n     //TODO borde player vara ett argument i konstruktorn?\r\n\r\n     public Room(){\r\n         this(new Player(\"test\",new FireElement(1), Role.Tank));\r\n     }\r\n     public Room(Player player , Element element){\r\n         this.element = element;\r\n         this.player = player;\r\n         buildRoom();\r\n     }\r\n\r\n     public Room(Player player){\r\n         this.player = player;\r\n         this.element = decideTypeOfElement(generateRandomNumber(MIN_THRESHOLD, AMOUNT_OF_ELEMENTS));\r\n         buildRoom();\r\n\r\n\r\n     }\r\n\r\n    private void buildRoom(){\r\n        decideTypeOfRoom(decideIfLuckyWheel());\r\n\r\n        switch(roomType) {\r\n            case \"Enemy\": spawnEnemies(); break;\r\n            case \"Boss\": spawnBoss(); break;\r\n            case \"Lucky Wheel\": spawnLuckyWheel(); break;\r\n        }\r\n    }\r\n\r\n    public String decideTypeOfRoom(boolean isItLuckyWheel){\r\n        if( (isItLuckyWheel)){\r\n            roomType = \"Lucky Wheel\";\r\n        }\r\n        else {\r\n            if (shouldBossSpawn()){\r\n                roomType = \"Boss\";\r\n            }\r\n            else {\r\n                roomType = \"Enemy\";\r\n            }\r\n        }\r\n        return roomType;\r\n    }\r\n\r\n\r\n    private boolean decideIfLuckyWheel(){\r\n        if(generateRandomNumber(MIN_THRESHOLD, MAX_NUMBER_LUCKY_WHEEL) == MAX_NUMBER_LUCKY_WHEEL){\r\n            return true;\r\n        }\r\n        return false;\r\n    }\r\n\r\n\r\n\r\n\r\n    public Element decideTypeOfElement(int elementNumber){ //denna är private eftersom jag endast vill att ett element ska kunna kallas på en gång\r\n\r\n        if(element == null) {\r\n\r\n            switch (elementNumber) {\r\n                case 1:\r\n                    element = new FireElement(1);\r\n                    break;\r\n                case 2:\r\n                    element = new WaterElement(1);\r\n                    break;\r\n                case 3:\r\n                    element = new WindElement(1);\r\n                    break;\r\n                case 4:\r\n                    element = new EarthElement(1);\r\n                    break;\r\n\r\n            }\r\n\r\n        }\r\n\r\n        return element;\r\n\r\n    }\r\n\r\n    public void spawnEnemies(){\r\n        enemyQuantity = generateAmountOfEnemies();\r\n        enemies = new ArrayList();\r\n\r\n        for(int i = 0; i < enemyQuantity; i++){\r\n            enemies.add(new Enemy(getElement() , player.getLevel(), this));\r\n\r\n        }\r\n\r\n    }\r\n\r\n    //TODO be malin ändra resetMedallions\r\n    public boolean shouldBossSpawn(){\r\n\r\n         int medallions = player.fetchMedallionStatus(getElement());\r\n\r\n         if(medallions == MAX_AMOUNT_OF_MEDALLIONS){\r\n             player.resetMedallion(getElement());\r\n             return true;\r\n         }\r\n         return false;\r\n     }\r\n\r\n     //TODO spawna boss!\r\n    public void spawnBoss(){\r\n         boss = new Boss(getElement(), player.getLevel(),this);\r\n\r\n    }\r\n\r\n    public Boss getBoss() {\r\n        return boss;\r\n    }\r\n\r\n    public void spawnLuckyWheel(){\r\n         luckyWheel = new LuckyWheel(this);\r\n     }\r\n\r\n     public LuckyWheel getLuckyWheel(){\r\n         return luckyWheel;\r\n     }\r\n\r\n    public Item spawnItem(){\r\n         return ITEMS[generateRandomNumber(1,ITEMS.length-1)];\r\n     }\r\n\r\n\r\n    public Player getPlayer() {\r\n        return player;\r\n    }\r\n\r\n    public Element getElement() {\r\n        return element;\r\n    }\r\n\r\n    public ArrayList<Enemy> getEnemies(){\r\n        return new ArrayList<Enemy>(enemies);\r\n    }\r\n\r\n    public boolean isEnemiesDead() {\r\n        if (enemies.isEmpty()) {\r\n            return true;\r\n        }\r\n        return false;\r\n     }\r\n\r\n    public int generateAmountOfEnemies(){\r\n         return generateRandomNumber(MIN_AMOUNT_OF_ENEMIES, MAX_AMOUNT_OF_ENEMIES);\r\n     }\r\n\r\n    public String getRoomType() {\r\n        return roomType;\r\n    }\r\n\r\n    public int getEnemyQuantity() {\r\n        return enemyQuantity;\r\n    }\r\n\r\n    //TODO måste denna kallas på av enemy klassen? när dennes hp går ner till 0? Isåfall måste man deklarera Enemy med ett Room kanske?\r\n    //TODO man måste kanske ha något sätt att kolla så att enemyn faktiskt finns?\r\n\r\n    public void removeEnemy(Enemy enemy){\r\n\r\n         if(!enemies.isEmpty()){\r\n             if(enemies.remove(enemy)){\r\n\r\n                 if(isEnemiesDead()){\r\n                     itemDropped = spawnItem();\r\n                 }\r\n                 return;\r\n             }\r\n             else {\r\n                 throw new IllegalArgumentException();\r\n             }\r\n         }\r\n    }\r\n\r\n    public Item getItemDropped() {\r\n        return itemDropped;\r\n    }\r\n\r\n    public Item[] getITEMS() {\r\n        return Arrays.copyOf(ITEMS, ITEMS.length);\r\n    }\r\n\r\n    //Denna nås av test genom andra metoder, men kan inte testas direkt eftersom den är privat.\r\n    //Man bör fråga sig om denna bör vara publik, samt att den har begränsingar (MIN <= MAX exempelvis)\r\n    public int generateRandomNumber(int min, int max) {\r\n\r\n\r\n        if (min < 1  || max < 1 || min > max) {\r\n            throw new IllegalArgumentException();\r\n        } else {\r\n            max+=1;\r\n\r\n            return (int) ((Math.random() * (max - min)) + min);\r\n\r\n        }\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- rogue_like/src/main/java/Room.java	(revision 47ebd56d5b96dac7065bb6a7a3af27dc8fe85bcf)
++++ rogue_like/src/main/java/Room.java	(date 1604234599553)
+@@ -58,43 +58,54 @@
+      public Room(){
+          this(new Player("test",new FireElement(1), Role.Tank));
+      }
+-     public Room(Player player , Element element){
+-         this.element = element;
+-         this.player = player;
+-         buildRoom();
+-     }
++
++    public Room(Player player ,  String roomType){
++        this.element = decideTypeOfElement(generateRandomNumber(MIN_THRESHOLD, AMOUNT_OF_ELEMENTS));
++        this.player = player;
++        buildRoom(roomType);
++    }
++
++    public Room(Player player , Element element){
++        this.element = element;
++        this.player = player;
++        buildRoom(decideTypeOfRoom(decideIfLuckyWheel()));
++    }
++
+ 
+      public Room(Player player){
+          this.player = player;
+          this.element = decideTypeOfElement(generateRandomNumber(MIN_THRESHOLD, AMOUNT_OF_ELEMENTS));
+-         buildRoom();
++         buildRoom(decideTypeOfRoom(decideIfLuckyWheel()));
+ 
+ 
+      }
+ 
+-    private void buildRoom(){
+-        decideTypeOfRoom(decideIfLuckyWheel());
++    private void buildRoom(String typeOfRoom){
++        roomType = typeOfRoom;
+ 
+-        switch(roomType) {
++        switch(typeOfRoom) {
+             case "Enemy": spawnEnemies(); break;
+             case "Boss": spawnBoss(); break;
+             case "Lucky Wheel": spawnLuckyWheel(); break;
+         }
+     }
+ 
+-    public String decideTypeOfRoom(boolean isItLuckyWheel){
+-        if( (isItLuckyWheel)){
+-            roomType = "Lucky Wheel";
++    //denna ville jag göra private eftersom när ett rum väl skapats ska man inte kunna ändra type
++    private String decideTypeOfRoom(boolean isItLuckyWheel){
++         String name;
++
++         if( (isItLuckyWheel)){
++             name = "Lucky Wheel";
+         }
+         else {
+             if (shouldBossSpawn()){
+-                roomType = "Boss";
++                name = "Boss";
+             }
+             else {
+-                roomType = "Enemy";
++                name = "Enemy";
+             }
+         }
+-        return roomType;
++        return name;
+     }
+ 
+ 
+@@ -108,7 +119,7 @@
+ 
+ 
+ 
+-    public Element decideTypeOfElement(int elementNumber){ //denna är private eftersom jag endast vill att ett element ska kunna kallas på en gång
++    private Element decideTypeOfElement(int elementNumber){ //denna är private eftersom jag endast vill att ett element ska kunna kallas på en gång
+ 
+         if(element == null) {
+ 
+@@ -163,6 +174,22 @@
+ 
+     }
+ 
++    public void removeBoss(){
++         if(boss != null){
++             boss = null;
++             givePlayerElement();
++         }
++
++         else {
++             throw new IllegalStateException();
++         }
++    }
++
++    private void givePlayerElement(){
++         player.addElement(getElement());
++
++    }
++
+     public Boss getBoss() {
+         return boss;
+     }

@@ -1,0 +1,145 @@
+Index: rogue_like/src/test/java/RoomTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import org.junit.jupiter.api.Test;\r\nimport static org.junit.jupiter.api.Assertions.*;\r\n\r\nclass RoomTest {\r\n\r\n\r\n\r\n\r\n// Ska denna testas med tanke på att den är privat?\r\n  @Test\r\n    void shouldGenerateNumberBetweenOneAndTen(){\r\n\r\n        Room room = new Room();\r\n        int num = room.generateRandomNumber(1,10);\r\n\r\n        assertTrue( 1 <= num && num <= 10, \"num: \" + num);\r\n    }\r\n\r\n    @Test\r\n    void ifArgumentExceptionIsThrownWhenMinValueBelowOne(){\r\n\r\n      Room room = new Room();\r\n      assertThrows(IllegalArgumentException.class, () -> {\r\n          room.generateRandomNumber(0, 5);\r\n      });\r\n    }\r\n\r\n    @Test\r\n    void ifArgumentExceptionIsThrownWhenMaxValueAboveTen(){\r\n\r\n        Room room = new Room();\r\n        assertThrows(IllegalArgumentException.class, () -> {\r\n            room.generateRandomNumber(2, 11);\r\n        });\r\n    }\r\n\r\n    @Test\r\n    void ifArgumentExceptionIsThrownWhenMinValueIsEqualToMaxValue(){\r\n\r\n        Room room = new Room();\r\n        assertThrows(IllegalArgumentException.class, () -> {\r\n            room.generateRandomNumber(7, 7);\r\n        });\r\n    }\r\n\r\n    @Test\r\n    void spawnItemShouldBeTrue() {\r\n        Room room = new Room();\r\n        assertEquals(true, room.spawnItem(6));\r\n    }\r\n\r\n    @Test\r\n    void spawnItemShouldBeFalse(){\r\n        Room room = new Room();\r\n        assertEquals(false, room.spawnItem(5));\r\n    }\r\n\r\n    @Test\r\n    void spawnItemShouldBeTrueWithNewThreshold(){\r\n        Room room = new Room();\r\n        room.setThreshold(3);\r\n        assertEquals(true, room.spawnItem(4));\r\n    }\r\n\r\n    @Test\r\n    void spawnItemShouldBeFalseWithNewThreshold(){\r\n        Room room = new Room();\r\n        room.setThreshold(8);\r\n        assertEquals(false, room.spawnItem(7));\r\n    }\r\n\r\n\r\n    @Test\r\n    void ifThresholdValueChanges(){\r\n        Room room = new Room();\r\n        room.setThreshold(4);\r\n        assertEquals(4, room.getThreshold());\r\n    }\r\n\r\n    @Test\r\n    void spawnItemShouldBeTrueAfterSetThreshold(){\r\n        Room room = new Room();\r\n        room.setThreshold(1);\r\n        assertTrue(room.spawnItem());\r\n    }\r\n\r\n    @Test\r\n    void ifArgumentExceptionIsThrownWhenSetThresholdAboveTen() {\r\n        Room room = new Room();\r\n        assertThrows(IllegalArgumentException.class, () -> {\r\n            room.setThreshold(13);\r\n        });\r\n    }\r\n\r\n    @Test\r\n    void ifArgumentExceptionIsThrownWhenSetThresholdBelowOne(){\r\n        Room room = new Room();\r\n        assertThrows(IllegalArgumentException.class, () -> {\r\n            room.setThreshold(-1);\r\n        });\r\n\r\n    }\r\n\r\n    @Test void ifAllEnemiesAreTheRightElement(){\r\n\r\n    }\r\n\r\n    @Test void ifCorrectNumberOfEnemiesHaveBeenCreated(){\r\n\r\n    }\r\n\r\n    @Test\r\n    void shouldGenerateElementForRoom(){\r\n      Room room = new Room();\r\n\r\n\r\n    }\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- rogue_like/src/test/java/RoomTest.java	(revision df2731495323182ac37d67012d56a101bb63cc5d)
++++ rogue_like/src/test/java/RoomTest.java	(date 1603274533454)
+@@ -1,4 +1,7 @@
+ import org.junit.jupiter.api.Test;
++import org.junit.jupiter.params.ParameterizedTest;
++import org.junit.jupiter.params.provider.ValueSource;
++
+ import static org.junit.jupiter.api.Assertions.*;
+ 
+ class RoomTest {
+@@ -98,20 +101,30 @@
+         assertThrows(IllegalArgumentException.class, () -> {
+             room.setThreshold(-1);
+         });
+-
+-    }
++  }
+ 
+-    @Test void ifAllEnemiesAreTheRightElement(){
+-
++    @Test
++    void ifAllEnemiesAreTheRightElement(){
++      Room room = new Room();
++      assertEquals(room.getElement(), room.getEnemies().getElement());
+     }
+ 
+     @Test void ifCorrectNumberOfEnemiesHaveBeenCreated(){
++      Room room = new Room();
++      assertEquals(room.getEnemyQuantity(), room.getEnemies().size());
++    }
+ 
+-    }
++
+ 
+     @Test
+-    void shouldGenerateElementForRoom(){
++    void getElementShouldNotBeNull(){
+       Room room = new Room();
++      assertNotEquals(null, room.getElement());
++    }
++
++
++    @Test
++    void testIfTypeOfRoomIsDecided(){
+ 
+ 
+     }
+@@ -122,4 +135,6 @@
+ 
+ 
+ 
++
++
+ }
+\ No newline at end of file
+Index: rogue_like/src/main/java/Room.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>public class Room {\r\n     String element; //ska ändras till Element klassen sen\r\n     private final int STANDARD_THRESHOLD = 6;\r\n     private final int MAX_THRESHOLD = 10;\r\n     private final int MIN_THRESHOLD = 1;\r\n\r\n     private final int MAX_AMOUNT_OF_ENEMIES = 7;\r\n     private final int MIN_AMOUNT_OF_ENEMIES = 4;\r\n\r\n     private int threshold;\r\n\r\n     public Room(){\r\n\r\n\r\n        threshold = STANDARD_THRESHOLD;\r\n        this.element = \"Fire\";\r\n    }\r\n\r\n    public boolean spawnItem() {\r\n        return spawnItem(generateRandomNumber(MIN_THRESHOLD, MAX_THRESHOLD));\r\n    }\r\n\r\n    public boolean spawnItem(int num){\r\n        return spawnItem(num, threshold);\r\n    }\r\n\r\n    private boolean spawnItem(int num, int threshold){\r\n        if( num >= threshold){\r\n            return true;\r\n        }\r\n        return false;\r\n    }\r\n\r\n    public void decideTypeOfRoom(){\r\n\r\n    }\r\n\r\n\r\n\r\n    public void setThreshold(int threshold) {\r\n        if (threshold > MAX_THRESHOLD || threshold < MIN_THRESHOLD) {\r\n            throw new IllegalArgumentException();\r\n        } else {\r\n            this.threshold = threshold;\r\n        }\r\n    }\r\n\r\n    public int getThreshold() {\r\n        return threshold;\r\n    }\r\n\r\n    //När ett rum skapas finns det en threshold som avgör hur stor chans det är att man får dropp, ju lägre threshold är, ju större chans är det att man får drop.\r\n\r\n\r\n\r\n    public void spawnEnemies(){\r\n         int quantity = generateAmountOfEnemies();\r\n\r\n    }\r\n    public int generateAmountOfEnemies(){\r\n         return generateRandomNumber(MIN_AMOUNT_OF_ENEMIES, MAX_AMOUNT_OF_ENEMIES);\r\n     }\r\n\r\n\r\n\r\n\r\n\r\n//Denna nås av test genom andra metoder, men kan inte testas direkt eftersom den är privat.\r\n//Man bör fråga sig om denna bör vara publik, samt att den har begränsingar (MIN < MAX exempelvis)\r\n    public int generateRandomNumber(int min, int max) {\r\n\r\n        if (min < 1  || min >= max) {\r\n            throw new IllegalArgumentException();\r\n        } else {\r\n            return (int) ((Math.random() * (max - min)) + min);\r\n\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- rogue_like/src/main/java/Room.java	(revision df2731495323182ac37d67012d56a101bb63cc5d)
++++ rogue_like/src/main/java/Room.java	(date 1603278476724)
+@@ -1,5 +1,7 @@
+ public class Room {
+-     String element; //ska ändras till Element klassen sen
++
++
++
+      private final int STANDARD_THRESHOLD = 6;
+      private final int MAX_THRESHOLD = 10;
+      private final int MIN_THRESHOLD = 1;
+@@ -8,18 +10,21 @@
+      private final int MIN_AMOUNT_OF_ENEMIES = 4;
+ 
+      private int threshold;
++     private int enemyQuantity;
++     private Element element = new Element();
++     private Enemy enemies[];
+ 
+      public Room(){
+-
+-
+-        threshold = STANDARD_THRESHOLD;
+-        this.element = "Fire";
+-    }
++         threshold = STANDARD_THRESHOLD;
++         spawnEnemies();
++     }
++
+ 
+     public boolean spawnItem() {
+         return spawnItem(generateRandomNumber(MIN_THRESHOLD, MAX_THRESHOLD));
+     }
+ 
++
+     public boolean spawnItem(int num){
+         return spawnItem(num, threshold);
+     }
+@@ -35,6 +40,13 @@
+ 
+     }
+ 
++    public Element getElement() {
++        return element;
++    }
++
++    public Enemy getEnemies(){
++         return enemies[0];
++    }
+ 
+ 
+     public void setThreshold(int threshold) {
+@@ -54,9 +66,22 @@
+ 
+ 
+     public void spawnEnemies(){
+-         int quantity = generateAmountOfEnemies();
++         enemyQuantity = generateAmountOfEnemies();
++         enemies = new Enemy[enemyQuantity];
++
++         for(int i = 0; i < enemyQuantity; i++){
++             enemies[i] = new Enemy("test", getElement(), 1);
++         }
+ 
+     }
++
++    //glöm inte implementera hinder som påverkar spelaren tills den dödat alla monster
++
++    public int getEnemyQuantity() {
++        return enemyQuantity;
++    }
++
++
+     public int generateAmountOfEnemies(){
+          return generateRandomNumber(MIN_AMOUNT_OF_ENEMIES, MAX_AMOUNT_OF_ENEMIES);
+      }

@@ -1,0 +1,376 @@
+Index: rogue_like/src/main/java/Player.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>public class Player extends Character {\r\n\r\n    // DATASAMLING/-AR -------------------------------------------------------------------------------------------------\r\n    private Element elements[] = new Element[4];\r\n    private Item items[] = new Item[3];\r\n\r\n    // INSTANCE VARIABLES ----------------------------------------------------------------------------------------------\r\n    private String name;\r\n    private Role role;\r\n    private PlayerStats playerStats;\r\n    private Element activatedElement;     // The element the player use at the moment (You can only use one at the time)\r\n\r\n    private int earthMedallions = 0;      // When the player has completed a room ze earns a medallion. There are\r\n    private int waterMedallions = 0;      // four different kind of medallions, one for each element.\r\n    private int fireMedallions = 0;       //      If the player has three of one sort, the next room will be a\r\n    private int windMedallions = 0;       // boss room for the element the three medallions symbolize.\r\n                                          //      When the player defeats the boss, ze will either earn or upgrade\r\n                                          // the element for the boss room. It depends on if ze already has the object.\r\n\r\n\r\n    // CONSTRUCTOR -----------------------------------------------------------------------------------------------------\r\n    public Player(String name, Element element, Role role) {\r\n        super(element);\r\n        this.name = name;\r\n        this.role = role;\r\n        this.playerStats = new PlayerStats(role.getHP(), role.getPower(), role.getSpeed());\r\n        activatedElement = element;\r\n        addElement(element);\r\n    }\r\n\r\n    // OTHER METHODS ---------------------------------------------------------------------------------------------------\r\n    public void levelUp() {                                         // Level up the player\r\n        int changeToThisLevel = getLevel() + 1;\r\n        setLevel(changeToThisLevel);\r\n        playerStats.levelStatsUp();                                 // When the player moves up a level the player´s default stats increases\r\n    }\r\n\r\n    public void changeStatHP(int hp) {                              // Changes the stats for HP\r\n        playerStats.changeCurrentHP(hp);\r\n    }\r\n\r\n    public void changeStatPower(int powerAmount) {                  // Changes the stats for power\r\n        playerStats.changePowerTemporary(powerAmount);\r\n    }\r\n\r\n    public void changeStatSpeed(int speedAmount) {                  // Changes the stats for speed\r\n        playerStats.changeSpeedTemporary(speedAmount);\r\n    }\r\n\r\n    public void resetStatsForPowerAndSpeed() {                      // Resets the stats for power and speed\r\n        playerStats.resetPowerAndSpeedToDefaultValues();\r\n    }\r\n\r\n\r\n    // ELEMENTS METHODS ------------------------------------------------------------------------------------------------\r\n    // The index each element has in the array \"elements\":\r\n    //   * index 0 = Earth element\r\n    //   * index 1 = Water element\r\n    //   * index 2 = Fire element\r\n    //   * index 3 = Air element\r\n\r\n    public void addElement(Element newElement) {\r\n        if (newElement.getClass().isInstance(new EarthElement(1))) {          // For earth elements\r\n            upgradeOrAddElement(0, newElement);                                    //... upgrade or add earth element\r\n\r\n        } else if (newElement.getClass().isInstance(new WaterElement(1)))     // For water elements\r\n            upgradeOrAddElement(1, newElement);                                    //... upgrade or add water element\r\n\r\n        else if (newElement.getClass().isInstance(new FireElement(1)))        // For fire elements\r\n            upgradeOrAddElement(2, newElement);                                    //... upgrade or add fire element\r\n\r\n        else if (newElement.getClass().isInstance(new WindElement(1)))        // For wind elements\r\n            upgradeOrAddElement(3, newElement);                                    //... upgrade or add wind element\r\n        else\r\n            throw new NullPointerException();  //TODO HUR FANKEN FÅR JAG MED DEN HÄR I COVERAGE?! /Malin\r\n\r\n        //   throw new IllegalArgumentException(\"Error: no allowed element is chosen\");\r\n        //TODO kalla på ngt exception?\r\n\r\n        //TODO Jag behöver ngn metod som returnerar vilken typ av element som det är /Malin\r\n    }\r\n\r\n    private void upgradeOrAddElement(int index, Element newElement) {                     // Upgrade or add an element\r\n        if (elements[index] != null && elements[index].getElementLevel() != 3)\r\n            elements[index].levelUpElement();\r\n        else {\r\n            elements[index] = newElement;\r\n        }\r\n    }\r\n\r\n    public void changeActivatedElement(String elementType) {                              // Since you only can use one element at the time...\r\n        Element chosenElement = findElement(elementType);                                 //... the player can change to another element (of the elements the player own)\r\n        if (chosenElement != null)\r\n            activatedElement = chosenElement;\r\n        else\r\n            System.out.println(\"Type again please\");   //TODO MALIN FIXA DIN LILLA BAJSFIA /Malin\r\n    }\r\n\r\n    public Element findElement(String elementType) {\r\n        if (elementType.toLowerCase().equals(\"earth\") && elements[0].getClass().isInstance(new EarthElement(2)))            // Checks if the player has an certain element\r\n            return elements[0];\r\n        else if (elementType.toLowerCase().equals(\"water\") && elements[1].getClass().isInstance(new WaterElement(2)))\r\n            return elements[1];\r\n        else if (elementType.toLowerCase().equals(\"fire\") && elements[2].getClass().isInstance(new FireElement(3)))\r\n            return elements[2];\r\n        else if (elementType.toLowerCase().equals(\"wind\") && elements[3].getClass().isInstance(new WindElement(1)))\r\n            return elements[3];\r\n        else\r\n            return null;        //TODO TA UPP bra lösning? /Malin\r\n    }\r\n\r\n    // ITEMS-ARRAY METHODS ---------------------------------------------------------------------------------------------\r\n    // The index each item has in the array \"items\":\r\n    //    * index 0 = Armor\r\n    //    * index 1 = Shoes\r\n    //    * index 2 = Weapon\r\n\r\n    public void addItem(Item newItem){                                                          // Add an item to the array items  TODO gör private?\r\n        if (newItem.getClass().isInstance(new Armor(null,0,0)))             // Add armor\r\n            items[0] = newItem;\r\n\r\n        else if (newItem.getClass().isInstance(new Shoes(null,0,0)))     // Add shoes\r\n            items[1] = newItem;\r\n\r\n        else\r\n            items[2] = newItem;                                                                 // Add weapon\r\n\r\n        itemIncreaseStats(newItem);\r\n    }\r\n\r\n    public Item getItem(String itemType){                                                                                                       // Look if the player has an item of a special type (class). If yes -> fetch the item\r\n        if (itemType.toLowerCase().equals(\"armor\") && items[0].getClass().isInstance(new Armor(null, 0, 0)))\r\n            return items[0];                                                                                                                    // Armor\r\n        else if (itemType.toLowerCase().equals(\"shoes\") && items[1].getClass().isInstance(new Shoes(null,0,0)))\r\n            return items[1];                                                                                                                    // Shoes\r\n        else if (itemType.toLowerCase().equals(\"weapon\") && items[2].getClass().isInstance(new Weapon(null,0,0)))\r\n            return items[2];                                                                                                                    // Weapon\r\n        else\r\n            return null;                                //TODO TA UPP bra lösning? /Malin\r\n    }\r\n\r\n    public void addOrSwitchItem(Item newItem){          //TODO fixa Malin /Malin\r\n\r\n    }\r\n\r\n    public void dropItem(String itemType){              //TODO fixa Malin /Malin\r\n\r\n    }\r\n\r\n    private void itemIncreaseStats(Item item){\r\n        int power = 0; /* = item.getPower();              TODO Vänta på att Oskar kanske fixar med abstrakta metoder :) /Malin */\r\n        int speed = 0;\r\n        int hp = 0;\r\n        //TODO fixa för HP\r\n        changeStatPower(power);\r\n        changeStatSpeed(speed);\r\n        changeStatHP(hp);\r\n    }\r\n\r\n    private void dropItemDecreaseStats(Item item){\r\n        int power = 0; /* = item.getPower();              TODO Vänta på att Oskar kanske fixar med abstrakta metoder :) /Malin */\r\n        int speed = 0 ;\r\n        int hp = 0;                                     //TODO multiplicera med -1 på allt /Malin\r\n        //TODO fixa för HP\r\n        changeStatPower(power);\r\n        changeStatSpeed(speed);\r\n        // a\r\n        changeStatHP(hp);\r\n    }\r\n\r\n    // ELEMENT MEDALLION METHODS ---------------------------------------------------------------------------------------\r\n    public int fetchMedallionStatus(Element element) {\r\n        if (element.getClass().isInstance(new EarthElement(1)))\r\n            return earthMedallions;\r\n\r\n        else if (element.getClass().isInstance(new WaterElement(1)))\r\n            return waterMedallions;\r\n\r\n        else if (element.getClass().isInstance(new FireElement(1)))\r\n            return fireMedallions;\r\n\r\n        else\r\n            return windMedallions;\r\n    }\r\n\r\n    public void addMedallion(Element element) {\r\n        if (element.getClass().isInstance(new EarthElement(1)) && earthMedallions < 3)\r\n            earthMedallions++;\r\n\r\n        else if (element.getClass().isInstance(new WaterElement(1)) && waterMedallions < 3)\r\n            waterMedallions++;\r\n\r\n        else if (element.getClass().isInstance(new FireElement(1)) && fireMedallions < 3)\r\n            fireMedallions++;\r\n\r\n        else if (element.getClass().isInstance(new WindElement(1)) && windMedallions < 3)\r\n            windMedallions++;\r\n    }\r\n\r\n    public void resetMedallion(Element element) {                                                               //When the player has defeated a boss all the medallions for that element resets\r\n        if (element.getClass().isInstance(new EarthElement(1)))\r\n            earthMedallions = 0;\r\n\r\n        else if (element.getClass().isInstance(new WaterElement(1)))\r\n            waterMedallions = 0;\r\n\r\n        else if (element.getClass().isInstance(new FireElement(1)))\r\n            fireMedallions = 0;\r\n\r\n        else if (element.getClass().isInstance(new WindElement(1)))\r\n            windMedallions = 0;\r\n    }\r\n\r\n\r\n    // GET-METHODS -----------------------------------------------------------------------------------------------------\r\n    public Role getRole() {\r\n        return role;\r\n    }\r\n\r\n    public String getName() {\r\n        return name;\r\n    }\r\n\r\n    @Override\r\n    public Stats getStats() {\r\n        return playerStats;\r\n    }\r\n\r\n    public int getCurrentHPFromStats() {\r\n        return playerStats.getCurrentHP();\r\n    }\r\n\r\n    public int getCurrentPowerFromStats() {\r\n        return playerStats.getCurrentPower();\r\n    }\r\n\r\n    public int getCurrentSpeedFromStats() {\r\n        return playerStats.getCurrentSpeed();\r\n    }\r\n\r\n    public Element getActivatedElement() {\r\n        if (activatedElement != null)\r\n            return activatedElement;\r\n        else\r\n            throw new NullPointerException(\"Error: No activated element\"); //TODO Testa Malin\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- rogue_like/src/main/java/Player.java	(revision 0086c547bb9a751182b12e63102356d2549f53c5)
++++ rogue_like/src/main/java/Player.java	(date 1604241767402)
+@@ -36,7 +36,7 @@
+     }
+ 
+     public void changeStatHP(int hp) {                              // Changes the stats for HP
+-        playerStats.changeCurrentHP(hp);
++        //playerStats.changeCurrentHP(hp);
+     }
+ 
+     public void changeStatPower(int powerAmount) {                  // Changes the stats for power
+Index: rogue_like/src/test/java/RoomTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import org.junit.jupiter.api.Test;\r\n\r\nimport java.util.ArrayList;\r\n\r\nimport static org.junit.jupiter.api.Assertions.*;\r\n\r\nclass RoomTest {\r\n\r\n\r\n\r\n\r\n// Ska denna testas med tanke på att den är privat?\r\n  @Test\r\n    void shouldGenerateNumberBetweenOneAndTen(){\r\n\r\n        Room room = new Room(new Player(\"test\",new EarthElement(1),Role.Warrior));\r\n        int num = room.generateRandomNumber(1,10);\r\n\r\n        assertTrue( 1 <= num && num <= 10, \"num: \" + num);\r\n    }\r\n\r\n    @Test\r\n    void ifArgumentExceptionIsThrownWhenMinValueBelowOneOnGenerateRandomNumber(){\r\n\r\n      Room room = new Room(new Player(\"test\",new EarthElement(1),Role.Warrior));\r\n      assertThrows(IllegalArgumentException.class, () -> {\r\n          room.generateRandomNumber(0, 5);\r\n      });\r\n    }\r\n\r\n    @Test\r\n    void decideTypeOfRoomReturnsLuckyWheelWhenTrue(){\r\n      Room room = new Room(new Player(\"Test\", new FireElement(1), Role.Runner));\r\n\r\n      assertEquals(\"LuckyWheel\" , room.decideTypeOfRoom(true));\r\n    }\r\n\r\n    @Test\r\n    void decideTypeOfRoomReturnsEnemyWhenFalse(){\r\n        Room room = new Room(new Player(\"Test\", new FireElement(1), Role.Runner));\r\n\r\n        assertEquals(\"Enemy\" , room.decideTypeOfRoom(true));\r\n    }\r\n\r\n    @Test\r\n    void getPlayerShouldReturnCorrectPlayer(){\r\n    Player ply = new Player(\"test\",new EarthElement(1),Role.Warrior);\r\n    Room room = new Room(ply);\r\n\r\n    assertEquals(ply, room.getPlayer());\r\n    }\r\n\r\n\r\n\r\n\r\n\r\n    @Test\r\n    void ifArgumentExceptionIsThrownWhenMinValueIsMoreThanMaxValueInGenerateRandomNumber(){\r\n\r\n        Room room = new Room(new Player(\"test\",new EarthElement(1),Role.Warrior));\r\n        assertThrows(IllegalArgumentException.class, () -> {\r\n            room.generateRandomNumber(8, 7);\r\n        });\r\n    }\r\n\r\n\r\n\r\n    //TODO denna borde kanske testa ALLA enemies, inte bara den första\r\n    @Test void ifEnemiesAreTheRightElement(){\r\n      Room room = new Room(new Player(\"Test\", new FireElement(1), Role.Warrior), new EarthElement(1), \"Enemy\");\r\n\r\n     assertTrue(room.getEnemies().get(3).getMainElement() instanceof EarthElement);\r\n    }\r\n\r\n    //TODO eventuellt fundera på att inte använda array? Vad händer exempelvis när en fiende dör? Kanske lättare att hålla koll på när rummet är klart via en lista och sen bara kolla när den är tom.\r\n\r\n    @Test void ifCorrectNumberOfEnemiesHaveBeenCreated(){\r\n      Room room = new Room(new Player(\"test\",new EarthElement(1),Role.Warrior), \"Enemy\");\r\n\r\n      assertEquals(room.getEnemyQuantity(), room.getEnemies().size());\r\n\r\n    }\r\n\r\n\r\n\r\n\r\n    @Test void GenerateAmountOfEnemiesIsTheCorrectIntervall(){\r\n\r\n    }\r\n\r\n    @Test\r\n    void shouldGenerateElementForRoom(){\r\n      Room room = new Room(new Player(\"Test\", new FireElement(1), Role.Runner));\r\n\r\n      assertNotEquals(null, room.getElement());\r\n\r\n    }\r\n\r\n    @Test\r\n    void roomTypeShouldNotBeEmptyWhenCreatingRoom(){\r\n      Room room = new Room(new Player(\"Test\", new EarthElement(1), Role.Tank), new FireElement(1));\r\n\r\n      assertNotEquals(null, room.getRoomType());\r\n  }\r\n\r\n\r\n\r\n    @Test\r\n    void roomTypeShouldBeLuckyWheel(){\r\n      Room room = new Room(new Player(\"test\",new EarthElement(1),Role.Warrior), \"Lucky Wheel\");\r\n\r\n      assertEquals(\"Lucky Wheel\", room.getRoomType());\r\n  }\r\n\r\n\r\n\r\n\r\n\r\n\r\n  //eftersom maxIntervall är 1 borde det alltid bli rätt?\r\n  // Testar så att när max intervallet är samma som det random numret så blir det true\r\n\r\n\r\n\r\n      /*så när rummet skapas bör decideTypeOfRoom kallas på som bara avgör om det blir ett lyckohjulsrum eller inte (1/5).\r\n      I ett senare skede bör det avgöras om spelaren har dem tre medaljongerna för att spawna en boss eller spawna enemies\r\n      Kanske i en decideTypeOfEnemy metod.\r\n\r\n\r\n      Men var ska informationen om vilken typ av rum det är sparas? Bör det finnas typ en sträng med \"BOSS\", \"ENEMY\" och \"LUCKY WHEEL\"\r\n      Eller är det ens nödvändigt? Ska det bara vara om rummet inte har något Element ska det anses som lucky wheel?\r\n\r\n\r\n       */\r\n\r\n\r\n    //TODO metoden decideTypeOfRoom borde alltså kallas med en metod som har en chans 1 / 5 att returnera true\r\n    @Test\r\n    void roomTypeShouldBeEnemy(){\r\n        Room room = new Room(new Player(\"test\",new EarthElement(1),Role.Warrior), \"Enemy\");\r\n\r\n\r\n        assertEquals(\"Enemy\", room.getRoomType());\r\n\r\n\r\n\r\n    }\r\n\r\n    @Test\r\n    void roomShouldBeLuckyWheel(){\r\n      Room room = new Room(new Player(\"test\",new EarthElement(1),Role.Warrior), \"Lucky Wheel\");\r\n\r\n\r\n      assertEquals(\"Lucky Wheel\", room.getRoomType());\r\n\r\n\r\n    }\r\n    @Test\r\n    void ifRemoveEnemyRemovesTheCorrectEnemy(){\r\n\r\n    }\r\n\r\n    @Test\r\n    void removeEnemyShouldThrowIllegalArgumentWhenEnemyIsNotInEnemies(){\r\n        Room room = new Room(new Player(\"Test\", new FireElement(1), Role.Runner));\r\n        Enemy enemy = new Enemy(room.getElement(), 1,room);\r\n\r\n        assertThrows(IllegalArgumentException.class, () -> {\r\n           room.removeEnemy(enemy);\r\n        });\r\n\r\n    }\r\n\r\n    @Test\r\n    void itemShouldDropWhenAllEnemiesAreDead(){\r\n        Room room = new Room(new Player(\"test\",new EarthElement(1),Role.Warrior));\r\n\r\n\r\n\r\n        //room.checkIfEnemiesDead(){\r\n\r\n        }\r\n\r\n    @Test\r\n    void elementShouldBeAddedToPlayerWhenKilledBoss(){\r\n\r\n    }\r\n\r\n    @Test\r\n    void iLLegalStateExceptionThrownWhenRemovingNonExistingBoss(){\r\n\r\n\r\n    }\r\n\r\n    @Test\r\n    void itemShouldDropWhenLuckyWheelIsActivated(){\r\n\r\n\r\n    }\r\n\r\n    @Test\r\n    void enemyCantSpawnWhenPlayerHas3MedallionsOfRoomsElement(){\r\n      FireElement elm = new FireElement(1);\r\n      Player ply = new Player(\"test\", elm, Role.Runner);\r\n      ply.addMedallion(elm);\r\n      ply.addMedallion(elm);\r\n      ply.addMedallion(elm);\r\n\r\n      Room room = new Room(ply, elm, \"Enemy\");\r\n\r\n\r\n      assertEquals(\"Boss\",room.getRoomType());\r\n    }\r\n\r\n\r\n\r\n    @Test\r\n    void bossCantSpawnWhenPlayerDoesNotHaveEnoughMedallionsOfRoomElement(){\r\n      EarthElement elm = new EarthElement(1);\r\n      Player ply = new Player(\"test\", elm, Role.Runner);\r\n      ply.addMedallion(elm);\r\n      ply.addMedallion(elm);\r\n\r\n\r\n      Room room = new Room(ply, elm, \"Enemy\");\r\n\r\n\r\n      assertNotEquals(\"Boss\",room.getRoomType());\r\n\r\n    }\r\n\r\n    @Test\r\n    void isEnemiesDeadShouldReturnTrueWhenAllEnemiesRemoved(){\r\n      Room room = new Room(new Player(\"test\",new EarthElement(1),Role.Warrior));\r\n\r\n      ArrayList<Enemy>  enemies = room.getEnemies();\r\n\r\n      for( Enemy e : enemies){\r\n        room.removeEnemy(e);\r\n      }\r\n\r\n      assertTrue(room.isEnemiesDead());\r\n\r\n\r\n    }\r\n\r\n  @Test\r\n  void isEnemiesDeadShouldReturnFalseWhenNotAllEnemiesRemoved(){\r\n    Room room = new Room(new Player(\"Test\", new FireElement(1), Role.Warrior));\r\n\r\n    assertFalse(room.isEnemiesDead());\r\n\r\n\r\n  }\r\n\r\n  @Test\r\n  void luckyWheelShouldBeCreatedWhenItHasSpawned(){\r\n      Room room = new Room(new Player(\"test\",new EarthElement(1),Role.Warrior));\r\n\r\n      while(room.getRoomType() != \"Lucky Wheel\"){\r\n        room = new Room(new Player(\"test\",new EarthElement(1),Role.Warrior));\r\n      }\r\n\r\n      assertTrue(room.getLuckyWheel() != null);\r\n\r\n  }\r\n\r\n  @Test\r\n  void luckyWheelShouldntBeCreatedWhenItHasntSpawned(){\r\n    Room room = new Room(new Player(\"test\",new FireElement(1), Role.Tank), \"Enemy\");\r\n\r\n\r\n    assertTrue(room.getLuckyWheel() == null);\r\n\r\n  }\r\n\r\n  @Test\r\n  void itemDroppedShouldNotBeNullWhenAllEnemiesAreKilled(){\r\n      Room room = new Room(new Player(\"test\",new EarthElement(1),Role.Warrior), new EarthElement(1),\"Enemy\");\r\n\r\n\r\n      ArrayList<Enemy> enemies = room.getEnemies();\r\n\r\n      for(Enemy e: enemies){\r\n        room.removeEnemy(e);\r\n      }\r\n\r\n      assertTrue(room.getItemDropped() != null);\r\n\r\n  }\r\n\r\n  @Test\r\n  void itemDroppedShouldBeNullWhenEnemiesAreAlive(){\r\n\r\n      Room room = new Room(new Player(\"test\",new EarthElement(1),Role.Warrior), \"Enemy\");\r\n\r\n\r\n\r\n    assertTrue(room.getItemDropped() == null);\r\n\r\n    }\r\n\r\n  @Test\r\n  void bossShouldNotBeNull(){\r\n      FireElement elm = new FireElement(1);\r\n      Player ply = new Player(\"test\",elm, Role.Tank);\r\n\r\n      ply.addMedallion(elm);\r\n      ply.addMedallion(elm);\r\n      ply.addMedallion(elm);\r\n\r\n      Room room = new Room(ply, elm);\r\n\r\n      while(room.getRoomType() == \"Lucky Wheel\"){\r\n        room = new Room(ply, elm);\r\n      }\r\n\r\n      assertTrue(room.getBoss() != null);\r\n\r\n\r\n\r\n  }\r\n\r\n  @Test\r\n  void bossShouldBeNull() {\r\n    FireElement elm = new FireElement(1);\r\n    Player ply = new Player(\"test\", elm, Role.Tank);\r\n\r\n    ply.addMedallion(elm);\r\n\r\n    Room room = new Room(ply, elm);\r\n\r\n    while (room.getRoomType() == \"Lucky Wheel\") {\r\n      room = new Room(ply, elm);\r\n    }\r\n\r\n    assertTrue(room.getBoss() == null);\r\n\r\n\r\n  }\r\n\r\n\r\n  @Test\r\n  void illegalArgumentShouldBeThrownWhenBossIsCalledAsRoomType(){\r\n\r\n\r\n  }\r\n\r\n  @Test\r\n  void bossShouldBeRemoved(){\r\n      Player ply = new Player(\"Test\", new FireElement(1), Role.Tank);\r\n      EarthElement elm = new EarthElement(1);\r\n      ply.addMedallion(elm);\r\n      ply.addMedallion(elm);\r\n      ply.addMedallion(elm);\r\n\r\n      Room room = new Room(ply, elm, \"Enemy\");\r\n      room.removeBoss();\r\n\r\n      assertTrue(room.getBoss() == null);\r\n  }\r\n\r\n  @Test\r\n    void fireElementRoomShouldReturnFireElement(){\r\n        Room room = new Room(new Player(\"Test\", new EarthElement(1), Role.Warrior), new FireElement(1));\r\n\r\n        assertTrue(room.getElement() instanceof FireElement);\r\n  }\r\n\r\n    @Test\r\n    void earthElementRoomShouldReturnEarthElement(){\r\n        Room room = new Room(new Player(\"Test\", new EarthElement(1), Role.Warrior), new EarthElement(1));\r\n\r\n        assertTrue(room.getElement() instanceof EarthElement);\r\n    }\r\n\r\n    @Test\r\n    void waterElementRoomShouldReturnWaterElement(){\r\n        Room room = new Room(new Player(\"Test\", new EarthElement(1), Role.Warrior), new WaterElement(1));\r\n\r\n        assertTrue(room.getElement() instanceof WaterElement);\r\n    }\r\n\r\n    @Test\r\n    void waterElementRoomShouldReturnWindElement(){\r\n        Room room = new Room(new Player(\"Test\", new EarthElement(1), Role.Warrior), new WindElement(1));\r\n\r\n        assertTrue(room.getElement() instanceof WindElement);\r\n    }\r\n\r\n    @Test\r\n    void spawnEnemiesShouldReturnArrayListOfSameSizeAsEnemies(){\r\n        Room room = new Room(new Player(\"Test\", new FireElement(1), Role.Tank), \"Enemy\");\r\n\r\n        assertEquals(room.spawnEnemies().size(), room.getEnemies().size());\r\n\r\n    }\r\n\r\n    @Test\r\n    void whenBossSpawnedBossShouldNotBeNull(){\r\n        Player ply = new Player(\"Test\", new FireElement(1), Role.Tank);\r\n\r\n        Room room = new Room(ply, \"Enemy\");\r\n        room.spawnBoss();\r\n\r\n        assertNotNull(room.getBoss());\r\n\r\n\r\n    }\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n        /*\r\n        Hur kontrollerar vi att alla enemies är döda?\r\n        När en enemy är död måste det på något sätt skickas till Room, där vi sedan kan\r\n        checka så att inte alla monster är döda. Om dem är döda så bör spawnItem kallas på.\r\n         */\r\n\r\n\r\n    }\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- rogue_like/src/test/java/RoomTest.java	(revision 0086c547bb9a751182b12e63102356d2549f53c5)
++++ rogue_like/src/test/java/RoomTest.java	(date 1604241882205)
+@@ -32,14 +32,14 @@
+     void decideTypeOfRoomReturnsLuckyWheelWhenTrue(){
+       Room room = new Room(new Player("Test", new FireElement(1), Role.Runner));
+ 
+-      assertEquals("LuckyWheel" , room.decideTypeOfRoom(true));
++      assertEquals("Lucky Wheel" , room.decideTypeOfRoom(true));
+     }
+ 
+     @Test
+-    void decideTypeOfRoomReturnsEnemyWhenFalse(){
++    void decideTypeOfRoomIsNotEnemy(){
+         Room room = new Room(new Player("Test", new FireElement(1), Role.Runner));
+ 
+-        assertEquals("Enemy" , room.decideTypeOfRoom(true));
++        assertNotEquals("Enemy" , room.decideTypeOfRoom(true));
+     }
+ 
+     @Test
+Index: rogue_like/src/main/java/Room.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//TODO organisera metoder, alla enemy metoder borde vara ihop exempelvis.\r\n\r\n//TODO lös ett bra sätt att ta fram om rummet ska vara ett LuckyWheel eller inte\r\n\r\n//TODO lös ett sätt för att generera ett random element för rummet (om det inte är ett luckywheel rum)\r\n\r\n//TODO rummet måste kunna komma åt en players \"medaljonger\" för att avgöra om det blir boss eller inte\r\n\r\n//TODO ändra spawnItem till att inte vara random\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.Arrays;\r\n\r\npublic class Room {\r\n\r\n    private final Item[] ITEMS = new Item[]{\r\n            new Weapon(\"Boring Sword\", 1, 0),\r\n            new Weapon(\"Cool Sword\", 3,-1),\r\n            new Weapon(\"Mega Hammer\", 10,-5),\r\n            new Weapon(\"Dinky Hammer\",-1,0),\r\n            new Weapon(\"Cast Iron Frying Pan\", 4, -2),\r\n\r\n            new Armor(\"Knight's Armor\", 4, -2),\r\n            new Armor(\"Leather Scrap Armor\", 1, 0),\r\n            new Armor(\"Wearable Bank Vault\", 10, -10),\r\n            new Armor(\"Bussiness Casual\", 0, 0),\r\n            new Armor(\"Birthday Suit\", 0, 0),\r\n\r\n            new Shoes(\"Flip Flops\", 1, -1),\r\n            new Shoes(\"Sneakers\", 3, 0),\r\n            new Shoes(\"Yeezys\", 4, -1),\r\n            new Shoes(\"Clogs\", 2, -3),\r\n            new Shoes(\"Stilettos\", 8, -4)\r\n\r\n    };\r\n\r\n     private final int MAX_AMOUNT_OF_MEDALLIONS = 3;\r\n     private final int MIN_THRESHOLD = 1;\r\n     private final int AMOUNT_OF_ELEMENTS = 4;\r\n\r\n     private final int MAX_AMOUNT_OF_ENEMIES = 7;\r\n     private final int MIN_AMOUNT_OF_ENEMIES = 4;\r\n     private final int MAX_NUMBER_LUCKY_WHEEL = 5;\r\n\r\n     private ArrayList<Enemy> enemies;\r\n     private int enemyQuantity;\r\n     private String roomType;\r\n     private Element element;\r\n     private int threshold;\r\n     private Player player;\r\n     private LuckyWheel luckyWheel;\r\n     private Item itemDropped;\r\n     private Boss boss;\r\n\r\n\r\n     //TODO borde player vara ett argument i konstruktorn?\r\n\r\n\r\n    public Room(Player player ,  String roomType){\r\n        if(roomType.equals(\"Boss\")){\r\n            throw new IllegalArgumentException();\r\n        }\r\n\r\n        else {\r\n            this.element = decideTypeOfElement(generateRandomNumber(MIN_THRESHOLD, AMOUNT_OF_ELEMENTS));\r\n            this.player = player;\r\n            buildRoom(roomType);\r\n        }\r\n    }\r\n\r\n    public Room(Player player , Element element){\r\n        this.element = element;\r\n        this.player = player;\r\n        buildRoom(decideTypeOfRoom(decideIfLuckyWheel()));\r\n    }\r\n\r\n    public Room(Player player , Element element, String roomType){\r\n        if(roomType.equals(\"Boss\")){\r\n            throw new IllegalArgumentException();\r\n        }\r\n\r\n        else {\r\n\r\n            this.element = element;\r\n            this.player = player;\r\n            buildRoom(roomType);\r\n        }\r\n    }\r\n\r\n\r\n    public Room(Player player){\r\n         this.player = player;\r\n         this.element = decideTypeOfElement(generateRandomNumber(MIN_THRESHOLD, AMOUNT_OF_ELEMENTS));\r\n         buildRoom(decideTypeOfRoom(decideIfLuckyWheel()));\r\n\r\n\r\n     }\r\n\r\n    private void buildRoom(String typeOfRoom) {\r\n\r\n        if (typeOfRoom == \"Boss\" && !shouldBossSpawn()) {\r\n            throw new IllegalArgumentException();\r\n        } else {\r\n\r\n            if (typeOfRoom == \"Enemy\" && shouldBossSpawn()) {\r\n                typeOfRoom = \"Boss\";\r\n            }\r\n\r\n\r\n            roomType = typeOfRoom;\r\n\r\n            switch (typeOfRoom) {\r\n                case \"Enemy\":\r\n                    spawnEnemies();\r\n                    break;\r\n                case \"Boss\":\r\n                    spawnBoss();\r\n                    break;\r\n                case \"Lucky Wheel\":\r\n                    spawnLuckyWheel();\r\n                    break;\r\n            }\r\n        }\r\n    }\r\n\r\n    //denna ville jag göra private eftersom när ett rum väl skapats ska man inte kunna ändra type\r\n    public String decideTypeOfRoom(boolean isItLuckyWheel){\r\n         String name;\r\n\r\n         if( (isItLuckyWheel)){\r\n             name = \"Lucky Wheel\";\r\n        }\r\n        else {\r\n            name = \"Enemy\";\r\n\r\n        }\r\n        return name;\r\n    }\r\n\r\n    private boolean decideIfLuckyWheel(){\r\n        if(generateRandomNumber(MIN_THRESHOLD, MAX_NUMBER_LUCKY_WHEEL) == MAX_NUMBER_LUCKY_WHEEL){\r\n            return true;\r\n        }\r\n        return false;\r\n    }\r\n\r\n    private Element decideTypeOfElement(int elementNumber){ //denna är private eftersom jag endast vill att ett element ska kunna kallas på en gång\r\n\r\n        if(element == null) {\r\n\r\n            switch (elementNumber) {\r\n                case 1:\r\n                    element = new FireElement(1);\r\n                    break;\r\n                case 2:\r\n                    element = new WaterElement(1);\r\n                    break;\r\n                case 3:\r\n                    element = new WindElement(1);\r\n                    break;\r\n                case 4:\r\n                    element = new EarthElement(1);\r\n                    break;\r\n\r\n            }\r\n\r\n        }\r\n\r\n        return element;\r\n\r\n    }\r\n\r\n    public ArrayList<Enemy> spawnEnemies(){\r\n\r\n        if(enemies == null) {\r\n            enemyQuantity = generateAmountOfEnemies();\r\n            enemies = new ArrayList();\r\n\r\n            for (int i = 0; i < enemyQuantity; i++) {\r\n                enemies.add(new Enemy(getElement(), player.getLevel(), this));\r\n\r\n            } }\r\n\r\n        return new ArrayList<Enemy>(getEnemies());\r\n\r\n    }\r\n\r\n    //TODO be malin ändra resetMedallions\r\n    public boolean shouldBossSpawn(){\r\n\r\n         int medallions = player.fetchMedallionStatus(getElement());\r\n\r\n         if(medallions == MAX_AMOUNT_OF_MEDALLIONS){\r\n             player.resetMedallion(getElement());\r\n             return true;\r\n         }\r\n         return false;\r\n     }\r\n\r\n\r\n    public void spawnBoss(){\r\n         boss = new Boss(getElement(), player.getLevel(),this);\r\n\r\n    }\r\n\r\n    public void removeBoss(){\r\n         if(boss != null){\r\n             boss = null;\r\n             givePlayerElement();\r\n         }\r\n\r\n         else {\r\n             throw new IllegalStateException();\r\n         }\r\n    }\r\n\r\n    private void givePlayerElement(){\r\n         player.addElement(getElement());\r\n\r\n    }\r\n\r\n    public Boss getBoss() {\r\n        return boss;\r\n    }\r\n\r\n    public void spawnLuckyWheel(){\r\n         luckyWheel = new LuckyWheel(this);\r\n     }\r\n\r\n     public LuckyWheel getLuckyWheel(){\r\n         return luckyWheel;\r\n     }\r\n\r\n    public Item spawnItem(){\r\n         return ITEMS[generateRandomNumber(1,ITEMS.length-1)];\r\n     }\r\n\r\n\r\n    public Player getPlayer() {\r\n        return player;\r\n    }\r\n\r\n    public Element getElement() {\r\n        return element;\r\n    }\r\n\r\n    public ArrayList<Enemy> getEnemies(){\r\n        return new ArrayList<Enemy>(enemies);\r\n    }\r\n\r\n    public boolean isEnemiesDead() {\r\n        if (enemies.isEmpty()) {\r\n            return true;\r\n        }\r\n        return false;\r\n     }\r\n\r\n    public int generateAmountOfEnemies(){\r\n         return generateRandomNumber(MIN_AMOUNT_OF_ENEMIES, MAX_AMOUNT_OF_ENEMIES);\r\n     }\r\n\r\n    public String getRoomType() {\r\n        return roomType;\r\n    }\r\n\r\n    public int getEnemyQuantity() {\r\n        return enemyQuantity;\r\n    }\r\n\r\n    //TODO måste denna kallas på av enemy klassen? när dennes hp går ner till 0? Isåfall måste man deklarera Enemy med ett Room kanske?\r\n    //TODO man måste kanske ha något sätt att kolla så att enemyn faktiskt finns?\r\n\r\n    public void removeEnemy(Enemy enemy){\r\n\r\n         if(!enemies.isEmpty()){\r\n             if(enemies.remove(enemy)){\r\n\r\n                 if(isEnemiesDead()){\r\n                     itemDropped = spawnItem();\r\n                 }\r\n                 return;\r\n             }\r\n             else {\r\n                 throw new IllegalArgumentException();\r\n             }\r\n         }\r\n    }\r\n\r\n    public Item getItemDropped() {\r\n        return itemDropped;\r\n    }\r\n\r\n    public Item[] getITEMS() {\r\n        return Arrays.copyOf(ITEMS, ITEMS.length);\r\n    }\r\n\r\n    //Denna nås av test genom andra metoder, men kan inte testas direkt eftersom den är privat.\r\n    //Man bör fråga sig om denna bör vara publik, samt att den har begränsingar (MIN <= MAX exempelvis)\r\n    public int generateRandomNumber(int min, int max) {\r\n\r\n\r\n        if (min < 1  || max < 1 || min > max) {\r\n            throw new IllegalArgumentException();\r\n        } else {\r\n            max+=1;\r\n\r\n            return (int) ((Math.random() * (max - min)) + min);\r\n\r\n        }\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- rogue_like/src/main/java/Room.java	(revision 0086c547bb9a751182b12e63102356d2549f53c5)
++++ rogue_like/src/main/java/Room.java	(date 1604242556419)
+@@ -15,9 +15,9 @@
+ 
+     private final Item[] ITEMS = new Item[]{
+             new Weapon("Boring Sword", 1, 0),
+-            new Weapon("Cool Sword", 3,-1),
+-            new Weapon("Mega Hammer", 10,-5),
+-            new Weapon("Dinky Hammer",-1,0),
++            new Weapon("Cool Sword", 3, -1),
++            new Weapon("Mega Hammer", 10, -5),
++            new Weapon("Dinky Hammer", -1, 0),
+             new Weapon("Cast Iron Frying Pan", 4, -2),
+ 
+             new Armor("Knight's Armor", 4, -2),
+@@ -34,53 +34,48 @@
+ 
+     };
+ 
+-     private final int MAX_AMOUNT_OF_MEDALLIONS = 3;
+-     private final int MIN_THRESHOLD = 1;
+-     private final int AMOUNT_OF_ELEMENTS = 4;
++    private final int MAX_AMOUNT_OF_MEDALLIONS = 3;
++    private final int MIN_THRESHOLD = 1;
++    private final int AMOUNT_OF_ELEMENTS = 4;
+ 
+-     private final int MAX_AMOUNT_OF_ENEMIES = 7;
+-     private final int MIN_AMOUNT_OF_ENEMIES = 4;
+-     private final int MAX_NUMBER_LUCKY_WHEEL = 5;
++    private final int MAX_AMOUNT_OF_ENEMIES = 7;
++    private final int MIN_AMOUNT_OF_ENEMIES = 4;
++    private final int MAX_NUMBER_LUCKY_WHEEL = 5;
+ 
+-     private ArrayList<Enemy> enemies;
+-     private int enemyQuantity;
+-     private String roomType;
+-     private Element element;
+-     private int threshold;
+-     private Player player;
+-     private LuckyWheel luckyWheel;
+-     private Item itemDropped;
+-     private Boss boss;
++    private ArrayList<Enemy> enemies;
++    private int enemyQuantity;
++    private String roomType;
++    private Element element;
++    private int threshold;
++    private Player player;
++    private LuckyWheel luckyWheel;
++    private Item itemDropped;
++    private Boss boss;
+ 
+ 
+-     //TODO borde player vara ett argument i konstruktorn?
++    //TODO borde player vara ett argument i konstruktorn?
+ 
+ 
+-    public Room(Player player ,  String roomType){
+-        if(roomType.equals("Boss")){
++    public Room(Player player, String roomType) {
++        if (roomType.equals("Boss")) {
+             throw new IllegalArgumentException();
+-        }
+-
+-        else {
++        } else {
+             this.element = decideTypeOfElement(generateRandomNumber(MIN_THRESHOLD, AMOUNT_OF_ELEMENTS));
+             this.player = player;
+             buildRoom(roomType);
+         }
+     }
+ 
+-    public Room(Player player , Element element){
++    public Room(Player player, Element element) {
+         this.element = element;
+         this.player = player;
+         buildRoom(decideTypeOfRoom(decideIfLuckyWheel()));
+     }
+ 
+-    public Room(Player player , Element element, String roomType){
+-        if(roomType.equals("Boss")){
++    public Room(Player player, Element element, String roomType) {
++        if (roomType.equals("Boss")) {
+             throw new IllegalArgumentException();
+-        }
+-
+-        else {
+-
++        } else {
+             this.element = element;
+             this.player = player;
+             buildRoom(roomType);
+@@ -88,13 +83,13 @@
+     }
+ 
+ 
+-    public Room(Player player){
+-         this.player = player;
+-         this.element = decideTypeOfElement(generateRandomNumber(MIN_THRESHOLD, AMOUNT_OF_ELEMENTS));
+-         buildRoom(decideTypeOfRoom(decideIfLuckyWheel()));
++    public Room(Player player) {
++        this.player = player;
++        this.element = decideTypeOfElement(generateRandomNumber(MIN_THRESHOLD, AMOUNT_OF_ELEMENTS));
++        buildRoom(decideTypeOfRoom(decideIfLuckyWheel()));
+ 
+ 
+-     }
++    }
+ 
+     private void buildRoom(String typeOfRoom) {
+ 
+@@ -124,29 +119,28 @@
+     }
+ 
+     //denna ville jag göra private eftersom när ett rum väl skapats ska man inte kunna ändra type
+-    public String decideTypeOfRoom(boolean isItLuckyWheel){
+-         String name;
++    public String decideTypeOfRoom(boolean isItLuckyWheel) {
++        String name;
+ 
+-         if( (isItLuckyWheel)){
+-             name = "Lucky Wheel";
+-        }
+-        else {
++        if ((isItLuckyWheel)) {
++            name = "Lucky Wheel";
++        } else {
+             name = "Enemy";
+ 
+         }
+         return name;
+     }
+ 
+-    private boolean decideIfLuckyWheel(){
+-        if(generateRandomNumber(MIN_THRESHOLD, MAX_NUMBER_LUCKY_WHEEL) == MAX_NUMBER_LUCKY_WHEEL){
++    private boolean decideIfLuckyWheel() {
++        if (generateRandomNumber(MIN_THRESHOLD, MAX_NUMBER_LUCKY_WHEEL) == MAX_NUMBER_LUCKY_WHEEL) {
+             return true;
+         }
+         return false;
+     }
+ 
+-    private Element decideTypeOfElement(int elementNumber){ //denna är private eftersom jag endast vill att ett element ska kunna kallas på en gång
++    private Element decideTypeOfElement(int elementNumber) { //denna är private eftersom jag endast vill att ett element ska kunna kallas på en gång
+ 
+-        if(element == null) {
++        if (element == null) {
+ 
+             switch (elementNumber) {
+                 case 1:
+@@ -170,52 +164,50 @@
+ 
+     }
+ 
+-    public ArrayList<Enemy> spawnEnemies(){
++    public ArrayList<Enemy> spawnEnemies() {
+ 
+-        if(enemies == null) {
++        if (enemies == null) {
+             enemyQuantity = generateAmountOfEnemies();
+             enemies = new ArrayList();
+ 
+             for (int i = 0; i < enemyQuantity; i++) {
+                 enemies.add(new Enemy(getElement(), player.getLevel(), this));
+ 
+-            } }
++            }
++        }
+ 
+         return new ArrayList<Enemy>(getEnemies());
+ 
+     }
+ 
+     //TODO be malin ändra resetMedallions
+-    public boolean shouldBossSpawn(){
+-
+-         int medallions = player.fetchMedallionStatus(getElement());
++    public boolean shouldBossSpawn() {
++        int medallions = player.fetchMedallionStatus(getElement());
+ 
+-         if(medallions == MAX_AMOUNT_OF_MEDALLIONS){
+-             player.resetMedallion(getElement());
+-             return true;
+-         }
+-         return false;
+-     }
++        if (medallions == MAX_AMOUNT_OF_MEDALLIONS) {
++            player.resetMedallion(getElement());
++            return true;
++        }
++        return false;
++    }
+ 
+ 
+-    public void spawnBoss(){
+-         boss = new Boss(getElement(), player.getLevel(),this);
++    public void spawnBoss() {
++        boss = new Boss(getElement(), player.getLevel(), this);
+ 
+     }
+ 
+-    public void removeBoss(){
+-         if(boss != null){
+-             boss = null;
+-             givePlayerElement();
+-         }
+-
+-         else {
+-             throw new IllegalStateException();
+-         }
++    public void removeBoss() {
++        if (boss != null) {
++            boss = null;
++            givePlayerElement();
++        } else {
++            throw new IllegalStateException();
++        }
+     }
+ 
+-    private void givePlayerElement(){
+-         player.addElement(getElement());
++    private void givePlayerElement() {
++        player.addElement(getElement());
+ 
+     }
+ 
+@@ -223,17 +215,17 @@
+         return boss;
+     }
+ 
+-    public void spawnLuckyWheel(){
+-         luckyWheel = new LuckyWheel(this);
+-     }
++    public void spawnLuckyWheel() {
++        luckyWheel = new LuckyWheel(this);
++    }
+ 
+-     public LuckyWheel getLuckyWheel(){
+-         return luckyWheel;
+-     }
++    public LuckyWheel getLuckyWheel() {
++        return luckyWheel;
++    }
+ 
+-    public Item spawnItem(){
+-         return ITEMS[generateRandomNumber(1,ITEMS.length-1)];
+-     }
++    public Item spawnItem() {
++        return ITEMS[generateRandomNumber(1, ITEMS.length - 1)];
++    }
+ 
+ 
+     public Player getPlayer() {
+@@ -244,7 +236,7 @@
+         return element;
+     }
+ 
+-    public ArrayList<Enemy> getEnemies(){
++    public ArrayList<Enemy> getEnemies() {
+         return new ArrayList<Enemy>(enemies);
+     }
+ 
+@@ -253,11 +245,11 @@
+             return true;
+         }
+         return false;
+-     }
++    }
+ 
+-    public int generateAmountOfEnemies(){
+-         return generateRandomNumber(MIN_AMOUNT_OF_ENEMIES, MAX_AMOUNT_OF_ENEMIES);
+-     }
++    public int generateAmountOfEnemies() {
++        return generateRandomNumber(MIN_AMOUNT_OF_ENEMIES, MAX_AMOUNT_OF_ENEMIES);
++    }
+ 
+     public String getRoomType() {
+         return roomType;
+@@ -270,21 +262,19 @@
+     //TODO måste denna kallas på av enemy klassen? när dennes hp går ner till 0? Isåfall måste man deklarera Enemy med ett Room kanske?
+     //TODO man måste kanske ha något sätt att kolla så att enemyn faktiskt finns?
+ 
+-    public void removeEnemy(Enemy enemy){
++    public void removeEnemy(Enemy enemy) {
+ 
+-         if(!enemies.isEmpty()){
+-             if(enemies.remove(enemy)){
++        if (enemies.isEmpty() || !enemies.contains(enemy)) {
++            throw new IllegalArgumentException();
++        }
+ 
+-                 if(isEnemiesDead()){
+-                     itemDropped = spawnItem();
+-                 }
+-                 return;
+-             }
+-             else {
+-                 throw new IllegalArgumentException();
+-             }
+-         }
+-    }
++        else {
++            enemies.remove(enemy);
++            if(isEnemiesDead()){
++                itemDropped = spawnItem();
++                }
++            }
++        }
+ 
+     public Item getItemDropped() {
+         return itemDropped;
+@@ -299,10 +289,10 @@
+     public int generateRandomNumber(int min, int max) {
+ 
+ 
+-        if (min < 1  || max < 1 || min > max) {
++        if (min < 1 || max < 1 || min > max) {
+             throw new IllegalArgumentException();
+         } else {
+-            max+=1;
++            max += 1;
+ 
+             return (int) ((Math.random() * (max - min)) + min);
+ 

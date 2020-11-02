@@ -1,0 +1,19 @@
+<changelist name="Uncommitted_changes_before_Update_at_2020-11-01_23_56_[Default_Changelist]" date="1604271408621" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020-11-01_23_56_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 2020-11-01 23:56 [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="rogue_like/out/test/grupp_22/EnemyTest.class" />
+    <option name="AFTER_PATH" value="rogue_like/out/test/grupp_22/EnemyTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020-11-01_23_56_[Default_Changelist]/EnemyTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="rogue_like/out/production/grupp_22/Character.class" />
+    <option name="AFTER_PATH" value="rogue_like/out/production/grupp_22/Character.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020-11-01_23_56_[Default_Changelist]/Character.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="rogue_like/out/test/grupp_22/RoomTest.class" />
+    <option name="AFTER_PATH" value="rogue_like/out/test/grupp_22/RoomTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020-11-01_23_56_[Default_Changelist]/RoomTest.class" />
+  </binary>
+</changelist>

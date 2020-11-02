@@ -1,0 +1,14 @@
+<changelist name="Uncommitted_changes_before_Update_at_2020-10-31_22_01_[Default_Changelist]" date="1604178081240" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020-10-31_22_01_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 2020-10-31 22:01 [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="rogue_like/out/production/grupp_22/Room.class" />
+    <option name="AFTER_PATH" value="rogue_like/out/production/grupp_22/Room.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020-10-31_22_01_[Default_Changelist]/Room.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="rogue_like/out/test/grupp_22/RoomTest.class" />
+    <option name="AFTER_PATH" value="rogue_like/out/test/grupp_22/RoomTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020-10-31_22_01_[Default_Changelist]/RoomTest.class" />
+  </binary>
+</changelist>
