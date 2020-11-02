@@ -1,7 +1,5 @@
 public class Enemy extends Character {
-    private final static int LEVEL_1 = 1;
-    private final static int LEVEL_2 = 2;
-    private final static int LEVEL_3 = 3;
+
     private final static int LEVEL_1_STAT = 3;
     private final static int LEVEL_2_STAT = 5;
     private final static int LEVEL_3_STAT = 8;
@@ -18,18 +16,18 @@ public class Enemy extends Character {
 
     private void calculateStats(int level) { // Depending on the level, the default stats change
         int statForLevel;
-        if (level == LEVEL_1) {
+        if (level == 1) {
             statForLevel = LEVEL_1_STAT;
-        } else if (level == LEVEL_2){
+        } else if (level == 2){
             statForLevel = LEVEL_2_STAT;
         } else {
             statForLevel = LEVEL_3_STAT;
         }
-        generateStats(statForLevel, statForLevel, statForLevel);
+        generateStats(statForLevel);
     }
 
-    protected void generateStats(int life, int power, int speed) { //Bara en parameter?
-        stats = new Stats(life, power, speed);
+    protected void generateStats(int stat) { //Bara en parameter?
+        stats = new Stats(stat, stat, stat);
     }
 
     @Override
