@@ -41,7 +41,7 @@ public class Enemy extends Character {
     }
 
     public boolean isDead() {
-        return getHP() <= 0;
+        return getCurrentHP() <= 0;
     }
 
     public void removeIfDead() {
@@ -54,8 +54,12 @@ public class Enemy extends Character {
         return stats;
     }
 
-    public int getHP() {
+    public int getCurrentHP() {
         return stats.getCurrentHP();
+    }
+
+    public int getDefaultHP() {
+        return stats.getDefaultHP();
     }
 
     public int getPower() {

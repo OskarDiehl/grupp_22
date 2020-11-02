@@ -58,7 +58,7 @@ public class EnemyTest {
     @Test
     void getStatHPThroughEnemy() {
         Enemy enemy = new Enemy(new FireElement(2), 2, new Room(new Player("Malin", new FireElement(1), Role.Tank)));
-        assertEquals(5, enemy.getHP());
+        assertEquals(5, enemy.getCurrentHP());
     }
 
     @Test
@@ -88,7 +88,7 @@ public class EnemyTest {
     void removeIfDeadWhenIsDead() {
         Room room = new Room(new Player("David", new FireElement(1), Role.Tank), "Enemy");
         Enemy enemy = room.getEnemies().get(0);
-        int hp = enemy.getHP();
+        int hp = enemy.getCurrentHP();
         enemy.getStats().loseHP(hp);
         enemy.removeIfDead();
         assertFalse(room.getEnemies().contains(enemy));

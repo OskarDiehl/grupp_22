@@ -18,7 +18,7 @@ public abstract class Character {
     }
 
     // OTHER METHODS ------------------------------------------------------------------------
-    public void setLevel(int level){ //TODO skriv fyndig kommentar
+    public void setLevel(int level){
         if(level >= 1 && level <= 3)        //A character can reach up to level 3
             this.level = level;
         else {
