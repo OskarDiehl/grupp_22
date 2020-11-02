@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 // Test class that test the method "findElement" in the class Player   TODO Ska den här beskrivningen stå här? /Malin
 
@@ -44,10 +43,11 @@ public class findElementMethodTest {
     }
 
     @Test
-    void typeWrongInFindElementMethod(){                                            //Type wrong in method "findElement"
+    void typeWrongInFindElementMethod(){                                            //Type wrong in method "findElement" -> throw IllegalArgumentException
         Player player = new Player("Sabina", element, role);
-        assertNull(player.findElement("win"));
+        assertThrows(IllegalArgumentException.class, () -> player.findElement("Bad argument"), "Error: Argument not allowed.");
     }
+
 
 
     //TODO FRÅGOR TILL DE ANDRA:

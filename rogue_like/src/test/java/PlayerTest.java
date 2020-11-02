@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PlayerTest {
-    private final Element element = new WindElement(1);
+    private final Element element = new WindElement(2);
     private final Role role = Role.Warrior;
 
 
@@ -30,19 +30,19 @@ public class PlayerTest {
     @Test
     void getPowerFromStatsMethod(){
         Player player = new Player("Sabina", element, role);
-        assertEquals(6, player.getCurrentPowerFromStats());
+        assertEquals(6, player.getTemporaryPowerFromStats());
     }
 
     @Test
     void getSpeedFromStatsMethod(){
         Player player = new Player("Sabina", element, role);
-        assertEquals(5, player.getCurrentSpeedFromStats());
+        assertEquals(5, player.getTemporarySpeedFromStats());
     }
 
 
 
     //TEST LEVELING ----------------------------------------------------------------------------------------------------
-    @Test                               // TODO Fixa med metoderna när en spelare går upp i level Malin /Malin
+    @Test
     void levelUpToSecondLevel(){
         Player player = new Player("Sabina", element, role);
         player.levelUp();
@@ -54,8 +54,8 @@ public class PlayerTest {
 //        Player player = new Player("Sabina", element, role);
 //        player.levelUp();
 //        player.levelUp();
-//        player.levelUp();                  //TODO refactor? /Malin
-//        assertEquals(3, player.getCurrentLevel());
+//        player.levelUp();                  //TODO Kolla med Sabina om det verkligen ska kastas ett undantag /Malin
+//        assertEquals(3, player.getLevel());
 //    }
 
 
@@ -64,38 +64,50 @@ public class PlayerTest {
     @Test
     void increasePowerStats(){
         Player player = new Player("Sabina", element, role);
-        player.changeStatPower(3);
-        assertEquals(9, player.getCurrentPowerFromStats());
+        player.changeStatPowerTemporary(3);
+        assertEquals(9, player.getTemporaryPowerFromStats());
     }
 
     @Test
     void decreasePowerStats(){
         Player player = new Player("Sabina", element, role);
-        player.changeStatPower(-3);
-        assertEquals(3, player.getCurrentPowerFromStats());
+        player.changeStatPowerTemporary(-3);
+        assertEquals(3, player.getTemporaryPowerFromStats());
     }
 
     @Test
     void increaseSpeedStats(){
         Player player = new Player("Sabina", element, role);
-        player.changeStatSpeed( 3);
-        assertEquals(8, player.getCurrentSpeedFromStats());
+        player.changeStatSpeedTemporary( 3);
+        assertEquals(8, player.getTemporarySpeedFromStats());
     }
 
     @Test
     void decreaseSpeedStats(){
         Player player = new Player("Sabina", element, role);
-        player.changeStatSpeed(-3);
-        assertEquals(2, player.getCurrentSpeedFromStats());
+        player.changeStatSpeedTemporary(-3);
+        assertEquals(2, player.getTemporarySpeedFromStats());
     }
 
     @Test
     void resetPowerAndSpeed(){                                                  // Checks if it is possible to reset currentPower and currentSpeed to  their default values
         Player player = new Player("Sabina", element, role);
-        player.changeStatPower(2);
-        player.changeStatSpeed(-2);
+        player.changeStatPowerTemporary(2);
+        player.changeStatSpeedTemporary(-2);
         player.resetStatsForPowerAndSpeed();
-        assertEquals(4, player.getCurrentSpeedFromStats() + 3, player.getCurrentPowerFromStats());
+        assertEquals(4, player.getTemporarySpeedFromStats() + 3, player.getTemporaryPowerFromStats());
+    }
+
+    @Test
+    void checkGetStatsMethod(){
+        Player player = new Player("Sabina", element, role);
+        assertEquals(6, player.getStats().getDefaultPower());
+    }
+
+    @Test
+    void checkGetRoleMethod(){
+        Player player = new Player("Sabina", element, role);
+        assertEquals("Warrior", player.getRole().getRoleName());
     }
 
 
@@ -132,7 +144,7 @@ public class PlayerTest {
     }
 
     @Test
-    void add2FireMedallions(){
+    void addTwoFireMedallions(){
         FireElement fireElement = new FireElement(2);
         Player player = new Player("Sabina", element, role);
         player.addMedallion(fireElement);
@@ -141,7 +153,7 @@ public class PlayerTest {
     }
 
     @Test
-    void add4WaterMedallions(){
+    void addFourWaterMedallions(){
         WaterElement waterElement = new WaterElement(1);
         Player player = new Player("Sabina", element, role);
         player.addMedallion(waterElement);
@@ -151,10 +163,8 @@ public class PlayerTest {
         assertEquals(3 ,player.fetchMedallionStatus(waterElement));
     }
 
-    //TODO fundera på om du ska skriva siffror med bokstäver eller siffror?
-
     @Test
-    void resetMedallionsTo0(){ ;
+    void resetWindMedallionsToZero(){
         EarthElement earthElement = new EarthElement(2);
         WindElement windElement = new WindElement(3);
         Player player = new Player("Sabina", element, role);
@@ -165,9 +175,34 @@ public class PlayerTest {
 
         player.resetMedallion(windElement);
 
-        assertEquals(0 , player.fetchMedallionStatus(new WindElement(2)), player.fetchMedallionStatus(new EarthElement(3)));
+        assertEquals(0 , player.fetchMedallionStatus(new WindElement(2)));
     }
 
+    @Test
+    void resetEarthMedallionsToZero(){
+        EarthElement earthElement = new EarthElement(2);
+        Player player = new Player("Sabina", element, role);
+        player.addMedallion(earthElement);
+        player.resetMedallion(earthElement);
+
+        assertEquals(0 , player.fetchMedallionStatus(new EarthElement(3)));
+    }
+
+    @Test
+    void resetWaterMedallionsToZero(){
+        WaterElement waterElement = new WaterElement(2);
+        Player player = new Player("Sabina", waterElement, role);
+        player.resetMedallion(new WaterElement(1));
+        assertEquals(0 , player.fetchMedallionStatus(new WaterElement(3)));
+    }
+
+    @Test
+    void resetFireMedallionsToZero(){
+        FireElement fireElement = new FireElement(2);
+        Player player = new Player("Sabina", fireElement, role);
+        player.resetMedallion(new FireElement(2));
+        assertEquals(0 , player.fetchMedallionStatus(new FireElement(3)));
+    }
 
 
     //TEST ELEMENT METHODS --------------------------------------------------------------------------------------------
@@ -207,8 +242,6 @@ public class PlayerTest {
         assertEquals(3, player.getMainElement().getElementLevel());
     }
 
-    //TODO metod som lägger in element i elements -> implementera i konstruktorn /Malin
-
     @Test
     void searchForElementInElementsArray(){                                             //Test method "findElement"
         WaterElement waterElement = new WaterElement(3);
@@ -220,15 +253,28 @@ public class PlayerTest {
     }
 
     @Test
-    void typeWrongInFindElementMethod(){                                                 //Type wrong in method "findElement"
+    void searchForWindInElementsArray(){                                               // Try find wind element i elements
+        WindElement windElement = new WindElement(2);
+        Player player = new Player("Sabina", windElement, role);
+        assertEquals(windElement, player.findElement("Wind"));
+    }
+
+    @Test
+    void throwIllegalArgumentExceptionInFindElement(){                                  // Throw IllegalArgumentException
         Player player = new Player("Sabina", element, role);
-        assertNull(player.findElement("win"));
+        assertThrows(IllegalArgumentException.class, () -> player.findElement("Bad argument"), "Error: Argument not allowed.");
     }
 
     @Test
     void getNullPointerExceptionFromAddElement() {
         Player player = new Player("Sabina", element, role);
         assertThrows(NullPointerException.class, () -> player.addElement(null));  //TODO fick "Probable bugs" -> "Constant conditions & exceptions för null /Malin
+    }
+
+    @Test
+    void earthAsAnArgumentWithNoSuccessfulSearch(){                                 // Check if the String "Earth" as an argument has a non successful search
+        Player player = new Player("Sabina", element, role);
+        assertNull(player.findElement("Earth"));
     }
 
 //    @Test
@@ -244,33 +290,85 @@ public class PlayerTest {
 
     //TEST ITEMS METHODS  ----------------------------------------------------------------------------------------------
 
-    //4,6,5 TODO Ta bort sen /Malin
     @Test
-    void addShoesToItems(){                                                         // Add shoes
+    void addShoesToItems(){                                                             // Add shoes
         Player player = new Player("Sabina", element, role);
         player.addItem(new Shoes("Heels", 3, 3));
         assertEquals("Heels", player.findItem("Shoes").getName());
     }
 
-    @Test                                                        //TODO fixa när Oskar kanske har fixat med get-metoderna i Item :) /Malin    +  metoden för HP i Stats
-    void doesArmorAddHPToStats(){                                                // Check if HP increases because of armor
+    @Test
+    void addArmorToItems(){                                                             // Add armor
         Player player = new Player("Sabina", element, role);
         player.addItem(new Armor("Birthday suit", 3, 3));
-        assertEquals(7, player.getCurrentHPFromStats());
+        assertEquals("Birthday suit", player.findItem("Armor").getName());
     }
 
-    @Test                                                        //TODO fixa när Oskar kanske har fixat med get-metoderna i Item :) /Malin
-    void doesWeaponAddPowerToStats(){                                                // Check if Power increases because of armor
+    @Test
+    void addWeaponToItems(){                                                             // Add gun
+        Player player = new Player("Sabina", element, role);
+        player.addItem(new Weapon("Gun", 3, 3));
+        assertEquals("Gun", player.findItem("Weapon").getName());
+    }
+
+    @Test
+    void doesArmorAddHPToStats(){                                                       // Check if HP increases because of armor
+        Player player = new Player("Sabina", element, role);
+        player.addItem(new Armor("Birthday suit", 3, 3));
+        assertEquals(7, player.getTemporaryHPFromStats());
+    }
+
+    @Test
+    void doesWeaponAddPowerToStats(){                                                   // Check if Power increases because of armor
         Player player = new Player("Sabina", element, role);
         player.addItem(new Weapon("Love", 3, 3));
-        assertEquals(9, player.getCurrentPowerFromStats());
+        assertEquals(9, player.getTemporaryPowerFromStats());
     }
 
-    @Test                                                        //TODO fixa när Oskar kanske har fixat med get-metoderna i Item :) /Malin
-    void doesShoesAddSpeedToStats(){                                                // Check if stats increases because of armor
+    @Test
+    void switchShoesChangesSpeed(){                                                    // Check if stats decreases because of shoes
         Player player = new Player("Sabina", element, role);
         player.addItem(new Shoes("Slippers", 3, 3));
-        assertEquals(8, player.getCurrentSpeedFromStats());
+        assertEquals(8, player.getTemporarySpeedFromStats());
+    }
+
+    @Test
+    void switchArmorChangesHP(){                                                       // Check if HP decreases because player switch armor
+        Player player = new Player("Sabina", element, role);
+        player.addItem(new Armor("Birthday suit", 3, 3));
+        player.addItem(new Armor("Spandex", 5, 5));
+        assertEquals(9, player.getTemporaryHPFromStats());
+    }
+
+    @Test
+    void switchWeaponChangesPower(){                                                   // Check if Power decreases because player switch weapon
+        Player player = new Player("Sabina", element, role);
+        player.addItem(new Weapon("Hate", 3, 3));
+        player.addItem(new Weapon("Love", 4, 4));
+        assertEquals(10, player.getTemporaryPowerFromStats());
+    }
+
+    @Test
+    void doesShoesAddSpeedToStats(){                                                   // Check if stats increases because player switch shoes
+        Player player = new Player("Sabina", element, role);
+        player.addItem(new Shoes("Heals", 3, 3));
+        player.addItem(new Shoes("Slippers", 2, 2));
+        assertEquals(7, player.getTemporarySpeedFromStats());
+    }
+
+    // TEST ATTACK ENEMY METHOD ----------------------------------------------------------------------------------------
+    @Test
+    void attackEnemy() {
+        //TODO HJÄÄÄÄLP /Malin
+    }
+
+    @Test
+    void throwCCEWhenParameterIsNotOfTypePlayer() {
+        Enemy enemy = new Enemy(new FireElement(2), 2,
+                new Room(new Player("Malin", new FireElement(1), Role.Tank)));
+        Character notPlayer = new Enemy(new EarthElement(1), 1,
+                new Room(new Player("Oskar", new WaterElement(1), Role.Warrior)));
+        assertThrows(ClassCastException.class, () -> enemy.attack(notPlayer));
     }
 
 
@@ -286,17 +384,5 @@ public class PlayerTest {
     // Kan man hitta ett item?
     // Kan man ta bort ett item?
     // Försvinner extra stats när item:et tas bort?
-
-
-
-    //TEST XXX ---------------------------------------------------------------------------------------------------------
-/*    @Test TODO Ska Stats tas upp redan i Character eller ska det in i Player istället? Det underlättar en hel del /Malin
-    void getStatsWithoutFullStats(){
-        Stats stats = new Stats(9, 5, 8);
-        Player player = new Player("Sabina", element,"Warrior");
-        assertEquals(stats.getLife(), player.getStats().getLife());
-        assertEquals(stats.getPower(), player.getStats().getPower());
-        assertEquals(stats.getSpeed(), player.getStats().getSpeed());
-    }*/
 
 }
