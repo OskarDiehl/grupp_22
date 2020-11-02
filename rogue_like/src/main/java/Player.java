@@ -54,7 +54,12 @@ public class Player extends Character {
 
     @Override
     public void attack(Character character) {                       // Attack Enemy
-    //TODO HJÄLP JAG FÖRSTÅR INTE /MALIN
+        if (character instanceof Enemy) {
+            int attackPower = getMainElement().attack(getTemporaryPowerFromStats(), character.getMainElement());
+            character.getStats().loseHP(attackPower);
+        } else {
+            throw new ClassCastException();
+        }
     }
 
     // ELEMENTS METHODS ------------------------------------------------------------------------------------------------

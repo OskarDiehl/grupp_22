@@ -28,22 +28,21 @@ public class PlayerTest {
     }
 
     @Test
-    void getPowerFromStatsMethod(){
+    void getPowerFromStatsMethod() {
         Player player = new Player("Sabina", element, role);
         assertEquals(6, player.getTemporaryPowerFromStats());
     }
 
     @Test
-    void getSpeedFromStatsMethod(){
+    void getSpeedFromStatsMethod() {
         Player player = new Player("Sabina", element, role);
         assertEquals(5, player.getTemporarySpeedFromStats());
     }
 
 
-
     //TEST LEVELING ----------------------------------------------------------------------------------------------------
     @Test
-    void levelUpToSecondLevel(){
+    void levelUpToSecondLevel() {
         Player player = new Player("Sabina", element, role);
         player.levelUp();
         assertEquals(2, player.getLevel());
@@ -59,38 +58,37 @@ public class PlayerTest {
 //    }
 
 
-
     //TEST CHANGE STATS ------------------------------------------------------------------------------------------------
     @Test
-    void increasePowerStats(){
+    void increasePowerStats() {
         Player player = new Player("Sabina", element, role);
         player.changeStatPowerTemporary(3);
         assertEquals(9, player.getTemporaryPowerFromStats());
     }
 
     @Test
-    void decreasePowerStats(){
+    void decreasePowerStats() {
         Player player = new Player("Sabina", element, role);
         player.changeStatPowerTemporary(-3);
         assertEquals(3, player.getTemporaryPowerFromStats());
     }
 
     @Test
-    void increaseSpeedStats(){
+    void increaseSpeedStats() {
         Player player = new Player("Sabina", element, role);
-        player.changeStatSpeedTemporary( 3);
+        player.changeStatSpeedTemporary(3);
         assertEquals(8, player.getTemporarySpeedFromStats());
     }
 
     @Test
-    void decreaseSpeedStats(){
+    void decreaseSpeedStats() {
         Player player = new Player("Sabina", element, role);
         player.changeStatSpeedTemporary(-3);
         assertEquals(2, player.getTemporarySpeedFromStats());
     }
 
     @Test
-    void resetPowerAndSpeed(){                                                  // Checks if it is possible to reset currentPower and currentSpeed to  their default values
+    void resetPowerAndSpeed() {                                                  // Checks if it is possible to reset currentPower and currentSpeed to  their default values
         Player player = new Player("Sabina", element, role);
         player.changeStatPowerTemporary(2);
         player.changeStatSpeedTemporary(-2);
@@ -99,44 +97,43 @@ public class PlayerTest {
     }
 
     @Test
-    void checkGetStatsMethod(){
+    void checkGetStatsMethod() {
         Player player = new Player("Sabina", element, role);
         assertEquals(6, player.getStats().getDefaultPower());
     }
 
     @Test
-    void checkGetRoleMethod(){
+    void checkGetRoleMethod() {
         Player player = new Player("Sabina", element, role);
         assertEquals("Warrior", player.getRole().getRoleName());
     }
 
 
-
     //TEST MEDALLIONS ----------------------------------------------------------------------------------------------------
     @Test
-    void fetchWaterMedallions(){
+    void fetchWaterMedallions() {
         Player player = new Player("Sabina", element, role);
         player.addMedallion(new WaterElement(1));
         assertEquals(1, player.fetchMedallionStatus(new WaterElement(3)));
     }
 
     @Test
-    void fetchEarthMedallions(){
+    void fetchEarthMedallions() {
         Player player = new Player("Sabina", element, role);
         player.addMedallion(new EarthElement(1));
         player.addMedallion(new WaterElement(2));
         player.addMedallion(new EarthElement(3));
-        assertEquals(2,  player.fetchMedallionStatus(new EarthElement(1)));
+        assertEquals(2, player.fetchMedallionStatus(new EarthElement(1)));
     }
 
     @Test
-    void fetchFireMedallions(){
+    void fetchFireMedallions() {
         Player player = new Player("Sabina", element, role);
         assertEquals(0, player.fetchMedallionStatus(new FireElement(3)));
     }
 
     @Test
-    void fetchWindMedallions(){
+    void fetchWindMedallions() {
         Player player = new Player("Sabina", element, role);
         player.addMedallion(new WindElement(2));
         player.addMedallion(new WindElement(3));
@@ -144,7 +141,7 @@ public class PlayerTest {
     }
 
     @Test
-    void addTwoFireMedallions(){
+    void addTwoFireMedallions() {
         FireElement fireElement = new FireElement(2);
         Player player = new Player("Sabina", element, role);
         player.addMedallion(fireElement);
@@ -153,18 +150,18 @@ public class PlayerTest {
     }
 
     @Test
-    void addFourWaterMedallions(){
+    void addFourWaterMedallions() {
         WaterElement waterElement = new WaterElement(1);
         Player player = new Player("Sabina", element, role);
         player.addMedallion(waterElement);
         player.addMedallion(waterElement);
         player.addMedallion(waterElement);
         player.addMedallion(waterElement);
-        assertEquals(3 ,player.fetchMedallionStatus(waterElement));
+        assertEquals(3, player.fetchMedallionStatus(waterElement));
     }
 
     @Test
-    void resetWindMedallionsToZero(){
+    void resetWindMedallionsToZero() {
         EarthElement earthElement = new EarthElement(2);
         WindElement windElement = new WindElement(3);
         Player player = new Player("Sabina", element, role);
@@ -175,39 +172,39 @@ public class PlayerTest {
 
         player.resetMedallion(windElement);
 
-        assertEquals(0 , player.fetchMedallionStatus(new WindElement(2)));
+        assertEquals(0, player.fetchMedallionStatus(new WindElement(2)));
     }
 
     @Test
-    void resetEarthMedallionsToZero(){
+    void resetEarthMedallionsToZero() {
         EarthElement earthElement = new EarthElement(2);
         Player player = new Player("Sabina", element, role);
         player.addMedallion(earthElement);
         player.resetMedallion(earthElement);
 
-        assertEquals(0 , player.fetchMedallionStatus(new EarthElement(3)));
+        assertEquals(0, player.fetchMedallionStatus(new EarthElement(3)));
     }
 
     @Test
-    void resetWaterMedallionsToZero(){
+    void resetWaterMedallionsToZero() {
         WaterElement waterElement = new WaterElement(2);
         Player player = new Player("Sabina", waterElement, role);
         player.resetMedallion(new WaterElement(1));
-        assertEquals(0 , player.fetchMedallionStatus(new WaterElement(3)));
+        assertEquals(0, player.fetchMedallionStatus(new WaterElement(3)));
     }
 
     @Test
-    void resetFireMedallionsToZero(){
+    void resetFireMedallionsToZero() {
         FireElement fireElement = new FireElement(2);
         Player player = new Player("Sabina", fireElement, role);
         player.resetMedallion(new FireElement(2));
-        assertEquals(0 , player.fetchMedallionStatus(new FireElement(3)));
+        assertEquals(0, player.fetchMedallionStatus(new FireElement(3)));
     }
 
 
     //TEST ELEMENT METHODS --------------------------------------------------------------------------------------------
     @Test
-    void addFireElementToElements(){
+    void addFireElementToElements() {
         FireElement fireElement = new FireElement(2);
         Player player = new Player("Sabina", element, role);
         player.addElement(fireElement);
@@ -215,7 +212,7 @@ public class PlayerTest {
     }
 
     @Test
-    void switchToEarthElementAsActivatedElement(){                          //Tests the method "changeActivatedElement"
+    void switchToEarthElementAsActivatedElement() {                          //Tests the method "changeActivatedElement"
         FireElement fireElement = new FireElement(2);
         EarthElement earthElement = new EarthElement(3);
         Player player = new Player("Sabina", fireElement, role);    //Makes a fire element as the main element and therefor the activated element
@@ -225,13 +222,13 @@ public class PlayerTest {
     }
 
     @Test
-    void throwIAEInChangeActivatedElement(){                                  // Throw IllegalArgumentException in the method "changeActivatedElement"
+    void throwIAEInChangeActivatedElement() {                                  // Throw IllegalArgumentException in the method "changeActivatedElement"
         Player player = new Player("Sabina", element, role);
         assertThrows(IllegalArgumentException.class, () -> player.changeActivatedElement("Bad argument"));
     }
 
     @Test
-    void levelUpElement(){                                                              //Test level up player´s wind element
+    void levelUpElement() {                                                              //Test level up player´s wind element
         Player player = new Player("Sabina", element, role);
         player.addElement(new WindElement(3));
         player.addElement(new WindElement(3));
@@ -239,7 +236,7 @@ public class PlayerTest {
     }
 
     @Test
-    void searchForElementInElementsArray(){                                             //Test method "findElement"
+    void searchForElementInElementsArray() {                                             //Test method "findElement"
         WaterElement waterElement = new WaterElement(3);
         FireElement fireElement = new FireElement(1);
         Player player = new Player("Sabina", element, role);
@@ -249,14 +246,14 @@ public class PlayerTest {
     }
 
     @Test
-    void searchForWindInElementsArray(){                                               // Try find wind element i elements
+    void searchForWindInElementsArray() {                                               // Try find wind element i elements
         WindElement windElement = new WindElement(2);
         Player player = new Player("Sabina", windElement, role);
         assertEquals(windElement, player.findElement("Wind"));
     }
 
     @Test
-    void throwIAEInFindElement(){                                                                               // Throw IllegalArgumentException i metoden findElement
+    void throwIAEInFindElement() {                                                                               // Throw IllegalArgumentException i metoden findElement
         Player player = new Player("Sabina", element, role);
         assertThrows(IllegalArgumentException.class, () -> player.findElement("Bad argument"));
     }
@@ -268,7 +265,7 @@ public class PlayerTest {
     }
 
     @Test
-    void earthAsAnArgumentWithNoSuccessfulSearch(){                                 // Check if the String "Earth" as an argument has a non successful search
+    void earthAsAnArgumentWithNoSuccessfulSearch() {                                 // Check if the String "Earth" as an argument has a non successful search
         Player player = new Player("Sabina", element, role);
         assertNull(player.findElement("Earth"));
     }
@@ -287,49 +284,49 @@ public class PlayerTest {
     //TEST ITEMS METHODS  ----------------------------------------------------------------------------------------------
 
     @Test
-    void addShoesToItems(){                                                             // Add shoes
+    void addShoesToItems() {                                                             // Add shoes
         Player player = new Player("Sabina", element, role);
         player.addItem(new Shoes("Heels", 3, 3));
         assertEquals("Heels", player.findItem("Shoes").getName());
     }
 
     @Test
-    void addArmorToItems(){                                                             // Add armor
+    void addArmorToItems() {                                                             // Add armor
         Player player = new Player("Sabina", element, role);
         player.addItem(new Armor("Birthday suit", 3, 3));
         assertEquals("Birthday suit", player.findItem("Armor").getName());
     }
 
     @Test
-    void addWeaponToItems(){                                                             // Add gun
+    void addWeaponToItems() {                                                             // Add gun
         Player player = new Player("Sabina", element, role);
         player.addItem(new Weapon("Gun", 3, 3));
         assertEquals("Gun", player.findItem("Weapon").getName());
     }
 
     @Test
-    void doesArmorAddHPToStats(){                                                       // Check if HP increases because of armor
+    void doesArmorAddHPToStats() {                                                       // Check if HP increases because of armor
         Player player = new Player("Sabina", element, role);
         player.addItem(new Armor("Birthday suit", 3, 3));
         assertEquals(7, player.getTemporaryHPFromStats());
     }
 
     @Test
-    void doesWeaponAddPowerToStats(){                                                   // Check if Power increases because of armor
+    void doesWeaponAddPowerToStats() {                                                   // Check if Power increases because of armor
         Player player = new Player("Sabina", element, role);
         player.addItem(new Weapon("Love", 3, 3));
         assertEquals(9, player.getTemporaryPowerFromStats());
     }
 
     @Test
-    void switchShoesChangesSpeed(){                                                    // Check if stats decreases because of shoes
+    void switchShoesChangesSpeed() {                                                    // Check if stats decreases because of shoes
         Player player = new Player("Sabina", element, role);
         player.addItem(new Shoes("Slippers", 3, 3));
         assertEquals(8, player.getTemporarySpeedFromStats());
     }
 
     @Test
-    void switchArmorChangesHP(){                                                       // Check if HP decreases because player switch armor
+    void switchArmorChangesHP() {                                                       // Check if HP decreases because player switch armor
         Player player = new Player("Sabina", element, role);
         player.addItem(new Armor("Birthday suit", 3, 3));
         player.addItem(new Armor("Spandex", 5, 5));
@@ -337,7 +334,7 @@ public class PlayerTest {
     }
 
     @Test
-    void switchWeaponChangesPower(){                                                   // Check if Power decreases because player switch weapon
+    void switchWeaponChangesPower() {                                                   // Check if Power decreases because player switch weapon
         Player player = new Player("Sabina", element, role);
         player.addItem(new Weapon("Hate", 3, 3));
         player.addItem(new Weapon("Love", 4, 4));
@@ -345,7 +342,7 @@ public class PlayerTest {
     }
 
     @Test
-    void doesShoesAddSpeedToStats(){                                                   // Check if stats increases because player switch shoes
+    void doesShoesAddSpeedToStats() {                                                   // Check if stats increases because player switch shoes
         Player player = new Player("Sabina", element, role);
         player.addItem(new Shoes("Heals", 3, 3));
         player.addItem(new Shoes("Slippers", 2, 2));
@@ -355,16 +352,17 @@ public class PlayerTest {
     // TEST ATTACK ENEMY METHOD ----------------------------------------------------------------------------------------
     @Test
     void attackEnemy() {
-        //TODO HJÄÄÄÄLP /Malin
+        Player player = new Player("David", new FireElement(1), Role.Tank);
+        Enemy enemy = new Enemy(new WaterElement(1), 2, new Room(player));
+        player.attack(enemy);
+        assertEquals(1, enemy.getCurrentHP());
     }
 
     @Test
     void throwCCEWhenParameterIsNotOfTypePlayer() {
-        Enemy enemy = new Enemy(new FireElement(2), 2,
-                new Room(new Player("Malin", new FireElement(1), Role.Tank)));
-        Character notPlayer = new Enemy(new EarthElement(1), 1,
-                new Room(new Player("Oskar", new WaterElement(1), Role.Warrior)));
-        assertThrows(ClassCastException.class, () -> enemy.attack(notPlayer));
+       Player player = new Player("Malin", new FireElement(1), Role.Tank);
+        Character notEnemy = new Player("Oskar", new WaterElement(1), Role.Warrior);
+        assertThrows(ClassCastException.class, () -> player.attack(notEnemy));
     }
 
 
