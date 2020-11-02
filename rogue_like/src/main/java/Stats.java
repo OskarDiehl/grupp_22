@@ -30,14 +30,14 @@ public class Stats {
 
     public void loseHP(int lostHP) {
         if ((currentHP - lostHP) >= MIN_STAT)
-            currentHP = currentHP - lostHP;          //TODO -> Spelet startas om? -> PlayerStats? /Malin
+            currentHP = currentHP - lostHP;
         else
             currentHP = MIN_STAT;
     }
 
     public void gainHP(int gainedHP) {
         if ((currentHP + gainedHP) <= defaultHP)
-            currentHP = currentHP + gainedHP;       //TODO Problem för Malins Player
+            currentHP = currentHP + gainedHP;
         else
             currentHP = defaultHP;
     }

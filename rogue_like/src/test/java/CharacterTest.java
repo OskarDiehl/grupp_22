@@ -8,11 +8,11 @@
 ////
 ////
 ////
-/////*    @Test   TODO KOLLA HÄR MALIN
+/////*    @Test
 ////    void getStatsFromConstructorArgument(){
 ////        Stats stats = new Stats();
 ////        Character character = new Character("Sabina", element);
-////        assertEquals(stats.toString(), character.getStats().toString()); // TODO Gjorde jag rätt nu? /Malin
+////        assertEquals(stats.toString(), character.getStats().toString());
 ////    }*/
 ////
 ////    @Test
@@ -36,7 +36,7 @@
 //        Character character = new Character("Sabina", element);
 //        character.levelUp();
 //        character.levelUp();
-//        character.levelUp();                  //TODO refactor? /Malin
+//        character.levelUp();
 //        assertEquals(3, character.getLevel());
 //    }
 //

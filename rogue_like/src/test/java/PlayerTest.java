@@ -53,7 +53,7 @@ public class PlayerTest {
 //        Player player = new Player("Sabina", element, role);
 //        player.levelUp();
 //        player.levelUp();
-//        player.levelUp();                  //TODO Kolla med Sabina om det verkligen ska kastas ett undantag /Malin
+//        player.levelUp();
 //        assertEquals(3, player.getLevel());
 //    }
 
@@ -269,16 +269,6 @@ public class PlayerTest {
         Player player = new Player("Sabina", element, role);
         assertNull(player.findElement("Earth"));
     }
-
-//    @Test
-//    void throwExceptionInGetActivatedElement(){  TODO Ta bort?
-//        Player player = new Player("Sabina", element, role);
-//        assertThrows(IllegalArgumentException.class, () -> player.addElement(null));
-//
-//     //   assertThrows(NullPointerException.class, () -> player.getActivatedElement());
-//
-//     //   assertThrows(NullPointerException.class, () -> new Player("Sabina", null, role));
-//    }
 
 
     //TEST ITEMS METHODS  ----------------------------------------------------------------------------------------------

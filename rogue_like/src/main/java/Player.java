@@ -52,15 +52,7 @@ public class Player extends Character {
     }
 
 
-    @Override
-    public void attack(Character character) {                       // Attack Enemy
-        if (character instanceof Enemy) {
-            int attackPower = getMainElement().attack(getTemporaryPowerFromStats(), character.getMainElement());
-            character.getStats().loseHP(attackPower);
-        } else {
-            throw new ClassCastException();
-        }
-    }
+
 
     // ELEMENTS METHODS ------------------------------------------------------------------------------------------------
     // The index each element has in the array "elements":
@@ -86,7 +78,7 @@ public class Player extends Character {
     public Element findElement(String elementType) {                                                                                                                // Checks if the player has an certain element
         if (elementType.equalsIgnoreCase("earth") && elements[0] != null && elements[0].getClass().isInstance(new EarthElement(2)))
             return elements[0];
-        else if (elementType.equalsIgnoreCase("water") && elements[1] != null && elements[1].getClass().isInstance(new WaterElement(2)))  //TODO Använde jag equalsIgnoreCase rätt nu? /Malin
+        else if (elementType.equalsIgnoreCase("water") && elements[1] != null && elements[1].getClass().isInstance(new WaterElement(2)))
             return elements[1];
         else if (elementType.equalsIgnoreCase("fire") && elements[2] != null && elements[2].getClass().isInstance(new FireElement(3)))
             return elements[2];
@@ -223,6 +215,17 @@ public class Player extends Character {
 
         else if (element.getClass().isInstance(new WindElement(1)))
             windMedallions = 0;
+    }
+
+    // OTHER METHODS ---------------------------------------------------------------------------------------------------
+    @Override
+    public void attack(Character character) {                                       // Attack Enemy
+        if (character instanceof Enemy) {
+            int attackPower = getMainElement().attack(getTemporaryPowerFromStats(), character.getMainElement());
+            character.getStats().loseHP(attackPower);
+        } else {
+            throw new ClassCastException();
+        }
     }
 
 
