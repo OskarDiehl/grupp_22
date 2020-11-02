@@ -26,6 +26,11 @@ public abstract class Element {
         }
     }
 
+    //An element makes an attack with the power that is included in the method towards an enemy
+    //with the element that is also included with the attack.
+    //If the element that is making the attack is strong, the attack gets +2 power. If it is weak it gets -2 power
+    //Then the Power doubles if the element level is level 2, or triples if the element level is level 3.
+    //In the last stage the calculated power is returned as the attack power which can be used to attack the enemy.
     public int attack(int power,Element element) {
 
         if (isStrong(element)) {
