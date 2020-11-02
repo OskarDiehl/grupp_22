@@ -256,9 +256,9 @@ public class PlayerTest {
     }
 
     @Test
-    void throwIllegalArgumentExceptionInFindElement(){                                  // Throw IllegalArgumentException
+    void throwIAEInFindElement(){                                                                               // Throw IllegalArgumentException i metoden findElement
         Player player = new Player("Sabina", element, role);
-        assertThrows(IllegalArgumentException.class, () -> player.findElement("Bad argument"), "Error: Argument not allowed.");
+        assertThrows(IllegalArgumentException.class, () -> player.findElement("Bad argument"));
     }
 
     @Test

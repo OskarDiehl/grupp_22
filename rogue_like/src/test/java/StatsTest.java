@@ -32,7 +32,7 @@ public class StatsTest {
     }
 
     @Test
-    void throwIAEIfNotInbetweenOneToTen(){
+    void throwIAEIfNotInBetweenOneToTen(){
         assertThrows(IllegalArgumentException.class, () -> new Stats(1, 1, 11));
     }
 

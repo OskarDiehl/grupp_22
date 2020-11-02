@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 // Test class that test the method "findElement" in the class Player   TODO Ska den här beskrivningen stå här? /Malin
 
-public class findElementMethodTest {
+public class FindElementMethodTest {
     private Element element = new WindElement(1);
     private Role role = Role.Runner;
 

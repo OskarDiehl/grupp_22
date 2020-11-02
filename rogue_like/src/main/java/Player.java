@@ -78,14 +78,14 @@ public class Player extends Character {
             upgradeOrAddElement(3, newElement);                                    //... upgrade or add wind element
     }
 
-    public Element findElement(String elementType) {                                                                                   // Checks if the player has an certain element
-        if (elementType.toLowerCase().equals("earth") && elements[0] != null && elements[0].getClass().isInstance(new EarthElement(2)))
+    public Element findElement(String elementType) {                                                                                                                // Checks if the player has an certain element
+        if (elementType.equalsIgnoreCase("earth") && elements[0] != null && elements[0].getClass().isInstance(new EarthElement(2)))
             return elements[0];
-        else if (elementType.toLowerCase().equals("water") && elements[1] != null && elements[1].getClass().isInstance(new WaterElement(2)))
+        else if (elementType.equalsIgnoreCase("water") && elements[1] != null && elements[1].getClass().isInstance(new WaterElement(2)))  //TODO Använde jag equalsIgnoreCase rätt nu? /Malin
             return elements[1];
-        else if (elementType.toLowerCase().equals("fire") && elements[2] != null && elements[2].getClass().isInstance(new FireElement(3)))
+        else if (elementType.equalsIgnoreCase("fire") && elements[2] != null && elements[2].getClass().isInstance(new FireElement(3)))
             return elements[2];
-        else if (elementType.toLowerCase().equals("wind") && elements[3] != null && elements[3].getClass().isInstance(new WindElement(1)))
+        else if (elementType.equalsIgnoreCase("wind") && elements[3] != null && elements[3].getClass().isInstance(new WindElement(1)))
             return elements[3];
         else if (elementSpelledCorrect(elementType)){
             System.out.println("You do not have this element yet!");
