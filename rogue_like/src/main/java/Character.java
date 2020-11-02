@@ -22,7 +22,7 @@ public abstract class Character {
         if(level >= 1 && level <= 3)        //A character can reach up to level 3
             this.level = level;
         else {
-            throw new IllegalArgumentException();   //TODO Ska den här verkligen vara här? /Malin
+            throw new IllegalArgumentException();
         }
     }
 
