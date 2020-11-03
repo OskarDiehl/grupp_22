@@ -1,6 +1,8 @@
 public abstract class Element {
 
     private int elementLevel;
+    //Extra bonus power for restarting your Element Level.
+    private int prestigeBonus;
 
     public Element(int elementLevel) {
         if (elementLevel == 1 || elementLevel == 2 || elementLevel == 3) {
@@ -20,11 +22,18 @@ public abstract class Element {
 
     // TODO: 2020-11-02 Gör den här mer komplex
     public void levelUpElement() {
-        if (elementLevel >= 3 || elementLevel < 1){
-            throw new IllegalArgumentException("The Element Level can't be above 3");
+        if (elementLevel == 3 && prestigeBonus >=10) {
+            throw new IllegalArgumentException();
+        } else if (elementLevel == 3) {
+            elementLevel = 1;
+            prestigeBonus += 2;
         } else {
             elementLevel++;
         }
+    }
+
+    public int getPrestigeBonus() {
+        return prestigeBonus;
     }
 
     //An element makes an attack with the power that is included in the method towards an enemy
@@ -33,6 +42,7 @@ public abstract class Element {
     //Then the Power doubles if the element level is level 2, or triples if the element level is level 3.
     //In the last stage the calculated power is returned as the attack power which can be used to attack the enemy.
     public int attack(int power,Element element) {
+        power += prestigeBonus;
 
         if (isStrong(element)) {
             power += 2;
