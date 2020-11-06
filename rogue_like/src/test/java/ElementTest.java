@@ -76,13 +76,51 @@ public class ElementTest {
     }
 
     @Test
+    void levelUpElementFromOneToTwo() {
+        Element e1 = new FireElement(1);
+        e1.levelUpElement();
+        assertEquals(2, e1.getElementLevel());
+    }
+
+    /*@Test
     void levelUpElementIfElementLevelThreeThrowIAE() {
         assertThrows(IllegalArgumentException.class, () -> {
             Element e1 = new FireElement(3);
             e1.levelUpElement();
         });
+    }*/
+
+    @Test
+    void levelUpElementWithElementLevelThreeToLevelOne() {
+        Element e1 = new FireElement(3);
+        e1.levelUpElement();
+        assertEquals(1, e1.getElementLevel());
     }
 
+    @Test
+    void levelUpElementWithElementLevelThreeToPrestigeBonusTwo() {
+        Element e1 = new FireElement(3);
+        e1.levelUpElement();
+        assertEquals(2, e1.getPrestigeBonus());
+    }
 
+    @Test
+    void afterOnePrestigeAttackDoesPowerTimesTwoPlusTwoForElementLevelOne() {
+        Element e1 = new FireElement(3);
+        Element e2 = new FireElement(1);
+        e1.levelUpElement();
+        assertEquals(7,e1.attack(defaultPower, e1));
+    }
+
+    @Test
+    void levelUpElementWithElementLevelThreeAndPrestigeBonusTenTrowsIAE() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            Element e1 = new FireElement(3);
+            while (!(e1.getPrestigeBonus() >= 10 && e1.getElementLevel() == 3)) {
+                e1.levelUpElement();
+            }
+            e1.levelUpElement();
+        });
+    }
 
 }
