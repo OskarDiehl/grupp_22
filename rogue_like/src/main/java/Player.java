@@ -75,6 +75,7 @@ public class Player extends Character {
             upgradeOrAddElement(3, newElement);                                    //... upgrade or add wind element
     }
 
+
     public Element findElement(String elementType) {                                                                                                                // Checks if the player has an certain element
         if (elementType.equalsIgnoreCase("earth") && elements[0] != null && elements[0].getClass().isInstance(new EarthElement(2)))
             return elements[0];
@@ -132,6 +133,22 @@ public class Player extends Character {
             switchAndAddItem(2, newItem);                                                   // Remove extra stats from potentially already existing weapon
                                                                                                     // Add new weapon
     }
+
+    public Item findItem(Item itemType){                                                                                                       // Look if the player has an item of a special type (class). If yes -> fetch the item
+        if (itemType != null){
+            if (itemType instanceof Armor)
+                return items[0];                       // Return armor
+
+            else if (itemType instanceof Shoes)
+                return items[1];                       // Return shoes
+
+            else
+                return items[2];                       // Return weapon
+        }
+        else
+            return null;      //TODO throw exception?
+    }
+
 
     public Item findItem(String itemType){                                                                                                       // Look if the player has an item of a special type (class). If yes -> fetch the item
         if (itemType.toLowerCase().equals("armor") && items[0] != null  && items[0].getClass().isInstance(new Armor("Armor", 0, 0)))

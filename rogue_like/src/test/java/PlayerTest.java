@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PlayerTest {
     private final Element element = new WindElement(2);
     private final Role role = Role.Warrior;
+    private final Player player = new Player("Sabina", element, role);
+    private final Shoes shoes = new Shoes("Heels", 3,3);
+    private final Shoes otherShoes = new Shoes("Flip Flops", 4, 4);
 
 
     //TEST CONSTRUCTOR -------------------------------------------------------------------------------------------------
@@ -302,7 +305,14 @@ public class PlayerTest {
     }
 
     @Test
-    void doesWeaponAddPowerToStats() {                                                   // Check if Power increases because of armor
+    void doesArmorAddSpeedToStats() {                                                       // Check if Armor increases because of armor
+        Player player = new Player("Sabina", element, role);
+        player.addItem(new Armor("Birthday suit", 3, 3));
+        assertEquals(7, player.getTemporaryHPFromStats());
+    }
+
+    @Test
+    void doesWeaponAddPowerToStats() {                                                   // Check if Power increases because of weapon
         Player player = new Player("Sabina", element, role);
         player.addItem(new Weapon("Love", 3, 3));
         assertEquals(9, player.getTemporaryPowerFromStats());
@@ -343,6 +353,35 @@ public class PlayerTest {
     void armorAsAnArgumentWithNoSuccessfulSearch() {                                 // Check if the String "Earth" as an argument has a non successful search
         Player player = new Player("Sabina", element, role);
         assertNull(player.findItem("Armor"));
+    }
+
+    // TEST THIS
+//    public void addItem(Item newItem){                                                              // Add an item to the array items
+//        if (newItem.getClass().isInstance(new Armor(null,0,0)))
+//            switchAndAddItem(0, newItem);                                                     // Remove extra stats from potentially already existing armor
+//            // Add new armor
+//        else if (newItem.getClass().isInstance(new Shoes(null,0,0)))
+//            switchAndAddItem(1, newItem);                                                     // Remove extra stats from potentially already existing shoes
+//            // Add new shoes
+//        else
+//            switchAndAddItem(2, newItem);                                                   // Remove extra stats from potentially already existing weapon
+//        // Add new weapon
+//    }
+
+//    private void switchAndAddItem(int index, Item newItem) {                  // Upgrade or add an element
+//        if (items[index] != null)
+//            itemDecreaseStats(items[index]);
+//
+//        items[index] = newItem;
+//        itemIncreaseStats(newItem);                                          // Add extra stats from the new item
+//    }
+
+    @Test
+    void itemsSwitchPlace(){
+        player.addItem(shoes);
+        player.addItem(otherShoes);
+        assertEquals(otherShoes, player.findItem(new Shoes("Barefoot", 5,7)));
+
     }
 
 
