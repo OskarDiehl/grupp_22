@@ -78,7 +78,7 @@ public class EnemyTest {
         Player player = new Player("David", new WaterElement(1), Role.Tank);
         Enemy enemy = new Enemy(new FireElement(1), 2, new Room(player));
         enemy.attack(player);
-        assertEquals(3, player.getCurrentHPFromStats());
+        assertEquals(3, player.getCurrentHP());
     }
 
     @Test

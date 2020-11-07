@@ -28,12 +28,7 @@ public class Player extends Character {
         addElement(element);
     }
 
-    // OTHER METHODS ---------------------------------------------------------------------------------------------------
-    public void levelUp() {                                         // Level up the player
-        int changeToThisLevel = getLevel() + 1;
-        setLevel(changeToThisLevel);
-        playerStats.levelStatsUp();                                 // When the player moves up a level the player´s default stats increases
-    }
+    // STATS METHODS ---------------------------------------------------------------------------------------------------
 
     public void changeStatPowerTemporary(int powerAmount) {         // Change the stats for power temporary
         playerStats.changePowerTemporary(powerAmount);
@@ -47,11 +42,17 @@ public class Player extends Character {
         playerStats.changeHPTemporary(HPAmount);
     }
 
-    public void resetStatsForPowerAndSpeed() {                      // Resets the stats for power, speed and HP
+    public void resetStatsToDefault() {                             // Resets the stats for power, speed and HP
         playerStats.resetPowerAndSpeedToDefaultValues();
     }
 
+    public void looseHP(int HPAmount){                              // When the player for example gets attacked
+        playerStats.loseHP(HPAmount);
+    }
 
+    public void gainHP(int HPAmount){                               // When the player is healing
+        playerStats.gainHP(HPAmount);
+    }
 
 
     // ELEMENTS METHODS ------------------------------------------------------------------------------------------------
@@ -163,12 +164,34 @@ public class Player extends Character {
             return null;
     }
 
-    private void switchAndAddItem(int index, Item newItem) {                  // Upgrade or add an element
-        if (items[index] != null)
-            itemDecreaseStats(items[index]);
+    private void switchAndAddItem(int index, Item newItem) {            // Upgrade or add an element
+        if (items[index] != null){                                      // The array with Items has predetermined places for each Item type. Therefor, if the
+                                                                        // place for the certain index is empty, the player does not own an item of that type.
 
-        items[index] = newItem;
-        itemIncreaseStats(newItem);                                          // Add extra stats from the new item
+            if (checkIfSwitchItemIsPossible(newItem)){                  // Check if the player still has at least 1HP after the potential item switch
+                itemDecreaseStats(items[index]);                        // Take back the extra stats that the item gives
+            } else {
+                throw new IllegalStateException();                      //TODO Är det rätt typ utav exception?
+            }
+        }
+        items[index] = newItem;                                         // Replace the previous item with the new one
+        itemIncreaseStats(newItem);                                     // Add the extra stats the new item gives
+    }
+
+    private boolean checkIfSwitchItemIsPossible(Item newItem) {
+        boolean possible = true;                                                                // If this variable stays true it is possible to switch items.
+        int currentItemsHP = findItem(newItem).getHP();                                         // FindItem fetches the current item with the same subclass as the
+                                                                                                // new Item. Then we copy this items HP to the variable currentItemsHP.
+        int newItemsHP = newItem.getHP();
+        int HPDifference = newItemsHP - currentItemsHP;                                         // The difference between the two items HP.
+
+        if (HPDifference < 0) {                                                                 // If the difference is more than 0 we now the currentHP will be more than 0.
+            int newCurrentHP = (playerStats.getCurrentHP() - currentItemsHP) + HPDifference;
+            if (newCurrentHP <= 0) {
+                possible = false;                                                               // It is not possible to switch Item.
+            }
+        }
+        return possible;
     }
 
     private void itemIncreaseStats(Item item){                              // Add extra stats from an item
@@ -190,6 +213,7 @@ public class Player extends Character {
         changeStatSpeedTemporary((speed * -1));
         changeStatHPTemporary((HP * -1));
     }
+
 
     // ELEMENT MEDALLION METHODS ---------------------------------------------------------------------------------------
     public int fetchMedallionStatus(Element element) {
@@ -238,13 +262,19 @@ public class Player extends Character {
     @Override
     public void attack(Character character) {                                       // Attack Enemy
         if (character instanceof Enemy) {
-            int attackPower = getMainElement().attack(getTemporaryPowerFromStats(), character.getMainElement());
+            int attackPower = getMainElement().attack(getTemporaryPower(), character.getMainElement());
             character.getStats().loseHP(attackPower);
         } else {
             throw new ClassCastException();
         }
     }
 
+    // OTHER METHODS ---------------------------------------------------------------------------------------------------
+    public void levelUp() {                                         // Level up the player
+        int changeToThisLevel = getLevel() + 1;
+        setLevel(changeToThisLevel);
+        playerStats.levelStatsUp();                                 // When the player moves up a level the player´s default stats increases
+    }
 
     // GET-METHODS -----------------------------------------------------------------------------------------------------
     public Role getRole() {
@@ -260,7 +290,7 @@ public class Player extends Character {
         return playerStats;
     }
 
-    public int getCurrentHPFromStats() {            // If for example an enemy attack the player and the player no longer has a "full HP-tank"
+    public int getCurrentHP() {            // If for example an enemy attack the player and the player no longer has a "full HP-tank"
         return playerStats.getCurrentHP();
     }
 
@@ -268,11 +298,11 @@ public class Player extends Character {
         return playerStats.getTemporaryHP();
     }
 
-    public int getTemporaryPowerFromStats() {
+    public int getTemporaryPower() {
         return playerStats.getTemporaryPower();
     }
 
-    public int getTemporarySpeedFromStats() {
+    public int getTemporarySpeed() {
         return playerStats.getTemporarySpeed();
     }
 

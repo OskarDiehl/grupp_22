@@ -47,7 +47,7 @@ class LuckyWheelTest {
         }
 
         Player player = room.getPlayer();
-        assertEquals(0, player.getCurrentHPFromStats());
+        assertEquals(0, player.getCurrentHP());
 
     }
 

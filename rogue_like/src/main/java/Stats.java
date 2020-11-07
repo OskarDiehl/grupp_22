@@ -42,6 +42,14 @@ public class Stats {
             currentHP = defaultHP;
     }
 
+    public void changeCurrentHPTemporary(int gainedHP){
+        currentHP = currentHP + gainedHP;
+    }
+
+    public void resetCurrentHP(){
+        currentHP = defaultHP;
+    }
+
 
 //    public void changeCurrentHP(int hp) {               //Increases or decreases the HP temporarily
 //        int totalHP = currentHP + hp;

@@ -38,18 +38,26 @@ public class PlayerStats extends Stats {
 
     public void changeHPTemporary(int HP) {               //Increases or decreases the HP temporary
         int totalHP = temporaryHP + HP;
-        if (totalHP > getMaxStat())
+        if (totalHP > getMaxStat()){
+            changeCurrentHPTemporary(getMaxStat());
             temporaryHP = getMaxStat();
-        else if (totalHP < getMinStat())
+        }
+        else if (totalHP < getMinStat()){
+            changeCurrentHPTemporary(getMinStat());
             temporaryHP = getMinStat();
-        else
+        }
+        else {
+            changeCurrentHPTemporary(HP);
             temporaryHP = temporaryHP + HP;
+        }
     }
+
 
     public void resetPowerAndSpeedToDefaultValues(){                    // Resets the power- and speed stats to their default values
         temporaryPower = getDefaultPower();
         temporarySpeed = getDefaultSpeed();
         temporaryHP    = getDefaultHP();
+        resetCurrentHP();
     }
 
 
