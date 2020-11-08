@@ -6,9 +6,11 @@ public class PlayerTest {
     private final Element windElement = new WindElement(2);
     private final Role warriorRole    = Role.Warrior;
     private final Player player       = new Player("Sabina", windElement, warriorRole);
+    private final Shoes shoes         = new Shoes("Shoes", 1,1);
     private final Shoes heels         = new Shoes("Heels", 3,3);
     private final Shoes flipFlops     = new Shoes("Flip Flops", 4, 4);
     private final Weapon loveWeapon   = new Weapon("Love", 3, 3);
+    private final Armor suitArmor     = new Armor("Suit", 2,2);
 
 
     //TEST CONSTRUCTOR -------------------------------------------------------------------------------------------------
@@ -112,6 +114,12 @@ public class PlayerTest {
         assertEquals("Warrior", player.getRole().getRoleName());
     }
 
+    @Test
+    void gainHP (){
+        player.looseHP(3);
+        player.gainHP(1);
+        assertEquals(2, player.getCurrentHP());
+    }
 
     //TEST MEDALLIONS ----------------------------------------------------------------------------------------------------
     @Test
@@ -281,21 +289,21 @@ public class PlayerTest {
     void addShoesToItems() {                                                             // Add shoes
         Player player = new Player("Sabina", windElement, warriorRole);
         player.addItem(new Shoes("Heels", 3, 3));
-        assertEquals("Heels", player.findItem("Shoes").getName());
+        assertEquals("Heels", player.findItem(shoes).getName());
     }
 
     @Test
     void addArmorToItems() {                                                             // Add armor
         Player player = new Player("Sabina", windElement, warriorRole);
         player.addItem(new Armor("Birthday suit", 3, 3));
-        assertEquals("Birthday suit", player.findItem("Armor").getName());
+        assertEquals("Birthday suit", player.findItem(suitArmor).getName());
     }
 
     @Test
     void addWeaponToItems() {                                                             // Add gun
         Player player = new Player("Sabina", windElement, warriorRole);
         player.addItem(new Weapon("Gun", 3, 3));
-        assertEquals("Gun", player.findItem("Weapon").getName());
+        assertEquals("Gun", player.findItem(loveWeapon).getName());
     }
 
     @Test
@@ -353,7 +361,7 @@ public class PlayerTest {
     @Test
     void armorAsAnArgumentWithNoSuccessfulSearch() {                                 // Check if the String "Earth" as an argument has a non successful search
         Player player = new Player("Sabina", windElement, warriorRole);
-        assertNull(player.findItem("Armor"));
+        assertNull(player.findItem(suitArmor));
     }
 
     // TEST THIS
@@ -385,11 +393,10 @@ public class PlayerTest {
         assertEquals(2, player.getCurrentHP());
     }
 
+
     @Test
-    void gainHPWithAfterPickedUpItem (){
-        player.addItem(loveWeapon);
-        player.gainHP(1);
-        assertEquals(8, player.getCurrentHP());
+    void findItemThrowIAE(){
+        assertThrows(NullPointerException.class, () -> player.findItem(null));
     }
 
     @Test
@@ -402,11 +409,11 @@ public class PlayerTest {
     }
 
     @Test
-    void switchShoes(){
-        Shoes shoes = new Shoes("Shoes", 1,1);
+    void switchShoes(){                                                 // Test if the player has the right object after a switch
         player.addItem(heels);
         player.addItem(flipFlops);
-        assertEquals(flipFlops, player.findItem(shoes));
+        assertEquals(flipFlops, player.findItem(shoes));                // findItem check which Class the item is an instance of,
+                                                                        // than search for an object with that class.
 
     }
 

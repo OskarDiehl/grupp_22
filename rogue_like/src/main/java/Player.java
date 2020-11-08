@@ -147,21 +147,7 @@ public class Player extends Character {
                 return items[2];                       // Return weapon
         }
         else
-            return null;      //TODO throw exception?
-    }
-
-
-    public Item findItem(String itemType){                                                                                                       // Look if the player has an item of a special type (class). If yes -> fetch the item
-        if (itemType.toLowerCase().equals("armor") && items[0] != null  && items[0].getClass().isInstance(new Armor("Armor", 0, 0)))
-            return items[0];                                                                                                                     // Return armor
-
-        else if (itemType.toLowerCase().equals("shoes") && items[1] != null  && items[1].getClass().isInstance(new Shoes("Shoes",0,0)))
-            return items[1];                                                                                                                     // Return shoes
-
-        else if (itemType.toLowerCase().equals("weapon") && items[2] != null  && items[2].getClass().isInstance(new Weapon("Weapon",0,0)))
-                return items[2];                                                                                                                 // Return weapon
-        else
-            return null;
+            throw new NullPointerException();
     }
 
     private void switchAndAddItem(int index, Item newItem) {            // Upgrade or add an element
