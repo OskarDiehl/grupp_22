@@ -400,21 +400,20 @@ public class PlayerTest {
     }
 
     @Test
-    void pickUpShoesIncreaseSpeedAndPower(){
+    void pickUpShoesIncreaseSpeedAndPower(){                                // Test if a shoe-item increase speed and power
         Shoes heels = new Shoes("Heels", 3, 3);
-        player.addItem(heels);                        // Player has the default values 4 HP, 6 Power
-                                                      // and 5 Speed. Now speed and power increase with 3.
+        player.addItem(heels);                                              // Player has the default values 4 HP, 6 Power
+                                                                            // and 5 Speed. Now speed and power increase with 3.
 
         assertEquals(9,player.getTemporaryPower() + 8, player.getTemporarySpeed());
     }
 
     @Test
-    void switchShoes(){                                                 // Test if the player has the right object after a switch
+    void switchShoes(){                                                     // Test if the player has the right object after a switch
         player.addItem(heels);
         player.addItem(flipFlops);
-        assertEquals(flipFlops, player.findItem(shoes));                // findItem check which Class the item is an instance of,
-                                                                        // than search for an object with that class.
-
+        assertEquals(flipFlops, player.findItem(shoes));                    // findItem check which Class the item is an instance of,
+                                                                            // than search for an object with that class.
     }
 
     @Test

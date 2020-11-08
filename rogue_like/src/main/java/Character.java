@@ -7,8 +7,12 @@ public abstract class Character {
 
     // CONSTRUCTORS  ------------------------------------------------------------------------
     public Character(Element mainElement){
-        this.mainElement = mainElement;
-        level = 1;
+        if (mainElement != null){
+            this.mainElement = mainElement;
+            level = 1;
+        }
+        else
+            throw new NullPointerException();
     }
 
     public Character(Element mainElement, int level){

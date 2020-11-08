@@ -63,28 +63,30 @@ public class Player extends Character {
     //   * index 3 = Air element
 
     public void addElement(Element newElement) {
-        if (newElement.getClass().isInstance(new EarthElement(1))) {          // For earth elements
-            upgradeOrAddElement(0, newElement);                                    //... upgrade or add earth element
+        if (newElement instanceof EarthElement) {               // For earth elements
+            upgradeOrAddElement(0, newElement);          //... upgrade or add earth element
 
-        } else if (newElement.getClass().isInstance(new WaterElement(1)))     // For water elements
-            upgradeOrAddElement(1, newElement);                                    //... upgrade or add water element
+        } else if (newElement instanceof WaterElement)          // For water elements
+            upgradeOrAddElement(1, newElement);          //... upgrade or add water element
 
-        else if (newElement.getClass().isInstance(new FireElement(1)))        // For fire elements
-            upgradeOrAddElement(2, newElement);                                    //... upgrade or add fire element
+        else if (newElement instanceof FireElement)             // For fire elements
+            upgradeOrAddElement(2, newElement);          //... upgrade or add fire element
 
-        else                                                                               // For wind elements
-            upgradeOrAddElement(3, newElement);                                    //... upgrade or add wind element
+        else if (newElement instanceof WindElement)              // For wind elements
+            upgradeOrAddElement(3, newElement);          //... upgrade or add wind element
+        else
+            throw new NullPointerException();
     }
 
 
     public Element findElement(String elementType) {                                                                                                                // Checks if the player has an certain element
-        if (elementType.equalsIgnoreCase("earth") && elements[0] != null && elements[0].getClass().isInstance(new EarthElement(2)))
+        if (elementType.equalsIgnoreCase("earth") && elements[0] != null && elements[0] instanceof EarthElement)
             return elements[0];
-        else if (elementType.equalsIgnoreCase("water") && elements[1] != null && elements[1].getClass().isInstance(new WaterElement(2)))
+        else if (elementType.equalsIgnoreCase("water") && elements[1] != null && elements[1] instanceof WaterElement)
             return elements[1];
-        else if (elementType.equalsIgnoreCase("fire") && elements[2] != null && elements[2].getClass().isInstance(new FireElement(3)))
+        else if (elementType.equalsIgnoreCase("fire") && elements[2] != null && elements[2] instanceof FireElement)
             return elements[2];
-        else if (elementType.equalsIgnoreCase("wind") && elements[3] != null && elements[3].getClass().isInstance(new WindElement(1)))
+        else if (elementType.equalsIgnoreCase("wind") && elements[3] != null && elements[3] instanceof WindElement)
             return elements[3];
         else if (elementSpelledCorrect(elementType)){
             System.out.println("You do not have this element yet!");
@@ -124,10 +126,10 @@ public class Player extends Character {
     //    * index 2 = Weapon
 
     public void addItem(Item newItem){                                                              // Add an item to the array items
-        if (newItem.getClass().isInstance(new Armor(null,0,0)))
+        if (newItem instanceof Armor)
             switchAndAddItem(0, newItem);                                                     // Remove extra stats from potentially already existing armor
                                                                                                      // Add new armor
-        else if (newItem.getClass().isInstance(new Shoes(null,0,0)))
+        else if (newItem instanceof Shoes)
             switchAndAddItem(1, newItem);                                                     // Remove extra stats from potentially already existing shoes
                                                                                                      // Add new shoes
         else
