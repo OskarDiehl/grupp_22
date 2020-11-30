@@ -449,5 +449,20 @@ class RoomTest {
         //Test
 
     }
+
+    @Test
+    void doesPlayerPickUpItemAfterLWDrop(){
+        Player player = new Player("Test", new FireElement(1), Role.Tank);
+        Room room = new Room(player, "Lucky Wheel");
+        LuckyWheel lw = room.getLuckyWheel();
+
+        Item item = lw.spinLuckyWheel();
+        while(item == null){
+            item = lw.spinLuckyWheel();
+        }
+
+        player.addItem(item);
+        assertEquals(item, player.findItem(item));
     }
+}
 

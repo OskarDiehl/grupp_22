@@ -26,12 +26,12 @@ public class Enemy extends Character {
         generateStats(statForLevel);
     }
 
-    protected void generateStats(int stat) { //Bara en parameter?
+    protected void generateStats(int stat) { //Gives the stats variable a new instance of Stats
         stats = new Stats(stat, stat, stat);
     }
 
     @Override
-    public void attack(Character character) {
+    public void attack(Character character) { //Attacks a player
         if (character instanceof Player) {
             int attackPower = getMainElement().attack(getPower(), character.getMainElement());
             character.getStats().loseHP(attackPower);
@@ -41,7 +41,7 @@ public class Enemy extends Character {
     }
 
     public boolean isDead() {
-        return getCurrentHP() <= 0;
+        return getCurrentHP() <= Stats.getMinStat();
     }
 
     public void removeIfDead() {
